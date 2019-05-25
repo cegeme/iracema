@@ -30,6 +30,13 @@ Linux
 
    git clone https://github.com/taironemagalhaes/iracema.git
 
+If you also want to clone a submodule containing audio examples
+(`iracema-audio`), run the following command instead:
+
+.. code-block:: bash
+
+   git clone --recurse-submodules https://github.com/taironemagalhaes/iracema.git
+
 
 2. We strongly recommend that you create a virtual environment to install the
    dependencies for iracema, since it is always a good practice to keep 
