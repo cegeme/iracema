@@ -9,7 +9,7 @@ from matplotlib.widgets import Button, MultiCursor # pylint: disable=import-erro
 
 import iracema
 import iracema.segment as segment
-import iracema.descriptors
+import iracema.features
 
 
 class NoteAnnotator:
@@ -93,7 +93,7 @@ class NoteAnnotator:
     # axes plots
     def plot_waveform(self, audio):
         "Plot the waveform."
-        rms = iracema.descriptors.rms(audio, 2048, 1024)  # TODO: fix hard code
+        rms = iracema.features.rms(audio, 2048, 1024)  # TODO: fix hard code
         self.ax_waveform.plot(
             rms.time, rms.data, linewidth=1.2, alpha=0.9, color='blue')
 

@@ -9,7 +9,7 @@ import numpy as np
 from matplotlib.widgets import MultiCursor  # pylint: disable=import-error
 from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
-import iracema.descriptors as descriptors
+import iracema.features as features
 
 
 def plot_audio_spectrogram(audio,
@@ -149,32 +149,32 @@ def plot_waveform_trio(audio, rms=None, peak_envelope=None):
     plt.show()
 
 
-def plot_waveform_trio_and_descriptors(audio,
+def plot_waveform_trio_and_features(audio,
                                        rms=None,
                                        peak_envelope=None,
-                                       descriptors=()):
+                                       features=()):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``; followed by a series of graphs, one for each time-series
-    in the tuple `descriptors`.
+    in the tuple `features`.
     """
-    if not descriptors:
-        raise ValueError("the descriptors to be plotted were not specified")
+    if not features:
+        raise ValueError("the features to be plotted were not specified")
 
     # configuring figure and subplots
     f = plt.figure(figsize=(15, 9))
 
-    axes_list = f.subplots(len(descriptors) + 1, sharex=True)
+    axes_list = f.subplots(len(features) + 1, sharex=True)
 
     plt.subplots_adjust(hspace=0.05)
 
     # add audio to first axes
     add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
 
-    # add descriptors to the other axes
-    for i, descriptor in enumerate(descriptors, start=1):
+    # add features to the other axes
+    for i, feature in enumerate(features, start=1):
         add_curve_to_axes(
-            axes_list[i], descriptor, label=descriptor.label)
+            axes_list[i], feature, label=feature.label)
         axes_list[i].legend(loc='lower right', fontsize='x-small')
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
@@ -291,9 +291,9 @@ def add_waveform_trio_to_axes(axes,
     ``peak_evelope``. This method adds them to ``axes``.
     """
     window_size, hop_size = 2048, 512
-    rms = rms or descriptors.rms(audio, window_size, hop_size)
+    rms = rms or features.rms(audio, window_size, hop_size)
     peak_envelope =\
-        peak_envelope or descriptors.peak_envelope(audio, window_size,
+        peak_envelope or features.peak_envelope(audio, window_size,
                                                    hop_size)
     # adding the curves
     add_curve_to_axes(axes, audio, linewidth=0.1, alpha=0.9)

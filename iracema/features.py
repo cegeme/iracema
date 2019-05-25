@@ -1,5 +1,5 @@
 """
-This module contains the implementation of some audio descriptors.
+This module contains the implementation of some feature extractors.
 """
 
 import numpy as np
@@ -226,7 +226,7 @@ def spectral_spread(fft):
     References
     ----------
     .. [Peeters2011] Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,
-       & McAdams, S. (2011). The timbre toolbox: extracting audio descriptors
+       & McAdams, S. (2011). The timbre toolbox: extracting audio features
        from musical signals, 130(5).
 
     """

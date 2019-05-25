@@ -5,7 +5,7 @@ A couple of different methods for note segmentation.
 import numpy as np
 import scipy.signal as sig
 
-import iracema.descriptors
+import iracema.features
 import iracema.pitch
 import iracema.windowing
 
@@ -35,7 +35,7 @@ def segment_notes_rms(audio, rms=None, min_time=None):
     """
 
     # handling arguments
-    rms = rms or iracema.descriptors.rms(audio, 2048, 512)
+    rms = rms or iracema.features.rms(audio, 2048, 512)
     # TODO: hardcoded parameters should be obtained in a better way
 
     if min_time:

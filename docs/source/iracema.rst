@@ -12,7 +12,7 @@ Iracema
 
    iracema_aggregation
    iracema_audio
-   iracema_descriptors
+   iracema_features
    iracema_harmonics
    iracema_pitch
    iracema_plot
