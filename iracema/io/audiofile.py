@@ -50,6 +50,18 @@ def read(filename):
     return (data, fs)
 
 
-def write():
+def write(filename, data, fs):
+    """
+    Write the contents of a `data` array to a WAVE file.
+
+    Arguments
+    ---------
+    filename: str
+        Name of the audio file to be loaded.
+    data: numpy array
+        Data array containing audio samples.
+    fs: int
+        Sampling frequency.
+    """
     # TODO: Implement method to write wave files.
     pass
