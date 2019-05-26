@@ -1,5 +1,5 @@
 """
-Contain classes used to extract and manipulate time series segments.
+Contain classes used to extract and manipulate segments.
 """
 import numpy as np
 
@@ -8,7 +8,7 @@ from .util import conversion
 
 class Segment:
     """
-    The objects generated from this class are used to delimit segments from
+    The objects generated from this class are used to retrieve excerpts from
     time-series.
 
     The `start` and `end` arguments can be specified in terms of sample index
@@ -20,7 +20,7 @@ class Segment:
         Original time series related to the segment.
     start : int or float
         Index (or sample number) corresponding to the start of the segment in
-        the time-series from which it devired. Alternatively, this value can
+        the time-series from which it derived. Alternatively, this value can
         be specified in seconds.
     end : int or float
         Index of the ending sample for the segment. Alternatively, this value
@@ -108,52 +108,53 @@ class SegmentList(list):
     def __init__(self, segment_list):
         super(SegmentList, self).__init__(segment_list)
 
-    @staticmethod
-    def load_from_csv_file(time_series,
-                           filename,
-                           start_only=False,
-                           cls=Segment,
-                           limits='seconds'):
-        """
-        Load segment info from a csv file and create a segment list.
-        """
-        import csv
-        start, end = [], []
 
-        with open(filename, 'r', newline='') as ff:
-            for row in csv.reader(ff, delimiter=','):
-                start.append(np.float_(row[0]))
-                if not start_only:
-                    end.append(np.float_(row[1]))
+class Point:
+    """
+    A point object represents an instant in a time series, i.e., one specific
+    sample index. It is flexible enough to locate samples corresponding to the
+    same instant in time series with different sampling rates.
 
-        if start_only:
-            # if only the start is supposed to be read from the csv file,
-            # then the end of each segment will correpond to the starting
-            # sample of the next segment
-            end = start.copy()
-            end.pop(0)
-            end.append(None)
+    Args
+    ----
+    time_series : TimeSeries
+        Original time series related to the point.
+    position : int or float
+        Index (or sample number) corresponding to the position of the point in
+        the time-series from which it derived. Alternatively, this value can
+        be specified in seconds.
+    unit : ("sample_index", "seconds")
+        If 'sample_index' is passed (default), the argument `position` must be
+        an integer corresponding to a sample index whitin `time_series`. Else,
+        if 'seconds' is passed, `position` must be specified in terms of time.
+    """
+    def __init__(self, time_series, position, unit='sample_index'):
+        if unit not in ('sample_index', 'seconds'):
+            raise ValueError("invalid value for `unit` argument: must" +
+                             " be 'sample_index' or 'seconds'")
 
-        segments = [
-            cls(time_series, st, end, limits) for st, end in zip(start, end)
-        ]
-        return SegmentList(segments)
+        self.fs = time_series.fs
+        self.time_offset = time_series.start_time
 
-    def save_to_csv_file(self, filename, limits='seconds', start_only=False):
-        """
-        Save segment list to a csv file.
-        """
-        import csv
+        if unit == 'sample_index':
+            if type(position) != int:
+                raise ValueError("`position` must be of type int when" +
+                                 "`limits_unit`=='sample_index'")
+            self.position = position
 
-        with open(filename, 'w', newline='') as f:
-            writer = csv.writer(f, delimiter=',')
-            for note in self:
-                if limits == 'seconds':
-                    line = [note.start_time, note.end_time]
-                else:
-                    line = [note.start, note.end]
+        elif unit == 'seconds':
+            self.position = conversion.seconds_to_sample_index(
+                position, self.fs)
 
-                if start_only:
-                    writer.writerow([line[0]])
-                else:
-                    writer.writerow(line)
+    @property
+    def position_time(self):
+        return conversion.sample_index_to_seconds(
+            self.position, self.fs, self.time_offset)
+
+
+class PointList:
+    """
+    List of points.
+    """
+    def __init__(self, point_list):
+        super(PointList, self).__init__(point_list)
