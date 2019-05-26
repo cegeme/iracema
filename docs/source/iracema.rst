@@ -14,9 +14,11 @@ Iracema
    iracema_audio
    iracema_features
    iracema_harmonics
+   iracema_io
    iracema_pitch
    iracema_plot
    iracema_run
+   iracema_segmentation
    iracema_segment
    iracema_spectral
    iracema_timeseries
