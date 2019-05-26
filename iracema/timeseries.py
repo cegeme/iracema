@@ -20,7 +20,7 @@ class TimeSeries:
     ----
     fs : float
         Sampling frequency for the data.
-    data : array_like, optional
+    data : numpy array, optional
         Data array sampled at ``fs`` Hz. If this argument is not provided,
         the method _write_data() must be called after the initialization to
         set the data array.
@@ -30,9 +30,9 @@ class TimeSeries:
 
     Attributes
     ----------
-    data : array_like
+    data : numpy array
         Data array sampled at ``fs`` Hz.
-    time : array_like
+    time : numpy array
         Numpy data array containing the time of each sample, relative to the
         original time reference.
     fs : float
