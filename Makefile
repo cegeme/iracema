@@ -62,6 +62,7 @@ create-virtualenv:
 		virtualenv -p $(PYTHON_INTERPRETER) $(VIRTUALENV_PATH); \
 		. $(VIRTUALENV_PATH)/bin/activate; \
 		$(PIP_COMMAND) install -r requirements.txt; \
+		$(PIP_COMMAND) install -e .; \
 	fi; \
 	make fix-matplotlib-mac
 
@@ -80,6 +81,7 @@ create-dev-virtualenv:
 		. $(VIRTUALENV_PATH)/bin/activate; \
 		$(PIP_COMMAND) install -r requirements.txt; \
 		$(PIP_COMMAND) install -r requirements-dev.txt; \
+		$(PIP_COMMAND) install -e .; \
 	fi; \
 	make fix-matplotlib-mac
 
