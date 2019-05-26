@@ -7,7 +7,6 @@ import scipy.signal as sig
 
 import iracema.features
 import iracema.pitch
-import iracema.windowing
 
 from .segment import Segment
 
