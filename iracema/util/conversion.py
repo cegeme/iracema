@@ -40,3 +40,30 @@ def seconds_to_sample_index(time, fs, time_offset=0):
     of precision.
     """
     return int((time - time_offset) * fs)
+
+
+def map_sample_index(sample_index, source_fs, source_time_offset, target_fs,
+                     target_time_offset):
+    """
+    Convert a given ``sample_index`` for ``source_fs`` and ``time_offset``
+    into the corresponding sample index for ``target_fs`` and
+    ``target_time_offset``.
+
+    Args
+    ----
+    sample_index : int
+    source_fs : float
+    source_time_offset : float
+    target_fs : float
+    target_time_offset : float
+
+    Return
+    ------
+    target_sample_index : int
+    """
+    seconds = sample_index_to_seconds(sample_index, source_fs,
+                                      time_offset=source_time_offset)
+
+    return seconds_to_sample_index(seconds, target_fs,
+                                   time_offset=target_time_offset)
+
