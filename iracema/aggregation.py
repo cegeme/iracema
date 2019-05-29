@@ -81,16 +81,16 @@ def aggregate_sucessive_samples(time_series, func, padding='zeros'):
     elif padding == 'ones':
         padding_array = np.ones(nfeatures, dtype)
     else:
-        padding_array = data[:, 0]
+        padding_array = data[..., 0]
 
     new_data = np.empty(nsamples, dtype)
 
     # a padded array will be used as 'previous sample' for the aggregation
     # of the first sample
-    new_data[0] = func(padding_array, data[:, 0])
+    new_data[0] = func(padding_array, data[..., 0])
 
     for i in range(1, nsamples):
-        new_data[i] = func(data[:, i - 1], data[:, i])
+        new_data[i] = func(data[..., i - 1], data[..., i])
 
     new_ts = TimeSeries(
         time_series.fs,
