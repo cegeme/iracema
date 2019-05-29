@@ -3,6 +3,7 @@ Methods for reading and writing raw audio files.
 """
 import numpy as np
 import audioread
+import scipy.io.wavfile
 
 
 def read(filename):
@@ -64,4 +65,4 @@ def write(filename, data, fs):
         Sampling frequency.
     """
     # TODO: Implement method to write wave files.
-    pass
+    scipy.io.wavfile.write(filename, int(fs), np.float32(data))
