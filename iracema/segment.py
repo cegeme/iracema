@@ -78,19 +78,12 @@ class Segment:
         if self.fs == time_series.fs:
             return slice(self.start, self.end)
         else:
-            # converting sample index to seconds
-            start_seconds = conversion.sample_index_to_seconds(
-                self.start, self.fs, self.time_offset)
-            end_seconds = conversion.sample_index_to_seconds(
-                self.end, self.fs, self.time_offset)
+            slice_start = conversion.map_sample_index(
+                self.start, self.fs, self.time_offset, new_fs, new_time_offset)
+            slice_end = conversion.map_sample_index(
+                self.end, self.fs, self.time_offset, new_fs, new_time_offset)
 
-            # converting it back to sample index in a different fs
-            new_slice_start = conversion.seconds_to_sample_index(
-                start_seconds, new_fs, new_time_offset)
-            new_slice_end = conversion.seconds_to_sample_index(
-                end_seconds, new_fs, new_time_offset)
-
-            return slice(new_slice_start, new_slice_end)
+            return slice(slice_start, slice_end)
 
     def __repr__(self):
         "Overload the representation for the class"
@@ -137,7 +130,7 @@ class Point:
         self.time_offset = time_series.start_time
 
         if unit == 'sample_index':
-            if type(position) != int:
+            if type(position) != np.int_:
                 raise ValueError("`position` must be of type int when" +
                                  "`limits_unit`=='sample_index'")
             self.position = position
@@ -145,16 +138,38 @@ class Point:
         elif unit == 'seconds':
             self.position = conversion.seconds_to_sample_index(
                 position, self.fs)
+        else:
+            raise ValueError("`unit` must be 'sample_index' or 'seconds'")
 
     @property
-    def position_time(self):
+    def time(self):
         return conversion.sample_index_to_seconds(
             self.position, self.fs, self.time_offset)
 
+    def map_index(self, time_series):
+        new_fs = time_series.fs
+        new_time_offset = time_series.start_time
+        return conversion.map_sample_index(
+            self.position, self.fs, self.time_offset, new_fs, new_time_offset)
 
-class PointList:
+    def get_value(self, time_series):
+        sample_index = self.map_index(time_series)
+        return time_series.data[sample_index]
+
+
+class PointList(list):
     """
     List of points.
     """
     def __init__(self, point_list):
         super(PointList, self).__init__(point_list)
+
+    @property
+    def time(self):
+        return [point.time for point in self]
+
+    def map_indexes(self, time_series):
+        return [point.map_index(time_series) for point in self]
+
+    def get_values(self, time_series):
+        return [point.get_value(time_series) for point in self]
