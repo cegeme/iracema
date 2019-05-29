@@ -7,25 +7,134 @@ import scipy.signal as sig
 
 import iracema.features
 import iracema.pitch
+import iracema.segment
+from iracema.aggregation import aggregate_sucessive_samples
 
-from .segment import Segment
+from iracema.plot import plot_waveform_trio_features_and_points
 
 
-def segment_notes_rms(audio, rms=None, min_time=None):
+def extract_note_onsets_rms(audio, rms=None, min_time=None,
+                            perc_threshold_pk=0.2):
     """
-    Extract note segments from the ``audio`` time-series using its ``rms``. The
-    RMS will be calculated if it's not passed as an argument. The argument
-    `min_time` can be used to speficy the minimum distance (in seconds) between
-    two adjacent onsets.
+    Extract note onsets from the ``audio`` time-series using its ``rms``.
+    The RMS will be calculated if it's not passed as an argument. The argument
+    ``min_time`` can be used to specify the minimum distance (in seconds)
+    between two adjacent onsets.
 
     Args
     ----
     audio : Audio
         Audio object
     rms : iracema.TimeSeries, optional
-        RMS calculated from the audio time-series.
+        Pre-calculated RMS for the audio time-series.
     min_time : float, optional
         Minimum time (in seconds) between successive onsets.
+    perc_threshold_pk : float
+        A percentual of the ODF maximum to be defined as a threshold
+        for the peak picking.
+
+    Return
+    ------
+    onsets : list
+        List of onset points.
+    """
+    rms = rms or iracema.features.rms(audio, 2048, 512)
+    # TODO: hardcoded parameters should be obtained in a better way
+
+    # handling arguments
+    if min_time:
+        min_dist = int(min_time * pitch.fs)
+        if min_dist == 0:
+            min_dist = None
+    else:
+        min_dist = None
+
+    # onset detection function
+    onset_df = detection_function_rms(rms)
+
+    # peak picking
+    threshold = perc_threshold_pk * np.max(onset_df.data)
+    ix_onsets, _ = sig.find_peaks(
+        onset_df.data, height=threshold, distance=min_dist)
+
+    print(ix_onsets)
+
+    onsets = iracema.segment.PointList([
+        iracema.segment.Point(rms, position)
+        for position in ix_onsets
+    ])
+
+    print(onsets.time, onsets.get_values(onset_df))
+
+    plot_waveform_trio_features_and_points(audio, onset_df, onsets)
+
+    return onsets
+
+
+def extract_note_onsets_pitch(audio, pitch, min_time=None, delta_pitch_ratio=0.03):
+    """
+    Extract note onsets from the ``audio`` time-series using its ``pitch``.
+    The argument ``min_time`` can be used to specify the minimum distance (in
+    seconds) between two adjacent onsets.
+
+    Args
+    ----
+    audio : Audio
+        Audio object
+    pitch : iracema.TimeSeries
+        Pre-calculated pitch for the audio time-series.
+    min_time : float, optional
+        Minimum time (in seconds) between successive onsets.
+
+    Return
+    ------
+    onsets : list
+        List of onset points.
+    """
+
+    # handling arguments
+    if min_time:
+        min_dist = int(min_time * pitch.fs)
+        if min_dist == 0:
+            min_dist = None
+    else:
+        min_dist = None
+
+    # onset detection function
+    onset_df = detection_function_pitch(pitch)
+
+    # peak picking
+    ix_onsets, _ = sig.find_peaks(
+        onset_df.data, height=delta_pitch_ratio, distance=min_dist)
+
+    onsets = iracema.segment.PointList([
+        iracema.segment.Point(pitch, position)
+        for position in ix_onsets
+    ])
+
+    #plot_waveform_trio_features_and_points(audio, onset_df, onsets)
+
+    return onsets
+
+
+def segment_notes_rms(audio, rms=None, min_time=None, perc_threshold_pk=0.05):
+    """
+    Extract note segments from the ``audio`` time-series using its ``rms``.
+    The RMS will be calculated if it's not passed as an argument. The argument
+    ``min_time`` can be used to specify the minimum distance (in seconds)
+    between two adjacent onsets.
+
+    Args
+    ----
+    audio : Audio
+        Audio object
+    rms : iracema.TimeSeries, optional
+        Pre-calculated RMS for the audio time-series.
+    min_time : float, optional
+        Minimum time (in seconds) between successive onsets.
+    perc_threshold_pk : float
+        A percentual of the ODF maximum to be defined as a threshold
+        for the peak picking.
 
     Return
     ------
@@ -34,19 +143,21 @@ def segment_notes_rms(audio, rms=None, min_time=None):
     """
 
     # handling arguments
-    rms = rms or iracema.features.rms(audio, 2048, 512)
-    # TODO: hardcoded parameters should be obtained in a better way
-
     if min_time:
-        min_dist = int(min_time * rms.fs)
+        min_dist = int(min_time * pitch.fs)
+        if min_dist == 0:
+            min_dist = None
     else:
         min_dist = None
+
+    rms = rms or iracema.features.rms(audio, 2048, 512)
+    # TODO: hardcoded parameters should be obtained in a better way
 
     # onset detection function
     onset_df = detection_function_rms(rms)
 
     # peak picking
-    threshold = 0.05 * np.max(onset_df.data)
+    threshold = perc_threshold_pk * np.max(onset_df.data)
     ix_onsets, _ = sig.find_peaks(
         onset_df.data, height=threshold, distance=min_dist)
 
@@ -136,15 +247,14 @@ def detection_function_rms(rms):
     """
     Onset detection function based on RMS.
     """
-    return rms.diff().hwr()
+    return rms.diff().hwr() #* rms
 
 
 def detection_function_pitch(pitch):
     """
     Onset detection function based on Pitch.
     """
-    data = pitch.data
-    shifted_data = np.concatenate((data[0:1], data[0:-1]))
+    def ratio_successive(current, last):
+        return abs((current / last) - 1)
 
-    ts = pitch.copy()
-    return data / shifted_data
+    return aggregate_sucessive_samples(pitch, ratio_successive)
