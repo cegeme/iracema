@@ -184,6 +184,29 @@ def plot_waveform_trio_and_features(audio,
     return f
 
 
+def plot_waveform_trio_features_and_points(audio,
+                                       feature,
+                                       point_list,
+                                       rms=None,
+                                       peak_envelope=None):
+    # configuring figure and subplots
+    f = plt.figure(figsize=(15, 9))
+    axes_list = f.subplots(2, sharex=True)
+
+    # add waveform trio to first axes
+    add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
+
+    # add feature
+    add_curve_to_axes(axes_list[1], feature, label=feature.label)
+    axes_list[1].legend(loc='lower right', fontsize='x-small')
+
+    add_points_to_axes(axes_list[1], point_list.time, point_list.get_values(feature))
+
+    MultiCursor(f.canvas, axes_list, color='gray', lw=1)
+
+    f.show()
+
+
 def plot_spectrogram_3d(fft, logfft=False, fftlim=None):
     """
     Plot a 3D spectrogram (experimental feature).
@@ -265,11 +288,11 @@ def add_curve_to_axes(axes,
                 time_series.time, row, fmt, linewidth=linewidth, alpha=alpha)
 
 
-def add_points_to_axes(axes, time, points):
+def add_points_to_axes(axes, time, values):
     """
-    Plot circle in the specified `time``x``points`` for the ``axes``.
+    Plot circle in the specified ``points``x``values`` for the ``axes``.
     """
-    axes.plot(time, points, 'or')
+    axes.plot(time, values, 'or')
 
 
 def add_waveform_to_axes(axes, audio):
