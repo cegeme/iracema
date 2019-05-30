@@ -11,7 +11,7 @@ from .util.dsp import local_peaks, n_highest_peaks
 
 def extract_harmonics(fft,
                       pitch,
-                      nharm=12,
+                      nharm=16,
                       minf0=24,
                       maxf0=4200,
                       perc_tol=0.04):
@@ -47,7 +47,7 @@ def extract_harmonics(fft,
     harmonics : dictionary
         A dictionary containing the results of the harmonics extraction,
         composed of three TimeSeries objects, which can be accessed using the
-        following keys: 'frequencies', 'magnitudes'and 'phases'.
+        following keys: 'frequency', 'magnitude'and 'phase'.
     """
     if minf0 >= maxf0:
         raise ValueError('The parameter maxf0 must be greater than minf0.')
@@ -77,7 +77,7 @@ def extract_harmonics(fft,
 
     harmonics = {}
 
-    harmonics['frequencies'] = TimeSeries(
+    harmonics['frequency'] = TimeSeries(
         fft.fs, data=harm_f, start_time=fft.start_time)
     harmonics['magnitude'] = TimeSeries(
         fft.fs, data=harm_mag, start_time=fft.start_time)
