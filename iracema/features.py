@@ -330,10 +330,71 @@ def inharmonicity(fft, harmonics):
         pass
 
 
-def noisiness(fft, harmonics):
-    """Noisiness"""
-    def _func(X):
-        pass
+def harmonic_energy(harmonics_magnitude):
+    """
+    Calculate the energy of harmonic partials.
+
+    Harmonic energy is the energy of the harmonic partials of a signal.
+    """
+    def function(frame):
+        return np.sum(frame**2)
+
+    time_series = aggregate_features(harmonics_magnitude, function)
+    time_series.label = 'Harmonic Energy'
+    time_series.unit = ''
+    return time_series
+
+
+def spectral_entropy(fft):
+    """
+    Spectral Entropy
+
+    More info at https://www.mathworks.com/help/signal/ref/pentropy.html.
+    """
+    def function(X):
+        N = fft.nfeatures
+        P = np.abs(X)**2 / np.sum(np.abs(X)**2)
+        H = -(np.sum(P * np.log2(P))) / np.log2(N)
+        return H
+
+    time_series = aggregate_features(fft, function)
+    time_series.label = 'Spectral Entropy'
+    time_series.unit = ''
+    return time_series
+
+
+def spectral_energy(fft):
+    """
+    Calculate the total energy of an FFT frame.
+
+    Spectral Energy is the total energy of an FFT frame.
+    """
+    def function(frame):
+        return np.sum(np.abs(frame)**2)
+
+    time_series = aggregate_features(fft, function)
+    time_series.label = 'Spectral Energy'
+    time_series.unit = ''
+    return time_series
+
+
+def noisiness(fft, harmonics_magnitude):
+    """
+    Calculate the Noisiness for the given FFT and Harmonics time series.
+
+    The Noisiness represent how noisy a signal is (values closer to 1), as
+    oposed to harmonic (values close to 0). It is the ratio of the noise
+    energy to the total energy of a signal.
+    """
+    energy_spectral = spectral_energy(fft)
+    energy_harmonic = harmonic_energy(harmonics_magnitude)
+    energy_noise = energy_spectral - energy_harmonic
+
+    time_series = energy_noise / energy_spectral
+    time_series.label = 'Noisiness'
+    time_series.unit = ''
+
+    return time_series
 
 
 def oer(harmonics):
