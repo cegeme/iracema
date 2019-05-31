@@ -95,7 +95,7 @@ def frame_harmonics(frame_pitch, fft_frame_mag, fft_frame_phase, fft_max_freq,
     N = fft_frame_mag.shape[-1]
 
     # calculate the index corresponding to the f0
-    ix_f0 = int(round(frame_pitch / fft_max_freq * N))
+    ix_f0 = int(round(np.nan_to_num(frame_pitch / fft_max_freq * N)))
     delta = ix_f0 * perc_tol
 
     # searching for local peaks all over the FFT
