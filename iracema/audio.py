@@ -86,6 +86,12 @@ class Audio(TimeSeries):
         """
         player.play_interval_seconds(self, from_time, None)
 
+    def play_segment(self, segment):
+        """
+        Play segment from Audio obejct.
+        """
+        player.play_interval_seconds(self, segment.start_time, segment.end_time)
+
     def stop(self):
         """
         Stop playing audio.
