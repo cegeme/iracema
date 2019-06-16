@@ -12,11 +12,33 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 import iracema.features as features
 
 
+def plot_spectrogram(fft,
+                     logfft=False,
+                     fftlim=()):
+    """
+    Plot the spectrogram of the audio signal.
+    """
+    # configuring figure and subplots
+    f = plt.figure(figsize=(15, 9))
+
+    ax = f.subplots(1)
+
+    plt.subplots_adjust(hspace=0.05)
+
+    # plotting spectrogram
+    add_spectrogram_to_axes(ax, fft, logfft, fftlim)
+
+    # show the resulting image
+    f.show()
+
+    return f
+
+
 def plot_audio_spectrogram(audio,
-                           rms,
-                           peak_envelope,
                            fft,
                            logfft=False,
+                           rms=None,
+                           peak_envelope=None,
                            fftlim=()):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
