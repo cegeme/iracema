@@ -9,12 +9,12 @@ from .timeseries import TimeSeries
 from .util.dsp import local_peaks, n_highest_peaks
 
 
-def extract_harmonics(fft,
-                      pitch,
-                      nharm=16,
-                      minf0=24,
-                      maxf0=4200,
-                      perc_tol=0.04):
+def extract(fft,
+            pitch,
+            nharm=16,
+            minf0=24,
+            maxf0=4200,
+           perc_tol=0.04):
     """
     Extract the harmonics of an audio signal, given its `fft` and `pitch`
     curve, using `nharm` harmonics. The pitch detection method will search for
