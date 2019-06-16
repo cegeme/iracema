@@ -3,7 +3,8 @@ Methods for playing audio.
 """
 import sounddevice as sd
 import numpy as np
-import iracema.audio
+
+import iracema.timeseries
 
 
 def play(audio_time_series, blocking=False):
@@ -26,11 +27,11 @@ def play_with_clicks(audio_time_series, points, blocking=False):
 
     Args
     ----
-    audio_time_series: iracema.audio.Audio
+    audio_time_series: iracema.timeseries.Audio
     points: iracema.segments.PointList
     blocking: bool
     """
-    click_sound = iracema.audio.Audio('/home/tairone/Development/iracema/audio/Click.wav')
+    click_sound = iracema.timeseries.Audio('/home/tairone/Development/iracema/audio/Click.wav')
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
     for i in indexes:
@@ -49,7 +50,7 @@ def play_interval_samples(audio_time_series, from_sample, to_sample,
 
     Args
     ----
-    audio_time_series: iracema.audio.Audio
+    audio_time_series: iracema.timeseries.Audio
     from_sample: int
     to_sample: int
     soft_start: bool
@@ -72,7 +73,7 @@ def play_interval_seconds(audio_time_series, from_seconds, to_seconds,
 
     Args
     ----
-    audio_time_series: iracema.audio.Audio
+    audio_time_series: iracema.timeseries.Audio
     from_seconds: int
     to_seconds: int
     soft_start: bool
