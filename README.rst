@@ -1,5 +1,6 @@
-Iracema
-=======
+.. figure:: img/iracema-logo.png
+  :width: 600
+  :alt: Iracema
 
 Audio Content Analysis for Research on Musical Expressiveness and Individuality
 
