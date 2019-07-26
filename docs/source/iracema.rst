@@ -11,7 +11,6 @@ Iracema
    :maxdepth: 2
 
    iracema_aggregation
-   iracema_audio
    iracema_features
    iracema_harmonics
    iracema_io
