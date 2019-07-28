@@ -1,12 +1,11 @@
 .. figure:: img/iracema-logo.png
-  :width: 600
+  :width: 70%
   :alt: Iracema
 
-Audio Content Analysis for Research on Musical Expressiveness and Individuality
+############
+Introduction
+############
 
-
-About Iracema
--------------
 Iracema is a Python package aimed at the empirical research on music
 performance, with focus on the analysis of expressiveness and individuality
 from audio recordings. It is developed and maintaned by researchers at
@@ -19,11 +18,13 @@ developed at CEGeME.
 
    <a href="http://musica.ufmg.br/cegeme" target="_blank">CEGeME</a>
 
+
+**********
 Installing
-----------
+**********
 
 Linux
-~~~~~
+=====
 
 1. Clone the repository from github:
 
@@ -60,7 +61,7 @@ parameter `--recurse-submodules`, like this:
    sudo apt install libportaudio2
 
 Dependencies
-------------
+============
 
 - Python packages (required):
 
