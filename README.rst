@@ -1,5 +1,5 @@
 .. figure:: img/iracema-logo.png
-  :width: 80%
+  :width: 70%
   :alt: Iracema
 
 ############
