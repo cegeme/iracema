@@ -3,21 +3,16 @@
    completely to your liking, but it should at least contain the root
    `toctree` directive.
 
-Iracema Documentation
-=====================
+.. include:: intro.rst
 
 .. toctree::
-   :maxdepth: 4 
+   :maxdepth: 2 
    :caption: Contents
+   :hidden:
    
    Introduction <intro>
    Tutorial <tutorial>
    Modules <source/iracema>
+   Indices and Tables <indices>
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
