@@ -31,7 +31,7 @@ Linux
 
 .. code-block:: bash
 
-   git clone --recurse-submodules https://github.com/taironemagalhaes/iracema.git
+   git clone --recurse-submodules https://github.com/cegeme/iracema.git
 
 
 The command shown above will clone the project including some example audio
@@ -40,7 +40,7 @@ parameter `--recurse-submodules`, like this:
 
 .. code-block:: bash
 
-   git clone https://github.com/taironemagalhaes/iracema.git
+   git clone https://github.com/cegeme/iracema.git
 
 
 2. We strongly recommend that you create a virtual environment to install the
@@ -65,10 +65,10 @@ Dependencies
 
 - Python packages (required):
 
-  * numpy (1.15.0)
-  * scipy (1.0.1)
-  * matplotlib (???) 
-  * audioread (2.1.4)
+  * numpy
+  * scipy
+  * matplotlib
+  * audioread
 
 - Optional dependencies:
 
@@ -78,6 +78,6 @@ Dependencies
 
 - To compile the docs:
 
-  * sphinx (1.6.4)
-  * sphinxcontrib-napoleon (0.6.1)
-  * sphinx-rtd-theme (0.2.4)
+  * sphinx
+  * sphinxcontrib-napoleon
+  * sphinx-rtd-theme
