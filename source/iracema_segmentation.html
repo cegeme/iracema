@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.segmentation &mdash; Iracema 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iracema.segment" href="iracema_segment.html" />
+    <link rel="prev" title="iracema.run" href="iracema_run.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#installing">Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="iracema.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="iracema.html">Iracema</a> &raquo;</li>
+        
+      <li>iracema.segmentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/iracema_segmentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-iracema.segmentation">
+<span id="iracema-segmentation"></span><h1>iracema.segmentation<a class="headerlink" href="#module-iracema.segmentation" title="Permalink to this headline">¶</a></h1>
+<p>A couple of different methods for note segmentation.</p>
+<dl class="function">
+<dt id="iracema.segmentation.extract_note_onsets_rms">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">extract_note_onsets_rms</code><span class="sig-paren">(</span><em>audio</em>, <em>rms=None</em>, <em>min_time=None</em>, <em>perc_threshold_pk=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#extract_note_onsets_rms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.extract_note_onsets_rms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract note onsets from the <code class="docutils literal notranslate"><span class="pre">audio</span></code> time-series using its <code class="docutils literal notranslate"><span class="pre">rms</span></code>.
+The RMS will be calculated if it’s not passed as an argument. The argument
+<code class="docutils literal notranslate"><span class="pre">min_time</span></code> can be used to specify the minimum distance (in seconds)
+between two adjacent onsets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>audio</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>Audio</em></a>) – Audio object</li>
+<li><strong>rms</strong> (<em>iracema.TimeSeries</em><em>, </em><em>optional</em>) – Pre-calculated RMS for the audio time-series.</li>
+<li><strong>min_time</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum time (in seconds) between successive onsets.</li>
+<li><strong>perc_threshold_pk</strong> (<em>float</em>) – A percentual of the ODF maximum to be defined as a threshold
+for the peak picking.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>onsets</strong> – List of onset points.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.extract_note_onsets_pitch">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">extract_note_onsets_pitch</code><span class="sig-paren">(</span><em>audio</em>, <em>pitch</em>, <em>min_time=None</em>, <em>delta_pitch_ratio=0.03</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#extract_note_onsets_pitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.extract_note_onsets_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract note onsets from the <code class="docutils literal notranslate"><span class="pre">audio</span></code> time-series using its <code class="docutils literal notranslate"><span class="pre">pitch</span></code>.
+The argument <code class="docutils literal notranslate"><span class="pre">min_time</span></code> can be used to specify the minimum distance (in
+seconds) between two adjacent onsets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>audio</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>Audio</em></a>) – Audio object</li>
+<li><strong>pitch</strong> (<em>iracema.TimeSeries</em>) – Pre-calculated pitch for the audio time-series.</li>
+<li><strong>min_time</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum time (in seconds) between successive onsets.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>onsets</strong> – List of onset points.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.segment_notes_rms">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">segment_notes_rms</code><span class="sig-paren">(</span><em>audio</em>, <em>rms=None</em>, <em>min_time=None</em>, <em>perc_threshold_pk=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#segment_notes_rms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.segment_notes_rms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract note segments from the <code class="docutils literal notranslate"><span class="pre">audio</span></code> time-series using its <code class="docutils literal notranslate"><span class="pre">rms</span></code>.
+The RMS will be calculated if it’s not passed as an argument. The argument
+<code class="docutils literal notranslate"><span class="pre">min_time</span></code> can be used to specify the minimum distance (in seconds)
+between two adjacent onsets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>audio</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>Audio</em></a>) – Audio object</li>
+<li><strong>rms</strong> (<em>iracema.TimeSeries</em><em>, </em><em>optional</em>) – Pre-calculated RMS for the audio time-series.</li>
+<li><strong>min_time</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum time (in seconds) between successive onsets.</li>
+<li><strong>perc_threshold_pk</strong> (<em>float</em>) – A percentual of the ODF maximum to be defined as a threshold
+for the peak picking.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>notes</strong> – List of <cite>Note</cite> segments.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.segment_notes_pitch">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">segment_notes_pitch</code><span class="sig-paren">(</span><em>audio</em>, <em>pitch</em>, <em>min_time=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#segment_notes_pitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.segment_notes_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract note segments from the <code class="docutils literal notranslate"><span class="pre">audio</span></code> time-series using its <code class="docutils literal notranslate"><span class="pre">pitch</span></code>. The
+pitch will be calculated if it’s not passed as an argument. The argument
+<cite>min_time</cite> can be used to speficy the minimum distance (in seconds) between
+two adjacent onsets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>audio</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>Audio</em></a>) – Audio object</li>
+<li><strong>pitch</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>TimeSeries</em></a><em>, </em><em>optional</em>) – Pitch calculated from the audio time-series.</li>
+<li><strong>min_time</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum time (in seconds) between successive onsets.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>notes</strong> – List of <cite>Note</cite> segments.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.get_notes_list">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">get_notes_list</code><span class="sig-paren">(</span><em>audio</em>, <em>onsets</em>, <em>offsets</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#get_notes_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.get_notes_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of note segments using the specified <cite>onsets</cite> and <cite>offsets</cite>
+arrays.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>audio</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>Audio</em></a>) – Audio object</li>
+<li><strong>onsets</strong> (<em>array</em>) – Indexes of the onset occurrences in <cite>audio</cite>.</li>
+<li><strong>offsets</strong> (<em>array</em>) – Indexes of the offset occurrences in <cite>audio</cite>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>notes</strong> – List of segments.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.detection_function_rms">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">detection_function_rms</code><span class="sig-paren">(</span><em>rms</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#detection_function_rms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.detection_function_rms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Onset detection function based on RMS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.segmentation.detection_function_pitch">
+<code class="descclassname">iracema.segmentation.</code><code class="descname">detection_function_pitch</code><span class="sig-paren">(</span><em>pitch</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation.html#detection_function_pitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segmentation.detection_function_pitch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Onset detection function based on Pitch.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="iracema_segment.html" class="btn btn-neutral float-right" title="iracema.segment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="iracema_run.html" class="btn btn-neutral" title="iracema.run" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
