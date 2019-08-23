@@ -49,7 +49,7 @@ docs:
 	$(OPENCMD) docs/_build/html/index.html
 
 .PHONY: create-virtualenv
-create-virtualenv:
+create-virtualenv: 
 	$(eval VIRTUALENV_NAME ?= iracema)
 	$(eval VIRTUALENV_PATH = $(VIRTUALENV_DIRECTORIES)/$(VIRTUALENV_NAME))
 	@if ! [ -d $(VIRTUALENV_DIRECTORIES) ]; then \
@@ -62,25 +62,6 @@ create-virtualenv:
 		virtualenv -p $(PYTHON_INTERPRETER) $(VIRTUALENV_PATH); \
 		. $(VIRTUALENV_PATH)/bin/activate; \
 		$(PIP_COMMAND) install -r requirements.txt; \
-		$(PIP_COMMAND) install -e .; \
-	fi; \
-	make fix-matplotlib-mac
-
-.PHONY: create-dev-virtualenv
-create-dev-virtualenv: 
-	$(eval VIRTUALENV_NAME ?= iracema-dev)
-	$(eval VIRTUALENV_PATH = $(VIRTUALENV_DIRECTORIES)/$(VIRTUALENV_NAME))
-	@if ! [ -d $(VIRTUALENV_DIRECTORIES) ]; then \
-		echo "Directory $(VIRTUALENV_DIRECTORIES) does not exist. Creating it."; \
-		mkdir $(VIRTUALENV_DIRECTORIES); \
-	fi; \
-	if [ -d $(VIRTUALENV_PATH) ]; then \
-		echo "Directory $(VIRTUALENV_PATH) already exists! Remove it first."; \
-	else \
-		virtualenv -p $(PYTHON_INTERPRETER) $(VIRTUALENV_PATH); \
-		. $(VIRTUALENV_PATH)/bin/activate; \
-		$(PIP_COMMAND) install -r requirements.txt; \
-		$(PIP_COMMAND) install -r requirements-dev.txt; \
 		$(PIP_COMMAND) install -e .; \
 	fi; \
 	make fix-matplotlib-mac
