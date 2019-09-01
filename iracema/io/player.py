@@ -7,7 +7,7 @@ import numpy as np
 import iracema.timeseries
 
 
-def play(audio_time_series, blocking=True):
+def play(audio_time_series, blocking=False):
     """
     Play audio time series.
 
