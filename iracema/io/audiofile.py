@@ -64,5 +64,4 @@ def write(filename, data, fs):
     fs: int
         Sampling frequency.
     """
-    # TODO: Implement method to write wave files.
-    scipy.io.wavfile.write(filename, int(fs), np.float32(data))
+    scipy.io.wavfile.write(filename, fs, data)
