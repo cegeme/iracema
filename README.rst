@@ -45,7 +45,7 @@ parameter `--recurse-submodules`, like this:
 
 2. We strongly recommend that you create a virtual environment to install the
    dependencies for iracema, since it is always a good practice to keep 
-   project-specific dependencies isolated from your base Python installation.
+   project-specific dependencies isolated from your base Python installation .
    To install the required dependecies using pip, simply go to the directory
    where the repository was cloned and type in your command line:
 
@@ -59,6 +59,39 @@ parameter `--recurse-submodules`, like this:
 .. code-block:: bash
 
    sudo apt install libportaudio2
+
+
+Virtualenv
+==========
+
+To install `virtualenv`, I recommend you use `pip`, and install it in your user
+account:
+
+.. code-block:: bash
+
+   pip3 install --user virtualenv
+
+The following command should be run at the the directory where you cloned
+Iracema. It will create a virtual environment at `~/.virtualenvs/iracema` and
+install the required dependencies.
+
+.. code-block:: bash
+
+   cd iracema
+   make create-virtualenv
+
+To activate the virtual environment you created:
+
+.. code-block:: bash
+
+   source ~/.virtualenvs/iracema/bin/activate
+
+To deactivate it:
+
+.. code-block:: bash
+
+   deactivate
+
 
 Dependencies
 ============
@@ -81,3 +114,4 @@ Dependencies
   * sphinx
   * sphinxcontrib-napoleon
   * sphinx-rtd-theme
+
