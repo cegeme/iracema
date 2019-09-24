@@ -1,5 +1,5 @@
 .. figure:: img/iracema-logo.png
-  :width: 70%
+  :width: 60%
   :alt: Iracema
 
 ############
@@ -36,7 +36,7 @@ Linux
 
 The command shown above will clone the project including some example audio
 files. If you don't want to download those files, you should omit the
-parameter `--recurse-submodules`, like this:
+parameter ``--recurse-submodules``, like this:
 
 .. code-block:: bash
 
@@ -44,16 +44,19 @@ parameter `--recurse-submodules`, like this:
 
 
 2. We strongly recommend that you create a virtual environment to install the
-   dependencies for iracema, since it is always a good practice to keep 
-   project-specific dependencies isolated from your base Python installation .
-   To install the required dependecies using pip, simply go to the directory
-   where the repository was cloned and type in your command line:
+   dependencies for iracema, since it is always a good practice to keep
+   project-specific dependencies isolated from your base Python installation
+   (see the instructions bellow). To install the required dependecies using pip,
+   simply go to the directory where the repository was cloned and type in your
+   command line:
 
 .. code-block:: bash
 
    pip install -r requirements.txt
+   pip install -e .
 
-3. In order to play audio you will need to manually install an audio I/O library
+
+4. In order to play audio you will need to manually install an audio I/O library
    called PortAudio. In Debian / Ubuntu you can install it using apt:
 
 .. code-block:: bash
@@ -64,33 +67,12 @@ parameter `--recurse-submodules`, like this:
 Virtualenv
 ==========
 
-To install `virtualenv`, I recommend you use `pip`, and install it in your user
+To install ``virtualenv``, I recommend you use ``pip``, and install it in your user
 account:
 
 .. code-block:: bash
 
    pip3 install --user virtualenv
-
-The following command should be run at the the directory where you cloned
-Iracema. It will create a virtual environment at `~/.virtualenvs/iracema` and
-install the required dependencies.
-
-.. code-block:: bash
-
-   cd iracema
-   make create-virtualenv
-
-To activate the virtual environment you created:
-
-.. code-block:: bash
-
-   source ~/.virtualenvs/iracema/bin/activate
-
-To deactivate it:
-
-.. code-block:: bash
-
-   deactivate
 
 
 Dependencies
