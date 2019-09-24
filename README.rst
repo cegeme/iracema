@@ -52,8 +52,8 @@ parameter ``--recurse-submodules``, like this:
 
 .. code-block:: bash
 
-   pip install -r requirements.txt
-   pip install -e .
+   pip3 install -r requirements.txt
+   pip3 install -e .
 
 
 4. In order to play audio you will need to manually install an audio I/O library
@@ -67,7 +67,7 @@ parameter ``--recurse-submodules``, like this:
 Virtualenv
 ==========
 
-To install ``virtualenv``, I recommend you use ``pip``, and install it in your user
+To install ``virtualenv``, I recommend you use ``pip3``, and install it in your user
 account:
 
 .. code-block:: bash
