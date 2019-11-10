@@ -16,8 +16,8 @@ from .io import player
 
 class TimeSeries:
     """
-    Base class for time-series objects, which can represent synchronous
-    discrete time-series.
+    Base class for time series objects, which can represent synchronous
+    discrete time series.
 
     Args
     ----
@@ -55,7 +55,7 @@ class TimeSeries:
     unit : str
         String containing the name of the unit for the data (for plotting).
     nsamples : int
-        Number of samples per time-series in the data array.
+        Number of samples per time series in the data array.
     nfeatures
         Number of features for each sample in the data array.
     unit
@@ -124,11 +124,11 @@ class TimeSeries:
         return np.linspace(start, end, self.nsamples)
 
     def copy(self):
-        "Return a copy of the time-series object (deep copy)."
+        "Return a copy of the time series object (deep copy)."
         return cp.deepcopy(self)
 
     def normalize(self):
-        "Return a normalized copy of the time-series."
+        "Return a normalized copy of the time series."
         normalized_data = self.data / np.max(self.data)
 
         ts = cp.copy(self)
@@ -136,7 +136,7 @@ class TimeSeries:
         return ts
 
     def diff(self, n=1):
-        "Return the n-th discrete difference for the time-series"
+        "Return the n-th discrete difference for the time series"
         nfeatures = self.nfeatures
         dtype = self.data.dtype
         data = np.reshape(self.data, (nfeatures, -1))
@@ -155,14 +155,14 @@ class TimeSeries:
 
     def zeros_to_nan(self):
         """
-        Converts zeros to np.nan in the data array. Returns a new time-series.
+        Converts zeros to np.nan in the data array. Returns a new time series.
         """
         ts = self.copy()
         ts.data[self.data == 0] = np.nan
         return ts
 
     def hwr(self):
-        "Return a half-wave rectified copy of the time-series."
+        "Return a half-wave rectified copy of the time series."
         rectified_data = np.clip(self.data, 0, None)
 
         ts = cp.copy(self)
