@@ -45,7 +45,7 @@ def peak_envelope(time_series, window_size, hop_size):
     The peak envelope consists in the peak absolute values of the
     amplitude within the aggregation window.
 
-    .. math:: PE = max(|x(n)|), 1 <= n <= L
+    .. math:: \\operatorname{PE} = max(|x(n)|), 1 <= n <= L
 
     Where `x(n)` is the n-th sample of a window of length `L`.
 
@@ -70,8 +70,8 @@ def rms(time_series, window_size, hop_size):
     """
     Calculate the root mean square of a time series
 
-    The RMS envelope consists the RMS values calculated for the amplitude
-    within the aggregation window.
+    The RMS envelope consists in the root mean square of the amplitude,
+    calculated within the aggregation window.
 
     .. math:: RMS = \\sqrt{ \\frac{1}{L} \\sum_{n=1}^{L} x(n)^2 }
 
@@ -144,7 +144,7 @@ def spectral_flatness(fft):
        :nowrap:
 
        \\begin{eqnarray}
-       SFM = 10 log_{10} \\left( \\frac
+       \\operatorname{SFM} = 10 log_{10} \\left( \\frac
          {\\left( \\prod_{k=1}^{N} |X(k)| \\right)^\\frac{1}{N}}
          { \\frac{1}{N} \\sum_{k=1}^{N} |X(k)| }
        \\right)
@@ -175,12 +175,12 @@ def hfc(fft, method='energy'):
     [Bello2005]_ and might be a good choice for detecting onsets in percussive
     sounds.
 
-    .. math:: HFC = \sum_{k=1}^{N} |X(k)|^2 \\cdot k
+    .. math:: \\operatorname{HFC} = \sum_{k=1}^{N} |X(k)|^2 \\cdot k
 
     Alternatively, you can set ``method`` = `'amplitude'` instead of `'energy'`
     (default value):
 
-    .. math:: HFC = \sum_{k=1}^{N} |X(k)| \\cdot k
+    .. math:: \\operatorname{HFC} = \sum_{k=1}^{N} |X(k)| \\cdot k
 
     Args
     ----
@@ -216,7 +216,7 @@ def spectral_centroid(fft):
     of the frequency components of a signal [Park2010]_.
 
     .. math::
-       SC = \\frac{\\sum_{k=1}^{N} |X(k)| \\cdot f_k }{\\sum_{k=1}^{N} |X(k)|}
+       \\operatorname{SC} = \\frac{\\sum_{k=1}^{N} |X(k)| \\cdot f_k }{\\sum_{k=1}^{N} |X(k)|}
 
     Where `X(k)` is the result of the FFT for the `k-th` frequency bin.
 
@@ -334,7 +334,7 @@ def spectral_flux(fft):
     flux across the literature. For now we have implemented the one proposed
     by [Dixon2006]_.
 
-    .. math:: SF = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
+    .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
 
     where :math:`H(x) = \\frac{x+|x|}{2}` is the half-wave rectifier _function,
     and `t` is the temporal index of the frame.
@@ -370,8 +370,11 @@ def harmonic_centroid(harmonics):
     """
     Harmonic Centroid
 
+    The harmonic centroid represents the center of gravity of the amplitudes
+    of the harmonic series.
+
     .. math::
-       SC = \\frac{\\sum_{k=1}^{H} A(k) \\cdot f_k }{\\sum_{k=1}^{H} A(k)}
+       \\operatorname{HC} = \\frac{\\sum_{k=1}^{H} A(k) \\cdot f_k }{\\sum_{k=1}^{H} A(k)}
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
