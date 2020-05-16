@@ -48,3 +48,6 @@ venv.bak/
 
 # Work directory
 work/
+
+# Egg info
+iracema.egg-info

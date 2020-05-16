@@ -46,9 +46,9 @@ parameter ``--recurse-submodules``, like this:
 2. We strongly recommend that you create a virtual environment to install the
    dependencies for iracema, since it is always a good practice to keep
    project-specific dependencies isolated from your base Python installation
-   (see the instructions bellow). To install the required dependecies using pip,
-   simply go to the directory where the repository was cloned and type in your
-   command line:
+   (see the instructions bellow). If you have already created and activated 
+   the virtual environment, you may procceed to install the required dependencies.
+   In the directory where the repository was cloned, type the following command:
 
 .. code-block:: bash
 
@@ -64,15 +64,23 @@ parameter ``--recurse-submodules``, like this:
    sudo apt install libportaudio2
 
 
-Virtualenv
-==========
+Virtual environment (venv)
+==========================
 
-To install ``virtualenv``, I recommend you use ``pip3``, and install it in your user
-account:
+To create a virtual environment to use iracema, go to the project's folder
+and use the command
 
 .. code-block:: bash
 
-   pip3 install --user virtualenv
+   python3 -m venv venv
+
+A folder called `venv` will be created, where you will be able to install
+all the project's dependencies, isolated from your base Python installation.
+To activate this newly created environment, type the following command:
+
+.. code-block:: bash
+
+   source venv/bin/activate
 
 
 Dependencies
