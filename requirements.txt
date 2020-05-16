@@ -10,3 +10,4 @@ sphinx-rtd-theme==0.4.2
 sphinxcontrib-napoleon==0.7
 sphinxcontrib-websupport==1.1.0
 yapf==0.24.0
+audioread==2.1.8
