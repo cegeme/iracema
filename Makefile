@@ -5,10 +5,6 @@ PYTHON_VERSION     = 3
 PYTHON_INTERPRETER = python$(PYTHON_VERSION)
 PIP_COMMAND        = pip$(PYTHON_VERSION)
 
-# virtual environment info
-VIRTUALENV_DIRECTORIES ?= ${HOME}/.virtualenvs
-
-
 # checking the operating system (mac os or linux)
 UNAME :=$(shell uname -s)
 
@@ -47,24 +43,6 @@ isort:
 docs: 
 	cd docs; make clean; make html; cd ..; \
 	$(OPENCMD) docs/_build/html/index.html
-
-.PHONY: create-virtualenv
-create-virtualenv: 
-	$(eval VIRTUALENV_NAME ?= iracema)
-	$(eval VIRTUALENV_PATH = $(VIRTUALENV_DIRECTORIES)/$(VIRTUALENV_NAME))
-	@if ! [ -d $(VIRTUALENV_DIRECTORIES) ]; then \
-		echo "Directory $(VIRTUALENV_DIRECTORIES) does not exist. Creating it."; \
-		mkdir $(VIRTUALENV_DIRECTORIES); \
-	fi; \
-	if [ -d $(VIRTUALENV_PATH) ]; then \
-		echo "Directory $(VIRTUALENV_PATH) already exists! Remove it first."; \
-	else \
-		virtualenv -p $(PYTHON_INTERPRETER) $(VIRTUALENV_PATH); \
-		. $(VIRTUALENV_PATH)/bin/activate; \
-		$(PIP_COMMAND) install -r requirements.txt; \
-		$(PIP_COMMAND) install -e .; \
-	fi; \
-	make fix-matplotlib-mac
 
 # TODO: this fix for matplotlib is not solving the problem
 .PHONY: fix-matplotlib-mac
