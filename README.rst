@@ -72,7 +72,7 @@ and use the command
 
 .. code-block:: bash
 
-python3 -m venv venv
+   python3 -m venv venv
 
 A folder called `venv` will be created, where you will be able to install
 all the project's dependencies, isolated from your base Python installation.
@@ -80,7 +80,7 @@ To activate this newly created environment, type the following command:
 
 .. code-block:: bash
 
-source venv/bin/activate
+   source venv/bin/activate
 
 
 Dependencies
