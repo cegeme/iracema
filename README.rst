@@ -1,5 +1,5 @@
 .. figure:: img/iracema-logo.png
-  :width: 60%
+  :width: 50%
   :alt: Iracema
 
 ############
@@ -56,7 +56,7 @@ parameter ``--recurse-submodules``, like this:
    pip3 install -e .
 
 
-4. In order to play audio you will need to manually install an audio I/O library
+3. In order to play audio you will need to manually install an audio I/O library
    called PortAudio. In Debian / Ubuntu you can install it using apt:
 
 .. code-block:: bash
