@@ -179,7 +179,7 @@ texinfo_documents = [
 
 
 
-autodoc_mock_imports = ["setup"]
+autodoc_mock_imports = ["sounddevice"]
 autoclass_content = 'both'
 autodoc_member_order = 'bysource'
 napoleon_use_admonition_for_examples = False
