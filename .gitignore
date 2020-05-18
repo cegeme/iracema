@@ -51,3 +51,7 @@ work/
 
 # Egg info
 iracema.egg-info
+
+# Package build
+dist/
+build/
