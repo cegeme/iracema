@@ -1,5 +1,5 @@
 .. figure:: img/iracema-logo.png
-  :width: 60%
+  :width: 50%
   :alt: Iracema
 
 ############
@@ -9,14 +9,12 @@ Introduction
 Iracema is a Python package aimed at the empirical research on music
 performance, with focus on the analysis of expressiveness and individuality
 from audio recordings. It is developed and maintaned by researchers at
-|CEGeME|, and contains computational models of music information extraction
+CEGeME_, and contains computational models of music information extraction
 that were developed for supporting research projects in music performance. It
 was strongly inspired by Expan, a Matlab tool that had been previously
 developed at CEGeME.
 
-.. |CEGeME| raw:: html
-
-   <a href="http://musica.ufmg.br/cegeme" target="_blank">CEGeME</a>
+.. _CEGeME: http://musica.ufmg.br/cegeme
 
 
 ************
@@ -97,16 +95,11 @@ Dependencies
   * numpy
   * scipy
   * matplotlib
+  * sounddevice
   * audioread
 
 - Optional dependencies:
 
   * ffmpeg, libav, gstreamer or core audio (for opening different audio file
     formats)
-  * CFFI, sounddevice and libportaudio2 (only if you want to play audio)
-
-- To compile the docs:
-
-  * sphinx
-  * sphinxcontrib-napoleon
-  * sphinx-rtd-theme
+  * libportaudio2 (if you want to play audio)
