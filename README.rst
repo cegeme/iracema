@@ -44,7 +44,7 @@ installed. In Debian / Ubuntu you can install it using apt:
 .. _virtual-environment:
 
 Virtual environment
--------------------
+===================
 
 To create a virtual environment to use iracema, go to the project's folder
 and run:
