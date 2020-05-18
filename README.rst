@@ -23,8 +23,8 @@ Installation
 
 We strongly recommend that you install iracema into a separate virtual environment,
 since it is always a good practice to keep project-specific dependencies isolated
-from your base Python installation (check instructions 
-:ref:`bellow<Virtual environment>`). After activating your virtual environment,
+from your base Python installation (check instructions in the section
+`Virtual environment`_). After activating your virtual environment,
 you can install iracema by running the following command:
 
 .. code-block:: bash
