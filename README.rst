@@ -30,14 +30,18 @@ To install iracema, simply run:
    pip3 install iracema
 
 
-If you're a Linux user, you will need to manually install an audio I/O library called PortAudio. This is already installed by default in MacOS. In Debian / Ubuntu you can install it using apt:
+If you're a Linux user, you will need to manually install an audio I/O library 
+called PortAudio. This is already installed by default in MacOS. In Debian / 
+Ubuntu you can install it using apt:
 
 .. code-block:: bash
 
    sudo apt install libportaudio2
 
 
-Note that we strongly recommend that you create a |virtual environment| to install the dependencies for iracema, since it is always a good practice to keep project-specific dependencies isolated from your base Python installation.
+Note that we strongly recommend that you create a virtual environment to 
+install the dependencies for iracema, since it is always a good practice to 
+keep project-specific dependencies isolated from your base Python installation.
 
 To create a virtual environment to use iracema, go to the project's folder
 and run:
@@ -59,15 +63,15 @@ To activate this newly created environment, type the following command:
 Developing
 **********
 
-For developers, the installation begins with cloning the repository from github:
+To contribute with the development of iracema, clone the repository from github:
 
 .. code-block:: bash
 
    git clone --recurse-submodules https://github.com/cegeme/iracema.git
 
 
-The command shown above will clone the project including some example audio
-files. If you don't want to download those files, you should omit the
+The command shown above will also clone some example audio files. 
+If you don't want to download those files, you should omit the
 parameter ``--recurse-submodules``, like this:
 
 .. code-block:: bash
@@ -75,16 +79,15 @@ parameter ``--recurse-submodules``, like this:
    git clone https://github.com/cegeme/iracema.git
 
   
-To install the required dependecies using pip, simply go to the directory where the repository was cloned and type in your command line:
+To install the required dependencies and the cloned project in pip, go to the directory 
+where the repository was cloned and type in your command line:
 
 .. code-block:: bash
 
    pip3 install -r requirements.txt
    pip3 install -e .
 
-.. |virtual environment| raw:: html
 
-   <a href="https://Iracema.readthedocs.io/en/latest/#virtualenv" >virtual environment</a>
 
 Dependencies
 ============
