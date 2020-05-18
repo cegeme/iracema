@@ -19,15 +19,47 @@ developed at CEGeME.
    <a href="http://musica.ufmg.br/cegeme" target="_blank">CEGeME</a>
 
 
+************
+Installation
+************
+
+To install iracema, simply run:
+
+.. code-block:: bash
+
+   pip3 install iracema
+
+
+If you're a Linux user, you will need to manually install an audio I/O library called PortAudio. This is already installed by default in MacOS. In Debian / Ubuntu you can install it using apt:
+
+.. code-block:: bash
+
+   sudo apt install libportaudio2
+
+
+Note that we strongly recommend that you create a |virtual environment| to install the dependencies for iracema, since it is always a good practice to keep project-specific dependencies isolated from your base Python installation.
+
+To create a virtual environment to use iracema, go to the project's folder
+and run:
+
+.. code-block:: bash
+
+   python3 -m venv venv
+
+
+A folder called `venv` will be created, where you will be able to install
+all the project's dependencies, isolated from your base Python installation.
+To activate this newly created environment, type the following command:
+
+.. code-block:: bash
+
+   source venv/bin/activate
+
 **********
-Installing
+Developing
 **********
 
-Linux
-=====
-
-1. Clone the repository from github:
-
+For developers, the installation begins with cloning the repository from github:
 
 .. code-block:: bash
 
@@ -42,46 +74,17 @@ parameter ``--recurse-submodules``, like this:
 
    git clone https://github.com/cegeme/iracema.git
 
-
-2. We strongly recommend that you create a virtual environment to install the
-   dependencies for iracema, since it is always a good practice to keep
-   project-specific dependencies isolated from your base Python installation
-   (see the instructions bellow). If you have already created and activated 
-   the virtual environment, you may procceed to install the required dependencies.
-   In the directory where the repository was cloned, type the following command:
+  
+To install the required dependecies using pip, simply go to the directory where the repository was cloned and type in your command line:
 
 .. code-block:: bash
 
    pip3 install -r requirements.txt
    pip3 install -e .
 
+.. |virtual environment| raw:: html
 
-4. In order to play audio you will need to manually install an audio I/O library
-   called PortAudio. In Debian / Ubuntu you can install it using apt:
-
-.. code-block:: bash
-
-   sudo apt install libportaudio2
-
-
-Virtual environment (venv)
-==========================
-
-To create a virtual environment to use iracema, go to the project's folder
-and use the command
-
-.. code-block:: bash
-
-   python3 -m venv venv
-
-A folder called `venv` will be created, where you will be able to install
-all the project's dependencies, isolated from your base Python installation.
-To activate this newly created environment, type the following command:
-
-.. code-block:: bash
-
-   source venv/bin/activate
-
+   <a href="https://Iracema.readthedocs.io/en/latest/#virtualenv" >virtual environment</a>
 
 Dependencies
 ============
@@ -104,4 +107,3 @@ Dependencies
   * sphinx
   * sphinxcontrib-napoleon
   * sphinx-rtd-theme
-
