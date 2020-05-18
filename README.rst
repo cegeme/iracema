@@ -21,7 +21,11 @@ developed at CEGeME.
 Installation
 ************
 
-To install iracema, simply run:
+We strongly recommend that you install iracema into a separate virtual environment,
+since it is always a good practice to keep project-specific dependencies isolated
+from your base Python installation (check instructions 
+:ref:`bellow<Virtual environment>`). After activating your virtual environment,
+you can install iracema by running the following command:
 
 .. code-block:: bash
 
@@ -29,17 +33,15 @@ To install iracema, simply run:
 
 
 If you're a Linux user, you will need to manually install an audio I/O library 
-called PortAudio. This is already installed by default in MacOS. In Debian / 
-Ubuntu you can install it using apt:
+called PortAudio. If you are a MacOS X user, this library is probably already
+installed. In Debian / Ubuntu you can install it using apt:
 
 .. code-block:: bash
 
    sudo apt install libportaudio2
 
 
-Note that we strongly recommend that you create a virtual environment to 
-install the dependencies for iracema, since it is always a good practice to 
-keep project-specific dependencies isolated from your base Python installation.
+### Virtual environment
 
 To create a virtual environment to use iracema, go to the project's folder
 and run:
@@ -47,7 +49,6 @@ and run:
 .. code-block:: bash
 
    python3 -m venv venv
-
 
 A folder called `venv` will be created, where you will be able to install
 all the project's dependencies, isolated from your base Python installation.
