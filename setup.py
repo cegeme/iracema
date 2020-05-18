@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setup(
     name='iracema',
-    version='0.1.2',
+    version='0.1.3',
     url='http://github.com/cegeme/iracema',
     author='Tairone Magalhães',
     author_email='taironemagalhaes@gmail.com',
