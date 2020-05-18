@@ -24,7 +24,7 @@ Installation
 We strongly recommend that you install iracema into a separate virtual environment,
 since it is always a good practice to keep project-specific dependencies isolated
 from your base Python installation (check instructions in the section
-`Virtual environment`_). After activating your virtual environment,
+:ref:`virtual-environment`). After activating your virtual environment,
 you can install iracema by running the following command:
 
 .. code-block:: bash
@@ -41,7 +41,10 @@ installed. In Debian / Ubuntu you can install it using apt:
    sudo apt install libportaudio2
 
 
-### Virtual environment
+.. _virtual-environment:
+
+Virtual environment
+-------------------
 
 To create a virtual environment to use iracema, go to the project's folder
 and run:
