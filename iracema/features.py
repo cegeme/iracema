@@ -198,7 +198,7 @@ def hfc(fft, method='energy'):
             return np.sum(W * np.abs(X)**2) / N
         elif method == 'amplitude':
             return np.sum(W * np.abs(X)) / N
-        else:
+        else:   
             ValueError("the argument `method` must be 'energy' or 'amplitude'")
 
     time_series = aggregate_features(fft, _func)
@@ -293,14 +293,25 @@ def spectral_skewness(fft):
     .. math::
        \\operatorname{SSk} = \\frac{2 \\cdot \\sum_{k=1}^{N} \\left( |X(k)| - \\mu_{|X|} \\right)^3 }{
        N \\cdot \\sigma_{|X|}^3}
-
-    Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and 
+    
+    Where `X(k)` is the result of the FFT for the `k-th` frequency bin,
+    :math:`\\mu_{|X|}` is the mean value of the magnitude spectrum and
     :math:`\\sigma_{|X|}` its standard deviation.
 
     """
+    def function(X):
+        return __spectral_skewness(X, fft.frequencies)
+   
+    time_series = aggregate_features(fft, function)
+    time_series.label = 'Spectral Skewness'
+    time_series.unit = ''
+    return time_series
 
-    def _func(X):
-        pass
+def __spectral_skewness(X, f):
+     abs_X = np.abs(X)
+     N = X.shape[0]
+     return 2*(np.sum((abs_X - np.mean(f)**3)))/(N * (np.std(X)**3))
+
 
 
 def spectral_kurtosis(fft):
@@ -316,13 +327,22 @@ def spectral_kurtosis(fft):
        \\operatorname{SKu} = \\frac{2 \\cdot \\sum_{k=1}^{N} \\left( |X(k)| - \\mu_{|X|} \\right)^4 }{
        N \\cdot \\sigma_{|X|}^4}
 
-    Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and 
-    :math:`\\sigma_{|X|}` its standard deviation.
+    Where :math:`\\mu_{|X|}` is the mean value of the magnitude spectrum and 
+    :math:`\\sigma_{|X|}` its standard deviation."""
 
 
-    """
-    def _func(X):
-        pass
+    def function(X):
+         return __spectral_kurtosis(X, fft.frequencies)
+ 
+    time_series = aggregate_features(fft, function)
+    time_series.label = 'Spectral Kurtosis'
+    time_series.unit = ''
+    return time_series
+ 
+def __spectral_kurtosis(X, f):
+     abs_X = np.abs(X)
+     N = X.shape[0]
+     return 2*(np.sum((abs_X - np.mean(f)**4)))/(N * (np.std(X)**4))
 
 
 def spectral_flux(fft):
@@ -338,10 +358,6 @@ def spectral_flux(fft):
 
     where :math:`H(x) = \\frac{x+|x|}{2}` is the half-wave rectifier _function,
     and `t` is the temporal index of the frame.
-
-    Args
-    ----
-    fft : iracema.spectral.FFT
         A FFT object
 
     """
@@ -476,8 +492,6 @@ def noisiness(fft, harmonics_magnitude):
 
 def oer(harmonics):
     """
-    Calculate the odd-to-even ratio for the harmonics time series.
-
     The OER represents the odd-to-even ratio among the harmonics of an audio
     signal. This value will be higher for sounds with predominantly odd
     harmonics, such as the clarinet.
