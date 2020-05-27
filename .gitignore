@@ -55,3 +55,6 @@ iracema.egg-info
 # Package build
 dist/
 build/
+
+# Features tests
+test-features/
