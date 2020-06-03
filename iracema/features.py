@@ -509,6 +509,21 @@ def oer(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-    def _func(X):
-        pass
+    def function(X):
+        harm_mag = harmonics['magnitudes']
+        oer = __oer(harm_mag)
 
+        time_series = aggregate_features(harmonics['magnitudes'], function)
+        time_series.label = 'Odd-to-Even Ratio'
+        time_series.unit = ''
+        return time_series
+
+def __oer(X):
+    dim = X.shape[0]
+    odd = np.array([])
+    even = np.array([])
+    for i in range(1, dim/2):
+        odd.append(np.sum((X[(2*i) - 1]**2)*dim[i]))
+    for i in range(1, dim/2):
+        even.append(np.sum((X[(2*i)]**2)*dim[i]))
+    return np.divide(odd, even)
