@@ -300,17 +300,17 @@ def spectral_skewness(fft):
 
     """
     def function(X):
-        return __spectral_skewness(X, fft.frequencies)
+        return __spectral_skewness(X)
    
     time_series = aggregate_features(fft, function)
     time_series.label = 'Spectral Skewness'
     time_series.unit = ''
     return time_series
 
-def __spectral_skewness(X, f):
+def __spectral_skewness(X):
      abs_X = np.abs(X)
      N = X.shape[0]
-     return 2*(np.sum((abs_X - np.mean(f)**3)))/(N * (np.std(X)**3))
+     return np.sum((abs_X - np.mean(abs_X))**3)/(N * (np.std(X)**3))
 
 
 
@@ -332,17 +332,17 @@ def spectral_kurtosis(fft):
 
 
     def function(X):
-         return __spectral_kurtosis(X, fft.frequencies)
+         return __spectral_kurtosis(X)
  
     time_series = aggregate_features(fft, function)
     time_series.label = 'Spectral Kurtosis'
     time_series.unit = ''
     return time_series
  
-def __spectral_kurtosis(X, f):
+def __spectral_kurtosis(X):
      abs_X = np.abs(X)
      N = X.shape[0]
-     return 2*(np.sum((abs_X - np.mean(f)**4)))/(N * (np.std(X)**4))
+     return np.sum((abs_X - np.mean(abs_X))**4)/(N * (np.std(X)**4))
 
 
 def spectral_flux(fft):
@@ -395,8 +395,17 @@ def harmonic_centroid(harmonics):
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
 
-    def _func(X):
-        pass
+    def function(X):
+        return __harmonic_centroid(X, harmonics['frequencies'])
+
+    time_series = aggregate_features(harmonics['magnitudes'], function)
+    time_series.label = 'Harmonic Centroid'
+    time_series.unit = ''
+    return time_series
+        
+
+def __harmonic_centroid(X, f):
+    return np.sum(X * f)/np.sum(X)
 
 
 def inharmonicity(fft, harmonics):
