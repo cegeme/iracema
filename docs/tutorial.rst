@@ -1,14 +1,14 @@
-########
+========
 Tutorial
-########
+========
 
 This tutorial aims to introduce the basics of *iracema*'s architecture_ and usage_.
 
 .. _architecture:
 
-************
+------------
 Architecture
-************
+------------
 
 This section will discuss some import aspects of *iracema*’s architecture and offer an overview of the elements that compose the core functionalities of the library.
 
@@ -74,6 +74,115 @@ For more information, please read our article_ on SBCM's 2019 Proceedings.
 
 .. _usage:
 
-*****
+-----
 Usage
-*****
+-----
+
+This section will present a quickstart guide to programming with *iracema*.
+
+Loading audio files
+-------------------
+
+.. code:: python
+
+  import iracema
+  audio = iracema.Audio("00 - Flute - Iracema.wav")
+
+Loading audio files in Iracema is pretty straightforward, and the only thing that must be specified
+is a string containing the path to the audio file that should be loaded.
+
+Playing the loaded audio and plotting a waveform is actually pretty simple to, and can be done with:
+
+.. code:: python
+  
+  # play audio
+  audio.play()
+
+  # plot waveform
+  audio.plot()
+
+.. figure:: ../img/waveform.png
+   :alt: Waveform plot of the audio file
+   :width: 100%
+
+   Figure 5. Waveform plot of the audio file
+
+Calculating basic features
+--------------------------
+
+As most features will need a FFT as input, the second step should be calculating it for the audio
+you've just loaded. For being able to do it, you must specify the sliding window and hop size 
+values (in samples).
+After calculating the FFT you're now able to plot a spectogram!
+
+Other useful methods are RMS and Peak Envelope, which will be extracted and plotted in the example.
+
+.. code:: python
+
+  # specifying window and hop sizes
+  window, hop = 2048, 1024
+  
+  # calculating the FFT
+  fft = iracema.spectral.fft(audio, window, hop)
+  
+  # plotting the spectrogram
+  iracema.plot.plot_spectrogram(fft)
+  
+  # calculating the RMS
+  rms = iracema.features.rms(audio, window, hop)
+  
+  # plotting the RMS
+  rms.plot()
+
+  # calculating the Peak Envelope
+  peak = iracema.features.peak_envelope(audio, window, hop)
+
+  # plotting the Peak Envelope
+  peak.plot()
+
+.. figure:: ../img/spectrogram.png
+   :alt: Spectrogram plot of the audio file
+   :width: 100%
+
+   Figure 6. Spectrogram plot of the audio file
+
+.. figure:: ../img/rms.png
+   :alt: Root Mean Square plot
+   :width: 100%
+
+   Figure 7. RMS plot of the audio file
+
+.. figure:: ../img/peak.png
+   :alt: Plotting the peak envelope
+   :width: 100%
+
+   Figure 7. Peak envelope plot of the audio file
+
+
+
+Extracting pitch and harmonics
+------------------------------
+
+Another important step is to extract pitch. One possible way of doing it is using the Harmonic
+Product Spectrum method. But you can check other methods in the *pitch* module.
+Now you can extract the harmonics, as it's dependent on a pitch method. Iracema already has a 
+bulit-in function for plotting the harmonics over the spectrogram.
+Notice that the harmonics methods return a dictionary, with it's keys corresponding to three TimeSeries objetcs: 'frequency', 'magnitude' and 'phase'.
+
+.. code:: python
+  
+  # extract pitch
+  hps_pitch = iracema.pitch.hps(fft, minf0=1, maxf0=1000)
+
+  #extract harmonics
+  harmonics = iracema.harmonics.extract(fft, hps_pitch)
+  
+  #plot harmonics over spectrogram
+  iracema.plot.plot_audio_spectrogram_harmonics(
+  audio, rms, peak, fft, pitch, harmonics['frequency'], fftlim=(0, 15000))
+
+.. figure:: ./harmonics_spectrogram.png
+   :alt: Harmonics plotted over the spectrogram
+   :width: 100%
+
+   Figure 8. Harmonics plotted over the spectrogram
