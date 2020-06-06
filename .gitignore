@@ -51,3 +51,6 @@ work/
 
 # Egg info
 iracema.egg-info
+
+# Test-features folder
+test-features/
