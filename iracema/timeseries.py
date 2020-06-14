@@ -171,6 +171,20 @@ class TimeSeries:
 
         return ts
 
+    def resample(self, new_fs):
+        """
+        Resample time series to a new sampling rate.
+        """
+        if self.start_time != 0:
+            raise (NotImplementedError(
+                'The method resample is implemented only for time series '
+                'objects with start_time equal to 0.'))
+        ts = cp.copy(self)
+        ts.data = resampy.resample(self.data, self.fs, new_fs)
+        ts.fs = new_fs
+
+        return ts
+
     def plot(self):
         "Plot the time series using matplotlib."
         f = plt.figure(figsize=(15, 9))
@@ -427,16 +441,7 @@ class Audio(TimeSeries):
 
         super(Audio, self).__init__(fs, data=data, unit=self.unit)
 
-    def resample(self, new_fs):
-        """
-        Resample audio to a new sampling rate.
-        """
-        if self.start_time != 0:
-            raise (NotImplementedError(
-                'The method resample is implemented only for audio '
-                'objects with start_time equal to 0.'))
-        self.data = resampy.resample(self.data, self.fs, new_fs)
-        self.fs = new_fs
+
 
     def play(self):
         """
