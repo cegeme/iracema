@@ -7,6 +7,7 @@ from os import path
 
 import matplotlib.pyplot as plt
 import numpy as np
+import resampy
 
 from .segment import Segment
 from .util import conversion
@@ -173,7 +174,11 @@ class TimeSeries:
     def plot(self):
         "Plot the time series using matplotlib."
         f = plt.figure(figsize=(15, 9))
-        plt.plot(self.time, self.data, label=self.label)
+        plt.plot(self.time,
+                 self.data,
+                 label=self.label,
+                 linewidth=0.1,
+                 alpha=0.9)
         if self.label:
             plt.legend(loc='lower right', ncol=2, fontsize='x-small')
         plt.title(self.caption)
@@ -421,6 +426,17 @@ class Audio(TimeSeries):
                 '1 or 2'))
 
         super(Audio, self).__init__(fs, data=data, unit=self.unit)
+
+    def resample(self, new_fs):
+        """
+        Resample audio to a new sampling rate.
+        """
+        if self.start_time != 0:
+            raise (NotImplementedError(
+                'The method resample is implemented only for audio '
+                'objects with start_time equal to 0.'))
+        self.data = resampy.resample(self.data, self.fs, new_fs)
+        self.fs = new_fs
 
     def play(self):
         """
