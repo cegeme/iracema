@@ -17,7 +17,8 @@ setup(
         'scipy>=1.4.1',
         'sounddevice>=0.3.12',
         'audioread>=2.1.8',
-        'matplotlib==3.2.1'],
+        'matplotlib==3.2.1',
+        'resampy==0.2.2'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
