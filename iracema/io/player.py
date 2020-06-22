@@ -20,18 +20,20 @@ def play(audio_time_series, blocking=False):
     sd.play(audio_time_series.data, audio_time_series.fs, blocking=blocking)
 
 
-def play_with_clicks(audio_time_series, points, blocking=False):
+def play_with_clicks(audio_time_series, points, click_file, blocking=False):
     """
     Play audio with clicks in the instants corresponding to the specified
-    points.
+    points. The path to the audio file containing the click sound must be
+    provided.
 
     Args
     ----
     audio_time_series: iracema.timeseries.Audio
     points: iracema.segments.PointList
+    click_file: string
     blocking: bool
     """
-    click_sound = iracema.timeseries.Audio('/home/tairone/Development/iracema/audio/Click.wav')
+    click_sound = iracema.timeseries.Audio(click_file)
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
     for i in indexes:
