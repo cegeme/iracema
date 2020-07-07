@@ -86,7 +86,7 @@ Loading audio files
 .. code:: python
 
   import iracema
-  audio = iracema.Audio("00 - Flute - Iracema.wav")
+  audio = iracema.Audio("00 - Trumpet - Haydn.wav")
 
 Loading audio files in Iracema is pretty straightforward, and the only thing that must be specified
 is a string containing the path to the audio file that should be loaded.
