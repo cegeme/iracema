@@ -36,7 +36,16 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo',
               'sphinx.ext.coverage', 'sphinx.ext.mathjax',
               'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
               'sphinx.ext.githubpages', 'sphinxcontrib.napoleon',
-              'numpydoc', 'matplotlib.sphinxext.plot_directive']
+              'matplotlib.sphinxext.plot_directive'] 
+
+# Hide source code link for plotting
+plot_html_show_source_link = False
+#plot_html_show_formats = False
+
+# Code that should be executed before each plot.
+plot_pre_code = """
+import iracema
+"""
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
