@@ -56,4 +56,4 @@ iracema.egg-info
 test-features/
 
 # VSCode Workspace
-.code-workspace
+*.code-workspace
