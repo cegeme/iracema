@@ -1,5 +1,11 @@
 import pytest
-from iracema.audio import Audio
+
+from iracema import Audio
+
+
+@pytest.fixture(scope="module")
+def audio00():
+    return Audio('audio/00 - Flute - Iracema.wav')
 
 
 @pytest.fixture(scope="module")
