@@ -52,19 +52,19 @@ Other useful methods are RMS and Peak Envelope, which will be extracted and plot
 .. plot::
    :include-source:
    :context: close-figs
-  
+   
    # specifying window and hop sizes
    window, hop = 2048, 1024
-  
+   
    # calculating the FFT
    fft = iracema.spectral.fft(audio, window, hop)
-  
+   
    # plotting the spectrogram
    iracema.plot.plot_spectrogram(fft)
-  
+   
    # calculating the RMS
    rms = iracema.features.rms(audio, window, hop)
-  
+
    # plotting the RMS
    rms.plot()
 
@@ -84,13 +84,22 @@ Now you can extract the harmonics, as it's dependent on a pitch method. Iracema 
 bulit-in function for plotting the harmonics over the spectrogram.
 Notice that the harmonics methods return a dictionary, with it's keys corresponding to three TimeSeries objetcs: 'frequency', 'magnitude' and 'phase'.
 
-.. code:: python
-  
-  # extract pitch
-  hps_pitch = iracema.pitch.hps(fft, minf0=1, maxf0=1000)
+.. plot::
+  :include-source:
+  :context: close-figs
 
-  #extract harmonics
-  harmonics = iracema.harmonics.extract(fft, hps_pitch)
+  # extract pitch
+  pitch = iracema.pitch.hps(fft, minf0=24, maxf0=1000)
+
+  # plot the hps_pitch result
+  pitch.plot()
+
+  # extract harmonics
+  harmonics = iracema.harmonics.extract(fft, pitch)
+
+  # plot the harmonics result
+  iracema.plot.plot_audio_spectrogram_harmonics(audio, rms, peak, fft, pitch, harmonics['frequency'], fftlim=(0, 15000))
+
 
 .. _architecture:
 
