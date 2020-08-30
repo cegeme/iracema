@@ -499,7 +499,7 @@ def noisiness(fft, harmonics_magnitude):
     return time_series
 
 
-def oer(harmonics):
+def oer(harmonics_magnitude):
     """
     The OER represents the odd-to-even ratio among the harmonics of an audio
     signal. This value will be higher for sounds with predominantly odd
@@ -510,10 +510,9 @@ def oer(harmonics):
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
     def function(X):
-        harm_mag = harmonics['magnitudes']
-        oer = __oer(harm_mag)
+        oer = __oer(harmonics_magnitude)
 
-        time_series = aggregate_features(harmonics['magnitudes'], function)
+        time_series = aggregate_features(harm_magnitude, oer)
         time_series.label = 'Odd-to-Even Ratio'
         time_series.unit = ''
         return time_series
