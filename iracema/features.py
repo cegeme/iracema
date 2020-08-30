@@ -408,11 +408,22 @@ def __harmonic_centroid(X, f):
     return np.sum(X * f)/np.sum(X)
 
 
-def inharmonicity(fft, harmonics):
-    """Inharmonicity"""
-    def _func(X):
-        pass
+def inharmonicity(harmonics):
+    """Inharmonicity
 
+    Calculate the degree of deviation of a harmonic series from integer frequencies
+    multiples of the fundamental frequency.
+
+    .. math:: \\operatorname{INH} = \\k f_0 sqrt{\\1 + \lambda(k^2 - 1)}
+
+    Where :math:`k` represents the index of the partial and :math:`\lambda` is the 
+    inharmonicity factor.
+    """
+    def _func(X):
+        return __inharmonicity(X, harmonics['frequencies'])
+
+def __inharmonicity(X, f):
+    pass
 
 def harmonic_energy(harmonics_magnitude):
     """
@@ -499,7 +510,7 @@ def noisiness(fft, harmonics_magnitude):
     return time_series
 
 
-def oer(harmonics_magnitude):
+def oer(harmonics):
     """
     The OER represents the odd-to-even ratio among the harmonics of an audio
     signal. This value will be higher for sounds with predominantly odd
@@ -510,9 +521,9 @@ def oer(harmonics_magnitude):
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
     def function(X):
-        oer = __oer(harmonics_magnitude)
+        oer = __oer(harmonics['magnitude'])
 
-    time_series = aggregate_features(harmonics_magnitude, function)
+    time_series = aggregate_features(harmonics, function)
     time_series.label = 'Odd-to-Even Ratio'
     time_series.unit = ''
     
