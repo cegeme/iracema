@@ -512,19 +512,19 @@ def oer(harmonics_magnitude):
     def function(X):
         oer = __oer(harmonics_magnitude)
 
-    time_series = aggregate_features(harmonics_magnitude, oer)
+    time_series = aggregate_features(harmonics_magnitude, function)
     time_series.label = 'Odd-to-Even Ratio'
     time_series.unit = ''
     
     return time_series
 
 def __oer(X):
-    dim = X.shape[0]
+    H = X.shape[0]
     odd = np.array([])
     even = np.array([])
-    for i in range(1, dim/2):
-        odd.append(np.sum((X[(2*i) - 1]**2)*dim[i]))
-    for i in range(1, dim/2):
-        even.append(np.sum((X[(2*i)]**2)*dim[i]))
+    for i in range(1, H/2):
+        odd.append(np.sum((X[(2*i) - 1]**2)*H[i]))
+    for i in range(1, H/2):
+        even.append(np.sum((X[(2*i)]**2)*H[i]))
     
     return odd/even
