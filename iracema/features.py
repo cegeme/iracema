@@ -414,7 +414,7 @@ def inharmonicity(harmonics): #include fft?
     Calculate the degree of deviation of a harmonic series from integer frequencies
     multiples of the fundamental frequency.
 
-    .. math:: \\operatorname{INH} = k f_0 \\sqrt{1 + \lambda(k^2 - 1)}
+    .. math:: \\operatorname{Inh} = k f_0 \\sqrt{1 + \lambda(k^2 - 1)}
 
     Where :math:`k` represents the index of the partial and :math:`\lambda` is the 
     inharmonicity factor.
