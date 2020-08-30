@@ -396,9 +396,9 @@ def harmonic_centroid(harmonics):
     """
 
     def function(X):
-        return __harmonic_centroid(X, harmonics['frequencies'])
+        return __harmonic_centroid(X, harmonics['frequency'])
 
-    time_series = aggregate_features(harmonics['magnitudes'], function)
+    time_series = aggregate_features(harmonics['magnitude'], function)
     time_series.label = 'Harmonic Centroid'
     time_series.unit = ''
     return time_series
@@ -409,8 +409,7 @@ def __harmonic_centroid(X, f):
 
 
 def inharmonicity(harmonics): #include fft?
-    """Inharmonicity
-
+    """
     Calculate the degree of deviation of a harmonic series from integer frequencies
     multiples of the fundamental frequency.
 
@@ -419,11 +418,17 @@ def inharmonicity(harmonics): #include fft?
     Where :math:`k` represents the index of the partial and :math:`\lambda` is the 
     inharmonicity factor.
     """
-    def _func(X):
-        return __inharmonicity(X, harmonics['frequencies'])
+    def function(X):
+        return __inharmonicity(harmonics['frequency'])
 
-def __inharmonicity(X, f):
-    pass
+    time_series = aggregate_features(harmonics['frequency'], function)
+    time_series.label = 'Inharmonicity'
+    time_series.unit = ''
+    return time_series
+
+def __inharmonicity(X):
+    return [f * np.sqrt(1 + (10**-4*((f**2) - 1))) for f in X]
+
 
 def harmonic_energy(harmonics_magnitude):
     """
@@ -477,7 +482,7 @@ def spectral_energy(fft):
 
     Spectral Energy is the total energy of an FFT frame.
 
-    .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
+    .. math:: \\operatorname{SE} = \\sum_{k=1}^{N} |X(k)^2|
     """
     def function(frame):
         return np.sum(np.abs(frame)**2)
@@ -514,28 +519,23 @@ def oer(harmonics):
     """
     The OER represents the odd-to-even ratio among the harmonics of an audio
     signal. This value will be higher for sounds with predominantly odd
-    harmonics, such as the clarinet.
+    harmonics, such as the clarinet [Peeters2011]_.
     
-    .. math:: \\operatorname{OER}=\\frac{\\sum_{h=1}^{H / 2} A(2 h - 1)^{2}\\left(t_{m}\\right)}{\\sum_{h=1}^{H / 2} A(2 h)^{2}\\left(t_{m}\\right)}
+    .. math:: \\operatorname{OER}=\\frac{\\sum_{h=1}^{H / 2} A(2 h - 1)^{2}}{\\sum_{h=1}^{H / 2} A(2 h)^{2}}
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
     def function(X):
-        oer = __oer(harmonics['magnitude'])
+        oer = __oer(X)
 
-    time_series = aggregate_features(harmonics, function)
+    time_series = aggregate_features(harmonics['magnitude'], function)
     time_series.label = 'Odd-to-Even Ratio'
     time_series.unit = ''
     
     return time_series
 
 def __oer(X):
-    H = X.shape[0]
-    odd = np.array([])
-    even = np.array([])
-    for i in range(1, H/2):
-        odd.append(np.sum((X[(2*i) - 1]**2)*H[i]))
-    for i in range(1, H/2):
-        even.append(np.sum((X[(2*i)]**2)*H[i]))
+    odd = np.asarray(X.data[1::2])
+    even = np.asarray(X.data[2::2])
     
-    return odd/even
+    return np.sum(odd**2)/np.sum(even**2)
