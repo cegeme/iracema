@@ -69,7 +69,7 @@ def plot_audio_spectrogram_f0(audio,
                               rms,
                               peak_envelope,
                               fft,
-                              fzero,
+                              harmonics_frequency,
                               logfft=False,
                               fftlim=()):
     """
@@ -93,7 +93,7 @@ def plot_audio_spectrogram_f0(audio,
     add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
     # plotting fzero
-    add_curve_to_axes(ax2, fzero, fmt='r')
+    add_curve_to_axes(ax2, harmonics_frequency, fmt='r')
 
     # show the resulting image
     f.show()
@@ -105,7 +105,7 @@ def plot_audio_spectrogram_harmonics(audio,
                                      rms,
                                      peak_envelope,
                                      fft,
-                                     fzero,
+                                     harmonics_frequency,
                                      harmonics,
                                      logfft=False,
                                      fftlim=()):
@@ -130,7 +130,7 @@ def plot_audio_spectrogram_harmonics(audio,
     add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
     # plotting fzero
-    add_curve_to_axes(ax2, fzero)
+    add_curve_to_axes(ax2, harmonics_frequency)
 
     # plotting harmonics
     add_curve_to_axes(ax2, harmonics)
