@@ -419,7 +419,7 @@ def inharmonicity(harmonics): #include fft?
     inharmonicity factor.
     """
     def function(X):
-        return __inharmonicity(harmonics['frequency'])
+        return __inharmonicity(X)
 
     time_series = aggregate_features(harmonics['frequency'], function)
     time_series.label = 'Inharmonicity'
@@ -527,6 +527,8 @@ def oer(harmonics):
     """
     def function(X):
         oer = __oer(X)
+        
+        return oer
 
     time_series = aggregate_features(harmonics['magnitude'], function)
     time_series.label = 'Odd-to-Even Ratio'
@@ -535,7 +537,7 @@ def oer(harmonics):
     return time_series
 
 def __oer(X):
-    odd = np.asarray(X.data[1::2])
-    even = np.asarray(X.data[2::2])
+    odd = np.sum(np.asarray(X.data[1::2])**2)
+    even = np.sum(np.asarray(X.data[2::2])**2)
     
-    return np.sum(odd**2)/np.sum(even**2)
+    return odd/even
