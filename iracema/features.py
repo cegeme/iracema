@@ -235,6 +235,18 @@ def spectral_centroid(fft):
     return time_series
 
 
+def __spectral_centroid(X, f):
+    """
+    Calculate the spectral centroid for a fft frame `X`, being `f` the
+    frequency corresponding to its bins.
+    """
+    abs_X = np.abs(X)
+    sum_abs_X = np.sum(abs_X)
+    if sum_abs_X == 0:
+        return 0
+    return np.sum(f * abs_X) / sum_abs_X
+
+
 def spectral_spread(fft):
     """
     Calculate the spectral spread for a FFT time-series.
@@ -257,18 +269,6 @@ def spectral_spread(fft):
     time_series.label = 'SpectralSpread'
     time_series.unit = 'Hz'
     return time_series
-
-
-def __spectral_centroid(X, f):
-    """
-    Calculate the spectral centroid for a fft frame `X`, being `f` the
-    frequency corresponding to its bins.
-    """
-    abs_X = np.abs(X)
-    sum_abs_X = np.sum(abs_X)
-    if sum_abs_X == 0:
-        return 0
-    return np.sum(f * abs_X) / sum_abs_X
 
 
 def __spectral_spread(X, f):
@@ -307,6 +307,7 @@ def spectral_skewness(fft):
     time_series.unit = ''
     return time_series
 
+
 def __spectral_skewness(X):
      abs_X = np.abs(X)
      N = X.shape[0]
@@ -338,7 +339,8 @@ def spectral_kurtosis(fft):
     time_series.label = 'Spectral Kurtosis'
     time_series.unit = ''
     return time_series
- 
+
+
 def __spectral_kurtosis(X):
      abs_X = np.abs(X)
      N = X.shape[0]
@@ -377,7 +379,12 @@ def spectral_rolloff(fft):
 
 
 def spectral_irregularity(fft):
-    """Spectral Irregularity"""
+    """Spectral Irregularity
+
+    .. math::
+        \\operatorname{SI} = \\sum_{k=1}^{N-1} 20_log{10} (X[k])-\frac{20_log{10} (X[k-1])+20_log{10}(X[k]+20_log{10} (X[k+1]))}{3}
+
+    """
     def _func(X):
         pass
 
@@ -392,20 +399,27 @@ def harmonic_centroid(harmonics):
     .. math::
        \\operatorname{HC} = \\frac{\\sum_{k=1}^{H} A(k) \\cdot f_k }{\\sum_{k=1}^{H} A(k)}
 
-    Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
+    Where :math:`A(k)` represents the amplitude of the k-th harmonic partial.
     """
 
-    def function(X):
-        return __harmonic_centroid(X, harmonics['frequency'])
-
-    time_series = aggregate_features(harmonics['magnitude'], function)
+    def function(A):
+        return __harmonic_centroid(A, harmonics['frequency'])
+    """
+    Multiplicar cada amplitude pelos bins de frequência
+    
+    new_ts = TimeSeries(
+            time_series.fs,
+            data=new_data,
+            start_time=time_series.start_time)
+    """
+    numerator = harmonics['magnitude'] * harmonics['frequency']
+    numerator = aggregate_features(numerator, np.sum)
+    denominator = aggregate_features(harmonics['magnitude'], np.sum)
+    time_series = numerator / denominator
+    #time_series[np.isneginf(time_series)] = 0
     time_series.label = 'Harmonic Centroid'
     time_series.unit = ''
     return time_series
-        
-
-def __harmonic_centroid(X, f):
-    return np.sum(X * f)/np.sum(X)
 
 
 def inharmonicity(harmonics): #include fft?
@@ -419,15 +433,16 @@ def inharmonicity(harmonics): #include fft?
     inharmonicity factor.
     """
     def function(X):
-        return __inharmonicity(X)
+        return __inharmonicity(harmonics['frequency'])
 
     time_series = aggregate_features(harmonics['frequency'], function)
     time_series.label = 'Inharmonicity'
     time_series.unit = ''
     return time_series
 
+
 def __inharmonicity(X):
-    return [f * np.sqrt(1 + (10**-4*((f**2) - 1))) for f in X]
+    return X * np.sqrt(1 + 10**-4*((X*X) - 1))
 
 
 def harmonic_energy(harmonics_magnitude):
@@ -437,7 +452,8 @@ def harmonic_energy(harmonics_magnitude):
     Harmonic energy is the energy of the harmonic partials of a signal.
 
     .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2
-
+    
+    Where :math:`A(k)` represents the amplitude of the :math:`k-th` partial.
     """
     def function(frame):
         return np.sum(frame**2)
@@ -521,19 +537,16 @@ def oer(harmonics):
     signal. This value will be higher for sounds with predominantly odd
     harmonics, such as the clarinet [Peeters2011]_.
     
-    .. math:: \\operatorname{OER}=\\frac{\\sum_{h=1}^{H / 2} A(2 h - 1)^{2}}{\\sum_{h=1}^{H / 2} A(2 h)^{2}}
+    .. math:: \\operatorname{OER}=\\frac{\\sum_{h=1}^{H / 2} A(2 k - 1)^{2}}{\\sum_{h=1}^{H / 2} A(2 k)^{2}}
 
-    Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
+    Where :math:`A(k)` represents the amplitude of the :math:`k-th` harmonic partial.
     """
     def function(X):
-        oer = __oer(X)
-        
-        return oer
+        return __oer(X)
 
     time_series = aggregate_features(harmonics['magnitude'], function)
     time_series.label = 'Odd-to-Even Ratio'
     time_series.unit = ''
-    
     return time_series
 
 def __oer(X):
