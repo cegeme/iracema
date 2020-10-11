@@ -52,6 +52,9 @@ work/
 # Egg info
 iracema.egg-info
 
+# VSCode Workspace
+*.code-workspace
+
 # Package build
 dist/
 build/
