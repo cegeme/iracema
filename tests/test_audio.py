@@ -1,6 +1,6 @@
 import pytest
 
-from iracema.audio import Audio
+from iracema import Audio
 
 
 def test_load_audio_from_file(audio01):
