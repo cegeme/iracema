@@ -45,6 +45,7 @@ venv.bak/
 # Editors
 .idea
 .vscode
+.code-workspace
 
 # Work directory
 work/
