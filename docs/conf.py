@@ -20,6 +20,8 @@ import os
 import sys
 import sphinx_rtd_theme
 
+from iracema import __version__
+
 sys.path.insert(0, os.path.abspath('..'))
 
 
@@ -72,7 +74,7 @@ author = u'Tairone N. Magalhães'
 # built documents.
 #
 # The short X.Y version.
-version = u'0.1.4' 
+version = __version__
  # The full version, including alpha/beta/rc tags.
 release = version
 

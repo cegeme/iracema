@@ -1,11 +1,12 @@
 from setuptools import setup, find_packages
+from iracema import __version__
 
 with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
     name='iracema',
-    version='0.1.4',
+    version=__version__,
     url='http://github.com/cegeme/iracema',
     author='Tairone Magalhães',
     author_email='taironemagalhaes@gmail.com',
