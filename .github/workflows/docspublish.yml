@@ -33,5 +33,5 @@ jobs:
           git config --global user.name "Tairone Magalhaes"
           git checkout gh-pages
           mv /tmp/html/* .
-          git add html
+          git add .
           git commit -m "Update docs"
