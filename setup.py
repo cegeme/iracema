@@ -2,8 +2,6 @@ import codecs
 import os.path
 
 from setuptools import setup, find_packages
-from iracema import __version__
-
 
 def read(rel_path):
     here = os.path.abspath(os.path.dirname(__file__))
