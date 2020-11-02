@@ -1,0 +1,27 @@
+name: Build and publish docs
+
+on: push
+
+jobs:
+  build_docs:
+  runs_on: ubuntu-18.04
+  steps:
+    - name: Checkout current repo
+      uses: actions/checkout@v2
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install OS dependencies
+      run: |
+        sudo apt update
+        sudo apt install libportaudio2
+    - name: Install Python dependencies
+      run: |
+        pip install -r docs/requirements.txt
+    - name: Build docs using sphinx
+      run: |
+        sphinx-multiversion docs build/html
+#    - name: Push docs to github pages
+#      run: |
+
