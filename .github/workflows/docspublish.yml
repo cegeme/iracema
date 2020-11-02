@@ -1,6 +1,11 @@
 name: Build and publish docs
 
-on: push
+on:
+  release:
+    types: [created]
+  push:
+    types: [created]
+    branches: [develop, githubdocs]
 
 jobs:
   build_docs:
@@ -28,6 +33,7 @@ jobs:
         run: |
           mv build/html /tmp/
       - name: Checkout gh-pages and copy content
+        if: ${{ github.event_name == 'release' }}
         run: |
           git config --global user.email ${{secrets.BOT_EMAIL}}
           git config --global user.name ${{secrets.BOT_USER}}
@@ -36,6 +42,7 @@ jobs:
           git add .
           git commit -m "Update docs"
       - name: Push docs to github pages
+        if: ${{ github.event_name == 'release' }}
         run: |
           mkdir ~/.ssh
           echo "${{secrets.CEGEME_BOT_PRIVATE_SSH_KEY}}" > ~/.ssh/id_rsa
