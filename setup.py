@@ -22,7 +22,7 @@ with open("README.rst", "r") as fh:
 setup(
     name='iracema',
     url='http://github.com/cegeme/iracema',
-    version=__version__,
+    version=get_version('iracema/__init__.py'),
     author='Tairone Magalhães',
     author_email='taironemagalhaes@gmail.com',
     description='Audio Content Analysis for Research on Musical Expressiveness and Individuality',
