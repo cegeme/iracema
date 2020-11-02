@@ -20,12 +20,9 @@ import os
 import sys
 import sphinx_rtd_theme
 
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, os.path.abspath('..'))
 
 from iracema import __version__
-
-sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- General configuration ------------------------------------------------
