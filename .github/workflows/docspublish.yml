@@ -40,7 +40,7 @@ jobs:
           mkdir ~/.ssh
           echo "${{secrets.CEGEME_BOT_PRIVATE_SSH_KEY}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l git
+          export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l git"
           REMOTE_URL="git@github.com:cegeme/iracema.git"
           echo "Adding remote repo $REMOTE_URL"
           git remote add repo "$REMOTE_URL"
