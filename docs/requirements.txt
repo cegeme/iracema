@@ -13,3 +13,4 @@ yapf==0.24.0
 audioread==2.1.8
 resampy==0.2.2
 sphinx-multiversion==0.2.4
+w3lib==1.22.0

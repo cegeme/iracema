@@ -12,3 +12,4 @@ sphinxcontrib-websupport==1.1.0
 yapf==0.24.0
 audioread==2.1.8
 resampy==0.2.2
+w3lib==1.22.0
