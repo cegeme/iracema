@@ -201,8 +201,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-harmonics">
-<h1>iracema.harmonics<a class="headerlink" href="#iracema-harmonics" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.harmonics">
+<span id="iracema-harmonics"></span><h1>iracema.harmonics<a class="headerlink" href="#module-iracema.harmonics" title="Permalink to this headline">¶</a></h1>
+<p>This module contains the implementation of a harmonic extraction model for
+monophonic audio.</p>
+<dl class="function">
+<dt id="iracema.harmonics.extract">
+<code class="descclassname">iracema.harmonics.</code><code class="descname">extract</code><span class="sig-paren">(</span><em>fft</em>, <em>pitch</em>, <em>nharm=16</em>, <em>minf0=24</em>, <em>maxf0=4200</em>, <em>perc_tol=0.04</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/harmonics.html#extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.harmonics.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the harmonics of an audio signal, given its <cite>fft</cite> and <cite>pitch</cite>
+curve, using <cite>nharm</cite> harmonics. The pitch detection method will search for
+a a fundamental frequency in the interval between <cite>minf0</cite> and <cite>maxf0</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fft</strong> (<em>FFT</em>) – FFT time series.</li>
+<li><strong>pitch</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>TimeSeries</em></a>) – Pitch time series.</li>
+<li><strong>nharm</strong> (<em>int</em>) – Number of harmonics to extract.</li>
+<li><strong>minf0</strong> (<em>float</em>) – Minimum fundamental frequency.</li>
+<li><strong>maxf0</strong> (<em>float</em>) – Maximum fundamental frequency.</li>
+<li><strong>min_mag_cand</strong> (<em>float</em>) – Minimum amplitude to be candidate, relative to the frame’s peak.</li>
+<li><strong>noisiness_thresh</strong> (<em>float</em>) – Upper noisiness limit for each frame. If the noisiness exceeds this
+value, the algorithm will consider that the frame has no fundamental
+frequency.</li>
+<li><strong>perc_tol</strong> (<em>float</em>) – Frequency tolerance used to search for peaks in the region around the
+expected frequency of each harmonic.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>harmonics</strong> – A dictionary containing the results of the harmonics extraction,
+composed of three TimeSeries objects, which can be accessed using the
+following keys: ‘frequency’, ‘magnitude’and ‘phase’.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.harmonics.frame_harmonics">
+<code class="descclassname">iracema.harmonics.</code><code class="descname">frame_harmonics</code><span class="sig-paren">(</span><em>frame_pitch</em>, <em>fft_frame_mag</em>, <em>fft_frame_phase</em>, <em>fft_max_freq</em>, <em>nharm</em>, <em>perc_tol</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/harmonics.html#frame_harmonics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.harmonics.frame_harmonics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the harmonics for a fft frame.</p>
+</dd></dl>
+
 </div>
 
 

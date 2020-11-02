@@ -203,8 +203,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-io-player">
-<h1>iracema.io.player<a class="headerlink" href="#iracema-io-player" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.io.player">
+<span id="iracema-io-player"></span><h1>iracema.io.player<a class="headerlink" href="#module-iracema.io.player" title="Permalink to this headline">¶</a></h1>
+<p>Methods for playing audio.</p>
+<dl class="function">
+<dt id="iracema.io.player.play">
+<code class="descclassname">iracema.io.player.</code><code class="descname">play</code><span class="sig-paren">(</span><em>audio_time_series</em>, <em>blocking=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/player.html#play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.player.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio time series.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>audio_time_series</strong> (<em>iracema.audio.Audio</em>) – </li>
+<li><strong>blocking</strong> (<em>bool</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.io.player.play_with_clicks">
+<code class="descclassname">iracema.io.player.</code><code class="descname">play_with_clicks</code><span class="sig-paren">(</span><em>audio_time_series</em>, <em>points</em>, <em>click_file</em>, <em>blocking=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/player.html#play_with_clicks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.player.play_with_clicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio with clicks in the instants corresponding to the specified
+points. The path to the audio file containing the click sound must be
+provided.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>audio_time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>iracema.timeseries.Audio</em></a>) – </li>
+<li><strong>points</strong> (<em>iracema.segments.PointList</em>) – </li>
+<li><strong>click_file</strong> (<em>string</em>) – </li>
+<li><strong>blocking</strong> (<em>bool</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.io.player.play_interval_samples">
+<code class="descclassname">iracema.io.player.</code><code class="descname">play_interval_samples</code><span class="sig-paren">(</span><em>audio_time_series</em>, <em>from_sample</em>, <em>to_sample</em>, <em>soft_start=True</em>, <em>blocking=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/player.html#play_interval_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.player.play_interval_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio interval from sample <cite>from_sample</cite> to <cite>to_sample</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>audio_time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>iracema.timeseries.Audio</em></a>) – </li>
+<li><strong>from_sample</strong> (<em>int</em>) – </li>
+<li><strong>to_sample</strong> (<em>int</em>) – </li>
+<li><strong>soft_start</strong> (<em>bool</em>) – </li>
+<li><strong>blocking</strong> (<em>bool</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.io.player.play_interval_seconds">
+<code class="descclassname">iracema.io.player.</code><code class="descname">play_interval_seconds</code><span class="sig-paren">(</span><em>audio_time_series</em>, <em>from_seconds</em>, <em>to_seconds</em>, <em>soft_start=True</em>, <em>blocking=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/player.html#play_interval_seconds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.player.play_interval_seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio interval from time <cite>from_seconds</cite> to <cite>to_seconds</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>audio_time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><em>iracema.timeseries.Audio</em></a>) – </li>
+<li><strong>from_seconds</strong> (<em>int</em>) – </li>
+<li><strong>to_seconds</strong> (<em>int</em>) – </li>
+<li><strong>soft_start</strong> (<em>bool</em>) – </li>
+<li><strong>blocking</strong> (<em>bool</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.io.player.stop">
+<code class="descclassname">iracema.io.player.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/player.html#stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.player.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop playing audio.</p>
+</dd></dl>
+
 </div>
 
 

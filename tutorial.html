@@ -210,7 +210,7 @@
 <p>To load an audio file, you must provide a string that specifies the location
 where it is stored. Iracema accepts local paths to load files stored in your
 computer or http URL to download remote files. It can be done instantiating
-an object of the class <code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code>.</p>
+an object of the class <a class="reference internal" href="source/iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iracema</span>
 <span class="n">audio</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav&quot;</span><span class="p">)</span>
 </pre></div>
@@ -222,6 +222,10 @@ an object of the class <code class="xref py py-obj docutils literal notranslate"
 <p>The audio object has a plot method available that displays its waveform:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">audio</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+<p>(<a class="reference external" href=".//tutorial-2.png">png</a>, <a class="reference external" href=".//tutorial-2.hires.png">hires.png</a>, <a class="reference external" href=".//tutorial-2.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="_images/tutorial-2.png" src="_images/tutorial-2.png" />
 </div>
 </div>
 <div class="section" id="calculating-basic-features">
@@ -252,6 +256,18 @@ After calculating the FFT you’re now able to plot a spectogram!</p>
 <span class="c1"># plotting the Peak Envelope</span>
 <span class="n">peak</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+<div class="figure" id="id3">
+<img alt="_images/tutorial-3_00.png" src="_images/tutorial-3_00.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href=".//tutorial-3_00.png">png</a>, <a class="reference external" href=".//tutorial-3_00.hires.png">hires.png</a>, <a class="reference external" href=".//tutorial-3_00.pdf">pdf</a>)</span></p>
+</div>
+<div class="figure" id="id4">
+<img alt="_images/tutorial-3_01.png" src="_images/tutorial-3_01.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href=".//tutorial-3_01.png">png</a>, <a class="reference external" href=".//tutorial-3_01.hires.png">hires.png</a>, <a class="reference external" href=".//tutorial-3_01.pdf">pdf</a>)</span></p>
+</div>
+<div class="figure" id="id5">
+<img alt="_images/tutorial-3_02.png" src="_images/tutorial-3_02.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href=".//tutorial-3_02.png">png</a>, <a class="reference external" href=".//tutorial-3_02.hires.png">hires.png</a>, <a class="reference external" href=".//tutorial-3_02.pdf">pdf</a>)</span></p>
 </div>
 </div>
 <div class="section" id="extracting-pitch-and-harmonics">

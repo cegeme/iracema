@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.features &mdash; Iracema 0.1.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#loading-audio-files">Loading audio files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial.html#modules">Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/iracema.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.features</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains the implementation of some classic feature extractors.</span>
+
+<span class="sd">References</span>
+<span class="sd">----------</span>
+<span class="sd">.. [Bello2005] Bello, J. P., Daudet, L., Abdallah, S., Duxbury, C., Davies,</span>
+<span class="sd">    M., &amp; Sandler, M. B. (2005). A tutorial on onset detection in music</span>
+<span class="sd">    signals. IEEE Transactions on Speech and Audio Processing, 13(5),</span>
+<span class="sd">    1035–1046.</span>
+
+<span class="sd">.. [Dixon2006] Dixon, S. (2006). Onset Detection Revisited. In 9th</span>
+<span class="sd">   International Conference on Digital Audio Effects (pp. 133–137).</span>
+<span class="sd">   Montreal, Canada.</span>
+
+<span class="sd">.. [Lerch2012] Lerch, A. (2012). An introduction to audio content analysis:</span>
+<span class="sd">   Applications in signal processing and music informatics. In An Introduction</span>
+<span class="sd">   to Audio Content Analysis: Applications in Signal Processing and Music </span>
+<span class="sd">   Informatics.</span>
+
+<span class="sd">.. [Park2004] Park, T. H. (2004). Towards automatic musical instrument</span>
+<span class="sd">   timbre recognition. Princeton University.</span>
+
+<span class="sd">.. [Park2010] Park, T. H. (2010). Introduction to digital signal</span>
+<span class="sd">   processing: Computer musically speaking. World Scientific Publishing</span>
+<span class="sd">   Co. Pte. Ltd.</span>
+
+<span class="sd">.. [Peeters2011] Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,</span>
+<span class="sd">   &amp; McAdams, S. (2011). The timbre toolbox: extracting audio features</span>
+<span class="sd">   from musical signals, 130(5).</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gmean</span>  <span class="c1"># pylint: disable=import-error</span>
+
+<span class="kn">from</span> <span class="nn">.aggregation</span> <span class="kn">import</span> <span class="p">(</span><span class="n">aggregate_features</span><span class="p">,</span> <span class="n">aggregate_sucessive_samples</span><span class="p">,</span>
+                          <span class="n">sliding_window</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.util.dsp</span> <span class="kn">import</span> <span class="n">hwr</span>
+
+
+<div class="viewcode-block" id="peak_envelope"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.peak_envelope">[docs]</a><span class="k">def</span> <span class="nf">peak_envelope</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the peak envelope of a time series</span>
+
+<span class="sd">    The peak envelope consists in the peak absolute values of the</span>
+<span class="sd">    amplitude within the aggregation window.</span>
+
+<span class="sd">    .. math:: \\operatorname{PE} = max(|x(n)|), 1 &lt;= n &lt;= L</span>
+
+<span class="sd">    Where `x(n)` is the n-th sample of a window of length `L`.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : iracema.timeseries.TimeSeries</span>
+<span class="sd">        An audio time-series object.</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">    hop_size : int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">sliding_window</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">,</span>
+                                 <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;PeakEnvelope&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;amplitude&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="rms"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.rms">[docs]</a><span class="k">def</span> <span class="nf">rms</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the root mean square of a time series</span>
+
+<span class="sd">    The RMS envelope consists in the root mean square of the amplitude,</span>
+<span class="sd">    calculated within the aggregation window.</span>
+
+<span class="sd">    .. math:: RMS = \\sqrt{ \\frac{1}{L} \\sum_{n=1}^{L} x(n)^2 }</span>
+
+<span class="sd">    Where `x(n)` is the n-th sample of a window of length `L`.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : iracema.timeseries.TimeSeries</span>
+<span class="sd">        A time-series object. It is usually applied on Audio objects.</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">    hop_size : int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">sliding_window</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">,</span>
+                                 <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;RMS&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;amplitude&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="zcr"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.zcr">[docs]</a><span class="k">def</span> <span class="nf">zcr</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the zero-crossing rate of a time series, i.e., the number of</span>
+<span class="sd">    times the signal crosses the zero axis, per second.</span>
+
+<span class="sd">    The zero-crossing rate gives some insight on the noisiness character of a</span>
+<span class="sd">    sound. In noisy / unvoiced signals, the zero-crossing rate tends to reach</span>
+<span class="sd">    higher values than in periodic / voiced signals.</span>
+
+<span class="sd">    .. math:: \\operatorname{ZC} = \\frac{1}{2 L} \\sum_{n=1}^{L}\\left|\\operatorname{sgn}\\left[x(n)\\right]-\\operatorname{sgn}\\left[x(n-1)\\right]\\right|</span>
+
+<span class="sd">    Where</span>
+
+<span class="sd">    .. math:: \\operatorname{sgn}\\left[x(n)\\right]=\\left\\{\\begin{array}{c}{1, x(n) \\geq 0} \\\\ {-1, x(n)&lt;0}\\end{array}\\right.</span>
+
+<span class="sd">    And `x(n)` is the n-th sample of a window of length `L`.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : iracema.timeseries.TimeSeries</span>
+<span class="sd">        A time-series object. It is usually applied on Audio objects.</span>
+<span class="sd">    window_size : int</span>
+<span class="sd">    hop_size : int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># count the number of times the signal changes between successive samples</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">window_size</span> <span class="o">*</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">sliding_window</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">hop_size</span><span class="p">,</span>
+                                 <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ZCR&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Hz&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_flatness"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_flatness">[docs]</a><span class="k">def</span> <span class="nf">spectral_flatness</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral flatness for a given FFT.</span>
+
+<span class="sd">    The spectral flatness gives an estimation of the noisiness / sinusoidality</span>
+<span class="sd">    of an audio signal (for the whole spectrum or for a frequency range). It</span>
+<span class="sd">    can be used to determine voiced / unvoiced parts of a signal [Park2004]_.</span>
+
+<span class="sd">    It is defined as the ratio between the `geometric mean` and the</span>
+<span class="sd">    `arithmetic mean` of the energy spectrum:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       :nowrap:</span>
+
+<span class="sd">       \\begin{eqnarray}</span>
+<span class="sd">       \\operatorname{SFM} = 10 log_{10} \\left( \\frac</span>
+<span class="sd">         {\\left( \\prod_{k=1}^{N} |X(k)| \\right)^\\frac{1}{N}}</span>
+<span class="sd">         { \\frac{1}{N} \\sum_{k=1}^{N} |X(k)| }</span>
+<span class="sd">       \\right)</span>
+<span class="sd">       \\end{eqnarray}</span>
+
+<span class="sd">    Where `X(k)` is the result of the FFT for the `k-th` frequency bin.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : iracema.spectral.FFT</span>
+<span class="sd">        A FFT object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="n">fft_magnitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">gmean</span><span class="p">(</span><span class="n">fft_magnitudes</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fft_magnitudes</span><span class="p">))</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SpectralFlatness&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="hfc"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.hfc">[docs]</a><span class="k">def</span> <span class="nf">hfc</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the high frequency content for a FFT time-series.</span>
+
+<span class="sd">    The HFC _function produces sharp peaks during attacks or transients</span>
+<span class="sd">    [Bello2005]_ and might be a good choice for detecting onsets in percussive</span>
+<span class="sd">    sounds.</span>
+
+<span class="sd">    .. math:: \\operatorname{HFC} = \sum_{k=1}^{N} |X(k)|^2 \\cdot k</span>
+
+<span class="sd">    Alternatively, you can set ``method`` = `&#39;amplitude&#39;` instead of `&#39;energy&#39;`</span>
+<span class="sd">    (default value):</span>
+
+<span class="sd">    .. math:: \\operatorname{HFC} = \sum_{k=1}^{N} |X(k)| \\cdot k</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    fft : iracema.spectral.FFT</span>
+<span class="sd">        FFT time-series.</span>
+<span class="sd">    method : str</span>
+<span class="sd">        Method of choice to calculate the HFC.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;energy&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">W</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;amplitude&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">W</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;the argument `method` must be &#39;energy&#39; or &#39;amplitude&#39;&quot;</span><span class="p">)</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">_func</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;HFC&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_centroid"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_centroid">[docs]</a><span class="k">def</span> <span class="nf">spectral_centroid</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral centroid for a FFT time-series.</span>
+
+<span class="sd">    The spectral centroid is a well known timbral feature that is used to</span>
+<span class="sd">    describe the brightness of a sound. It represents the center of gravity</span>
+<span class="sd">    of the frequency components of a signal [Park2010]_.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       \\operatorname{SC} = \\frac{\\sum_{k=1}^{N} |X(k)| \\cdot f_k }{\\sum_{k=1}^{N} |X(k)|}</span>
+
+<span class="sd">    Where `X(k)` is the result of the FFT for the `k-th` frequency bin.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    fft : iracema.spectral.FFT</span>
+<span class="sd">        A FFT object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">__spectral_centroid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">fft</span><span class="o">.</span><span class="n">frequencies</span><span class="p">)</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SpectralCentroid&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Hz&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_spread"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_spread">[docs]</a><span class="k">def</span> <span class="nf">spectral_spread</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral spread for a FFT time-series.</span>
+
+<span class="sd">    The spectral spread represents the spread of the spectrum around the</span>
+<span class="sd">    spectral centroid [Peeters2011]_, [Lerch2012]_.</span>
+
+<span class="sd">    .. math:: \\operatorname{SSp} = \\sqrt{\\frac{\\sum_{k=1}^{N} |X(k)| \\cdot (f_k - SC)^2 }{\\sum_</span>
+<span class="sd">       {k=1}^{N} |X (k)|}}</span>
+
+<span class="sd">    Where `X(k)` is the result of the FFT for the `k-th` frequency bin and SC</span>
+<span class="sd">    is the spectral centroid for the frame.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">__spectral_spread</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">fft</span><span class="o">.</span><span class="n">frequencies</span><span class="p">)</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SpectralSpread&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Hz&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<span class="k">def</span> <span class="nf">__spectral_centroid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral centroid for a fft frame `X`, being `f` the</span>
+<span class="sd">    frequency corresponding to its bins.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">abs_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">sum_abs_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">abs_X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sum_abs_X</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">abs_X</span><span class="p">)</span> <span class="o">/</span> <span class="n">sum_abs_X</span>
+
+
+<span class="k">def</span> <span class="nf">__spectral_spread</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral spread for a fft frame `X`, being `f` the frequency</span>
+<span class="sd">    corresponding to its bins.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">__spectral_centroid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">__spectral_centroid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+
+
+<div class="viewcode-block" id="spectral_skewness"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_skewness">[docs]</a><span class="k">def</span> <span class="nf">spectral_skewness</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral skewness for an FFT time series</span>
+<span class="sd">    </span>
+<span class="sd">    The spectral skewness is a measure of the asymetry of the distribution of</span>
+<span class="sd">    the spectrum around its mean value, and is calculated from its third order</span>
+<span class="sd">    moment. It will output negative values when the spectrum has more energy</span>
+<span class="sd">    bellow the mean value, and positive values when it has more energy above</span>
+<span class="sd">    the mean. Symmetric distributions will output the value zero [Lerch2012]_.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       \\operatorname{SSk} = \\frac{2 \\cdot \\sum_{k=1}^{N} \\left( |X(k)| - \\mu_{|X|} \\right)^3 }{</span>
+<span class="sd">       N \\cdot \\sigma_{|X|}^3}</span>
+
+<span class="sd">    Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and </span>
+<span class="sd">    :math:`\\sigma_{|X|}` its standard deviation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="spectral_kurtosis"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_kurtosis">[docs]</a><span class="k">def</span> <span class="nf">spectral_kurtosis</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral kurtosis for an FFT time series</span>
+<span class="sd">    </span>
+<span class="sd">    The spectral kurtosis is a measure of the flatness of the distribution of</span>
+<span class="sd">    the spectrum around its mean value. It will output the value 3 for Gaussian</span>
+<span class="sd">    distributions. Values smaller than 3 represent flatter distributions, while</span>
+<span class="sd">    values larger than 3 represent peakier distributions [Lerch2012]_.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       \\operatorname{SKu} = \\frac{2 \\cdot \\sum_{k=1}^{N} \\left( |X(k)| - \\mu_{|X|} \\right)^4 }{</span>
+<span class="sd">       N \\cdot \\sigma_{|X|}^4}</span>
+
+<span class="sd">    Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and </span>
+<span class="sd">    :math:`\\sigma_{|X|}` its standard deviation.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="spectral_flux"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_flux">[docs]</a><span class="k">def</span> <span class="nf">spectral_flux</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral flux for a FFT time-series.</span>
+
+<span class="sd">    The spectral flux measures the amount of change between successive</span>
+<span class="sd">    spectral frames. There are different methods to calculate the spectral</span>
+<span class="sd">    flux across the literature. For now we have implemented the one proposed</span>
+<span class="sd">    by [Dixon2006]_.</span>
+
+<span class="sd">    .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)</span>
+
+<span class="sd">    where :math:`H(x) = \\frac{x+|x|}{2}` is the half-wave rectifier _function,</span>
+<span class="sd">    and `t` is the temporal index of the frame.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    fft : iracema.spectral.FFT</span>
+<span class="sd">        A FFT object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X_prev</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">hwr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_prev</span><span class="p">)))</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_sucessive_samples</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SpectralFlux&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_rolloff"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_rolloff">[docs]</a><span class="k">def</span> <span class="nf">spectral_rolloff</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Spectral Rolloff&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="spectral_irregularity"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_irregularity">[docs]</a><span class="k">def</span> <span class="nf">spectral_irregularity</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Spectral Irregularity&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="harmonic_centroid"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.harmonic_centroid">[docs]</a><span class="k">def</span> <span class="nf">harmonic_centroid</span><span class="p">(</span><span class="n">harmonics</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Harmonic Centroid</span>
+
+<span class="sd">    The harmonic centroid represents the center of gravity of the amplitudes</span>
+<span class="sd">    of the harmonic series.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       \\operatorname{HC} = \\frac{\\sum_{k=1}^{H} A(k) \\cdot f_k }{\\sum_{k=1}^{H} A(k)}</span>
+
+<span class="sd">    Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="inharmonicity"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.inharmonicity">[docs]</a><span class="k">def</span> <span class="nf">inharmonicity</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">harmonics</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inharmonicity&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="harmonic_energy"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.harmonic_energy">[docs]</a><span class="k">def</span> <span class="nf">harmonic_energy</span><span class="p">(</span><span class="n">harmonics_magnitude</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the energy of harmonic partials.</span>
+
+<span class="sd">    Harmonic energy is the energy of the harmonic partials of a signal.</span>
+
+<span class="sd">    .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">frame</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">harmonics_magnitude</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Harmonic Energy&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_entropy"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_entropy">[docs]</a><span class="k">def</span> <span class="nf">spectral_entropy</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the spectral entropy for a FFT time series</span>
+
+<span class="sd">    The spectral entropy is based on the concept of information entropy from</span>
+<span class="sd">    Shannon&#39;s information theory. It measures the unpredictability of the given</span>
+<span class="sd">    state of a spectral distribution.</span>
+
+<span class="sd">    .. math:: \\operatorname{SEpy} = - \\sum_{k}^{N} P(k) \\cdot \\log_2 P(k)</span>
+
+<span class="sd">    Where </span>
+
+<span class="sd">    .. math:: P(i)=\\frac{|X(i)|^2}{\sum_{j}^{N} |X(j)|^2}</span>
+
+<span class="sd">    More info at https://www.mathworks.com/help/signal/ref/pentropy.html.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">nfeatures</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">P</span><span class="p">)))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">H</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Spectral Entropy&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="spectral_energy"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.spectral_energy">[docs]</a><span class="k">def</span> <span class="nf">spectral_energy</span><span class="p">(</span><span class="n">fft</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the total energy of an FFT frame.</span>
+
+<span class="sd">    Spectral Energy is the total energy of an FFT frame.</span>
+
+<span class="sd">    .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Spectral Energy&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="noisiness"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.noisiness">[docs]</a><span class="k">def</span> <span class="nf">noisiness</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">harmonics_magnitude</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the Noisiness for the given FFT and Harmonics time series.</span>
+
+<span class="sd">    The Noisiness represent how noisy a signal is (values closer to 1), as</span>
+<span class="sd">    oposed to harmonic (values close to 0). It is the ratio of the noise</span>
+<span class="sd">    energy to the total energy of a signal [Peeters2011]_.</span>
+
+<span class="sd">    .. math:: \\operatorname{Ns} = \\frac{\\operatorname{SE}-\\operatorname{HE}}{\\operatorname{SE}}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">energy_spectral</span> <span class="o">=</span> <span class="n">spectral_energy</span><span class="p">(</span><span class="n">fft</span><span class="p">)</span>
+    <span class="n">energy_harmonic</span> <span class="o">=</span> <span class="n">harmonic_energy</span><span class="p">(</span><span class="n">harmonics_magnitude</span><span class="p">)</span>
+    <span class="n">energy_noise</span> <span class="o">=</span> <span class="n">energy_spectral</span> <span class="o">-</span> <span class="n">energy_harmonic</span>
+
+    <span class="n">time_series</span> <span class="o">=</span> <span class="n">energy_noise</span> <span class="o">/</span> <span class="n">energy_spectral</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Noisiness&#39;</span>
+    <span class="n">time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">time_series</span></div>
+
+
+<div class="viewcode-block" id="oer"><a class="viewcode-back" href="../../source/iracema_features.html#iracema.features.oer">[docs]</a><span class="k">def</span> <span class="nf">oer</span><span class="p">(</span><span class="n">harmonics</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the odd-to-even ratio for the harmonics time series.</span>
+
+<span class="sd">    The OER represents the odd-to-even ratio among the harmonics of an audio</span>
+<span class="sd">    signal. This value will be higher for sounds with predominantly odd</span>
+<span class="sd">    harmonics, such as the clarinet.</span>
+<span class="sd">    </span>
+<span class="sd">    .. math:: \\operatorname{OER}=\\frac{\\sum_{h=1}^{H / 2} A(2 h - 1)^{2}\\left(t_{m}\\right)}{\\sum_{h=1}^{H / 2} A(2 h)^{2}\\left(t_{m}\\right)}</span>
+
+<span class="sd">    Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_func</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

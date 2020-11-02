@@ -201,8 +201,109 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-plot">
-<h1>iracema.plot<a class="headerlink" href="#iracema-plot" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.plot">
+<span id="iracema-plot"></span><h1>iracema.plot<a class="headerlink" href="#module-iracema.plot" title="Permalink to this headline">¶</a></h1>
+<p>Data plotting utilities.</p>
+<dl class="function">
+<dt id="iracema.plot.plot_spectrogram">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_spectrogram</code><span class="sig-paren">(</span><em>fft</em>, <em>logfft=False</em>, <em>fftlim=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_spectrogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the spectrogram of the audio signal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_audio_spectrogram">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_audio_spectrogram</code><span class="sig-paren">(</span><em>audio</em>, <em>fft</em>, <em>logfft=False</em>, <em>rms=None</em>, <em>peak_envelope=None</em>, <em>fftlim=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_audio_spectrogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_audio_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot two graphs: the first one showing curves for the <code class="docutils literal notranslate"><span class="pre">audio</span></code> waveform,
+the <code class="docutils literal notranslate"><span class="pre">rms</span></code> and the <code class="docutils literal notranslate"><span class="pre">peak_envelope</span></code>; the second showing the spectrogram
+of the audio signal.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_audio_spectrogram_f0">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_audio_spectrogram_f0</code><span class="sig-paren">(</span><em>audio</em>, <em>rms</em>, <em>peak_envelope</em>, <em>fft</em>, <em>fzero</em>, <em>logfft=False</em>, <em>fftlim=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_audio_spectrogram_f0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_audio_spectrogram_f0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot two graphs: the first one showing curves for the <code class="docutils literal notranslate"><span class="pre">audio</span></code> waveform,
+the <code class="docutils literal notranslate"><span class="pre">rms</span></code> and the <code class="docutils literal notranslate"><span class="pre">peak_envelope</span></code>; the second showing the spectrogram
+of the audio signal and its fundamental frequency  <cite>fzero</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_audio_spectrogram_harmonics">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_audio_spectrogram_harmonics</code><span class="sig-paren">(</span><em>audio</em>, <em>rms</em>, <em>peak_envelope</em>, <em>fft</em>, <em>fzero</em>, <em>harmonics</em>, <em>logfft=False</em>, <em>fftlim=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_audio_spectrogram_harmonics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_audio_spectrogram_harmonics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot two graphs: the first one showing curves for the <code class="docutils literal notranslate"><span class="pre">audio</span></code> waveform,
+the <code class="docutils literal notranslate"><span class="pre">rms</span></code> and the <code class="docutils literal notranslate"><span class="pre">peak_envelope</span></code>; the second showing the spectrogram
+of the audio signal and its <cite>harmonics</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_waveform_and_notes">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_waveform_and_notes</code><span class="sig-paren">(</span><em>audio</em>, <em>notes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_waveform_and_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_waveform_and_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot waveform and note segments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_waveform_trio">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_waveform_trio</code><span class="sig-paren">(</span><em>audio</em>, <em>rms=None</em>, <em>peak_envelope=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_waveform_trio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_waveform_trio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a graph showing curves for the <code class="docutils literal notranslate"><span class="pre">audio</span></code> waveform, the <code class="docutils literal notranslate"><span class="pre">rms</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">peak_envelope</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_waveform_trio_and_features">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_waveform_trio_and_features</code><span class="sig-paren">(</span><em>audio</em>, <em>rms=None</em>, <em>peak_envelope=None</em>, <em>features=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_waveform_trio_and_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_waveform_trio_and_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a graph showing curves for the <code class="docutils literal notranslate"><span class="pre">audio</span></code> waveform, the <code class="docutils literal notranslate"><span class="pre">rms</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">peak_envelope</span></code>; followed by a series of graphs, one for each time-series
+in the tuple <cite>features</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.plot_spectrogram_3d">
+<code class="descclassname">iracema.plot.</code><code class="descname">plot_spectrogram_3d</code><span class="sig-paren">(</span><em>fft</em>, <em>logfft=False</em>, <em>fftlim=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#plot_spectrogram_3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.plot_spectrogram_3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a 3D spectrogram (experimental feature).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_notes_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_notes_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>notes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_notes_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_notes_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add note segments to the given <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_curve_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_curve_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>time_series</em>, <em>fmt='b'</em>, <em>linewidth=0.8</em>, <em>alpha=0.9</em>, <em>label=None</em>, <em>set_labels=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_curve_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_curve_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the curve for the given <code class="docutils literal notranslate"><span class="pre">time_series</span></code> to the given <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_points_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_points_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>time</em>, <em>values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_points_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_points_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot circle in the specified <code class="docutils literal notranslate"><span class="pre">points``x``values</span></code> for the <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_waveform_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_waveform_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>audio</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_waveform_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_waveform_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the waveform for the time-series <cite>audio</cite> to <cite>axes</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_waveform_trio_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_waveform_trio_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>audio</em>, <em>rms=None</em>, <em>peak_envelope=None</em>, <em>show_legend=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_waveform_trio_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_waveform_trio_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The waveform trio consists in the curves <code class="docutils literal notranslate"><span class="pre">audio</span></code>, <code class="docutils literal notranslate"><span class="pre">rms</span></code> and
+<code class="docutils literal notranslate"><span class="pre">peak_evelope</span></code>. This method adds them to <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_segments_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_segments_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>segments</em>, <em>start_color='g'</em>, <em>end_color='r'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_segments_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_segments_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add two vertical lines to the axes delimiting a segment extent.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.plot.add_spectrogram_to_axes">
+<code class="descclassname">iracema.plot.</code><code class="descname">add_spectrogram_to_axes</code><span class="sig-paren">(</span><em>axes</em>, <em>fft</em>, <em>logfft=False</em>, <em>fftlim=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/plot.html#add_spectrogram_to_axes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.plot.add_spectrogram_to_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a spectrogram image to the axes</p>
+</dd></dl>
+
 </div>
 
 

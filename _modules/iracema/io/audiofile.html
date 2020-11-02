@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.io.audiofile &mdash; Iracema 0.1.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#loading-audio-files">Loading audio files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#modules">Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.io.audiofile</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.io.audiofile</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Methods for reading and writing raw audio files.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">basename</span><span class="p">,</span> <span class="n">expanduser</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+
+<span class="kn">import</span> <span class="nn">audioread</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.io.wavfile</span>
+
+<span class="kn">from</span> <span class="nn">w3lib.url</span> <span class="kn">import</span> <span class="n">canonicalize_url</span>
+<span class="kn">from</span> <span class="nn">w3lib.url</span> <span class="kn">import</span> <span class="n">file_uri_to_path</span>
+
+<div class="viewcode-block" id="read"><a class="viewcode-back" href="../../../source/iracema_io_audiofile.html#iracema.io.audiofile.read">[docs]</a><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read WAV audio file from the local file system or download it from URL.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    file_location: str</span>
+<span class="sd">        Path or URL to the file that will be loaded.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    data: numpy array</span>
+<span class="sd">        Audio data.</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Sampling frequency.</span>
+<span class="sd">    file_name: str</span>
+<span class="sd">        Base name of the loaded file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">intmaxabs</span> <span class="o">=</span> <span class="mf">32768.</span>  <span class="c1"># maximum value for 16-bit signed integers</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">temp_file</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;https://|http://&#39;</span><span class="p">,</span> <span class="n">file_location</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">canonicalize_url</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">temp_file</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">()</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">temp_file</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">basename</span><span class="p">(</span><span class="n">file_uri_to_path</span><span class="p">(</span><span class="n">file_location</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">expanduser</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">audioread</span><span class="o">.</span><span class="n">audio_open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_file</span><span class="p">:</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">samplerate</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">channels</span>
+
+        <span class="c1"># audioread returns buffers containing 16-bit signed integers</span>
+        <span class="n">data_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">input_file</span><span class="p">:</span>
+            <span class="n">frame_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">))</span>
+            <span class="n">data_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data_int</span><span class="p">,</span> <span class="n">frame_int</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># convert data to float</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data_int</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="s1">&#39;safe&#39;</span><span class="p">)</span>  <span class="c1"># pylint: disable=maybe-no-member</span>
+
+        <span class="c1"># Conversion to mono (mix both channels)</span>
+        <span class="k">if</span> <span class="n">channels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">channels</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="n">intmaxabs</span>
+
+    <span class="k">if</span> <span class="n">temp_file</span><span class="p">:</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write"><a class="viewcode-back" href="../../../source/iracema_io_audiofile.html#iracema.io.audiofile.write">[docs]</a><span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write the contents of a `data` array to a WAVE file.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    filename: str</span>
+<span class="sd">        Name of the audio file to be loaded.</span>
+<span class="sd">    data: numpy array</span>
+<span class="sd">        Data array containing audio samples.</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Sampling frequency.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">wavfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

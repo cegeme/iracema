@@ -201,8 +201,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-run">
-<h1>iracema.run<a class="headerlink" href="#iracema-run" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.run">
+<span id="iracema-run"></span><h1>iracema.run<a class="headerlink" href="#module-iracema.run" title="Permalink to this headline">¶</a></h1>
+<p>Default recipes to run Iracema.</p>
+<dl class="class">
+<dt id="iracema.run.Run">
+<em class="property">class </em><code class="descclassname">iracema.run.</code><code class="descname">Run</code><a class="reference internal" href="../_modules/iracema/run.html#Run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.run.Run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Execute the iracema algorithms for a set of audio files.</p>
+<dl class="method">
+<dt id="iracema.run.Run.process_directory">
+<code class="descname">process_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/run.html#Run.process_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.run.Run.process_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and process all the audio files within the specified directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iracema.run.Run.process_file">
+<code class="descname">process_file</code><span class="sig-paren">(</span><em>filepath</em>, <em>min_ioi=0.05</em>, <em>min_rms=0.005</em>, <em>ws=1024</em>, <em>hs=256</em>, <em>fft_len=None</em>, <em>instrument=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/run.html#Run.process_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.run.Run.process_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and process the specified audio file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filepath</strong> (<em>str</em>) – Path and name of the audio file to be loaded.</li>
+<li><strong>ws</strong> (<em>int</em>) – Default window size.</li>
+<li><strong>hs</strong> (<em>int</em>) – Default hop size.</li>
+<li><strong>min_ioi</strong> (<em>float</em>) – Inter-onset interval threshold.</li>
+<li><strong>min_rms</strong> (<em>float</em>) – RMS threshold for the onset detection (avoids background noise).</li>
+<li><strong>instrument</strong> (<em>string</em>) – Name of the musical instrument in the recording</li>
+<li><strong>caption</strong> (<em>str</em>) – Text description of the file (for plotting purposes)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

@@ -201,8 +201,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-spectral">
-<h1>iracema.spectral<a class="headerlink" href="#iracema-spectral" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.spectral">
+<span id="iracema-spectral"></span><h1>iracema.spectral<a class="headerlink" href="#module-iracema.spectral" title="Permalink to this headline">¶</a></h1>
+<p>Extraction of spectral information.</p>
+<dl class="function">
+<dt id="iracema.spectral.spectrogram">
+<code class="descclassname">iracema.spectral.</code><code class="descname">spectrogram</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/spectral.html#spectrogram"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.spectral.spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate spectrogram for time series.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.spectral.fft">
+<code class="descclassname">iracema.spectral.</code><code class="descname">fft</code><span class="sig-paren">(</span><em>time_series</em>, <em>window_size</em>, <em>hop_size</em>, <em>fft_len=4096</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/spectral.html#fft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.spectral.fft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Fast Fourier Transform for the <code class="docutils literal notranslate"><span class="pre">time_series</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>TimeSeries</em></a>) – Time series to be used in the FFT.</li>
+<li><strong>window_size</strong> (<em>int</em>) – </li>
+<li><strong>hop_size</strong> (<em>int</em>) – </li>
+<li><strong>fftlen</strong> (<em>int</em>) – Length of the FFT. The signal will be zero-padded if <code class="docutils literal notranslate"><span class="pre">fftlen</span></code> &gt;
+<code class="docutils literal notranslate"><span class="pre">rolling_window.window_size</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.spectral.ifft">
+<code class="descclassname">iracema.spectral.</code><code class="descname">ifft</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/spectral.html#ifft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.spectral.ifft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse Fourier Transform.</p>
+</dd></dl>
+
 </div>
 
 

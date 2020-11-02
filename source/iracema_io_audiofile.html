@@ -203,8 +203,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-io-audiofile">
-<h1>iracema.io.audiofile<a class="headerlink" href="#iracema-io-audiofile" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.io.audiofile">
+<span id="iracema-io-audiofile"></span><h1>iracema.io.audiofile<a class="headerlink" href="#module-iracema.io.audiofile" title="Permalink to this headline">¶</a></h1>
+<p>Methods for reading and writing raw audio files.</p>
+<dl class="function">
+<dt id="iracema.io.audiofile.read">
+<code class="descclassname">iracema.io.audiofile.</code><code class="descname">read</code><span class="sig-paren">(</span><em>file_location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.audiofile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read WAV audio file from the local file system or download it from URL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_location</strong> (<em>str</em>) – Path or URL to the file that will be loaded.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>data</strong> (<em>numpy array</em>) – Audio data.</li>
+<li><strong>fs</strong> (<em>int</em>) – Sampling frequency.</li>
+<li><strong>file_name</strong> (<em>str</em>) – Base name of the loaded file.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.io.audiofile.write">
+<code class="descclassname">iracema.io.audiofile.</code><code class="descname">write</code><span class="sig-paren">(</span><em>filename</em>, <em>data</em>, <em>fs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.audiofile.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the contents of a <cite>data</cite> array to a WAVE file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<em>str</em>) – Name of the audio file to be loaded.</li>
+<li><strong>data</strong> (<em>numpy array</em>) – Data array containing audio samples.</li>
+<li><strong>fs</strong> (<em>int</em>) – Sampling frequency.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 

@@ -203,8 +203,118 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-util-windowing">
-<h1>iracema.util.windowing<a class="headerlink" href="#iracema-util-windowing" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.util.windowing">
+<span id="iracema-util-windowing"></span><h1>iracema.util.windowing<a class="headerlink" href="#module-iracema.util.windowing" title="Permalink to this headline">¶</a></h1>
+<p>Some useful methods and functions for windowing operations.</p>
+<dl class="function">
+<dt id="iracema.util.windowing.apply_sliding_window">
+<code class="descclassname">iracema.util.windowing.</code><code class="descname">apply_sliding_window</code><span class="sig-paren">(</span><em>x</em>, <em>window_size</em>, <em>hop_size</em>, <em>function</em>, <em>window_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/util/windowing.html#apply_sliding_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.util.windowing.apply_sliding_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a sliding window with the given parameters to the array <cite>x</cite> and
+aggregate the data within each window using the specified <cite>function</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>ndarray</em>) – Array over which the sliding operation must be applied.</li>
+<li><strong>window_size</strong> (<em>int</em>) – Size of the window.</li>
+<li><strong>hop_size</strong> (<em>int</em>) – Number of samples to be skipped between two successive windowing
+operations.</li>
+<li><strong>window_name</strong> (<em>str</em>) – Name of the window function to be used. Options are: {“boxcar”,
+“triang”, “blackman”, “hamming”, “hann”, “bartlett”, “flattop”,
+“parzen”, “bohman”, “blackmanharris”, “nuttall”, “barthann”,
+“no_window”, None}.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>y</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.util.windowing.get_sliding_window_view">
+<code class="descclassname">iracema.util.windowing.</code><code class="descname">get_sliding_window_view</code><span class="sig-paren">(</span><em>x</em>, <em>window_size</em>, <em>hop_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/util/windowing.html#get_sliding_window_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.util.windowing.get_sliding_window_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a view of the input array containing the sliding windows obtained
+for the given parameters.</p>
+<p>This method only creates a view of the sliding windows; it does not apply a
+window function (apodization function) to them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>ndarray</em>) – Array over which the sliding operation must be applied.</li>
+<li><strong>window_size</strong> (<em>int</em>) – Size of the window.</li>
+<li><strong>hop_size</strong> (<em>int</em>) – Number of samples to be skipped between two successive windowing
+operations.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>view</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.util.windowing.get_window_function">
+<code class="descclassname">iracema.util.windowing.</code><code class="descname">get_window_function</code><span class="sig-paren">(</span><em>window_size</em>, <em>window_name</em>, <em>symmetric=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/util/windowing.html#get_window_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.util.windowing.get_window_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a window function (also known as tapering function or apodization
+function) according to the specified <cite>window_name</cite>.</p>
+<p>This function will return None if the specified <cite>window_name</cite> is also None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>window_name</strong> (<em>str</em>) – Name of the window function to be used. Options are: {“boxcar”,
+“triang”, “blackman”, “hamming”, “hann”, “bartlett”, “flattop”,
+“parzen”, “bohman”, “blackmanharris”, “nuttall”, “barthann”,
+“no_window”}.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="iracema.util.windowing.calculate_sliding_window_parms">
+<code class="descclassname">iracema.util.windowing.</code><code class="descname">calculate_sliding_window_parms</code><span class="sig-paren">(</span><em>window_size</em>, <em>hop_size</em>, <em>array_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/util/windowing.html#calculate_sliding_window_parms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.util.windowing.calculate_sliding_window_parms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate some parameters that are necessary for applying the sliding
+window over a time series.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>window_size</strong> (<em>int</em>) – Size of the window.</li>
+<li><strong>hop_size</strong> (<em>int</em>) – Number of samples to be skipped between two successive windowing
+operations.</li>
+<li><strong>array_size</strong> (<em>int</em>) – Size of the original array (length of the time series) in which the
+sliding window operation will be applied.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>pre_padding_size</strong> (<em>int</em>)</li>
+<li><strong>post_padding_size</strong> (<em>int</em>)</li>
+<li><strong>hum_hops</strong> (<em>int</em>)</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 

@@ -201,8 +201,94 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="iracema-segment">
-<h1>iracema.segment<a class="headerlink" href="#iracema-segment" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-iracema.segment">
+<span id="iracema-segment"></span><h1>iracema.segment<a class="headerlink" href="#module-iracema.segment" title="Permalink to this headline">¶</a></h1>
+<p>Contain classes used to extract and manipulate segments.</p>
+<dl class="class">
+<dt id="iracema.segment.Segment">
+<em class="property">class </em><code class="descclassname">iracema.segment.</code><code class="descname">Segment</code><span class="sig-paren">(</span><em>time_series</em>, <em>start</em>, <em>end</em>, <em>limits_unit='sample_index'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#Segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.Segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The objects generated from this class are used to retrieve excerpts from
+time-series.</p>
+<p>The <cite>start</cite> and <cite>end</cite> arguments can be specified in terms of sample index
+or time (in seconds). The argument <cite>limits_unit</cite> must be set accordingly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>TimeSeries</em></a>) – Original time series related to the segment.</li>
+<li><strong>start</strong> (<em>int</em><em> or </em><em>float</em>) – Index (or sample number) corresponding to the start of the segment in
+the time-series from which it derived. Alternatively, this value can
+be specified in seconds.</li>
+<li><strong>end</strong> (<em>int</em><em> or </em><em>float</em>) – Index of the ending sample for the segment. Alternatively, this value
+can be specified in seconds.</li>
+<li><strong>limits_unit</strong> (<em>(</em><em>&quot;sample_index&quot;</em><em>, </em><em>&quot;seconds&quot;</em><em>)</em>) – If ‘sample_index’ is passed (default), the arguments <cite>start</cite> and <cite>end</cite>
+must be integers corresponding to sample indexes whitin <cite>time_series</cite>.
+Else, if ‘seconds’ is passed, both arguments must correspond to the
+time of these limits, in seconds.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="iracema.segment.Segment.generate_slice">
+<code class="descname">generate_slice</code><span class="sig-paren">(</span><em>time_series</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#Segment.generate_slice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.Segment.generate_slice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a python slice with the sample indexes that correspond to the
+current segment in <cite>time_series</cite></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="iracema.segment.SegmentList">
+<em class="property">class </em><code class="descclassname">iracema.segment.</code><code class="descname">SegmentList</code><span class="sig-paren">(</span><em>segment_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#SegmentList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.SegmentList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>List of segments.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="iracema.segment.Point">
+<em class="property">class </em><code class="descclassname">iracema.segment.</code><code class="descname">Point</code><span class="sig-paren">(</span><em>time_series</em>, <em>position</em>, <em>unit='sample_index'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#Point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A point object represents an instant in a time series, i.e., one specific
+sample index. It is flexible enough to locate samples corresponding to the
+same instant in time series with different sampling rates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>TimeSeries</em></a>) – Original time series related to the point.</li>
+<li><strong>position</strong> (<em>int</em><em> or </em><em>float</em>) – Index (or sample number) corresponding to the position of the point in
+the time-series from which it derived. Alternatively, this value can
+be specified in seconds.</li>
+<li><strong>unit</strong> (<em>(</em><em>&quot;sample_index&quot;</em><em>, </em><em>&quot;seconds&quot;</em><em>)</em>) – If ‘sample_index’ is passed (default), the argument <cite>position</cite> must be
+an integer corresponding to a sample index whitin <cite>time_series</cite>. Else,
+if ‘seconds’ is passed, <cite>position</cite> must be specified in terms of time.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="iracema.segment.PointList">
+<em class="property">class </em><code class="descclassname">iracema.segment.</code><code class="descname">PointList</code><span class="sig-paren">(</span><em>point_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#PointList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.PointList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>List of points.</p>
+<dl class="classmethod">
+<dt id="iracema.segment.PointList.load_from_file">
+<em class="property">classmethod </em><code class="descname">load_from_file</code><span class="sig-paren">(</span><em>filename</em>, <em>time_series</em>, <em>unit='seconds'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segment.html#PointList.load_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.segment.PointList.load_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a list of points loaded from a file. Each line in the file
+must contain the position of a single point. The position can be
+specified in <cite>seconds</cite> or <cite>sample_index</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
