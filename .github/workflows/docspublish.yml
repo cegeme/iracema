@@ -8,6 +8,8 @@ jobs:
   steps:
     - name: Checkout current repo
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
@@ -22,6 +24,12 @@ jobs:
     - name: Build docs using sphinx
       run: |
         sphinx-multiversion docs build/html
-#    - name: Push docs to github pages
-#      run: |
-
+    - name: Move docs to temporary folder
+      run: |
+        mv build/html /tmp/
+    - name: Push docs to github pages
+      run: |
+        git checkout gh-pages
+        mv /tmp/html .
+        git add html
+        git commit -m "Update docs"
