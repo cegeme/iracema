@@ -21,3 +21,7 @@ def audio02():
 @pytest.fixture(scope="module")
 def audio03():
     return Audio('audio/03 - Clarinet - Fast Excerpt.wav')
+
+@pytest.fixture(scope="module")
+def audio_url():
+    return Audio('https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')

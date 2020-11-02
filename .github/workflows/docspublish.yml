@@ -1,0 +1,56 @@
+name: Build and publish docs
+
+on:
+  release:
+    types: [created]
+  push:
+    branches: [develop, githubdocs]
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Install OS dependencies
+        run: |
+          sudo apt update
+          sudo apt install libportaudio2
+      - name: Install Python dependencies
+        run: |
+          pip install -r docs/requirements.txt
+      - name: Build docs using sphinx
+        run: |
+          sphinx-build docs build/html
+      - name: Move docs to temporary folder
+        run: |
+          mv build/html /tmp/
+      - name: Checkout gh-pages and copy content
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          git config --global user.email ${{secrets.BOT_EMAIL}}
+          git config --global user.name ${{secrets.BOT_USER}}
+          git checkout gh-pages
+          cp -R /tmp/html/* .
+          git add .
+          git commit -m "Update docs"
+      - name: Push docs to github pages
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          mkdir ~/.ssh
+          echo "${{secrets.CEGEME_BOT_PRIVATE_SSH_KEY}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l git"
+          REMOTE_URL="git@github.com:cegeme/iracema.git"
+          echo "Adding remote repo $REMOTE_URL"
+          git remote add repo "$REMOTE_URL"
+          REMOTE_BRANCH=gh-pages
+          echo "Current branch: "`git rev-parse --abbrev-ref HEAD`
+          echo "Pushing to $REMOTE_BRANCH"
+          git push repo "$REMOTE_BRANCH"

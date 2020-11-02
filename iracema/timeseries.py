@@ -379,8 +379,10 @@ class Audio(TimeSeries):
 
     Parameters
     ----------
-    filename : str, optional
-        Name of the audio file to be loaded.
+    file_location : str, optional
+        Location from where the file will be loaded. The string might
+        contain a path pointing to a local file or an http URL referencing
+        a remote file.
     data : np.array
         Data vector containing the audio data to be loaded.
     fs : int, optional
@@ -393,10 +395,15 @@ class Audio(TimeSeries):
     There are two different ways to initialize an Audio object: from
     audio files or from NumPy arrays.
 
-    To initialize it using an audio file, you just need to pass the
-    ``filename`` to be loaded:
+    To initialize it using an audio file, you just need to pass the location
+    from which the file must be loaded:
 
-    >>> a1 = Audio('clarinet.wav')
+    >>> a1 = Audio('~/audio/03 - Clarinet - Fast Excerpt.wav'')
+
+    Alternatively the location can be specified trough an http URL:
+
+    >>> url = 'https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
+    >>> a1 = Audio(url)
 
     To initialize it using a NumPy array, two arguments are necessary: the
     ``data`` array and the sampling frequency ``fs``:
@@ -422,11 +429,8 @@ class Audio(TimeSeries):
         # one argument: file name
         if nargs == 1:
             filename = args[0]
-            filename = path.expanduser(filename)  # expanding ~ to /home/user
-
-            # loading audio file
-            data, fs = read(filename)
-            self.filename = path.basename(filename)
+            data, fs, basename = read(filename)
+            self.filename = basename
             self.caption = caption or self.filename
 
         # two arguments: an array and a sampling frequency
@@ -440,8 +444,6 @@ class Audio(TimeSeries):
                 '1 or 2'))
 
         super(Audio, self).__init__(fs, data=data, unit=self.unit)
-
-
 
     def play(self):
         """
