@@ -29,6 +29,8 @@ jobs:
           mv build/html /tmp/
       - name: Push docs to github pages
         run: |
+          git config --global user.email "taironemagalhaes@gmail.com"
+          git config --global user.name "Tairone Magalhaes"
           git checkout gh-pages
           mv /tmp/html/* .
           git add html
