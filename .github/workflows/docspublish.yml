@@ -30,6 +30,6 @@ jobs:
       - name: Push docs to github pages
         run: |
           git checkout gh-pages
-          mv /tmp/html .
+          mv /tmp/html/* .
           git add html
           git commit -m "Update docs"
