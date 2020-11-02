@@ -27,12 +27,15 @@ jobs:
       - name: Move docs to temporary folder
         run: |
           mv build/html /tmp/
-      - name: Push docs to github pages
+      - name: Checkout gh-pages and copy content
         run: |
-          git config --global user.email "taironemagalhaes@gmail.com"
-          git config --global user.name "Tairone Magalhaes"
           git checkout gh-pages
           mv /tmp/html/* .
           git add .
           git commit -m "Update docs"
-          git push origin gh-pages
+      - name: Push docs to github pages
+        uses: ./.github/actions/remote_push
+        with:
+          remote_url: git@github.com:cegeme/iracema.git
+          remote_branch: gh-pages
+          private_ssh_key: ${{secrets.CEGEME_BOT_PRIVATE_SSH_KEY}}
