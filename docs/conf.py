@@ -36,7 +36,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo',
               'sphinx.ext.coverage', 'sphinx.ext.mathjax',
               'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
               'sphinx.ext.githubpages', 'sphinxcontrib.napoleon',
-              'sphinx_multiversion', 'matplotlib.sphinxext.plot_directive',
+              'matplotlib.sphinxext.plot_directive',
               ]
 
 # Hide source code link for plotting
