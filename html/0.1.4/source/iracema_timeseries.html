@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.timeseries &mdash; Iracema 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iracema.util" href="iracema_util.html" />
+    <link rel="prev" title="iracema.spectral" href="iracema_spectral.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#loading-audio-files">Loading audio files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#modules">Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="iracema.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="iracema.html">Iracema</a> &raquo;</li>
+        
+      <li>iracema.timeseries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/iracema_timeseries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-iracema.timeseries">
+<span id="iracema-timeseries"></span><h1>iracema.timeseries<a class="headerlink" href="#module-iracema.timeseries" title="Permalink to this headline">¶</a></h1>
+<p>Implementation of time series.</p>
+<dl class="py class">
+<dt id="iracema.timeseries.TimeSeries">
+<em class="property">class </em><code class="sig-prename descclassname">iracema.timeseries.</code><code class="sig-name descname">TimeSeries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_time</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for time series objects, which can represent synchronous
+discrete time series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency for the data.</p></li>
+<li><p><strong>data</strong> (<em>numpy array</em><em>, </em><em>optional</em>) – Data array sampled at <code class="docutils literal notranslate"><span class="pre">fs</span></code> Hz. If this argument is not provided,
+the method _write_data() must be called after the initialization to
+set the data array.</p></li>
+<li><p><strong>start_time</strong> (<em>float</em><em>, </em><em>optional</em>) – The time in seconds the time series start, relative to the original
+time reference.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>data</strong> (<em>numpy array</em>) – Data array sampled at <code class="docutils literal notranslate"><span class="pre">fs</span></code> Hz.</p></li>
+<li><p><strong>time</strong> (<em>numpy array</em>) – Numpy data array containing the time of each sample, relative to the
+original time reference.</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency for the data.</p></li>
+<li><p><strong>nyquist</strong> (<em>float</em>) – Nyquist frequency for the data.</p></li>
+<li><p><strong>ts</strong> (<em>float</em>) – Sampling period for the data.</p></li>
+<li><p><strong>start_time</strong> (<em>float</em>) – The time the time series start (in seconds) relative to the original
+time reference.</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – Duration of the time series (in seconds).</p></li>
+<li><p><strong>end_time</strong> (<em>float</em>) – The time the time series end (in seconds) relative to the original time
+reference.</p></li>
+<li><p><strong>unit</strong> (<em>str</em>) – String containing the name of the unit for the data (for plotting).</p></li>
+<li><p><strong>nsamples</strong> (<em>int</em>) – Number of samples per time series in the data array.</p></li>
+<li><p><strong>nfeatures</strong> – Number of features for each sample in the data array.</p></li>
+<li><p><strong>unit</strong> – Unit for the data (for plotting).</p></li>
+<li><p><strong>caption</strong> – Text caption.</p></li>
+<li><p><strong>label</strong> – Label for the time series.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the time series object (deep copy).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.normalize">
+<code class="sig-name descname">normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a normalized copy of the time series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.diff">
+<code class="sig-name descname">diff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.diff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the n-th discrete difference for the time series</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.zeros_to_nan">
+<code class="sig-name descname">zeros_to_nan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.zeros_to_nan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.zeros_to_nan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts zeros to np.nan in the data array. Returns a new time series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.hwr">
+<code class="sig-name descname">hwr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.hwr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.hwr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a half-wave rectified copy of the time series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.resample">
+<code class="sig-name descname">resample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_fs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resample time series to a new sampling rate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.plot">
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the time series using matplotlib.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.time_to_sample_index">
+<code class="sig-name descname">time_to_sample_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.time_to_sample_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.time_to_sample_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert time (in seconds) to the correspoding sample index in the time
+series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.TimeSeries.get_samples">
+<code class="sig-name descname">get_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">stop</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#TimeSeries.get_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.TimeSeries.get_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an excerpt from the time series using sample indexes. Return a new
+TimeSeries object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="iracema.timeseries.Audio">
+<em class="property">class </em><code class="sig-prename descclassname">iracema.timeseries.</code><code class="sig-name descname">Audio</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#Audio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.Audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><code class="xref py py-class docutils literal notranslate"><span class="pre">iracema.timeseries.TimeSeries</span></code></a></p>
+<p>Stores audio data, which can be loaded from a file or an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the audio file to be loaded.</p></li>
+<li><p><strong>data</strong> (<em>np.array</em>) – Data vector containing the audio data to be loaded.</p></li>
+<li><p><strong>fs</strong> (<em>int</em><em>, </em><em>optional</em>) – Sampling frequency of the data.</p></li>
+<li><p><strong>caption</strong> (<em>str</em><em>, </em><em>optional</em>) – caption for the audio file loaded (optional).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>There are two different ways to initialize an Audio object: from
+audio files or from NumPy arrays.</p>
+<p>To initialize it using an audio file, you just need to pass the
+<code class="docutils literal notranslate"><span class="pre">filename</span></code> to be loaded:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a1</span> <span class="o">=</span> <span class="n">Audio</span><span class="p">(</span><span class="s1">&#39;clarinet.wav&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To initialize it using a NumPy array, two arguments are necessary: the
+<code class="docutils literal notranslate"><span class="pre">data</span></code> array and the sampling frequency <code class="docutils literal notranslate"><span class="pre">fs</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a2</span> <span class="o">=</span> <span class="n">Audio</span><span class="p">(</span><span class="n">clarinet_data</span><span class="p">,</span> <span class="mi">44100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is also the optional parameter <code class="docutils literal notranslate"><span class="pre">caption</span></code> which is a
+textual description used for plotting and displaying reports
+about the audio file. In case you load the audio from a file
+and don’t specify a caption, the filename will be assigned to
+it.</p>
+<p>Constructor for Audio class.</p>
+<dl class="py method">
+<dt id="iracema.timeseries.Audio.play">
+<code class="sig-name descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#Audio.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.Audio.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio from Audio object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.Audio.play_from_time">
+<code class="sig-name descname">play_from_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">from_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#Audio.play_from_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.Audio.play_from_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play audio from Audio object start at time <code class="docutils literal notranslate"><span class="pre">from_time</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.Audio.play_segment">
+<code class="sig-name descname">play_segment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">segment</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#Audio.play_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.Audio.play_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play segment from Audio obejct.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iracema.timeseries.Audio.stop">
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/timeseries.html#Audio.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.Audio.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop playing audio.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="iracema.timeseries.DimensionalityError">
+<em class="property">exception </em><code class="sig-prename descclassname">iracema.timeseries.</code><code class="sig-name descname">DimensionalityError</code><a class="reference internal" href="../_modules/iracema/timeseries.html#DimensionalityError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.timeseries.DimensionalityError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception raised for errors in dimensionality of arays</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="iracema_util.html" class="btn btn-neutral float-right" title="iracema.util" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="iracema_spectral.html" class="btn btn-neutral" title="iracema.spectral" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 0.1.4
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="iracema_timeseries.html">0.1.4</a></dd>
+      <dd><a href="../../0.1.3/source/iracema_timeseries.html">0.1.3</a></dd>
+      <dd><a href="../../0.1.0/source/iracema_timeseries.html">0.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/source/iracema_timeseries.html">develop</a></dd>
+      <dd><a href="../../master/source/iracema_timeseries.html">master</a></dd>
+    </dl>
+  </div>
+</div>
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

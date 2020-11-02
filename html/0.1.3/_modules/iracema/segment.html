@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.segment &mdash; Iracema 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/iracema.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.segment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.segment</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Contain classes used to extract and manipulate segments.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">conversion</span>
+
+
+<div class="viewcode-block" id="Segment"><a class="viewcode-back" href="../../source/iracema_segment.html#iracema.segment.Segment">[docs]</a><span class="k">class</span> <span class="nc">Segment</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The objects generated from this class are used to retrieve excerpts from</span>
+<span class="sd">    time-series.</span>
+
+<span class="sd">    The `start` and `end` arguments can be specified in terms of sample index</span>
+<span class="sd">    or time (in seconds). The argument `limits_unit` must be set accordingly.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : TimeSeries</span>
+<span class="sd">        Original time series related to the segment.</span>
+<span class="sd">    start : int or float</span>
+<span class="sd">        Index (or sample number) corresponding to the start of the segment in</span>
+<span class="sd">        the time-series from which it derived. Alternatively, this value can</span>
+<span class="sd">        be specified in seconds.</span>
+<span class="sd">    end : int or float</span>
+<span class="sd">        Index of the ending sample for the segment. Alternatively, this value</span>
+<span class="sd">        can be specified in seconds.</span>
+<span class="sd">    limits_unit : (&quot;sample_index&quot;, &quot;seconds&quot;)</span>
+<span class="sd">        If &#39;sample_index&#39; is passed (default), the arguments `start` and `end`</span>
+<span class="sd">        must be integers corresponding to sample indexes whitin `time_series`.</span>
+<span class="sd">        Else, if &#39;seconds&#39; is passed, both arguments must correspond to the</span>
+<span class="sd">        time of these limits, in seconds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">limits_unit</span><span class="o">=</span><span class="s1">&#39;sample_index&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">limits_unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;sample_index&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid value for `limits_unit` argument: must&quot;</span> <span class="o">+</span>
+                             <span class="s2">&quot; be &#39;sample_index&#39; or &#39;seconds&#39;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;end must be &gt; start&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">start_time</span>
+
+        <span class="k">if</span> <span class="n">limits_unit</span> <span class="o">==</span> <span class="s1">&#39;sample_index&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`start` and `end` must be of type int when&quot;</span> <span class="o">+</span>
+                                 <span class="s2">&quot;`limits_unit`==&#39;sample_index&#39;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
+
+        <span class="k">elif</span> <span class="n">limits_unit</span> <span class="o">==</span> <span class="s1">&#39;seconds&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">conversion</span><span class="o">.</span><span class="n">seconds_to_sample_index</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">conversion</span><span class="o">.</span><span class="n">seconds_to_sample_index</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nsamples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">conversion</span><span class="o">.</span><span class="n">sample_index_to_seconds</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">conversion</span><span class="o">.</span><span class="n">sample_index_to_seconds</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Segment.generate_slice"><a class="viewcode-back" href="../../source/iracema_segment.html#iracema.segment.Segment.generate_slice">[docs]</a>    <span class="k">def</span> <span class="nf">generate_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a python slice with the sample indexes that correspond to the</span>
+<span class="sd">        current segment in `time_series`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_fs</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span>
+        <span class="n">new_time_offset</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">start_time</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">==</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">slice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">slice_start</span> <span class="o">=</span> <span class="n">conversion</span><span class="o">.</span><span class="n">map_sample_index</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">,</span> <span class="n">new_fs</span><span class="p">,</span> <span class="n">new_time_offset</span><span class="p">)</span>
+            <span class="n">slice_end</span> <span class="o">=</span> <span class="n">conversion</span><span class="o">.</span><span class="n">map_sample_index</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">,</span> <span class="n">new_fs</span><span class="p">,</span> <span class="n">new_time_offset</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">slice</span><span class="p">(</span><span class="n">slice_start</span><span class="p">,</span> <span class="n">slice_end</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Overload the representation for the class&quot;</span>
+        <span class="n">class_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;(start: </span><span class="si">{}</span><span class="s2">, end: </span><span class="si">{}</span><span class="s2">), fs: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SegmentList"><a class="viewcode-back" href="../../source/iracema_segment.html#iracema.segment.SegmentList">[docs]</a><span class="k">class</span> <span class="nc">SegmentList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List of segments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segment_list</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SegmentList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">segment_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Point"><a class="viewcode-back" href="../../source/iracema_segment.html#iracema.segment.Point">[docs]</a><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A point object represents an instant in a time series, i.e., one specific</span>
+<span class="sd">    sample index. It is flexible enough to locate samples corresponding to the</span>
+<span class="sd">    same instant in time series with different sampling rates.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    time_series : TimeSeries</span>
+<span class="sd">        Original time series related to the point.</span>
+<span class="sd">    position : int or float</span>
+<span class="sd">        Index (or sample number) corresponding to the position of the point in</span>
+<span class="sd">        the time-series from which it derived. Alternatively, this value can</span>
+<span class="sd">        be specified in seconds.</span>
+<span class="sd">    unit : (&quot;sample_index&quot;, &quot;seconds&quot;)</span>
+<span class="sd">        If &#39;sample_index&#39; is passed (default), the argument `position` must be</span>
+<span class="sd">        an integer corresponding to a sample index whitin `time_series`. Else,</span>
+<span class="sd">        if &#39;seconds&#39; is passed, `position` must be specified in terms of time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;sample_index&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;sample_index&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid value for `unit` argument: must&quot;</span> <span class="o">+</span>
+                             <span class="s2">&quot; be &#39;sample_index&#39; or &#39;seconds&#39;&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fs</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">start_time</span>
+
+        <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;sample_index&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`position` must be of type int when&quot;</span> <span class="o">+</span>
+                                 <span class="s2">&quot;`limits_unit`==&#39;sample_index&#39;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+
+        <span class="k">elif</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;seconds&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">conversion</span><span class="o">.</span><span class="n">seconds_to_sample_index</span><span class="p">(</span>
+                <span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`unit` must be &#39;sample_index&#39; or &#39;seconds&#39;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">conversion</span><span class="o">.</span><span class="n">sample_index_to_seconds</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">map_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">):</span>
+        <span class="n">new_fs</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">fs</span>
+        <span class="n">new_time_offset</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">start_time</span>
+        <span class="k">return</span> <span class="n">conversion</span><span class="o">.</span><span class="n">map_sample_index</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_offset</span><span class="p">,</span> <span class="n">new_fs</span><span class="p">,</span> <span class="n">new_time_offset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">):</span>
+        <span class="n">sample_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_index</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">time_series</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">sample_index</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="PointList"><a class="viewcode-back" href="../../source/iracema_segment.html#iracema.segment.PointList">[docs]</a><span class="k">class</span> <span class="nc">PointList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List of points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point_list</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PointList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">time</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">map_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">map_index</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_series</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">point</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 0.1.3
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../0.1.4/index.html">0.1.4</a></dd>
+      <dd><a href="segment.html">0.1.3</a></dd>
+      <dd><a href="../../../0.1.0/index.html">0.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../develop/index.html">develop</a></dd>
+      <dd><a href="../../../master/index.html">master</a></dd>
+    </dl>
+  </div>
+</div>
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

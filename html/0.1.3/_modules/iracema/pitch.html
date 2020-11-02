@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>iracema.pitch &mdash; Iracema 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/iracema.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source/iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source/iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.pitch</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.pitch</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">According to the ANSI standard 1994 [ANSI1994]_, &quot;Pitch is that attribute of</span>
+<span class="sd">auditory sensation in terms of which sounds may be ordered on a scale extending</span>
+<span class="sd">from low to high. Pitch depends mainly on the frequency content of the sound</span>
+<span class="sd">stimulus, but it also depends on the sound pressure and the waveform of the</span>
+<span class="sd">stimulus.&quot;</span>
+
+<span class="sd">This module contains the implementation of a few different pitch estimation</span>
+<span class="sd">methods.</span>
+
+<span class="sd">References</span>
+<span class="sd">----------</span>
+<span class="sd">.. [ANSI1994] American National Standards Institute, 1994.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+
+<span class="kn">from</span> <span class="nn">.timeseries</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
+<span class="kn">from</span> <span class="nn">.util.dsp</span> <span class="kn">import</span> <span class="n">local_peaks</span><span class="p">,</span> <span class="n">n_highest_peaks</span><span class="p">,</span> <span class="n">decimate_mean</span>
+<span class="kn">from</span> <span class="nn">.aggregation</span> <span class="kn">import</span> <span class="n">aggregate_features</span>
+
+
+<div class="viewcode-block" id="hps"><a class="viewcode-back" href="../../source/iracema_pitch.html#iracema.pitch.hps">[docs]</a><span class="k">def</span> <span class="nf">hps</span><span class="p">(</span><span class="n">fft_time_series</span><span class="p">,</span> <span class="n">minf0</span><span class="p">,</span> <span class="n">maxf0</span><span class="p">,</span> <span class="n">n_downsampling</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+        <span class="n">decimation</span><span class="o">=</span><span class="s1">&#39;discard&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the pitch using Harmonic Product Spectrum.</span>
+
+<span class="sd">    The Harmonic Product Spectrum measures the maximum coincidence for</span>
+<span class="sd">    harmonics [Cuadra2001]_. It is based on successive downsampling operations</span>
+<span class="sd">    on the frequency spectrum of the signal. If the signal contains harmonic</span>
+<span class="sd">    components, then it should contain energy in the frequency positions</span>
+<span class="sd">    corresponding to the integer multiples of the fundamental frequency. So by</span>
+<span class="sd">    down-sampling the spectrum by increasing integer factors</span>
+<span class="sd">    :math:`(1,2,3,...,R)` it is possible to align the energy of its harmonic</span>
+<span class="sd">    components with the fundamental frequency of the signal.</span>
+
+<span class="sd">    Then we multiply the original spectrum and its downsampled versions. This</span>
+<span class="sd">    operation will make a strong peak appear in a position that corresponds to</span>
+<span class="sd">    the fundamental frequency. The HPS calculates the maximum coincidence for</span>
+<span class="sd">    harmonics, according to the equation:</span>
+
+<span class="sd">    .. math:: Y(\\omega) = \\prod_{r=1}^{R} |X(\\omega r)|</span>
+
+<span class="sd">    where :math:`X(\omega r)` represents one spectral frame and :math:`R` is</span>
+<span class="sd">    the number of harmonics to be considered in the calculation. After this</span>
+<span class="sd">    calculation a simple peak detection algorithm is used to obtain the</span>
+<span class="sd">    fundamental frequency of the frame.</span>
+
+<span class="sd">    This implementation modifies this approach adding an offset of 1 to the</span>
+<span class="sd">    magnitude spectrum of the signal before applying the product shown in the</span>
+<span class="sd">    equation above. This makes the algorithm more reliable in situations where</span>
+<span class="sd">    some harmonics have very little or no energy at all (float arithmetic is</span>
+<span class="sd">    not reliable when values get too close to zero).</span>
+
+<span class="sd">    Also, alternatively to the original approach, it is possible to choose</span>
+<span class="sd">    between different interpolation methods, using the argument `decimation`.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    fft_time_series : iracema.spectral.FFTs</span>
+<span class="sd">        FFT time series.</span>
+<span class="sd">    minf0 : float</span>
+<span class="sd">        Lower frequency limit to search for f0.</span>
+<span class="sd">    maxf0 : float</span>
+<span class="sd">        Upper frequency limit to search for f0.</span>
+<span class="sd">    n_downsampling : int</span>
+<span class="sd">        Number of downsampling operations</span>
+<span class="sd">    decimation : &#39;discard&#39;, &#39;mean&#39; or &#39;interpolation&#39;</span>
+<span class="sd">        Type of decimation operation to be performed.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [Cuadra2001] De La Cuadra, P. Efficient pitch detection techniques for</span>
+<span class="sd">       interactive music. In ICMC, page 403–406, 2001.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">minf0</span> <span class="o">&gt;=</span> <span class="n">maxf0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The parameter maxf0 must be greater than minf0.&#39;</span><span class="p">)</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">fft_time_series</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ix_maxf0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">maxf0</span><span class="p">)</span> <span class="o">/</span>
+        <span class="n">fft_time_series</span><span class="o">.</span><span class="n">max_frequency</span><span class="p">))</span>  <span class="c1"># max index to search for f0</span>
+    <span class="n">ix_minf0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">minf0</span><span class="p">)</span> <span class="o">/</span>
+        <span class="n">fft_time_series</span><span class="o">.</span><span class="n">max_frequency</span><span class="p">))</span>  <span class="c1"># min index to search for f0</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate pitch for frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># length of the FFT</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_downsampling</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+                     <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">)</span>  <span class="c1"># matrix with the decimated FFTs</span>
+        <span class="n">X_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">X_mag</span>
+        <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_downsampling</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">decimation</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+                <span class="n">ds</span> <span class="o">=</span> <span class="n">decimate_mean</span><span class="p">(</span><span class="n">X_mag</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">decimation</span> <span class="o">==</span> <span class="s1">&#39;interpolation&#39;</span><span class="p">:</span>
+                <span class="n">ds</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">decimate</span><span class="p">(</span><span class="n">X_mag</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">decimation</span> <span class="o">==</span> <span class="s1">&#39;discard&#39;</span><span class="p">:</span>
+                <span class="n">ds</span> <span class="o">=</span> <span class="n">X_mag</span><span class="p">[::</span><span class="n">q</span><span class="p">]</span>
+            <span class="n">S</span><span class="p">[</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="n">ds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ds</span> <span class="o">/</span> <span class="n">q</span>
+
+        <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">p_fzero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ix_f0</span> <span class="o">=</span> <span class="n">ix_minf0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">p_fzero</span><span class="p">[</span><span class="n">ix_minf0</span><span class="p">:</span><span class="n">ix_maxf0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">fft_time_series</span><span class="o">.</span><span class="n">frequencies</span><span class="p">[</span><span class="n">ix_f0</span><span class="p">]</span>
+
+    <span class="n">pitch_time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span>
+        <span class="n">fft_time_series</span><span class="p">,</span> <span class="n">calculate</span><span class="p">)</span>
+    <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Pitch (HPS)&#39;</span>
+    <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Hz&#39;</span>
+
+    <span class="k">return</span> <span class="n">pitch_time_series</span></div>
+
+
+<div class="viewcode-block" id="expan_pitch"><a class="viewcode-back" href="../../source/iracema_pitch.html#iracema.pitch.expan_pitch">[docs]</a><span class="k">def</span> <span class="nf">expan_pitch</span><span class="p">(</span><span class="n">fft_time_series</span><span class="p">,</span>
+                <span class="n">minf0</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+                <span class="n">maxf0</span><span class="o">=</span><span class="mi">4200</span><span class="p">,</span>
+                <span class="n">nharm</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                <span class="n">ncand</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                <span class="n">min_mag_cand</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                <span class="n">noisiness_tresh</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span>
+                <span class="n">perc_tol</span><span class="o">=</span><span class="mf">0.04</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the pitch using the Expan pitch detection algorithm.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    fft_time_series : iracema.spectral.FFTs</span>
+<span class="sd">        FFT time series.</span>
+<span class="sd">    minf0 : float</span>
+<span class="sd">        Lower frequency limit to search for f0.</span>
+<span class="sd">    maxf0 : float</span>
+<span class="sd">        Upper frequency limit to search for f0.</span>
+<span class="sd">    nharm : int</span>
+<span class="sd">        Number of harmonics to be considered.</span>
+<span class="sd">    ncand : int</span>
+<span class="sd">        Number of f0 candidate components to be used.</span>
+<span class="sd">    min_mag_cand : float</span>
+<span class="sd">        Minimum magnitude of the candidate to be chosen as f0.</span>
+<span class="sd">    noisiness_tresh : float</span>
+<span class="sd">        Noisiness treshold.</span>
+<span class="sd">    perc_tol : float</span>
+<span class="sd">        Tolerance percentage to search for harmonics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">minf0</span> <span class="o">&gt;=</span> <span class="n">maxf0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The parameter maxf0 must be greater than minf0.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nharm</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The parameter nharm must be greater than 3.&#39;</span><span class="p">)</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">fft_time_series</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ix_maxf0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">maxf0</span><span class="p">)</span> <span class="o">/</span>
+        <span class="n">fft_time_series</span><span class="o">.</span><span class="n">max_frequency</span><span class="p">))</span>  <span class="c1"># max index to search for f0</span>
+    <span class="n">ix_minf0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">minf0</span><span class="p">)</span> <span class="o">/</span>
+        <span class="n">fft_time_series</span><span class="o">.</span><span class="n">max_frequency</span><span class="p">))</span>  <span class="c1"># min index to search for f0</span>
+
+    <span class="k">def</span> <span class="nf">frame_pitch</span><span class="p">(</span><span class="n">fft_frame</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract the pitch and the harmonics for a fft frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">fft_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># length of the FFTT</span>
+        <span class="n">fft_frame_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fft_frame</span><span class="p">)</span>
+
+        <span class="c1"># searching for f0 candidates</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ix_cand</span> <span class="o">=</span> <span class="n">n_highest_peaks</span><span class="p">(</span><span class="n">fft_frame_mag</span><span class="p">[</span><span class="n">ix_minf0</span><span class="p">:</span><span class="n">ix_maxf0</span><span class="p">],</span> <span class="n">ncand</span><span class="p">)</span>
+        <span class="n">ix_cand</span> <span class="o">=</span> <span class="n">ix_cand</span> <span class="o">+</span> <span class="n">ix_minf0</span>  <span class="c1"># TODO: check these indexes</span>
+
+        <span class="c1"># searching for local peaks all over the FFT</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ix_pks</span> <span class="o">=</span> <span class="n">local_peaks</span><span class="p">(</span><span class="n">fft_frame_mag</span><span class="p">[</span><span class="n">ix_minf0</span><span class="p">:])</span>
+        <span class="n">ix_pks</span> <span class="o">=</span> <span class="n">ix_pks</span> <span class="o">+</span> <span class="n">ix_minf0</span>
+        <span class="c1"># TODO: this could probably be done more efficiently, the peak searching</span>
+        <span class="c1"># is being performed twice</span>
+
+        <span class="c1"># update the number of candidates with the number of local peaks found</span>
+        <span class="n">n_cand</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ix_cand</span><span class="p">)</span>
+
+        <span class="c1"># if no peaks were found, return zeroed arrays</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ix_cand</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="c1"># memory allocation</span>
+        <span class="n">cand_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ncand</span><span class="p">,</span> <span class="n">nharm</span><span class="p">))</span>
+        <span class="n">ix_cand_harm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ncand</span><span class="p">,</span> <span class="n">nharm</span><span class="p">))</span>
+
+        <span class="c1"># iterate the candidates</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ix_f0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ix_cand</span><span class="p">):</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">ix_f0</span> <span class="o">*</span> <span class="n">perc_tol</span>
+            <span class="n">cand_mag</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft_frame_mag</span><span class="p">[</span><span class="n">ix_f0</span><span class="p">]</span>
+
+            <span class="c1"># test the candidate&#39;s magnitude compared to the frame&#39;s max</span>
+            <span class="k">if</span> <span class="n">cand_mag</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">min_mag_cand</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fft_frame_mag</span><span class="p">):</span>
+                <span class="n">ix_cand_harm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ix_f0</span>
+
+                <span class="c1"># iterate the candidate&#39;s potential harmonics</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nharm</span><span class="p">):</span>
+                    <span class="n">ix_f_harm</span> <span class="o">=</span> <span class="n">ix_f0</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+                    <span class="c1"># check if it is within the boundaries of the FFT</span>
+                    <span class="k">if</span> <span class="n">ix_f_harm</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+                        <span class="c1"># set the tolerance margin to search for the harmonic</span>
+                        <span class="n">ix_tol_low</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ix_f_harm</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span>
+                        <span class="n">ix_tol_hi</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ix_f_harm</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">ix_tol_low</span> <span class="o">&lt;</span> <span class="n">ix_minf0</span><span class="p">:</span>
+                            <span class="n">ix_tol_low</span> <span class="o">=</span> <span class="n">ix_minf0</span>
+
+                        <span class="c1"># search for highest peak within the tolerance margin</span>
+                        <span class="n">val_harm</span><span class="p">,</span> <span class="n">ix_harm</span> <span class="o">=</span> <span class="n">n_highest_peaks</span><span class="p">(</span>
+                            <span class="n">fft_frame_mag</span><span class="p">[</span><span class="n">ix_tol_low</span><span class="p">:</span><span class="n">ix_tol_hi</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="n">ix_harm</span> <span class="o">=</span> <span class="n">ix_harm</span> <span class="o">+</span> <span class="n">ix_tol_low</span>
+
+                        <span class="k">if</span> <span class="n">ix_harm</span><span class="p">:</span>
+                            <span class="n">cand_mag</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_harm</span>
+                            <span class="n">ix_cand_harm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ix_harm</span>
+
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">cand_mag</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft_frame_mag</span><span class="p">[(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ix_f0</span><span class="p">]</span>
+                            <span class="n">ix_cand_harm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ix_f0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># stop the loop if the frequency index is out of bound</span>
+                        <span class="k">break</span>
+
+        <span class="n">energy_harm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cand</span><span class="p">)</span>
+
+        <span class="c1"># calculate the energy of the harmonic components for each candidate</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cand</span><span class="p">):</span>
+            <span class="n">energy_harm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cand_mag</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># choose the candidate with the highest harmonic energy</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">energy_harm</span><span class="p">)</span>
+
+        <span class="c1"># one last test, the noisiness for the winner candidate must be bellow</span>
+        <span class="c1"># the noisiness threshold</span>
+        <span class="n">h_energy</span> <span class="o">=</span> <span class="n">energy_harm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">frame_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fft_frame_mag</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">frame_noisiness</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">h_energy</span> <span class="o">/</span> <span class="n">frame_energy</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">frame_noisiness</span> <span class="o">&lt;</span> <span class="n">noisiness_tresh</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ix_cand_harm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">fft_time_series</span><span class="o">.</span><span class="n">max_frequency</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="n">pitch_time_series</span> <span class="o">=</span> <span class="n">aggregate_features</span><span class="p">(</span>
+        <span class="n">fft_time_series</span><span class="p">,</span> <span class="n">frame_pitch</span><span class="p">)</span>
+
+    <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Pitch (HPS)&#39;</span>
+    <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;Hz&#39;</span>
+
+
+    <span class="k">return</span> <span class="n">pitch_time_series</span></div>
+
+
+<div class="viewcode-block" id="crepe_pitch"><a class="viewcode-back" href="../../source/iracema_pitch.html#iracema.pitch.crepe_pitch">[docs]</a><span class="k">def</span> <span class="nf">crepe_pitch</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span>
+                <span class="n">model_capacity</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">,</span>
+                <span class="n">min_confidence</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">viterbi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the pitch using CREPE pitch tracker.</span>
+
+<span class="sd">    This function uses a pitch tracker based on deep convolutional neural</span>
+<span class="sd">    networks. The model was proposed and trained by [Kim2018]_.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    audio : iracema.audio.Audio</span>
+<span class="sd">        Audio time series.</span>
+<span class="sd">    step_size : float</span>
+<span class="sd">        Length of the time steps for the pitch extraction.</span>
+<span class="sd">    model_capacity : &#39;tiny&#39;, &#39;small&#39;, &#39;medium&#39;, &#39;large&#39;, or &#39;full&#39;</span>
+<span class="sd">        String specifying the capacity of the model. The value &#39;full&#39; will use</span>
+<span class="sd">        the model specified in the paper. The others will reduce the number of</span>
+<span class="sd">        filters in the convolutional layers, resulting in faster computation,</span>
+<span class="sd">        at the cost of slightly reduced accuracy.</span>
+<span class="sd">    min_confidence : float</span>
+<span class="sd">        Minimum confidence to consider a pitch detection as valid.</span>
+<span class="sd">    viterbi : bool</span>
+<span class="sd">        Viterbi smoothing for pitch curve.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [Kim2018] Kim, J. W., Salamon, J., Li, P., &amp; Bello, J. P. (2018). CREPE:</span>
+<span class="sd">       A Convolutional Representation for Pitch Estimation. In Proceedings of</span>
+<span class="sd">       the IEEE International Conference on Acoustics, Speech, and Signal</span>
+<span class="sd">       Processing (ICASSP).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">crepe</span> <span class="kn">import</span> <span class="n">predict</span>  <span class="c1"># pylint: disable=import-error</span>
+
+    <span class="n">time</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span>
+        <span class="n">audio</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">audio</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">viterbi</span><span class="o">=</span><span class="n">viterbi</span><span class="p">,</span> <span class="n">model_capacity</span><span class="o">=</span><span class="n">model_capacity</span><span class="p">)</span>
+
+    <span class="n">frequency</span><span class="p">[</span><span class="n">confidence</span> <span class="o">&lt;</span> <span class="n">min_confidence</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">step</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;step =&#39;</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">step</span>
+    <span class="n">pitch_time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span>
+        <span class="n">fs</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">start_time</span><span class="o">=</span><span class="n">audio</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Hz&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pitch_time_series</span></div>
+
+
+<div class="viewcode-block" id="pitch_filter"><a class="viewcode-back" href="../../source/iracema_pitch.html#iracema.pitch.pitch_filter">[docs]</a><span class="k">def</span> <span class="nf">pitch_filter</span><span class="p">(</span><span class="n">pitch_time_series</span><span class="p">,</span> <span class="n">delta_max</span><span class="o">=</span><span class="mf">0.04</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The pitch curve can be noisy, this function tries to smooth it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">data_previous</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">data_next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+    <span class="n">pitch_filtered</span> <span class="o">=</span> <span class="n">pitch_time_series</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># find the indexes where the pitch curve is unstable</span>
+    <span class="c1"># 1st condition: the pitch changes more than delta_max and comes back</span>
+    <span class="n">diff_next_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data_next</span> <span class="o">-</span> <span class="n">data_previous</span><span class="p">)</span>
+    <span class="n">diff_data_prev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">data_previous</span><span class="p">)</span>
+    <span class="n">diff_data_next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">data_next</span><span class="p">)</span>
+    <span class="n">mean_next_prev</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_next</span> <span class="o">+</span> <span class="n">data_previous</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">indexes_to_interp</span> <span class="o">=</span> <span class="p">((</span><span class="n">diff_next_prev</span> <span class="o">&lt;</span> <span class="n">mean_next_prev</span> <span class="o">*</span> <span class="n">delta_max</span><span class="p">)</span> <span class="o">&amp;</span>
+                         <span class="p">((</span><span class="n">diff_data_prev</span> <span class="o">&gt;</span> <span class="n">data</span> <span class="o">*</span> <span class="n">delta_max</span><span class="p">)</span> <span class="o">|</span>
+                          <span class="p">(</span><span class="n">diff_data_next</span> <span class="o">&gt;</span> <span class="n">data</span> <span class="o">*</span> <span class="n">delta_max</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">indexes_to_interp</span><span class="p">):</span>
+        <span class="n">pitch_filtered</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pitch_filtered</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">pitch_filtered</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="c1"># 2nd condition: one isolated point between zeros</span>
+    <span class="n">indexes_to_zero</span> <span class="o">=</span> <span class="p">((</span><span class="n">data_previous</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data_next</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">pitch_filtered</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">indexes_to_zero</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">pitch_filtered</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 0.1.3
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../0.1.4/index.html">0.1.4</a></dd>
+      <dd><a href="pitch.html">0.1.3</a></dd>
+      <dd><a href="../../../0.1.0/index.html">0.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../develop/index.html">develop</a></dd>
+      <dd><a href="../../../master/index.html">master</a></dd>
+    </dl>
+  </div>
+</div>
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

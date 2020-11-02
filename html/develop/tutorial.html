@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial &mdash; Iracema 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Iracema" href="source/iracema.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#virtual-environment">Virtual environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#developing">Developing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-audio-files">Loading audio files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculating-basic-features">Calculating basic features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modules">Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source/iracema.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_io.html">iracema.io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/iracema_io_player.html">iracema.io.player</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_segment.html">iracema.segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_timeseries.html">iracema.timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/iracema_util.html">iracema.util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source/iracema_util_dsp.html">iracema.util.dsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source/iracema_util_windowing.html">iracema.util.windowing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="indices.html">Indices and Tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial aims to introduce the basics of <em>iracema</em>’s <a class="reference internal" href="#architecture">architecture</a> and <a class="reference internal" href="#usage">usage</a>.</p>
+<div class="section" id="usage">
+<span id="id1"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>This section presents a quickstart guide to <em>iracema</em>.</p>
+<div class="section" id="loading-audio-files">
+<h3>Loading audio files<a class="headerlink" href="#loading-audio-files" title="Permalink to this headline">¶</a></h3>
+<p>To load an audio file, you must provide a string that specifies the location
+where it is stored. Iracema accepts local paths to load files stored in your
+computer or http URL to download remote files. It can be done instantiating
+an object of the class <a class="reference internal" href="source/iracema_timeseries.html#iracema.timeseries.Audio" title="iracema.timeseries.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iracema</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To play the loaded audio:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">audio</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The audio object has a plot method available that displays its waveform:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">audio</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-2.png">png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-2.hires.png">hires.png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-2.pdf">pdf</a>)</p>
+<div class="figure align-default">
+<img alt="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-2.png" src="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-2.png" />
+</div>
+</div>
+<div class="section" id="calculating-basic-features">
+<h3>Calculating basic features<a class="headerlink" href="#calculating-basic-features" title="Permalink to this headline">¶</a></h3>
+<p>As most features will need a FFT as input, the second step should be calculating it for the audio
+you’ve just loaded. For being able to do it, you must specify the sliding window and hop size
+values (in samples).
+After calculating the FFT you’re now able to plot a spectogram!</p>
+<p>Other useful methods are RMS and Peak Envelope, which will be extracted and plotted in the example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># specifying window and hop sizes</span>
+<span class="n">window</span><span class="p">,</span> <span class="n">hop</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span>
+
+<span class="c1"># calculating the FFT</span>
+<span class="n">fft</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">spectral</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+
+<span class="c1"># plotting the spectrogram</span>
+<span class="n">iracema</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">plot_spectrogram</span><span class="p">(</span><span class="n">fft</span><span class="p">)</span>
+
+<span class="c1"># calculating the RMS</span>
+<span class="n">rms</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+
+<span class="c1"># plotting the RMS</span>
+<span class="n">rms</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># calculating the Peak Envelope</span>
+<span class="n">peak</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">peak_envelope</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+
+<span class="c1"># plotting the Peak Envelope</span>
+<span class="n">peak</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-default" id="id3">
+<img alt="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_00.png" src="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_00.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_00.png">png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_00.hires.png">hires.png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_00.pdf">pdf</a>)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id4">
+<img alt="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_01.png" src="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_01.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_01.png">png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_01.hires.png">hires.png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_01.pdf">pdf</a>)</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id5">
+<img alt="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_02.png" src="../../../../../../../../Users/tairone/Development/var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_02.png" />
+<p class="caption"><span class="caption-text">(<a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_02.png">png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_02.hires.png">hires.png</a>, <a class="reference external" href="../../../../../../../../Users/tairone/Development/iracema/docs/../../../../../var/folders/0x/lypfmsxn567blxmckglkdk7w0000gn/T/tmp1bje1om_/2376584656aa8ad5f5d401d4fe48a0bdc5d39fd5/docs/tutorial-3_02.pdf">pdf</a>)</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="extracting-pitch-and-harmonics">
+<h3>Extracting pitch and harmonics<a class="headerlink" href="#extracting-pitch-and-harmonics" title="Permalink to this headline">¶</a></h3>
+<p>Another important step is to extract pitch. One possible way of doing it is using the Harmonic
+Product Spectrum method. But you can check other methods in the <em>pitch</em> module.
+Now you can extract the harmonics, as it’s dependent on a pitch method. Iracema already has a
+bulit-in function for plotting the harmonics over the spectrogram.
+Notice that the harmonics methods return a dictionary, with it’s keys corresponding to three TimeSeries objetcs: ‘frequency’, ‘magnitude’ and ‘phase’.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract pitch</span>
+<span class="n">hps_pitch</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">pitch</span><span class="o">.</span><span class="n">hps</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">minf0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxf0</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1">#extract harmonics</span>
+<span class="n">harmonics</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">harmonics</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">hps_pitch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="architecture">
+<span id="id2"></span><h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>This section will discuss some import aspects of <em>iracema</em>’s architecture and offer an overview of the elements that compose the core functionalities of the library.</p>
+<p><em>iracema</em> relies on the manipulation of dynamic data, i.e., data that represent an attribute’s changes over time. Thus, <em>time series</em> is a fundamental element in <em>iracema</em>’s architecture. The starting point for any task is the <em>audio</em> time series, from which other kinds of time-related data will be extracted. <em>iracema</em> applies transformations called <em>feature extraction</em> to time series to obtain new time series. The implementation of such extractors depends on some recurrent types of operations, like applying sliding windows to a series of data. In Iracema, these operations are called <em>aggregation</em> methods.</p>
+<p>To deal with a specific excerpt of a time series, such as a musical phrase or even a note. There is another important element in the architecture, called <em>segment</em>, which is used to delimit such excerpts. A user can specify the limits for a segment within the <em>time series</em> if he is already aware of its beginning and end; however, most of the time, users will expect the system to identify such limits by itself, a common kind of task in audio content extraction, known as <em>segmentation</em>.</p>
+<p>Elements, like audio, time series and segments have been implemented as classes, since they have intrinsic data and behaviour. The <code class="docutils literal notranslate"><span class="pre">Audio</span></code> class inherits the functionalities from <code class="docutils literal notranslate"><span class="pre">TimeSeries</span></code>, and add some specific behaviours (such as loading wave files). <code class="docutils literal notranslate"><span class="pre">Segments</span></code> provide a handy way to extract corresponding  excerpts from time series of different sampling rates, since it performs all the necessary index conversion operations to extract data that coincide with the same time interval.</p>
+<p>Other elements have been implemented as methods that take objects of those classes as input and output another object. For example, the method <em>fft</em> takes as input an <em>audio</em> object, a <em>window_size</em>, and a <em>hop_size</em>, and generates a time series in which each sample contains all the bins of the FFT for the interval corresponding to <em>hop_size</em>. The method <em>spectral_flux</em> will take a time series containing the result of an FFT operation as input and generate another time series containing the calculated spectral flux.</p>
+<p>Segmentation  methods  will  usually  take <em>time_series</em> objects as input to output a list of segments. Then, these segments can be used to extract excerpts from time series objects, using square brackets (the same operator used in Python to perform indexing/slicing operations).</p>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+<p>These are the modules that compose iracema, and their respective functionalities:</p>
+<ul class="simple">
+<li><p>timeseries: contains the definition of the classesTimeSeriesandAudio.</p></li>
+<li><p>segment:  contains the definition of the classesSegmentandSegmentList.</p></li>
+<li><p>spectral: contains methods for frequency domain analysis (currently the FFT);</p></li>
+<li><p>pitch: a few different models for pitch detection.</p></li>
+<li><p>harmonics: a model for extracting harmonic components from audio.</p></li>
+<li><p>features: contains methods with the implementation of several classic feature extractors.</p></li>
+<li><p>segmentation: methods for automatic audio segmentation.</p></li>
+<li><p>plot: contains several different methods for plotting time series data.</p></li>
+<li><p>aggregation: contains some common aggregation methods that can be useful for implementing feature extractors.</p></li>
+<li><p>io:  subpackage containing IO methods, for loading/writing files, playing audio, etc.</p></li>
+<li><p>util: subpackage containing some useful modules for unit conversion, DSP, windowing operations, etc.</p></li>
+</ul>
+<p>For more information, please read our <a class="reference external" href="https://compmus.ime.usp.br/sbcm/2019/papers/sbcm-2019-3.pdf">article</a> on SBCM’s 2019 Proceedings.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="source/iracema.html" class="btn btn-neutral float-right" title="Iracema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Tairone N. Magalhães
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: develop
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../0.1.4/tutorial.html">0.1.4</a></dd>
+      <dd><a href="../0.1.3/tutorial.html">0.1.3</a></dd>
+      <dd><a href="../0.1.0/tutorial.html">0.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="tutorial.html">develop</a></dd>
+      <dd><a href="../master/tutorial.html">master</a></dd>
+    </dl>
+  </div>
+</div>
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
