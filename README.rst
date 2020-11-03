@@ -2,6 +2,11 @@
   :width: 50%
   :alt: Iracema
 
+|Tests|
+
+.. |Tests| image:: https://github.com/cegeme/iracema/workflows/Run%20tests/badge.svg
+
+
 ############
 Introduction
 ############
