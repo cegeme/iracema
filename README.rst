@@ -6,7 +6,7 @@
 
 |Tests|
 
-.. |Tests| image:: https://github.com/cegeme/iracema/workflows/Run%20tests/badge.svg
+.. |Tests| image:: https://github.com/cegeme/iracema/workflows/Tests/badge.svg
 
 
 ############
