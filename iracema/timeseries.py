@@ -7,6 +7,7 @@ from os import path
 
 import matplotlib.pyplot as plt
 import numpy as np
+import resampy
 
 from .segment import Segment
 from .util import conversion
@@ -170,10 +171,28 @@ class TimeSeries:
 
         return ts
 
+    def resample(self, new_fs):
+        """
+        Resample time series to a new sampling rate.
+        """
+        if self.start_time != 0:
+            raise (NotImplementedError(
+                'The method resample is implemented only for time series '
+                'objects with start_time equal to 0.'))
+        ts = cp.copy(self)
+        ts.data = resampy.resample(self.data, self.fs, new_fs)
+        ts.fs = new_fs
+
+        return ts
+
     def plot(self):
         "Plot the time series using matplotlib."
         f = plt.figure(figsize=(15, 9))
-        plt.plot(self.time, self.data, label=self.label)
+        plt.plot(self.time,
+                 self.data,
+                 label=self.label,
+                 linewidth=0.1,
+                 alpha=0.9)
         if self.label:
             plt.legend(loc='lower right', ncol=2, fontsize='x-small')
         plt.title(self.caption)
@@ -360,8 +379,10 @@ class Audio(TimeSeries):
 
     Parameters
     ----------
-    filename : str, optional
-        Name of the audio file to be loaded.
+    file_location : str, optional
+        Location from where the file will be loaded. The string might
+        contain a path pointing to a local file or an http URL referencing
+        a remote file.
     data : np.array
         Data vector containing the audio data to be loaded.
     fs : int, optional
@@ -374,10 +395,15 @@ class Audio(TimeSeries):
     There are two different ways to initialize an Audio object: from
     audio files or from NumPy arrays.
 
-    To initialize it using an audio file, you just need to pass the
-    ``filename`` to be loaded:
+    To initialize it using an audio file, you just need to pass the location
+    from which the file must be loaded:
 
-    >>> a1 = Audio('clarinet.wav')
+    >>> a1 = Audio('~/audio/03 - Clarinet - Fast Excerpt.wav'')
+
+    Alternatively the location can be specified trough an http URL:
+
+    >>> url = 'https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
+    >>> a1 = Audio(url)
 
     To initialize it using a NumPy array, two arguments are necessary: the
     ``data`` array and the sampling frequency ``fs``:
@@ -403,11 +429,8 @@ class Audio(TimeSeries):
         # one argument: file name
         if nargs == 1:
             filename = args[0]
-            filename = path.expanduser(filename)  # expanding ~ to /home/user
-
-            # loading audio file
-            data, fs = read(filename)
-            self.filename = path.basename(filename)
+            data, fs, basename = read(filename)
+            self.filename = basename
             self.caption = caption or self.filename
 
         # two arguments: an array and a sampling frequency

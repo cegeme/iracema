@@ -164,6 +164,18 @@ class PointList(list):
     def __init__(self, point_list):
         super(PointList, self).__init__(point_list)
 
+    @classmethod
+    def load_from_file(cls, filename, time_series, unit='seconds'):
+        """
+        Instantiates a list of points loaded from a file. Each line in the file
+        must contain the position of a single point. The position can be
+        specified in `seconds` or `sample_index`.
+        """
+        points = []
+        for line in open(filename, 'r'):
+            points.append(Point(time_series, np.float(line), unit=unit))
+        return cls(points)
+
     @property
     def time(self):
         return [point.time for point in self]

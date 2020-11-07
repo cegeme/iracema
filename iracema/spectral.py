@@ -30,7 +30,8 @@ def fft(time_series, window_size, hop_size, fft_len=4096):
         return np.fft.fft(x, n=2 * fft_len)[:int(fft_len)]
 
     fft_time_series = sliding_window(time_series, window_size,
-                                     hop_size, calculate, 'hann')
+                                     hop_size, calculate,
+                                     window_name='hann')
 
     fft_time_series.max_frequency = time_series.nyquist
     fft_time_series.frequencies = np.linspace(
