@@ -17,6 +17,17 @@ def plot_spectrogram(fft,
                      fftlim=()):
     """
     Plot the spectrogram of the audio signal.
+
+    .. plot::
+        :context: close-figs
+
+        import iracema
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        fft = iracema.spectral.fft(haydn, window, hop)
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        iracema.plot.plot_spectrogram(fft, fftlim=(0, 22000))
     """
     # configuring figure and subplots
     f = plt.figure(figsize=(15, 9))
@@ -44,6 +55,16 @@ def plot_audio_spectrogram(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal.
+    
+    .. plot::
+        :context: close-figs
+
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        fft = iracema.spectral.fft(haydn, window, hop)
+        iracema.plot.plot_audio_spectrogram(haydn, fft, rms=rms, peak_envelope=peak)
     """
     # configuring figure and subplots
     f = plt.figure(figsize=(15, 9))
@@ -76,6 +97,18 @@ def plot_audio_spectrogram_f0(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its fundamental frequency  `fzero`.
+    
+    .. plot::
+        :context: close-figs
+
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        fft = iracema.spectral.fft(haydn, window, hop)
+        pitch = iracema.pitch.expan_pitch(fft)
+        harm = iracema.harmonics.extract(fft, pitch)
+        iracema.plot.plot_audio_spectrogram_f0(haydn, rms, peak, fft, harm['frequency'])
     """
 
     # configuring figure and subplots
@@ -113,6 +146,18 @@ def plot_audio_spectrogram_harmonics(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its `harmonics`.
+    
+    .. plot::
+        :context: close-figs
+
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        fft = iracema.spectral.fft(haydn, window, hop)
+        pitch = iracema.pitch.expan_pitch(fft)
+        harm = iracema.harmonics.extract(fft, pitch)
+        iracema.plot.plot_audio_spectrogram_harmonics(haydn, rms, peak, fft, harm['frequency'], harm)
     """
 
     # configuring figure and subplots
@@ -159,6 +204,15 @@ def plot_waveform_trio(audio, rms=None, peak_envelope=None):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``.
+
+    .. plot::
+        :context: close-figs
+
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        iracema.plot.plot_waveform_trio(haydn, rms=rms, peak_envelope=peak)
     """
     # configuring figure and subplots
     plt.figure(figsize=(15, 9))
@@ -179,6 +233,20 @@ def plot_waveform_trio_and_features(audio,
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``; followed by a series of graphs, one for each time-series
     in the tuple `features`.
+    
+    .. plot::
+        :context: close-figs
+
+        haydn = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = iracema.features.peak_envelope(haydn, window, hop)
+        rms = iracema.features.rms(haydn, window, hop)
+        fft = iracema.spectral.fft(haydn, window, hop)
+        pitch = iracema.pitch.expan_pitch(fft)
+        harm = iracema.harmonics.extract(fft, pitch)
+        centroid = iracema.features.spectral_centroid(fft)
+        noise = iracema.features.noisiness(fft, harm['magnitude'])
+        iracema.plot.plot_waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))  
     """
     if not features:
         raise ValueError("the features to be plotted were not specified")
