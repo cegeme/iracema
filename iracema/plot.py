@@ -242,8 +242,6 @@ def plot_waveform_trio_and_features(audio,
         peak = iracema.features.peak_envelope(haydn, window, hop)
         rms = iracema.features.rms(haydn, window, hop)
         fft = iracema.spectral.fft(haydn, window, hop)
-        pitch = iracema.pitch.expan_pitch(fft)
-        harm = iracema.harmonics.extract(fft, pitch)
         centroid = iracema.features.spectral_centroid(fft)
         noise = iracema.features.noisiness(fft, harm['magnitude'])
         iracema.plot.plot_waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))  
