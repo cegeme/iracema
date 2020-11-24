@@ -47,4 +47,10 @@ setup(
         'Topic :: Software Development :: Libraries',
     ],
     packages=find_packages(),
-    )
+    include_package_data = True,
+    package_data = {
+        'iracema' : [
+            'assets/audio/Click.wav',
+        ],
+    },
+)

@@ -1,6 +1,7 @@
 """
 Methods for playing audio.
 """
+from pkg_resources import resource_filename
 import sounddevice as sd
 import numpy as np
 
@@ -19,7 +20,7 @@ def play(audio_time_series, blocking=False):
     return _play_stream(audio_time_series, blocking=blocking)
 
 
-def play_with_clicks(audio_time_series, points, click_file, blocking=False):
+def play_with_clicks(audio_time_series, points, click_file=None, blocking=False):
     """
     Play audio with clicks in the instants corresponding to the specified
     points. The path to the audio file containing the click sound must be
@@ -32,6 +33,8 @@ def play_with_clicks(audio_time_series, points, click_file, blocking=False):
     click_file: string
     blocking: bool
     """
+    if not click_file:
+        click_file = resource_filename('iracema', 'assets/audio/Click.wav')
     click_sound = iracema.timeseries.Audio(click_file)
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
