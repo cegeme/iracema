@@ -12,4 +12,4 @@ import iracema.plot
 import iracema.segmentation
 import iracema.spectral
 
-__version__ = u'0.1.6'
+__version__ = u'0.1.7'
