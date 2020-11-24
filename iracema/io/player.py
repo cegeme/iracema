@@ -34,7 +34,7 @@ def play_with_clicks(audio_time_series, points, click_file=None, blocking=False)
     blocking: bool
     """
     if not click_file:
-        click_file = resource_filename('iracema', 'assets/data/Click.wav')
+        click_file = resource_filename('iracema', 'assets/audio/Click.wav')
     click_sound = iracema.timeseries.Audio(click_file)
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
