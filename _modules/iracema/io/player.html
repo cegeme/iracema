@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>iracema.io.player &mdash; Iracema 0.1.6 documentation</title>
+  <title>iracema.io.player &mdash; Iracema 0.1.7 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -199,6 +199,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Methods for playing audio.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
 <span class="kn">import</span> <span class="nn">sounddevice</span> <span class="k">as</span> <span class="nn">sd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -214,11 +215,10 @@
 <span class="sd">    audio_time_series: iracema.audio.Audio</span>
 <span class="sd">    blocking: bool</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sd</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="mi">256</span>
-    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_time_series</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">audio_time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">_play_stream</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="play_with_clicks"><a class="viewcode-back" href="../../../source/iracema_io_player.html#iracema.io.player.play_with_clicks">[docs]</a><span class="k">def</span> <span class="nf">play_with_clicks</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">click_file</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="play_with_clicks"><a class="viewcode-back" href="../../../source/iracema_io_player.html#iracema.io.player.play_with_clicks">[docs]</a><span class="k">def</span> <span class="nf">play_with_clicks</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">click_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Play audio with clicks in the instants corresponding to the specified</span>
 <span class="sd">    points. The path to the audio file containing the click sound must be</span>
@@ -231,16 +231,15 @@
 <span class="sd">    click_file: string</span>
 <span class="sd">    blocking: bool</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">click_file</span><span class="p">:</span>
+        <span class="n">click_file</span> <span class="o">=</span> <span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;iracema&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/audio/Click.wav&#39;</span><span class="p">)</span>
     <span class="n">click_sound</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">timeseries</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">click_file</span><span class="p">)</span>
     <span class="n">indexes</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">map_indexes</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">)</span>
     <span class="n">audio_with_clicks</span> <span class="o">=</span> <span class="n">audio_time_series</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indexes</span><span class="p">:</span>
         <span class="n">audio_with_clicks</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">click_sound</span><span class="o">.</span><span class="n">nsamples</span><span class="p">]</span> <span class="o">+=</span> <span class="n">click_sound</span><span class="o">.</span><span class="n">data</span>
 
-    <span class="n">sd</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="mi">256</span>
-    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_with_clicks</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">audio_with_clicks</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">audio_with_clicks</span></div>
+    <span class="k">return</span> <span class="n">_play_stream</span><span class="p">(</span><span class="n">audio_with_clicks</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="play_interval_samples"><a class="viewcode-back" href="../../../source/iracema_io_player.html#iracema.io.player.play_interval_samples">[docs]</a><span class="k">def</span> <span class="nf">play_interval_samples</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">from_sample</span><span class="p">,</span> <span class="n">to_sample</span><span class="p">,</span>
@@ -262,8 +261,7 @@
         <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size_soft_start</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">),</span>
          <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data_to_play</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">size_soft_start</span><span class="p">)))</span>
 
-    <span class="n">sd</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="mi">256</span>
-    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">soft_start</span> <span class="o">*</span> <span class="n">data_to_play</span><span class="p">,</span> <span class="n">audio_time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">_play_stream</span><span class="p">(</span><span class="n">soft_start</span> <span class="o">*</span> <span class="n">data_to_play</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="play_interval_seconds"><a class="viewcode-back" href="../../../source/iracema_io_player.html#iracema.io.player.play_interval_seconds">[docs]</a><span class="k">def</span> <span class="nf">play_interval_seconds</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">from_seconds</span><span class="p">,</span> <span class="n">to_seconds</span><span class="p">,</span>
@@ -290,6 +288,22 @@
 
     <span class="n">play_interval_samples</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">from_sample</span><span class="p">,</span> <span class="n">to_sample</span><span class="p">,</span>
                           <span class="n">soft_start</span><span class="o">=</span><span class="n">soft_start</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">_play_stream</span><span class="p">(</span><span class="n">audio_time_series</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">blocksize</span> <span class="o">=</span> <span class="mi">256</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">shell</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">if</span> <span class="n">shell</span> <span class="o">==</span> <span class="s1">&#39;ZMQInteractiveShell&#39;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span> <span class="k">as</span> <span class="n">IPythonAudio</span>
+            <span class="k">return</span> <span class="n">IPythonAudio</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">audio_time_series</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                                <span class="n">rate</span><span class="o">=</span><span class="n">audio_time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span>
+                                <span class="n">autoplay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_time_series</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">audio_time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">NameError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_time_series</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">audio_time_series</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
 
 
 <div class="viewcode-block" id="stop"><a class="viewcode-back" href="../../../source/iracema_io_player.html#iracema.io.player.stop">[docs]</a><span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>

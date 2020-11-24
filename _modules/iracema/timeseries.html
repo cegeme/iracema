@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>iracema.timeseries &mdash; Iracema 0.1.6 documentation</title>
+  <title>iracema.timeseries &mdash; Iracema 0.1.7 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.1.7
               </div>
             
           
@@ -647,19 +647,19 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Play audio from Audio object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">player</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Audio.play_from_time"><a class="viewcode-back" href="../../source/iracema_timeseries.html#iracema.timeseries.Audio.play_from_time">[docs]</a>    <span class="k">def</span> <span class="nf">play_from_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Play audio from Audio object start at time ``from_time``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">player</span><span class="o">.</span><span class="n">play_interval_seconds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_time</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">play_interval_seconds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_time</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Audio.play_segment"><a class="viewcode-back" href="../../source/iracema_timeseries.html#iracema.timeseries.Audio.play_segment">[docs]</a>    <span class="k">def</span> <span class="nf">play_segment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segment</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Play segment from Audio obejct.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">player</span><span class="o">.</span><span class="n">play_interval_seconds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">player</span><span class="o">.</span><span class="n">play_interval_seconds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Audio.stop"><a class="viewcode-back" href="../../source/iracema_timeseries.html#iracema.timeseries.Audio.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
