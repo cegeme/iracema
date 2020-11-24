@@ -17,7 +17,7 @@ def play(audio_time_series, blocking=False):
     blocking: bool
     """
     sd.default.blocksize = 256
-    sd.play(audio_time_series.data, audio_time_series.fs, blocking=blocking)
+    return _play_stream(audio_time_series, blocking=blocking)
 
 
 def play_with_clicks(audio_time_series, points, click_file, blocking=False):
@@ -39,10 +39,7 @@ def play_with_clicks(audio_time_series, points, click_file, blocking=False):
     for i in indexes:
         audio_with_clicks.data[i:i+click_sound.nsamples] += click_sound.data
 
-    sd.default.blocksize = 256
-    sd.play(audio_with_clicks.data, audio_with_clicks.fs, blocking=blocking)
-
-    return audio_with_clicks
+    return _play_stream(audio_with_clicks, blocking=blocking)
 
 
 def play_interval_samples(audio_time_series, from_sample, to_sample,
@@ -64,8 +61,7 @@ def play_interval_samples(audio_time_series, from_sample, to_sample,
         (np.linspace(0, 1, size_soft_start, dtype=np.float_),
          np.ones(data_to_play.shape[-1] - size_soft_start)))
 
-    sd.default.blocksize = 256
-    sd.play(soft_start * data_to_play, audio_time_series.fs, blocking=blocking)
+    return _play_stream(soft_start * data_to_play, blocking=blocking)
 
 
 def play_interval_seconds(audio_time_series, from_seconds, to_seconds,
@@ -92,6 +88,23 @@ def play_interval_seconds(audio_time_series, from_seconds, to_seconds,
 
     play_interval_samples(audio_time_series, from_sample, to_sample,
                           soft_start=soft_start, blocking=blocking)
+
+def _play_stream(audio_time_series, blocking=False):
+    sd.default.blocksize = 256
+    try:
+        shell = get_ipython().__class__.__name__
+        if shell == 'ZMQInteractiveShell':
+            from IPython.display import Audio as IPythonAudio
+            return IPythonAudio(data=audio_time_series.data,
+                                rate=audio_time_series.fs,
+                                autoplay=True)
+        else:
+            sd.play(audio_time_series.data, audio_time_series.fs, blocking=blocking)
+            return None
+    except NameError as err:
+        print(err)
+        sd.play(audio_time_series.data, audio_time_series.fs, blocking=blocking)
+        return None
 
 
 def stop():
