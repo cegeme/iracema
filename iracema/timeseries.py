@@ -449,19 +449,19 @@ class Audio(TimeSeries):
         """
         Play audio from Audio object.
         """
-        player.play(self)
+        return player.play(self)
 
     def play_from_time(self, from_time):
         """
         Play audio from Audio object start at time ``from_time``.
         """
-        player.play_interval_seconds(self, from_time, None)
+        return player.play_interval_seconds(self, from_time, None)
 
     def play_segment(self, segment):
         """
         Play segment from Audio obejct.
         """
-        player.play_interval_seconds(self, segment.start_time, segment.end_time)
+        return player.play_interval_seconds(self, segment.start_time, segment.end_time)
 
     def stop(self):
         """
