@@ -16,7 +16,6 @@ def play(audio_time_series, blocking=False):
     audio_time_series: iracema.audio.Audio
     blocking: bool
     """
-    sd.default.blocksize = 256
     return _play_stream(audio_time_series, blocking=blocking)
 
 
