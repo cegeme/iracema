@@ -12,8 +12,9 @@ import resampy
 from .segment import Segment
 from .util import conversion
 from .io.audiofile import read
-from .plot import plot
 from .io import player
+
+from iracema.plot import plot
 
 
 class TimeSeries:
