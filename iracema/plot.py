@@ -14,10 +14,16 @@ import iracema.features as features
 def plot(audio):
     "Plot the time series using matplotlib."
     f = plt.figure(figsize=(15, 9))
+    size = audio.nsamples / audio.fs
+    if size <= 1:
+        width = size
+    else:
+        width = size ** -1
+    print(width)
     plt.plot(audio.time,
             audio.data,
             label=audio.label,
-            linewidth=0.1,
+            linewidth=width,
             alpha=0.9)
     if audio.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
