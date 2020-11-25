@@ -15,11 +15,12 @@ def plot(audio):
     "Plot the time series using matplotlib."
     f = plt.figure(figsize=(15, 9))
     size = audio.nsamples / audio.fs
-    if size <= 1:
+    if size < 1:
+        width = abs(size -1)
+    elif size == 1:
         width = size
     else:
         width = size ** -1
-    print(width)
     plt.plot(audio.time,
             audio.data,
             label=audio.label,
