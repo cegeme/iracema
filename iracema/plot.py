@@ -11,7 +11,8 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 import iracema.features as features
 
-def plot(audio):
+def plot(audio,
+        linewidth=None):
     "Plot the time series using matplotlib."
     f = plt.figure(figsize=(15, 9))
     size = audio.nsamples / audio.fs
