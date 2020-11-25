@@ -11,6 +11,23 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 import iracema.features as features
 
+def plot(audio):
+    "Plot the time series using matplotlib."
+    f = plt.figure(figsize=(15, 9))
+    plt.plot(audio.time,
+            audio.data,
+            label=audio.label,
+            linewidth=0.1,
+            alpha=0.9)
+    if audio.label:
+        plt.legend(loc='lower right', ncol=2, fontsize='x-small')
+    plt.title(audio.caption)
+    plt.ylabel(audio.unit)
+    plt.xlabel('time (s)')
+    plt.show()
+
+    return f
+
 
 def plot_spectrogram(fft,
                      logfft=False,

@@ -5,8 +5,7 @@ Some aggregation methods for time series.
 import numpy as np
 
 from iracema.util.windowing import apply_sliding_window
-from iracema.timeseries import TimeSeries
-
+import iracema.timeseries 
 
 def sliding_window(time_series, window_size, hop_size, function,
                    window_name=None):
