@@ -15,17 +15,20 @@ def plot(audio,
         linewidth=None):
     "Plot the time series using matplotlib."
     f = plt.figure(figsize=(15, 9))
-    size = audio.nsamples / audio.fs
-    if size < 1:
-        width = abs(size -1)
-    elif size == 1:
-        width = size
-    else:
-        width = size ** -1
+    
+    if not linewidth:
+        size = audio.nsamples / audio.fs
+        if size < 1:
+            linewidth = abs(size -1)
+        elif size == 1:
+            linewidth = size
+        else:
+            linewidth = size ** -1
+
     plt.plot(audio.time,
             audio.data,
             label=audio.label,
-            linewidth=width,
+            linewidth=linewidth,
             alpha=0.9)
     if audio.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
@@ -307,11 +310,20 @@ def add_notes_to_axes(axes, notes):
 def add_curve_to_axes(axes,
                       time_series,
                       fmt='b',
-                      linewidth=0.8,
+                      linewidth=None,
                       alpha=0.9,
                       label=None,
                       set_labels=True):
     "Add the curve for the given ``time_series`` to the given ``axes``."
+
+    if not linewidth:
+        size = time_series.nsamples / time_series.fs
+        if size < 1:
+            linewidth = abs(size -1)
+        elif size == 1:
+            linewidth = size
+        else:
+            linewidth = size ** -1
 
     if set_labels:
         axes.set(ylabel=time_series.unit)
@@ -348,7 +360,7 @@ def add_waveform_to_axes(axes, audio):
     """
 
     # adding the curves
-    add_curve_to_axes(axes, audio, linewidth=0.1, alpha=0.9)
+    add_curve_to_axes(axes, audio, alpha=0.9)
 
 
 def add_waveform_trio_to_axes(axes,
@@ -366,7 +378,7 @@ def add_waveform_trio_to_axes(axes,
         peak_envelope or features.peak_envelope(audio, window_size,
                                                    hop_size)
     # adding the curves
-    add_curve_to_axes(axes, audio, linewidth=0.1, alpha=0.9)
+    add_curve_to_axes(axes, audio, alpha=0.9)
     add_curve_to_axes(axes, rms, fmt='r', label=rms.label, set_labels=False)
     add_curve_to_axes(axes, peak_envelope, fmt='k', label=peak_envelope.label,
                       set_labels=False)
