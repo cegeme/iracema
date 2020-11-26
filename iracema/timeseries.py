@@ -5,7 +5,6 @@ Implementation of time series.
 import copy as cp
 from os import path
 
-#import matplotlib.pyplot as plt
 import numpy as np
 import resampy
 
