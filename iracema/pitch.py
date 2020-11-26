@@ -18,7 +18,7 @@ import scipy.signal as sig
 
 from iracema.timeseries import TimeSeries
 from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
-from iracema.aggregation import aggregate_features
+from iracema.aggregation import aggregate_features, sliding_window
 
 
 def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
@@ -334,3 +334,14 @@ def pitch_filter(pitch_time_series, delta_max=0.04):
     pitch_filtered.data[indexes_to_zero] = 0
 
     return pitch_filtered
+
+
+def pitch_mode(pitch_time_series, window_size=8):
+    """
+    Apply a windowed mode to the pitch curve to remove noise.
+    """
+    def mode(x):
+        values, counts = np.unique(x, return_counts=True)
+        return values[np.argmax(counts)]
+
+    return sliding_window(pitch_time_series, window_size, 1, mode)
