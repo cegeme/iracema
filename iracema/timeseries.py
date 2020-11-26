@@ -14,7 +14,7 @@ from .util import conversion
 from .io.audiofile import read
 from .io import player
 
-from iracema.plot import plot
+from iracema.plot import plot_curve
 
 
 class TimeSeries:
@@ -189,7 +189,7 @@ class TimeSeries:
 
     def plot(self):
         "Plot the time series using matplotlib."
-        return plot(self)
+        return plot_curve(self)
 
 
     def time_to_sample_index(self, time):
