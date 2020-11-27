@@ -103,7 +103,7 @@ def _play_stream(audio_time_series, blocking=False):
             from IPython.display import Audio as IPythonAudio
             return IPythonAudio(data=audio_time_series.data,
                                 rate=audio_time_series.fs,
-                                autoplay=True)
+                                autoplay=False)
         else:
             sd.play(audio_time_series.data, audio_time_series.fs, blocking=blocking)
             return None
