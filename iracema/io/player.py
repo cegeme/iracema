@@ -1,11 +1,13 @@
 """
 Methods for playing audio.
 """
-from pkg_resources import resource_filename
 import sounddevice as sd
 import numpy as np
 
-import iracema.timeseries
+from pkg_resources import resource_filename
+from resampy import resample
+
+from iracema.io.audiofile import read
 
 
 def play(audio_time_series, blocking=False):
@@ -35,11 +37,13 @@ def play_with_clicks(audio_time_series, points, click_file=None, blocking=False)
     """
     if not click_file:
         click_file = resource_filename('iracema', 'assets/audio/Click.wav')
-    click_sound = iracema.timeseries.Audio(click_file)
+    click_sound, fs, _ = read(click_file)
+    if fs != audio_time_series.fs:
+        click_sound = resample(click_sound, fs, audio_time_series.fs)
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
     for i in indexes:
-        audio_with_clicks.data[i:i+click_sound.nsamples] += click_sound.data
+        audio_with_clicks.data[i:i+len(click_sound)] += click_sound
 
     return _play_stream(audio_with_clicks, blocking=blocking)
 
