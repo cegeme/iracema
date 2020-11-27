@@ -186,7 +186,7 @@ class TimeSeries:
 
         return ts
 
-    def plot(self, line_width):
+    def plot(self, line_width=None):
         "Plot the time series using matplotlib."
         return plot_curve(self, linewidth=line_width)
 
