@@ -5,8 +5,7 @@ Some aggregation methods for time series.
 import numpy as np
 
 from iracema.util.windowing import apply_sliding_window
-from iracema.timeseries import TimeSeries
-
+import iracema.timeseries 
 
 def sliding_window(time_series, window_size, hop_size, function,
                    window_name=None):
@@ -37,7 +36,7 @@ def sliding_window(time_series, window_size, hop_size, function,
     # new sampling frequency for the aggregated time-series
     new_fs = time_series.fs / np.float_(hop_size)
 
-    new_ts = TimeSeries(
+    new_ts = iracema.timeseries.TimeSeries(
         new_fs,
         data=new_data,
         start_time=time_series.start_time)
@@ -51,7 +50,7 @@ def aggregate_features(time_series, func):
     """
     new_data = np.apply_along_axis(func, 0, time_series.data)
 
-    new_ts = TimeSeries(
+    new_ts = iracema.timeseries.TimeSeries(
         time_series.fs,
         data=new_data,
         start_time=time_series.start_time)
@@ -92,7 +91,7 @@ def aggregate_sucessive_samples(time_series, func, padding='zeros'):
     for i in range(1, nsamples):
         new_data[i] = func(data[..., i - 1], data[..., i])
 
-    new_ts = TimeSeries(
+    new_ts = iracema.timeseries.TimeSeries(
         time_series.fs,
         data=new_data,
         start_time=time_series.start_time)

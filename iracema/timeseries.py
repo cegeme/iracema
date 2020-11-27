@@ -5,7 +5,6 @@ Implementation of time series.
 import copy as cp
 from os import path
 
-import matplotlib.pyplot as plt
 import numpy as np
 import resampy
 
@@ -13,6 +12,7 @@ from iracema.segment import Segment
 from iracema.util import conversion
 from iracema.io.audiofile import read
 from iracema.io import player
+from iracema.plot import plot_curve
 
 
 class TimeSeries:
@@ -185,22 +185,10 @@ class TimeSeries:
 
         return ts
 
-    def plot(self):
+    def plot(self, line_width=None):
         "Plot the time series using matplotlib."
-        f = plt.figure(figsize=(15, 9))
-        plt.plot(self.time,
-                 self.data,
-                 label=self.label,
-                 linewidth=0.1,
-                 alpha=0.9)
-        if self.label:
-            plt.legend(loc='lower right', ncol=2, fontsize='x-small')
-        plt.title(self.caption)
-        plt.ylabel(self.unit)
-        plt.xlabel('time (s)')
-        plt.show()
+        return plot_curve(self, linewidth=line_width)
 
-        return f
 
     def time_to_sample_index(self, time):
         """
