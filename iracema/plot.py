@@ -12,6 +12,7 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
+
 def plot_curve(time_series,
         linewidth=None):
     "Plot the time series using matplotlib."

@@ -12,7 +12,6 @@ from iracema.segment import Segment
 from iracema.util import conversion
 from iracema.io.audiofile import read
 from iracema.io import player
-
 from iracema.plot import plot_curve
 
 
