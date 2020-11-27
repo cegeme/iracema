@@ -16,9 +16,9 @@ References
 import numpy as np
 import scipy.signal as sig
 
-from .timeseries import TimeSeries
-from .util.dsp import local_peaks, n_highest_peaks, decimate_mean
-from .aggregation import aggregate_features
+from iracema.timeseries import TimeSeries
+from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
+from iracema.aggregation import aggregate_features
 
 
 def hps(fft_time_series, minf0, maxf0, n_downsampling=16,

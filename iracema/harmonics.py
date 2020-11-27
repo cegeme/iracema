@@ -5,8 +5,8 @@ monophonic audio.
 
 import numpy as np
 
-from .timeseries import TimeSeries
-from .util.dsp import local_peaks, n_highest_peaks
+from iracema.timeseries import TimeSeries
+from iracema.util.dsp import local_peaks, n_highest_peaks
 
 
 def extract(fft,

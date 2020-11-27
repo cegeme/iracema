@@ -8,8 +8,8 @@ import scipy.signal as sig
 import iracema.features
 import iracema.pitch
 import iracema.segment
-from iracema.aggregation import aggregate_sucessive_samples
 
+from iracema.aggregation import aggregate_sucessive_samples
 from iracema.plot import plot_waveform_trio_features_and_points
 
 

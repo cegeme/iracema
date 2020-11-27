@@ -33,9 +33,9 @@ References
 import numpy as np
 from scipy.stats import gmean  # pylint: disable=import-error
 
-from .aggregation import (aggregate_features, aggregate_sucessive_samples,
+from iracema.aggregation import (aggregate_features, aggregate_sucessive_samples,
                           sliding_window)
-from .util.dsp import hwr
+from iracema.util.dsp import hwr
 
 
 def peak_envelope(time_series, window_size, hop_size):
