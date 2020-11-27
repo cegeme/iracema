@@ -3,7 +3,7 @@ Contain classes used to extract and manipulate segments.
 """
 import numpy as np
 
-from .util import conversion
+from iracema.util import conversion
 
 
 class Segment:

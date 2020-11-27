@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import resampy
 
-from .segment import Segment
-from .util import conversion
-from .io.audiofile import read
-from .io import player
+from iracema.segment import Segment
+from iracema.util import conversion
+from iracema.io.audiofile import read
+from iracema.io import player
 
 
 class TimeSeries:

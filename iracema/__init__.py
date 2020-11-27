@@ -2,8 +2,8 @@
 iracema is a python package aimed at the extraction of expressive music
 information from audio signals
 """
-from .timeseries import TimeSeries, Audio
-from .segment import Segment, SegmentList
+from iracema.timeseries import TimeSeries, Audio
+from iracema.segment import Segment, SegmentList
 
 import iracema.features
 import iracema.harmonics

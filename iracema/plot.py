@@ -6,10 +6,11 @@ import warnings
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+
 from matplotlib.widgets import MultiCursor  # pylint: disable=import-error
 from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
-import iracema.features as features
+from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
 
 def plot_spectrogram(fft,
@@ -336,9 +337,9 @@ def add_waveform_trio_to_axes(axes,
     ``peak_evelope``. This method adds them to ``axes``.
     """
     window_size, hop_size = 2048, 512
-    rms = rms or features.rms(audio, window_size, hop_size)
+    rms = rms or rms_(audio, window_size, hop_size)
     peak_envelope =\
-        peak_envelope or features.peak_envelope(audio, window_size,
+        peak_envelope or peak_envelope_(audio, window_size,
                                                    hop_size)
     # adding the curves
     add_curve_to_axes(axes, audio, linewidth=0.1, alpha=0.9)
