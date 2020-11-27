@@ -40,6 +40,34 @@ def plot_curve(time_series,
 
     return f
 
+def plot_curve(time_series,
+        linewidth=None):
+    "Plot the time series using matplotlib."
+    f = plt.figure(figsize=(15, 9))
+    
+    if not linewidth:
+        size = time_series.nsamples / time_series.fs
+        if size < 1:
+            linewidth = abs(size -1)
+        elif size == 1:
+            linewidth = size
+        else:
+            linewidth = size ** -1
+
+    plt.plot(time_series.time,
+            time_series.data,
+            label=time_series.label,
+            linewidth=linewidth,
+            alpha=0.9)
+    if time_series.label:
+        plt.legend(loc='lower right', ncol=2, fontsize='x-small')
+    plt.title(time_series.caption)
+    plt.ylabel(time_series.unit)
+    plt.xlabel('time (s)')
+    plt.show()
+
+    return f
+
 
 def plot_spectrogram(fft,
                      logfft=False,

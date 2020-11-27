@@ -15,6 +15,8 @@ from iracema.io import player
 
 from iracema.plot import plot_curve
 
+from iracema.plot import plot_curve
+
 
 class TimeSeries:
     """
