@@ -186,6 +186,31 @@ class TimeSeries:
 
         return ts
 
+    def pad_like(self, timeseries):
+        """
+        Pad the end of the current time series to match the length of
+        the given time series.
+        """
+        if self.fs != timeseries.fs:
+            ValueError("The sampling rates of both time series must be equal.")
+        if self.nsamples > timeseries.nsamples:
+            ValueError("The current time series has more samples than the"
+                       "given time series.")
+        padding_len = timeseries.nsamples - self.nsamples
+        padding_array = np.zeros(padding_len)
+        new_ts = self.copy()
+        new_ts.data = np.concatenate((new_ts.data, padding_array.data))
+        return new_ts
+        
+    def resample_and_pad_like(self, timeseries):
+        """
+        Resample and pad the end of the current time series to match
+        the given time series.
+        """
+        new_ts = self.resample(timeseries.fs)
+        new_ts = new_ts.pad_like(timeseries)
+        return new_ts
+    
     def filter(self, critical_frequency, filter_type='low_pass', filter_order=4):
         """
         Filters the time series using a butterworth digital filter. This is
