@@ -10,6 +10,7 @@ import resampy
 
 from iracema.segment import Segment
 from iracema.util import conversion
+from iracema.util.dsp import but_filter
 from iracema.io.audiofile import read
 from iracema.io import player
 from iracema.plot import plot_curve
@@ -185,10 +186,33 @@ class TimeSeries:
 
         return ts
 
+    def filter(self, critical_frequency, filter_type='low_pass', filter_order=4):
+        """
+        Filters the time series using a butterworth digital filter. This is
+        a wrapper over ``scipy.signal.butter``.
+
+        Arguments
+        ---------
+        audio: Audio
+            Audio time series.
+        critical_frequency: float
+            The critical frequency of frequencies.
+        filter_type: [‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’]
+            The type of filter.
+        filter_order:
+            The order of the filter.
+        """
+        audio_filtered = self.copy()
+        audio_filtered.data = but_filter(self.data,
+                                         self.fs,
+                                         critical_frequency,
+                                         filter_type=filter_type,
+                                         filter_order=filter_order)
+        return audio_filtered
+
     def plot(self, line_width=None):
         "Plot the time series using matplotlib."
         return plot_curve(self, linewidth=line_width)
-
 
     def time_to_sample_index(self, time):
         """
