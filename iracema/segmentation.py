@@ -21,7 +21,7 @@ def onsets_adaptive_rms(audio,
                         hop=512,
                         alpha=0.1,
                         plot=False):
-        """
+    """
     Extract the note onsets using the adaptive RMS method.
 
     Arguments
