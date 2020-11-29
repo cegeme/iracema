@@ -3,6 +3,7 @@ Functions that are commonly used in digital signal processing.
 """
 
 import numpy as np
+from scipy import signal
 
 
 def local_peaks(array):
@@ -72,3 +73,28 @@ def decimate_mean(array, f):
     decimated_array = np.mean(reshaped_array, axis=0)
 
     return decimated_array
+
+
+def but_filter(audio_data, fs, critical_frequency, filter_type='lowpass', filter_order=4):
+    """
+    Filters the input data using a butterworth digital filter. This is a wrapper
+    over ``scipy.signal.butter``.
+
+    Arguments
+    ---------
+    audio_data: numpy array
+        Numpy array containing the data of a time series.
+    fs: float
+        Sampling frequency.
+    critical_frequency: float
+        The critical frequency of frequencies.
+    filter_type: [‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’]
+        The type of filter. filter_order: The order of the filter.
+    """
+    sos = signal.butter(filter_order,
+                        critical_frequency,
+                        filter_type,
+                        fs=fs,
+                        output='sos')
+    filtered = signal.sosfilt(sos, audio_data)
+    return filtered

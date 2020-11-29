@@ -18,7 +18,7 @@ import scipy.signal as sig
 
 from iracema.timeseries import TimeSeries
 from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
-from iracema.aggregation import aggregate_features
+from iracema.aggregation import aggregate_features, sliding_window
 
 
 def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
@@ -118,8 +118,8 @@ def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
 
 
 def expan_pitch(fft_time_series,
-                minf0=24,
-                maxf0=4200,
+                minf0=24.,
+                maxf0=4200.,
                 nharm=12,
                 ncand=5,
                 min_mag_cand=0.1,
@@ -229,7 +229,7 @@ def expan_pitch(fft_time_series,
 
         # calculate the energy of the harmonic components for each candidate
         for i in range(n_cand):
-            energy_harm[i] = np.sum(cand_mag[i, :]**2)
+            energy_harm[i] = np.sum(cand_mag[i, :]**2.)
 
         # choose the candidate with the highest harmonic energy
         i = np.argmax(energy_harm)
@@ -237,20 +237,19 @@ def expan_pitch(fft_time_series,
         # one last test, the noisiness for the winner candidate must be bellow
         # the noisiness threshold
         h_energy = energy_harm[i]
-        frame_energy = np.sum(fft_frame_mag**2)
-        frame_noisiness = 1 - (h_energy / frame_energy)
+        frame_energy = np.sum(fft_frame_mag**2.)
+        frame_noisiness = 1. - (h_energy / frame_energy)
 
         if frame_noisiness < noisiness_tresh:
             return ix_cand_harm[i, 0] * fft_time_series.max_frequency / N
         else:
-            return 0
+            return 0.
 
     pitch_time_series = aggregate_features(
         fft_time_series, frame_pitch)
 
     pitch_time_series.label = 'Pitch (HPS)'
     pitch_time_series.unit = 'Hz'
-
 
     return pitch_time_series
 
@@ -297,7 +296,7 @@ def crepe_pitch(audio,
 
     step = time[1] - time[0]
     print('step =', step)
-    fs = 1 / step
+    fs = 1. / step
     pitch_time_series = TimeSeries(
         fs, frequency, start_time=audio.start_time, unit='Hz')
 
@@ -326,11 +325,22 @@ def pitch_filter(pitch_time_series, delta_max=0.04):
 
     for idx in np.where(indexes_to_interp):
         pitch_filtered.data[idx] = (
-            pitch_filtered.data[idx + 1] + pitch_filtered.data[idx - 1]) / 2
+            pitch_filtered.data[idx + 1] + pitch_filtered.data[idx - 1]) / 2.
 
     # 2nd condition: one isolated point between zeros
     indexes_to_zero = ((data_previous == 0) & (data_next == 0))
 
-    pitch_filtered.data[indexes_to_zero] = 0
+    pitch_filtered.data[indexes_to_zero] = 0.
 
     return pitch_filtered
+
+
+def pitch_mode(pitch_time_series, window_size=8):
+    """
+    Apply a windowed mode to the pitch curve to remove noise.
+    """
+    def mode(x):
+        values, counts = np.unique(x, return_counts=True)
+        return values[np.argmax(counts)]
+
+    return sliding_window(pitch_time_series, window_size, 1, mode)
