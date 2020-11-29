@@ -13,15 +13,15 @@ from iracema.aggregation import aggregate_sucessive_samples
 from iracema.plot import plot_waveform_trio_features_and_points
 
 
-def adaptive_rms(audio,
-                 min_time=None,
-                 perc_threshold_pk=0.2,
-                 short_window = 512,
-                 long_window = 4096,
-                 hop=512,
-                 alpha=0.1,
-                 plot=False):
-    """
+def onsets_adaptive_rms(audio,
+                        min_time=None,
+                        perc_threshold_pk=0.2,
+                        short_window = 512,
+                        long_window = 4096,
+                        hop=512,
+                        alpha=0.1,
+                        plot=False):
+        """
     Extract the note onsets using the adaptive RMS method.
 
     Arguments
@@ -135,11 +135,11 @@ def odf_adaptive_rms(audio,
 
     return odf
 
-def extract_note_onsets_rms(audio,
-                            rms=None,
-                            min_time=None,
-                            perc_threshold_pk=0.2,
-                            plot=False):
+def onsets_rms_derivative(audio,
+                          rms=None,
+                          min_time=None,
+                          perc_threshold_pk=0.2,
+                          plot=False):
     """
     Extract note onsets from the ``audio`` time-series using its ``rms``.
     The RMS will be calculated if it's not passed as an argument. The argument
@@ -195,11 +195,11 @@ def extract_note_onsets_rms(audio,
     return onsets
 
 
-def extract_note_onsets_pitch(audio,
-                              pitch,
-                              min_time=None,
-                              delta_pitch_ratio=0.04,
-                              plot=False):
+def onsets_pitch_change(audio,
+                        pitch,
+                        min_time=None,
+                        delta_pitch_ratio=0.04,
+                        plot=False):
     """
     Extract note onsets from the ``audio`` time-series using its ``pitch``.
     The argument ``min_time`` can be used to specify the minimum distance (in
@@ -248,7 +248,7 @@ def extract_note_onsets_pitch(audio,
     return onsets
 
 
-def segment_notes_rms(audio, rms=None, min_time=None, perc_threshold_pk=0.05):
+def notes_rms_derivative(audio, rms=None, min_time=None, perc_threshold_pk=0.05):
     """
     Extract note segments from the ``audio`` time-series using its ``rms``.
     The RMS will be calculated if it's not passed as an argument. The argument
@@ -311,7 +311,7 @@ def segment_notes_rms(audio, rms=None, min_time=None, perc_threshold_pk=0.05):
     return notes
 
 
-def segment_notes_pitch(audio, pitch, min_time=None):
+def notes_pitch_variation(audio, pitch, min_time=None):
     """
     Extract note segments from the ``audio`` time-series using its ``pitch``. The
     pitch will be calculated if it's not passed as an argument. The argument
