@@ -335,7 +335,7 @@ def pitch_filter(pitch_time_series, delta_max=0.04):
     return pitch_filtered
 
 
-def pitch_mode(pitch_time_series, window_size=8):
+def pitch_mode(pitch_time_series, window=9):
     """
     Apply a windowed mode to the pitch curve to remove noise.
     """
@@ -343,4 +343,4 @@ def pitch_mode(pitch_time_series, window_size=8):
         values, counts = np.unique(x, return_counts=True)
         return values[np.argmax(counts)]
 
-    return sliding_window(pitch_time_series, window_size, 1, mode)
+    return sliding_window(pitch_time_series, window, 1, mode)
