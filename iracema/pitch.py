@@ -69,6 +69,11 @@ def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
     decimation : 'discard', 'mean' or 'interpolation'
         Type of decimation operation to be performed.
 
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series
+
     References
     ----------
     .. [Cuadra2001] De La Cuadra, P. Efficient pitch detection techniques for
@@ -146,6 +151,11 @@ def expan_pitch(fft_time_series,
         Noisiness treshold.
     perc_tol : float
         Tolerance percentage to search for harmonics.
+
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series
     """
     if minf0 >= maxf0:
         raise ValueError('The parameter maxf0 must be greater than minf0.')
@@ -280,6 +290,11 @@ def crepe_pitch(audio,
     viterbi : bool
         Viterbi smoothing for pitch curve.
 
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series.
+
     References
     ----------
     .. [Kim2018] Kim, J. W., Salamon, J., Li, P., & Bello, J. P. (2018). CREPE:
@@ -306,6 +321,16 @@ def crepe_pitch(audio,
 def pitch_filter(pitch_time_series, delta_max=0.04):
     """
     The pitch curve can be noisy, this function tries to smooth it.
+
+    Arguments
+    ---------
+    delta_max: int
+        Delta parameter for the smoothing algorithm.
+
+    Return
+    ------
+    pitch: TimeSeries
+        A smoothed pitch time series.
     """
     data = pitch_time_series.data
     data_previous = np.concatenate((np.zeros(1), data[0:-1]))
@@ -335,12 +360,22 @@ def pitch_filter(pitch_time_series, delta_max=0.04):
     return pitch_filtered
 
 
-def pitch_mode(pitch_time_series, window_size=8):
+def pitch_mode(pitch_time_series, window=9):
     """
     Apply a windowed mode to the pitch curve to remove noise.
+
+    Arguments
+    ---------
+    window: int
+        Length of the window for the calculation of the mode.
+
+    Return
+    ------
+    pitch: TimeSeries
+        A smoothed pitch time series.
     """
     def mode(x):
         values, counts = np.unique(x, return_counts=True)
         return values[np.argmax(counts)]
 
-    return sliding_window(pitch_time_series, window_size, 1, mode)
+    return sliding_window(pitch_time_series, window, 1, mode)
