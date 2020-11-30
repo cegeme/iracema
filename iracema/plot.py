@@ -56,7 +56,7 @@ def plot_spectrogram(fft,
     plt.subplots_adjust(hspace=0.05)
 
     # plotting spectrogram
-    add_spectrogram_to_axes(ax, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax, fft, logfft, fftlim)
 
     # show the resulting image
     f.show()
@@ -84,10 +84,10 @@ def plot_audio_spectrogram(audio,
     plt.subplots_adjust(hspace=0.05)
 
     # plotting curves
-    add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
     # show the resulting image
     f.show()
@@ -117,13 +117,13 @@ def plot_audio_spectrogram_f0(audio,
     plt.subplots_adjust(hspace=0.05)
 
     # plotting curves
-    add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
     # plotting fzero
-    add_curve_to_axes(ax2, fzero, fmt='r')
+    _add_curve_to_axes(ax2, fzero, fmt='r')
 
     # show the resulting image
     f.show()
@@ -154,16 +154,16 @@ def plot_audio_spectrogram_harmonics(audio,
     plt.subplots_adjust(hspace=0.05)
 
     # plotting curves
-    add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
     # plotting fzero
-    add_curve_to_axes(ax2, fzero)
+    _add_curve_to_axes(ax2, fzero)
 
     # plotting harmonics
-    add_curve_to_axes(ax2, harmonics)
+    _add_curve_to_axes(ax2, harmonics)
 
     # show the resulting image
     f.show()
@@ -179,8 +179,8 @@ def plot_waveform_and_notes(audio, notes):
     f = plt.figure(figsize=(15, 9))
     axes = f.subplots(1)
 
-    add_waveform_to_axes(axes, audio)
-    add_notes_to_axes(axes, notes)
+    _add_waveform_to_axes(axes, audio)
+    _add_notes_to_axes(axes, notes)
 
     f.show()
 
@@ -196,7 +196,7 @@ def plot_waveform_trio(audio, rms=None, peak_envelope=None):
     axes = plt.axes()
 
     # add waveform trio to first axes
-    add_waveform_trio_to_axes(axes, audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(axes, audio, rms, peak_envelope)
 
     plt.show()
 
@@ -221,11 +221,11 @@ def plot_waveform_trio_and_features(audio,
     plt.subplots_adjust(hspace=0.05)
 
     # add audio to first axes
-    add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
 
     # add features to the other axes
     for i, feature in enumerate(features, start=1):
-        add_curve_to_axes(
+        _add_curve_to_axes(
             axes_list[i], feature, label=feature.label)
         axes_list[i].legend(loc='lower right', fontsize='x-small')
 
@@ -246,13 +246,13 @@ def plot_waveform_trio_features_and_points(audio,
     axes_list = f.subplots(2, sharex=True)
 
     # add waveform trio to first axes
-    add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(axes_list[0], audio, rms, peak_envelope)
 
     # add feature
-    add_curve_to_axes(axes_list[1], feature, label=feature.label)
+    _add_curve_to_axes(axes_list[1], feature, label=feature.label)
     axes_list[1].legend(loc='lower right', fontsize='x-small')
 
-    add_points_to_axes(axes_list[1], point_list.time, point_list.get_values(feature))
+    _add_points_to_axes(axes_list[1], point_list.time, point_list.get_values(feature))
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
 
@@ -300,7 +300,7 @@ def plot_spectrogram_3d(fft, logfft=False, fftlim=None):
     return f
 
 
-def add_notes_to_axes(axes, notes):
+def _add_notes_to_axes(axes, notes):
     """
     Add note segments to the given ``axes``.
     """
@@ -309,7 +309,7 @@ def add_notes_to_axes(axes, notes):
         axes.plot(note.end_time, note.data[-1], 'vr')
 
 
-def add_curve_to_axes(axes,
+def _add_curve_to_axes(axes,
                       time_series,
                       fmt='b',
                       linewidth=None,
@@ -347,23 +347,23 @@ def add_curve_to_axes(axes,
                 time_series.time, row, fmt, linewidth=linewidth, alpha=alpha)
 
 
-def add_points_to_axes(axes, time, values):
+def _add_points_to_axes(axes, time, values):
     """
     Plot circle in the specified ``points``x``values`` for the ``axes``.
     """
     axes.plot(time, values, 'or')
 
 
-def add_waveform_to_axes(axes, audio):
+def _add_waveform_to_axes(axes, audio):
     """
     Add the waveform for the time-series `audio` to `axes`.
     """
 
     # adding the curves
-    add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
+    _add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
 
 
-def add_waveform_trio_to_axes(axes,
+def _add_waveform_trio_to_axes(axes,
                               audio,
                               rms=None,
                               peak_envelope=None,
@@ -378,20 +378,20 @@ def add_waveform_trio_to_axes(axes,
         peak_envelope or peak_envelope_(audio, window_size,
                                                    hop_size)
     # adding the curves
-    add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
-    add_curve_to_axes(axes, rms, fmt='r', label=rms.label, set_labels=False)
-    add_curve_to_axes(axes, peak_envelope, fmt='k', label=peak_envelope.label,
+    _add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
+    _add_curve_to_axes(axes, rms, fmt='r', label=rms.label, set_labels=False)
+    _add_curve_to_axes(axes, peak_envelope, fmt='k', label=peak_envelope.label,
                       set_labels=False)
 
     if show_legend:
         axes.legend(loc='lower right', ncol=2, fontsize='x-small')
 
 
-def add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
+def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
     "Add two vertical lines to the axes delimiting a segment extent."
 
 
-def add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):
+def _add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):
     """
     Add a spectrogram image to the axes
     """

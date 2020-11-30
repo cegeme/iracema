@@ -227,7 +227,7 @@ def spectral_centroid(fft):
 
     """
     def function(X):
-        return __spectral_centroid(X, fft.frequencies)
+        return _spectral_centroid(X, fft.frequencies)
 
     time_series = aggregate_features(fft, function)
     time_series.label = 'SpectralCentroid'
@@ -251,7 +251,7 @@ def spectral_spread(fft):
 
     """
     def function(X):
-        return __spectral_spread(X, fft.frequencies)
+        return _spectral_spread(X, fft.frequencies)
 
     time_series = aggregate_features(fft, function)
     time_series.label = 'SpectralSpread'
@@ -259,7 +259,7 @@ def spectral_spread(fft):
     return time_series
 
 
-def __spectral_centroid(X, f):
+def _spectral_centroid(X, f):
     """
     Calculate the spectral centroid for a fft frame `X`, being `f` the
     frequency corresponding to its bins.
@@ -271,12 +271,12 @@ def __spectral_centroid(X, f):
     return np.sum(f * abs_X) / sum_abs_X
 
 
-def __spectral_spread(X, f):
+def _spectral_spread(X, f):
     """
     Calculate the spectral spread for a fft frame `X`, being `f` the frequency
     corresponding to its bins.
     """
-    return np.sqrt(__spectral_centroid(X, (f - __spectral_centroid(X, f))**2))
+    return np.sqrt(_spectral_centroid(X, (f - _spectral_centroid(X, f))**2))
 
 
 
