@@ -112,7 +112,7 @@ html_show_sphinx = False
 # documentation.
 #
 html_theme_options = {
-    'collapse_navigation': False,
+    'collapse_navigation': True,
     'logo_only': True
 }
 

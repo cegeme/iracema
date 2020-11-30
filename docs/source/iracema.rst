@@ -1,4 +1,4 @@
-Iracema
+iracema
 =======
 
 .. automodule:: iracema
