@@ -235,9 +235,9 @@ class TimeSeries:
                                          filter_order=filter_order)
         return audio_filtered
 
-    def plot(self, line_width=None):
+    def plot(self, linewidth=1, alpha=0.9):
         "Plot the time series using matplotlib."
-        return plot_curve(self, linewidth=line_width)
+        return plot_curve(self, linewidth=linewidth, alpha=alpha)
 
     def time_to_sample_index(self, time):
         """
@@ -481,6 +481,15 @@ class Audio(TimeSeries):
                 '1 or 2'))
 
         super(Audio, self).__init__(fs, data=data, unit=self.unit)
+
+
+    def plot(self, linewidth=0.1, alpha=0.9):
+        """
+        Plot the time series using matplotlib.
+        Line width and alpha values can be set as optional parameters.
+        """
+        return plot_curve(self, linewidth=linewidth, alpha=alpha)
+
 
     def play(self):
         """

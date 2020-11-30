@@ -14,24 +14,19 @@ from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
 
 def plot_curve(time_series,
-        linewidth=None):
-    "Plot the time series using matplotlib."
+        linewidth=1,
+        alpha=0.9):
+    """
+    Plot the time series using matplotlib.
+    Line width and alpha values can be set as optional parameters.
+    """
     f = plt.figure(figsize=(15, 9))
     
-    if not linewidth:
-        size = time_series.nsamples / time_series.fs
-        if size < 1:
-            linewidth = abs(size -1)
-        elif size == 1:
-            linewidth = size
-        else:
-            linewidth = size ** -1
-
     plt.plot(time_series.time,
             time_series.data,
             label=time_series.label,
             linewidth=linewidth,
-            alpha=0.9)
+            alpha=alpha)
     if time_series.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
     plt.title(time_series.caption)
@@ -312,18 +307,11 @@ def add_notes_to_axes(axes, notes):
 def add_curve_to_axes(axes,
                       time_series,
                       fmt='b',
-                      linewidth=None,
+                      linewidth=1,
                       alpha=0.9,
                       label=None,
                       set_labels=True):
     "Add the curve for the given ``time_series`` to the given ``axes``."
-
-    if not linewidth:
-        size = time_series.nsamples / time_series.fs
-        if size <= 1:
-            linewidth = 1
-        else:
-            linewidth = size ** -0.1
 
     if set_labels:
         axes.set(ylabel=time_series.unit)
