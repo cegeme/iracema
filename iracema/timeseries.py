@@ -13,7 +13,7 @@ from iracema.util import conversion
 from iracema.util.dsp import but_filter
 from iracema.io.audiofile import read
 from iracema.io import player
-from iracema.plot import plot_curve
+from iracema.plot import waveform
 
 
 class TimeSeries:
@@ -237,7 +237,7 @@ class TimeSeries:
 
     def plot(self, linewidth=1, alpha=0.9):
         "Plot the time series using matplotlib."
-        return plot_curve(self, linewidth=linewidth, alpha=alpha)
+        return waveform(self, linewidth=linewidth, alpha=alpha)
 
     def time_to_sample_index(self, time):
         """
@@ -488,7 +488,7 @@ class Audio(TimeSeries):
         Plot the time series using matplotlib.
         Line width and alpha values can be set as optional parameters.
         """
-        return plot_curve(self, linewidth=linewidth, alpha=alpha)
+        return waveform(self, linewidth=linewidth, alpha=alpha)
 
 
     def play(self):
