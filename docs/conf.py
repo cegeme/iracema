@@ -43,7 +43,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo',
 
 # Hide source code link for plotting
 plot_html_show_source_link = False
-#plot_html_show_formats = False
+# plot_html_show_formats = False
 
 # Code that should be executed before each plot.
 plot_pre_code = """
@@ -113,7 +113,7 @@ html_show_sphinx = False
 #
 html_theme_options = {
     'collapse_navigation': True,
-    'logo_only': True
+    'logo_only': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
