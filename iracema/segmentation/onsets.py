@@ -31,27 +31,27 @@ def adaptive_rms(audio,
         Length of the short term window for the calculation of the RMS.
     long_window : int
         Length of the long term window for the calculation of the RMS.
-    hop:
+    hop : int
         Length of the hop for the sliding window.
-    alpha:
+    alpha : float
         Reduction factor for the long term RMS curve.
-    plot_rms_curves:
+    plot_rms_curves : bool
         Whether of not to plot the RMS curves used to calculate the ODF.
     min_time : float
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Ratio of the ODF maxima to be defined as a minimum threshold
         for the peak picking.
-    plot: bool
+    plot : bool
         Whether of not to plot the results.
-    return_odf_data: bool
+    return_odf_data : bool
         Whether or not to return the odf data.
 
     Return
     ------
-    onsets: PointList
+    onsets : PointList
         List of onsets.
-    odf_data: TimeSeries
+    odf_data : TimeSeries
         Time series containing the onset detection function obtained. This will
         only be returned if the argument `return_odf_data` has been set to
         True.
@@ -100,16 +100,16 @@ def rms_derivative(audio,
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Minimum threshold for the peak picking in the ODF curve.
-    plot: bool
+    plot : bool
         Whether of not to plot the results
-    return_odf_data: bool
+    return_odf_data : bool
         Whether or not to return the odf data
 
     Return
     ------
     onsets : list
         List of onset points.
-    odf_data: TimeSeries
+    odf_data : TimeSeries
         Time series containing the onset detection function obtained. This will
         only be returned if the argument `return_odf_data` has been set to
         True.
@@ -162,16 +162,16 @@ def pitch_variation(audio,
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Minimum threshold for the peak picking in the ODF curve
-    plot: bool
+    plot : bool
         Whether of not to plot the results
-    return_odf_data: bool
+    return_odf_data : bool
         Whether or not to return the odf data
 
     Return
     ------
     onsets : list
         List of onset points.
-    odf_data: TimeSeries
+    odf_data : TimeSeries
         Time series containing the onset detection function obtained. This will
         only be returned if the argument `return_odf_data` has been set to
         True.
@@ -218,8 +218,8 @@ def extract_from_odf(audio,
         ``'absolute'`` its value will be used directly as the threshold;
         else, if ``'relative_to_max'``, its value will be used to calculate
         the threshold, relative to the maximum value in the ODF curve, e.g.:
-        ``odf_threshold``==`0.2` set the threshold to 20% of the maximum value
-        of the ODF curve.
+        ``odf_threshold``==``0.2`` set the threshold to 20% of the maximum
+        value of the ODF curve.
     plot : bool
         Whether or not to plot the results.
 
