@@ -94,7 +94,7 @@ def plot_audio_spectrogram_f0(audio,
                               rms,
                               peak_envelope,
                               fft,
-                              fzero,
+                              pitch,
                               logfft=False,
                               fftlim=()):
     """
