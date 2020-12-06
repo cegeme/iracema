@@ -16,7 +16,7 @@ References
 import numpy as np
 import scipy.signal as sig
 
-from iracema.timeseries import TimeSeries
+from iracema.core.timeseries import TimeSeries
 from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
 from iracema.aggregation import aggregate_features, sliding_window
 

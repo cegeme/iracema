@@ -21,12 +21,13 @@ def waveform(time_series,
     Line width and alpha values can be set as optional parameters.
     """
     f = plt.figure(figsize=(15, 9))
-    
-    plt.plot(time_series.time,
-            time_series.data,
-            label=time_series.label,
-            linewidth=linewidth,
-            alpha=alpha)
+
+    plt.plot(
+        time_series.time,
+        time_series.data,
+        label=time_series.label,
+        linewidth=linewidth,
+        alpha=alpha)
     if time_series.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
     plt.title(time_series.caption)
@@ -220,8 +221,7 @@ def waveform_trio_and_features(audio,
 
     # add features to the other axes
     for i, feature in enumerate(features, start=1):
-        _add_curve_to_axes(
-            axes_list[i], feature, label=feature.label)
+        _add_curve_to_axes(axes_list[i], feature, label=feature.label)
         axes_list[i].legend(loc='lower right', fontsize='x-small')
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
@@ -247,7 +247,8 @@ def waveform_trio_features_and_points(audio,
     _add_curve_to_axes(axes_list[1], feature, label=feature.label)
     axes_list[1].legend(loc='lower right', fontsize='x-small')
 
-    _add_points_to_axes(axes_list[1], point_list.time, point_list.get_values(feature))
+    _add_points_to_axes(axes_list[1], point_list.time,
+                        point_list.get_values(feature))
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
 
@@ -305,12 +306,12 @@ def _add_notes_to_axes(axes, notes):
 
 
 def _add_curve_to_axes(axes,
-                      time_series,
-                      fmt='b',
-                      linewidth=1,
-                      alpha=0.9,
-                      label=None,
-                      set_labels=True):
+                       time_series,
+                       fmt='b',
+                       linewidth=1,
+                       alpha=0.9,
+                       label=None,
+                       set_labels=True):
     "Add the curve for the given ``time_series`` to the given ``axes``."
 
     if set_labels:
@@ -352,10 +353,10 @@ def _add_waveform_to_axes(axes, audio):
 
 
 def _add_waveform_trio_to_axes(axes,
-                              audio,
-                              rms=None,
-                              peak_envelope=None,
-                              show_legend=True):
+                               audio,
+                               rms=None,
+                               peak_envelope=None,
+                               show_legend=True):
     """
     The waveform trio consists in the curves ``audio``, ``rms`` and
     ``peak_evelope``. This method adds them to ``axes``.
@@ -368,8 +369,12 @@ def _add_waveform_trio_to_axes(axes,
     # adding the curves
     _add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
     _add_curve_to_axes(axes, rms, fmt='r', label=rms.label, set_labels=False)
-    _add_curve_to_axes(axes, peak_envelope, fmt='k', label=peak_envelope.label,
-                      set_labels=False)
+    _add_curve_to_axes(
+        axes,
+        peak_envelope,
+        fmt='k',
+        label=peak_envelope.label,
+        set_labels=False)
 
     if show_legend:
         axes.legend(loc='lower right', ncol=2, fontsize='x-small')

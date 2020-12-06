@@ -3,7 +3,7 @@ import scipy.signal as sig
 
 import iracema.features
 import iracema.pitch
-import iracema.segment
+import iracema.core.segment
 
 from iracema.plot import waveform_trio_features_and_points
 from iracema.segmentation.odfs import (odf_rms_derivative, odf_pitch_change,
@@ -252,8 +252,8 @@ def extract_from_odf(audio,
     ix_onsets, _ = sig.find_peaks(
         odf_data.data, height=threshold, distance=min_dist)
 
-    onsets = iracema.segment.PointList(
-        [iracema.segment.Point(odf_data, position) for position in ix_onsets])
+    onsets = iracema.core.segment.PointList(
+        [iracema.core.segment.Point(odf_data, position) for position in ix_onsets])
 
     if plot:
         waveform_trio_features_and_points(audio, odf_data, onsets)
