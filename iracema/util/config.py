@@ -27,10 +27,9 @@ class ConfigLoader():
         self._samples_path = os.path.abspath(Path(path))
 
     @classmethod
-    def load_default_config(cls, iracema_root):
+    def get_default_config_loader(cls, iracema_root):
         """
         Factory method to instantiate a default config object.
         """
         relative_samples_path = Path('..', 'audio', 'iracema-audio')
-        return ConfigLoader(
-            samples_path=Path(iracema_root / relative_samples_path))
+        return cls(Path(iracema_root / relative_samples_path))
