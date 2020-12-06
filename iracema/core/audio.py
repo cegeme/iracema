@@ -4,7 +4,6 @@ Definition of the class Audio.
 from iracema.core.timeseries import TimeSeries
 from iracema.io.audiofile import read
 from iracema.io import player
-from iracema.plot import plot_curve
 
 
 class Audio(TimeSeries):
@@ -82,14 +81,12 @@ class Audio(TimeSeries):
 
         super(Audio, self).__init__(fs, data=data, unit=self.unit)
 
-
-    def plot(self, linewidth=0.1, alpha=0.9):
+    def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
         Plot the time series using matplotlib.
         Line width and alpha values can be set as optional parameters.
         """
-        return plot_curve(self, linewidth=linewidth, alpha=alpha)
-
+        return super(Audio, self).plot(linewidth=linewidth, alpha=alpha, **kwargs)
 
     def play(self):
         """
@@ -114,4 +111,3 @@ class Audio(TimeSeries):
         Stop playing audio.
         """
         player.stop()
-

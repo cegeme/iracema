@@ -52,7 +52,7 @@ def peak_envelope(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         An audio time-series object.
     window_size : int
     hop_size : int
@@ -80,7 +80,7 @@ def rms(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         A time-series object. It is usually applied on Audio objects.
     window_size : int
     hop_size : int
@@ -114,7 +114,7 @@ def zcr(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         A time-series object. It is usually applied on Audio objects.
     window_size : int
     hop_size : int

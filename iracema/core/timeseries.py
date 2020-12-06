@@ -10,7 +10,7 @@ import resampy
 from iracema.core.segment import Segment
 from iracema.util import conversion
 from iracema.util.dsp import but_filter
-from iracema.plot import waveform
+from iracema.plot import line_plot
 
 
 class TimeSeries:
@@ -234,9 +234,9 @@ class TimeSeries:
             filter_order=filter_order)
         return audio_filtered
 
-    def plot(self, linewidth=1, alpha=0.9):
+    def plot(self, linewidth=1, alpha=0.9, **kwargs):
         "Plot the time series using matplotlib."
-        return waveform(self, linewidth=linewidth, alpha=alpha)
+        return line_plot(self, linewidth=linewidth, alpha=alpha, **kwargs)
 
     def time_to_sample_index(self, time):
         """

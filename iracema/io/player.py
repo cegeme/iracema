@@ -16,7 +16,7 @@ def play(audio_time_series, blocking=False):
 
     Args
     ----
-    audio_time_series: iracema.audio.Audio
+    audio_time_series: iracema.core.audio.Audio
     blocking: bool
     """
     return _play_stream(audio_time_series, blocking=blocking)
@@ -30,8 +30,8 @@ def play_with_clicks(audio_time_series, points, click_file=None, blocking=False)
 
     Args
     ----
-    audio_time_series: iracema.timeseries.Audio
-    points: iracema.segments.PointList
+    audio_time_series: iracema.core.audio.Audio
+    points: iracema.core.point.PointList
     click_file: string
     blocking: bool
     """
@@ -55,7 +55,7 @@ def play_interval_samples(audio_time_series, from_sample, to_sample,
 
     Args
     ----
-    audio_time_series: iracema.timeseries.Audio
+    audio_time_series: iracema.core.audio.Audio
     from_sample: int
     to_sample: int
     soft_start: bool
@@ -77,7 +77,7 @@ def play_interval_seconds(audio_time_series, from_seconds, to_seconds,
 
     Args
     ----
-    audio_time_series: iracema.timeseries.Audio
+    audio_time_series: iracema.core.audio.Audio
     from_seconds: int
     to_seconds: int
     soft_start: bool

@@ -13,9 +13,7 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
 
-def waveform(time_series,
-        linewidth=1,
-        alpha=0.9):
+def line_plot(time_series, linewidth=1, alpha=0.9, **kwargs):
     """
     Plot the time series using matplotlib.
     Line width and alpha values can be set as optional parameters.
@@ -27,7 +25,8 @@ def waveform(time_series,
         time_series.data,
         label=time_series.label,
         linewidth=linewidth,
-        alpha=alpha)
+        alpha=alpha,
+        **kwargs)
     if time_series.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
     plt.title(time_series.caption)
@@ -38,9 +37,7 @@ def waveform(time_series,
     return f
 
 
-def spectrogram(fft,
-        logfft=False,
-        fftlim=()):
+def spectrogram(fft, logfft=False, fftlim=()):
     """
     Plot the spectrogram of the audio signal.
     """
@@ -61,11 +58,11 @@ def spectrogram(fft,
 
 
 def waveform_spectrogram(audio,
-        fft,
-        logfft=False,
-        rms=None,
-        peak_envelope=None,
-        fftlim=()):
+                         fft,
+                         logfft=False,
+                         rms=None,
+                         peak_envelope=None,
+                         fftlim=()):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
@@ -91,13 +88,13 @@ def waveform_spectrogram(audio,
     return f
 
 
-def waveform_spectrogram_f0(audio, 
-        rms,
-        peak_envelope,
-        fft,
-        pitch,
-        logfft=False,
-        fftlim=()):
+def waveform_spectrogram_f0(audio,
+                            rms,
+                            peak_envelope,
+                            fft,
+                            pitch,
+                            logfft=False,
+                            fftlim=()):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
@@ -118,7 +115,7 @@ def waveform_spectrogram_f0(audio,
     # plotting spectrogram
     _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
-    # plotting pitch 
+    # plotting pitch
     _add_curve_to_axes(ax2, pitch, fmt='r')
 
     # show the resulting image
@@ -128,13 +125,13 @@ def waveform_spectrogram_f0(audio,
 
 
 def waveform_spectrogram_harmonics(audio,
-        rms,
-        peak_envelope,
-        fft,
-        pitch,
-        harmonics,
-        logfft=False,
-        fftlim=()):
+                                   rms,
+                                   peak_envelope,
+                                   fft,
+                                   pitch,
+                                   harmonics,
+                                   logfft=False,
+                                   fftlim=()):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
@@ -155,7 +152,7 @@ def waveform_spectrogram_harmonics(audio,
     # plotting spectrogram
     _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
-    # plotting pitch 
+    # plotting pitch
     _add_curve_to_axes(ax2, pitch)
 
     # plotting harmonics
@@ -198,9 +195,9 @@ def waveform_trio(audio, rms=None, peak_envelope=None):
 
 
 def waveform_trio_and_features(audio,
-        rms=None,
-        peak_envelope=None,
-        features=()):
+                               rms=None,
+                               peak_envelope=None,
+                               features=()):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``; followed by a series of graphs, one for each time-series
@@ -232,10 +229,10 @@ def waveform_trio_and_features(audio,
 
 
 def waveform_trio_features_and_points(audio,
-        feature,
-        point_list,
-        rms=None,
-        peak_envelope=None):
+                                      feature,
+                                      point_list,
+                                      rms=None,
+                                      peak_envelope=None):
     # configuring figure and subplots
     f = plt.figure(figsize=(15, 9))
     axes_list = f.subplots(2, sharex=True)
@@ -382,7 +379,7 @@ def _add_waveform_trio_to_axes(axes,
 
 def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
     "Add two vertical lines to the axes delimiting a segment extent."
-
+    pass
 
 def _add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):
     """

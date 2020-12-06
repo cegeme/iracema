@@ -1,8 +1,7 @@
-iracema.timeseries
+iracema.core.audio
 ==================
 
-.. automodule:: iracema.timeseries
+.. automodule:: iracema.core.audio
     :members:
     :undoc-members:
     :show-inheritance:
-

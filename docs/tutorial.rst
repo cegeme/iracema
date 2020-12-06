@@ -26,7 +26,7 @@ Loading audio files
 To load an audio file, you must provide a string that specifies the location
 where it is stored. Iracema accepts local paths to load files stored in your
 computer or http URL to download remote files. It can be done instantiating
-an object of the class :obj:`~iracema.timeseries.Audio`.
+an object of the class :obj:`~iracema.core.audio.Audio`.
 
 .. plot::
    :include-source:
@@ -70,7 +70,7 @@ Other useful methods are RMS and Peak Envelope, which will be extracted and plot
    fft = ir.spectral.fft(audio, window, hop)
   
    # plotting the spectrogram
-   ir.plot.plot_spectrogram(fft)
+   ir.plot.spectrogram(fft)
   
    # calculating the RMS
    rms = ir.features.rms(audio, window, hop)

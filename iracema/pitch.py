@@ -276,7 +276,7 @@ def crepe_pitch(audio,
 
     Args
     ----
-    audio : iracema.audio.Audio
+    audio : iracema.core.audio.Audio
         Audio time series.
     step_size : float
         Length of the time steps for the pitch extraction.
