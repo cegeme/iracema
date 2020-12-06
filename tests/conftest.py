@@ -23,7 +23,6 @@ def audio03():
 def audio_url():
     return Audio('https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
 
-
 def pytest_addoption(parser):
     parser.addoption(
         "--no-audio-play", action="store_true", default=False, help="do not run tests that play audio"
@@ -31,7 +30,6 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     config.addinivalue_line("markers", "audio-play: mark test that plays audio")
-
 
 def pytest_collection_modifyitems(config, items):
     if config.getoption("--no-audio-play"):
