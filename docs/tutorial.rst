@@ -12,6 +12,14 @@ Usage
 
 This section presents a quickstart guide to *iracema*.
 
+Importing iracema
+=================
+
+Throughout this documentation, the code samples will assume that iracema has been
+already imported using the following statement:
+
+>>> import iracema as ir
+
 Loading audio files
 ===================
 
@@ -24,8 +32,8 @@ an object of the class :obj:`~iracema.timeseries.Audio`.
    :include-source:
    :context: close-figs
    
-   import iracema
-   audio = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+   import iracema as ir
+   audio = ir.Audio("05 - Trumpet - Haydn.wav")
 
 To play the loaded audio:
 
@@ -59,19 +67,19 @@ Other useful methods are RMS and Peak Envelope, which will be extracted and plot
    window, hop = 2048, 1024
   
    # calculating the FFT
-   fft = iracema.spectral.fft(audio, window, hop)
+   fft = ir.spectral.fft(audio, window, hop)
   
    # plotting the spectrogram
-   iracema.plot.plot_spectrogram(fft)
+   ir.plot.plot_spectrogram(fft)
   
    # calculating the RMS
-   rms = iracema.features.rms(audio, window, hop)
+   rms = ir.features.rms(audio, window, hop)
   
    # plotting the RMS
    rms.plot()
 
    # calculating the Peak Envelope
-   peak = iracema.features.peak_envelope(audio, window, hop)
+   peak = ir.features.peak_envelope(audio, window, hop)
 
    # plotting the Peak Envelope
    peak.plot()
@@ -89,10 +97,10 @@ Notice that the harmonics methods return a dictionary, with it's keys correspond
 .. code:: python
   
   # extract pitch
-  hps_pitch = iracema.pitch.hps(fft, minf0=1, maxf0=1000)
+  hps_pitch = ir.pitch.hps(fft, minf0=1, maxf0=1000)
 
   #extract harmonics
-  harmonics = iracema.harmonics.extract(fft, hps_pitch)
+  harmonics = ir.harmonics.extract(fft, hps_pitch)
 
 .. _architecture:
 

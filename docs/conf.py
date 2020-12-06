@@ -38,16 +38,29 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo',
               'sphinx.ext.coverage', 'sphinx.ext.mathjax',
               'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
               'sphinx.ext.githubpages', 'sphinxcontrib.napoleon',
-              'matplotlib.sphinxext.plot_directive',
+              'matplotlib.sphinxext.plot_directive', 'sphinx.ext.doctest'
               ]
 
 # Hide source code link for plotting
 plot_html_show_source_link = False
 # plot_html_show_formats = False
 
+# setup code for doctest
+doctest_global_setup = """
+import iracema as ir
+import os
+from pathlib import Path
+samples_path = Path(iracema.root, '..', 'audio', 'iracema-audio')
+os.chdir(samples_path)
+"""
+
 # Code that should be executed before each plot.
 plot_pre_code = """
-import iracema
+import iracema as ir
+import os
+from pathlib import Path
+samples_path = Path(ir.root, '..', 'audio', 'iracema-audio')
+os.chdir(samples_path)
 """
 
 # Add any paths that contain templates here, relative to this directory.
