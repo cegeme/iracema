@@ -3,16 +3,13 @@ Implementation of time series.
 """
 
 import copy as cp
-from os import path
 
 import numpy as np
 import resampy
 
-from iracema.segment import Segment
+from iracema.core.segment import Segment
 from iracema.util import conversion
 from iracema.util.dsp import but_filter
-from iracema.io.audiofile import read
-from iracema.io import player
 from iracema.plot import waveform
 
 
@@ -201,7 +198,7 @@ class TimeSeries:
         new_ts = self.copy()
         new_ts.data = np.concatenate((new_ts.data, padding_array.data))
         return new_ts
-        
+
     def resample_and_pad_like(self, timeseries):
         """
         Resample and pad the end of the current time series to match
@@ -210,16 +207,17 @@ class TimeSeries:
         new_ts = self.resample(timeseries.fs)
         new_ts = new_ts.pad_like(timeseries)
         return new_ts
-    
-    def filter(self, critical_frequency, filter_type='low_pass', filter_order=4):
+
+    def filter(self,
+               critical_frequency,
+               filter_type='low_pass',
+               filter_order=4):
         """
         Filters the time series using a butterworth digital filter. This is
         a wrapper over ``scipy.signal.butter``.
 
         Arguments
         ---------
-        audio: Audio
-            Audio time series.
         critical_frequency: float
             The critical frequency of frequencies.
         filter_type: [‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’]
@@ -228,11 +226,12 @@ class TimeSeries:
             The order of the filter.
         """
         audio_filtered = self.copy()
-        audio_filtered.data = but_filter(self.data,
-                                         self.fs,
-                                         critical_frequency,
-                                         filter_type=filter_type,
-                                         filter_order=filter_order)
+        audio_filtered.data = but_filter(
+            self.data,
+            self.fs,
+            critical_frequency,
+            filter_type=filter_type,
+            filter_order=filter_order)
         return audio_filtered
 
     def plot(self, linewidth=1, alpha=0.9):
@@ -263,8 +262,7 @@ class TimeSeries:
         TimeSeries object.
         """
         if type(sl) == Segment:
-            time_offset = conversion.sample_index_to_seconds(
-                sl.start, sl.fs)
+            time_offset = conversion.sample_index_to_seconds(sl.start, sl.fs)
             sl = sl.generate_slice(self)
         elif (type(sl) == slice):
             index_start = sl.start or sl.stop
@@ -410,114 +408,7 @@ class TimeSeries:
         self.start_time += seconds
 
 
-class Audio(TimeSeries):
-    """
-    Stores audio data, which can be loaded from a file or an array.
-
-    Parameters
-    ----------
-    file_location : str, optional
-        Location from where the file will be loaded. The string might
-        contain a path pointing to a local file or an http URL referencing
-        a remote file.
-    data : np.array
-        Data vector containing the audio data to be loaded.
-    fs : int, optional
-        Sampling frequency of the data.
-    caption : str, optional
-        caption for the audio file loaded (optional).
-
-    Examples
-    --------
-    There are two different ways to initialize an Audio object: from
-    audio files or from NumPy arrays.
-
-    To initialize it using an audio file, you just need to pass the location
-    from which the file must be loaded:
-
-    >>> a1 = Audio('~/audio/03 - Clarinet - Fast Excerpt.wav'')
-
-    Alternatively the location can be specified trough an http URL:
-
-    >>> url = 'https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
-    >>> a1 = Audio(url)
-
-    To initialize it using a NumPy array, two arguments are necessary: the
-    ``data`` array and the sampling frequency ``fs``:
-
-    >>> a2 = Audio(clarinet_data, 44100)
-
-    There is also the optional parameter ``caption`` which is a
-    textual description used for plotting and displaying reports
-    about the audio file. In case you load the audio from a file
-    and don't specify a caption, the filename will be assigned to
-    it.
-    """
-    def __init__(self, *args, **kwargs):
-        """
-        Constructor for Audio class.
-        """
-        self.unit = 'amplitude'
-        self.label = 'waveform'
-
-        nargs = len(args)
-        caption = kwargs.get('caption', None)
-
-        # one argument: file name
-        if nargs == 1:
-            filename = args[0]
-            data, fs, basename = read(filename)
-            self.filename = basename
-            self.caption = caption or self.filename
-
-        # two arguments: an array and a sampling frequency
-        elif nargs == 2:
-            data, fs = args[0], args[1]
-            self.filename, self.caption = None, caption
-
-        else:
-            raise (TypeError(
-                'invalid number of positional arguments: should be '
-                '1 or 2'))
-
-        super(Audio, self).__init__(fs, data=data, unit=self.unit)
-
-
-    def plot(self, linewidth=0.1, alpha=0.9):
-        """
-        Plot the time series using matplotlib.
-        Line width and alpha values can be set as optional parameters.
-        """
-        return waveform(self, linewidth=linewidth, alpha=alpha)
-
-
-    def play(self):
-        """
-        Play audio from Audio object.
-        """
-        return player.play(self)
-
-    def play_from_time(self, from_time):
-        """
-        Play audio from Audio object start at time ``from_time``.
-        """
-        return player.play_interval_seconds(self, from_time, None)
-
-    def play_segment(self, segment):
-        """
-        Play segment from Audio obejct.
-        """
-        return player.play_interval_seconds(self, segment.start_time, segment.end_time)
-
-    def stop(self):
-        """
-        Stop playing audio.
-        """
-        player.stop()
-
-
 class DimensionalityError(Exception):
     """
     Exception raised for errors in dimensionality of arays
     """
-    pass
