@@ -264,8 +264,8 @@ def extract_from_odf(
     ix_onsets, _ = sig.find_peaks(
         odf_data.data, height=threshold, distance=min_dist)
 
-    onsets = iracema.core.segment.PointList([
-        iracema.core.segment.Point(odf_data, position)
+    onsets = iracema.core.point.PointList([
+        iracema.core.point.Point(odf_data, position)
         for position in ix_onsets
     ])
 
