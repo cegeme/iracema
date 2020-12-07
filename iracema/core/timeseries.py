@@ -85,7 +85,6 @@ class TimeSeries:
                 "the sampling frequency (fs) must be greater than zero")
 
         self.data = None
-
         self.fs = np.float_(fs)
         self.start_time = 0 if start_time is None else np.float_(start_time)
 
@@ -257,11 +256,9 @@ class TimeSeries:
     def __repr__(self):
         """Representation for TimeSeries object."""
         class_name = self.__class__.__name__
-        dim = '(nfeatures={}, nsamples={})'.format(self.nfeatures,
-                                                   self.nsamples)
-        other = 'fs={}, unit={}, label={}'.format(self.fs, self.unit,
-                                                  self.label)
-        return '{}: {}, {}'.format(class_name, dim, other)
+        dim = f"({self.nfeatures}, {self.nsamples})"
+        other = f"fs={self.fs}, unit={self.unit}, label={self.label}"
+        return f"{class_name}: {dim}, {other}"
 
     def __getitem__(self, sl):
         """
