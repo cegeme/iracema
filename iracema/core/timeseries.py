@@ -62,8 +62,23 @@ class TimeSeries:
     caption = ''
     label = ''
 
-    def __init__(self, fs, data=None, start_time=0., unit=None):
+    def __init__(self, fs, data=None, start_time=0., unit=None, caption=None):
         """
+        Args
+        ----
+        fs : float
+            Sampling frequency for the data.
+        data : numpy array, optional
+            Data array sampled at ``fs`` Hz. If this argument is not provided,
+            the method _write_data() must be called after the initialization to
+            set the data array.
+        start_time : float, optional
+            The time in seconds the time series start, relative to the original
+            time reference.
+        unit : str, optional
+            Unit name for plotting the data of the time series.
+        caption : str, optional
+            Text caption for the time series.
         """
         if fs <= 0:
             raise ValueError(
@@ -76,7 +91,8 @@ class TimeSeries:
 
         if unit:
             self.unit = unit
-
+        if caption:
+            self.caption = caption
         if data is not None:
             self._write_data(data)
 
