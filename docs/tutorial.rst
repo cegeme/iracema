@@ -12,11 +12,11 @@ Usage
 
 This section presents a quickstart guide to *iracema*.
 
-Importing iracema
-=================
+Import conventions
+==================
 
-Throughout this documentation, the code samples will assume that iracema has been
-already imported using the following statement:
+Throughout this documentation, all the code examples will assume that iracema has been
+imported using the following convention.
 
 >>> import iracema as ir
 
@@ -25,15 +25,15 @@ Loading audio files
 
 To load an audio file, you must provide a string that specifies the location
 where it is stored. Iracema accepts local paths to load files stored in your
-computer or http URL to download remote files. It can be done instantiating
-an object of the class :obj:`~iracema.core.audio.Audio`.
+computer or http URL to download remote files. The class ``ir.Audio``
+provides the method ``load`` for this purpose.
 
 .. plot::
    :include-source:
    :context: close-figs
    
    import iracema as ir
-   audio = ir.Audio("05 - Trumpet - Haydn.wav")
+   audio = ir.Audio.load("05 - Trumpet - Haydn.wav")
 
 To play the loaded audio:
 
@@ -52,10 +52,11 @@ The audio object has a plot method available that displays its waveform:
 Calculating basic features
 ==========================
 
-As most features will need a FFT as input, the second step should be calculating it for the audio
-you've just loaded. For being able to do it, you must specify the sliding window and hop size 
-values (in samples).
-After calculating the FFT you're now able to plot a spectogram!
+As most features will need an object containing an :abbr:`FFT (Fast Fourier
+Transform)` as input, our next step is calculating it using the method
+:obj:`ir.spectral.fft` for the loaded audio. You
+must specify the sliding window and hop size values (in samples). After
+calculating the FFT you're now able to plot a spectogram!
 
 Other useful methods are RMS and Peak Envelope, which will be extracted and plotted in the example.
 
