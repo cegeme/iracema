@@ -1,5 +1,6 @@
 """
-Contain classes used to extract and manipulate segments.
+This module contain classes used to manipulate segments and slice TimeSeries
+objects using them.
 """
 
 from iracema.util import conversion
@@ -10,29 +11,34 @@ class Segment:
     The objects generated from this class are used to retrieve excerpts from
     time-series.
 
-    The `start` and `end` arguments can be specified in terms of sample index
-    or time (in seconds). The argument `limits_unit` must be set accordingly.
-
-    Args
-    ----
-    time_series : TimeSeries
-        Original time series related to the segment.
-    start : int or float
-        Index (or sample number) corresponding to the start of the segment in
-        the time-series from which it derived. Alternatively, this value can
-        be specified in seconds.
-    end : int or float
-        Index of the ending sample for the segment. Alternatively, this value
-        can be specified in seconds.
-    limits_unit : ("sample_index", "seconds")
-        If 'sample_index' is passed (default), the arguments `start` and `end`
-        must be integers corresponding to sample indexes whitin `time_series`.
-        Else, if 'seconds' is passed, both arguments must correspond to the
-        time of these limits, in seconds.
+    .. Hint:: This class is also available at the main package level as
+        ``iracema.Segment``.
     """
     def __init__(self, time_series, start, end, limits_unit='sample_index'):
+        """
+        The `start` and `end` arguments can be specified in terms of sample
+        index or time (in seconds). The argument `limits_unit` must be set
+        accordingly.
+
+        Args
+        ----
+        time_series : TimeSeries
+            Original time series related to the segment.
+        start : int or float
+            Index (or sample number) corresponding to the start of the segment
+            in the time-series from which it derived. Alternatively, this
+            value can be specified in seconds.
+        end : int or float
+            Index of the ending sample for the segment. Alternatively, this
+            value can be specified in seconds.
+        limits_unit : ("sample_index", "seconds")
+            If 'sample_index' is passed (default), the arguments `start` and
+            `end` must be integers corresponding to sample indexes whitin
+            `time_series`. Else, if 'seconds' is passed, both arguments must
+            correspond to the time of these limits, in seconds.
+        """
         if limits_unit not in ('sample_index', 'seconds'):
-            raise ValueError("invalid value for `limits_unit` argument: must" +
+            raise ValueError("invalid value for `limits_unit` argument: must"
                              " be 'sample_index' or 'seconds'")
 
         if end is not None and start > end:
@@ -43,7 +49,7 @@ class Segment:
 
         if limits_unit == 'sample_index':
             if type(start) != int or type(end) != int:
-                raise ValueError("`start` and `end` must be of type int when" +
+                raise ValueError("`start` and `end` must be of type int when"
                                  "`limits_unit`=='sample_index'")
             self.start = start
             self.end = end
@@ -95,7 +101,15 @@ class Segment:
 class SegmentList(list):
     """
     List of segments.
-    """
 
+    .. Hint:: This class is also available at the main package level as
+        ``iracema.SegmentList``.
+    """
     def __init__(self, segment_list):
+        """
+        Args
+        ----
+        point_list : list[Segment]
+            A list of segments.
+        """
         super(SegmentList, self).__init__(segment_list)

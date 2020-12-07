@@ -1,5 +1,5 @@
 """
-Implementation of time series.
+This module contains the implementation of the class TimeSeries.
 """
 
 import copy as cp
@@ -15,20 +15,11 @@ from iracema.plot import line_plot
 
 class TimeSeries:
     """
-    Base class for time series objects, which can represent synchronous
-    discrete time series.
+    Class for storing and manipulating time series objects, which
+    model synchronous discrete time series.
 
-    Args
-    ----
-    fs : float
-        Sampling frequency for the data.
-    data : numpy array, optional
-        Data array sampled at ``fs`` Hz. If this argument is not provided,
-        the method _write_data() must be called after the initialization to
-        set the data array.
-    start_time : float, optional
-        The time in seconds the time series start, relative to the original
-        time reference.
+    .. Hint:: This class is also available at the main package level as
+        ``iracema.TimeSeries``.
 
     Attributes
     ----------

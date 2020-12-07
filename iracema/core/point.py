@@ -1,7 +1,6 @@
 """
-Contain classes used to extract and manipulate points.
+This module contain classes used to manipulate points in TimeSeries objects.
 """
-
 import numpy as np
 
 from iracema.util import conversion
@@ -13,20 +12,25 @@ class Point:
     sample index. It is flexible enough to locate samples corresponding to the
     same instant in time series with different sampling rates.
 
-    Args
-    ----
-    time_series : TimeSeries
-        Original time series related to the point.
-    position : int or float
-        Index (or sample number) corresponding to the position of the point in
-        the time-series from which it derived. Alternatively, this value can
-        be specified in seconds.
-    unit : ("sample_index", "seconds")
-        If 'sample_index' is passed (default), the argument `position` must be
-        an integer corresponding to a sample index whitin `time_series`. Else,
-        if 'seconds' is passed, `position` must be specified in terms of time.
+    .. Hint:: This class is also available at the main package level as
+        ``iracema.Point``.
     """
     def __init__(self, time_series, position, unit='sample_index'):
+        """
+        Args
+        ----
+        time_series : TimeSeries
+            Original time series related to the point.
+        position : int or float
+            Index (or sample number) corresponding to the position of the point
+            in the time-series from which it derived. Alternatively, this value
+            can be specified in seconds.
+        unit : ("sample_index", "seconds")
+            If 'sample_index' is passed (default), the argument `position` must
+            be an integer corresponding to a sample index whitin `time_series`.
+            Else, if 'seconds' is passed, `position` must be specified in terms
+            of time.
+        """
         if unit not in ('sample_index', 'seconds'):
             raise ValueError("invalid value for `unit` argument: must" +
                              " be 'sample_index' or 'seconds'")
@@ -65,8 +69,17 @@ class Point:
 class PointList(list):
     """
     List of points.
+
+    .. Hint:: This class is also available at the main package level as
+        ``iracema.PointList``.
     """
     def __init__(self, point_list):
+        """
+        Args
+        ----
+        point_list : list[Point]
+            A list of points.
+        """
         super(PointList, self).__init__(point_list)
 
     @classmethod
