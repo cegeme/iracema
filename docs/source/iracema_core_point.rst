@@ -1,7 +1,7 @@
-iracema.point
-=============
+iracema.core.point
+==================
 
-.. automodule:: iracema.point
+.. automodule:: iracema.core.point
     :members:
     :undoc-members:
     :show-inheritance:
