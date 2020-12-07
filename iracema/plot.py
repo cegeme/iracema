@@ -12,21 +12,25 @@ from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
+DEFAULT_FIG_SIZE = (9, 9)
 
-def plot_curve(time_series,
-        linewidth=1,
-        alpha=0.9):
+
+def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
     """
     Plot the time series using matplotlib.
     Line width and alpha values can be set as optional parameters.
     """
-    f = plt.figure(figsize=(15, 9))
-    
-    plt.plot(time_series.time,
-            time_series.data,
-            label=time_series.label,
-            linewidth=linewidth,
-            alpha=alpha)
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
+
+    plt.plot(
+        time_series.time,
+        time_series.data,
+        label=time_series.label,
+        linewidth=linewidth,
+        alpha=alpha,
+        **kwargs)
     if time_series.label:
         plt.legend(loc='lower right', ncol=2, fontsize='x-small')
     plt.title(time_series.caption)
@@ -37,14 +41,14 @@ def plot_curve(time_series,
     return f
 
 
-def plot_spectrogram(fft,
-                     logfft=False,
-                     fftlim=()):
+def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
     """
     Plot the spectrogram of the audio signal.
     """
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     ax = f.subplots(1)
 
@@ -59,19 +63,22 @@ def plot_spectrogram(fft,
     return f
 
 
-def plot_audio_spectrogram(audio,
-                           fft,
-                           logfft=False,
-                           rms=None,
-                           peak_envelope=None,
-                           fftlim=()):
+def waveform_spectrogram(audio,
+                         fft,
+                         logfft=False,
+                         rms=None,
+                         peak_envelope=None,
+                         fftlim=(),
+                         figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal.
     """
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     (ax1, ax2) = f.subplots(
         2, sharex=True, gridspec_kw={'height_ratios': [1, 3.5]})
@@ -90,21 +97,23 @@ def plot_audio_spectrogram(audio,
     return f
 
 
-def plot_audio_spectrogram_f0(audio,
-                              rms,
-                              peak_envelope,
-                              fft,
-                              pitch,
-                              logfft=False,
-                              fftlim=()):
+def waveform_spectrogram_f0(audio,
+                            rms,
+                            peak_envelope,
+                            fft,
+                            pitch,
+                            logfft=False,
+                            fftlim=(),
+                            figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
-    of the audio signal and its fundamental frequency  `fzero`.
+    of the audio signal and its fundamental frequency  `pitch`.
     """
-
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     (ax1, ax2) = f.subplots(
         2, sharex=True, gridspec_kw={'height_ratios': [1, 3.5]})
@@ -117,8 +126,8 @@ def plot_audio_spectrogram_f0(audio,
     # plotting spectrogram
     _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
-    # plotting fzero
-    _add_curve_to_axes(ax2, fzero, fmt='r')
+    # plotting pitch
+    _add_curve_to_axes(ax2, pitch, fmt='r')
 
     # show the resulting image
     f.show()
@@ -126,22 +135,24 @@ def plot_audio_spectrogram_f0(audio,
     return f
 
 
-def plot_audio_spectrogram_harmonics(audio,
-                                     rms,
-                                     peak_envelope,
-                                     fft,
-                                     fzero,
-                                     harmonics,
-                                     logfft=False,
-                                     fftlim=()):
+def waveform_spectrogram_harmonics(audio,
+                                   rms,
+                                   peak_envelope,
+                                   fft,
+                                   pitch,
+                                   harmonics,
+                                   logfft=False,
+                                   fftlim=(),
+                                   figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its `harmonics`.
     """
-
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     (ax1, ax2) = f.subplots(
         2, sharex=True, gridspec_kw={'height_ratios': [1, 3.5]})
@@ -154,8 +165,8 @@ def plot_audio_spectrogram_harmonics(audio,
     # plotting spectrogram
     _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
 
-    # plotting fzero
-    _add_curve_to_axes(ax2, fzero)
+    # plotting pitch
+    _add_curve_to_axes(ax2, pitch)
 
     # plotting harmonics
     _add_curve_to_axes(ax2, harmonics)
@@ -166,12 +177,15 @@ def plot_audio_spectrogram_harmonics(audio,
     return f
 
 
-def plot_waveform_and_notes(audio, notes):
+def waveform_and_notes(audio, notes, figsize=None):
     """
     Plot waveform and note segments.
     """
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
+
     axes = f.subplots(1)
 
     _add_waveform_to_axes(axes, audio)
@@ -180,13 +194,15 @@ def plot_waveform_and_notes(audio, notes):
     f.show()
 
 
-def plot_waveform_trio(audio, rms=None, peak_envelope=None):
+def waveform_trio(audio, rms=None, peak_envelope=None, figsize=None):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``.
     """
     # configuring figure and subplots
-    plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    plt.figure(figsize=figsize)
 
     axes = plt.axes()
 
@@ -196,10 +212,11 @@ def plot_waveform_trio(audio, rms=None, peak_envelope=None):
     plt.show()
 
 
-def plot_waveform_trio_and_features(audio,
-                                       rms=None,
-                                       peak_envelope=None,
-                                       features=()):
+def waveform_trio_and_features(audio,
+                               rms=None,
+                               peak_envelope=None,
+                               features=(),
+                               figsize=None):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``; followed by a series of graphs, one for each time-series
@@ -209,7 +226,9 @@ def plot_waveform_trio_and_features(audio,
         raise ValueError("the features to be plotted were not specified")
 
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     axes_list = f.subplots(len(features) + 1, sharex=True)
 
@@ -220,8 +239,7 @@ def plot_waveform_trio_and_features(audio,
 
     # add features to the other axes
     for i, feature in enumerate(features, start=1):
-        _add_curve_to_axes(
-            axes_list[i], feature, label=feature.label)
+        _add_curve_to_axes(axes_list[i], feature, label=feature.label)
         axes_list[i].legend(loc='lower right', fontsize='x-small')
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
@@ -231,13 +249,17 @@ def plot_waveform_trio_and_features(audio,
     return f
 
 
-def plot_waveform_trio_features_and_points(audio,
-                                       feature,
-                                       point_list,
-                                       rms=None,
-                                       peak_envelope=None):
+def waveform_trio_features_and_points(audio,
+                                      feature,
+                                      point_list,
+                                      rms=None,
+                                      peak_envelope=None,
+                                      figsize=None):
     # configuring figure and subplots
-    f = plt.figure(figsize=(15, 9))
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
+
     axes_list = f.subplots(2, sharex=True)
 
     # add waveform trio to first axes
@@ -247,14 +269,15 @@ def plot_waveform_trio_features_and_points(audio,
     _add_curve_to_axes(axes_list[1], feature, label=feature.label)
     axes_list[1].legend(loc='lower right', fontsize='x-small')
 
-    _add_points_to_axes(axes_list[1], point_list.time, point_list.get_values(feature))
+    _add_points_to_axes(axes_list[1], point_list.time,
+                        point_list.get_values(feature))
 
     MultiCursor(f.canvas, axes_list, color='gray', lw=1)
 
     f.show()
 
 
-def plot_spectrogram_3d(fft, logfft=False, fftlim=None):
+def spectrogram_3d(fft, logfft=False, fftlim=None, figsize=None):
     """
     Plot a 3D spectrogram (experimental feature).
     """
@@ -268,8 +291,10 @@ def plot_spectrogram_3d(fft, logfft=False, fftlim=None):
                 "the fmax specified excceeds the maximum frequency of the FFT")
             fmax = fft.max_frequency
 
-    # configuring figure
-    f = plt.figure(figsize=(15, 9))
+    # configuring figure and subplots
+    if not figsize:
+        figsize = DEFAULT_FIG_SIZE
+    f = plt.figure(figsize=figsize)
 
     ax = Axes3D(f)
 
@@ -305,12 +330,12 @@ def _add_notes_to_axes(axes, notes):
 
 
 def _add_curve_to_axes(axes,
-                      time_series,
-                      fmt='b',
-                      linewidth=1,
-                      alpha=0.9,
-                      label=None,
-                      set_labels=True):
+                       time_series,
+                       fmt='b',
+                       linewidth=1,
+                       alpha=0.9,
+                       label=None,
+                       set_labels=True):
     "Add the curve for the given ``time_series`` to the given ``axes``."
 
     if set_labels:
@@ -352,10 +377,10 @@ def _add_waveform_to_axes(axes, audio):
 
 
 def _add_waveform_trio_to_axes(axes,
-                              audio,
-                              rms=None,
-                              peak_envelope=None,
-                              show_legend=True):
+                               audio,
+                               rms=None,
+                               peak_envelope=None,
+                               show_legend=True):
     """
     The waveform trio consists in the curves ``audio``, ``rms`` and
     ``peak_evelope``. This method adds them to ``axes``.
@@ -368,8 +393,12 @@ def _add_waveform_trio_to_axes(axes,
     # adding the curves
     _add_curve_to_axes(axes, audio, linewidth=None, alpha=0.9)
     _add_curve_to_axes(axes, rms, fmt='r', label=rms.label, set_labels=False)
-    _add_curve_to_axes(axes, peak_envelope, fmt='k', label=peak_envelope.label,
-                      set_labels=False)
+    _add_curve_to_axes(
+        axes,
+        peak_envelope,
+        fmt='k',
+        label=peak_envelope.label,
+        set_labels=False)
 
     if show_legend:
         axes.legend(loc='lower right', ncol=2, fontsize='x-small')
@@ -377,6 +406,7 @@ def _add_waveform_trio_to_axes(axes,
 
 def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
     "Add two vertical lines to the axes delimiting a segment extent."
+    pass
 
 
 def _add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):

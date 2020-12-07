@@ -33,8 +33,9 @@ References
 import numpy as np
 from scipy.stats import gmean  # pylint: disable=import-error
 
-from iracema.aggregation import (aggregate_features, aggregate_sucessive_samples,
-                          sliding_window)
+from iracema.aggregation import (aggregate_features,
+                                 aggregate_sucessive_samples,
+                                 sliding_window)
 from iracema.util.dsp import hwr
 
 
@@ -51,16 +52,16 @@ def peak_envelope(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         An audio time-series object.
     window_size : int
     hop_size : int
     """
+
     def function(x):
         return np.max(np.abs(x))
 
-    time_series = sliding_window(time_series, window_size, hop_size,
-                                 function)
+    time_series = sliding_window(time_series, window_size, hop_size, function)
     time_series.label = 'PeakEnvelope'
     time_series.unit = 'amplitude'
     return time_series
@@ -79,16 +80,16 @@ def rms(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         A time-series object. It is usually applied on Audio objects.
     window_size : int
     hop_size : int
     """
+
     def function(x):
         return np.sqrt(np.mean(x**2))
 
-    time_series = sliding_window(time_series, window_size, hop_size,
-                                 function)
+    time_series = sliding_window(time_series, window_size, hop_size, function)
     time_series.label = 'RMS'
     time_series.unit = 'amplitude'
     return time_series
@@ -113,17 +114,17 @@ def zcr(time_series, window_size, hop_size):
 
     Args
     ----
-    time_series : iracema.timeseries.TimeSeries
+    time_series : iracema.core.timeseries.TimeSeries
         A time-series object. It is usually applied on Audio objects.
     window_size : int
     hop_size : int
     """
+
     # count the number of times the signal changes between successive samples
     def function(x):
         return np.sum(x[1:] * x[:-1] < 0) / window_size * time_series.fs
 
-    time_series = sliding_window(time_series, window_size, hop_size,
-                                 function)
+    time_series = sliding_window(time_series, window_size, hop_size, function)
     time_series.label = 'ZCR'
     time_series.unit = 'Hz'
     return time_series
@@ -157,6 +158,7 @@ def spectral_flatness(fft):
     time_series : iracema.spectral.FFT
         A FFT object
     """
+
     def function(X):
         fft_magnitudes = np.abs(X)
         return 10 * np.log10(gmean(fft_magnitudes) / np.mean(fft_magnitudes))
@@ -190,6 +192,7 @@ def hfc(fft, method='energy'):
         Method of choice to calculate the HFC.
 
     """
+
     def _func(X):
         N = X.shape[0]
         W = np.arange(1, N + 1)
@@ -226,6 +229,7 @@ def spectral_centroid(fft):
         A FFT object
 
     """
+
     def function(X):
         return _spectral_centroid(X, fft.frequencies)
 
@@ -250,6 +254,7 @@ def spectral_spread(fft):
 
 
     """
+
     def function(X):
         return _spectral_spread(X, fft.frequencies)
 
@@ -277,7 +282,6 @@ def _spectral_spread(X, f):
     corresponding to its bins.
     """
     return np.sqrt(_spectral_centroid(X, (f - _spectral_centroid(X, f))**2))
-
 
 
 def spectral_skewness(fft):
@@ -321,6 +325,7 @@ def spectral_kurtosis(fft):
 
 
     """
+
     def _func(X):
         pass
 
@@ -345,6 +350,7 @@ def spectral_flux(fft):
         A FFT object
 
     """
+
     def function(X, X_prev):
         return np.sum(hwr(np.abs(X) - np.abs(X_prev)))
 
@@ -356,12 +362,14 @@ def spectral_flux(fft):
 
 def spectral_rolloff(fft):
     """Spectral Rolloff"""
+
     def _func(X):
         pass
 
 
 def spectral_irregularity(fft):
     """Spectral Irregularity"""
+
     def _func(X):
         pass
 
@@ -385,6 +393,7 @@ def harmonic_centroid(harmonics):
 
 def inharmonicity(fft, harmonics):
     """Inharmonicity"""
+
     def _func(X):
         pass
 
@@ -398,6 +407,7 @@ def harmonic_energy(harmonics_magnitude):
     .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2
 
     """
+
     def function(frame):
         return np.sum(frame**2)
 
@@ -423,6 +433,7 @@ def spectral_entropy(fft):
 
     More info at https://www.mathworks.com/help/signal/ref/pentropy.html.
     """
+
     def function(X):
         N = fft.nfeatures
         P = np.abs(X)**2 / np.sum(np.abs(X)**2)
@@ -443,6 +454,7 @@ def spectral_energy(fft):
 
     .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
     """
+
     def function(frame):
         return np.sum(np.abs(frame)**2)
 
@@ -486,6 +498,6 @@ def oer(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
+
     def _func(X):
         pass
-

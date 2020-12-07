@@ -16,7 +16,7 @@ References
 import numpy as np
 import scipy.signal as sig
 
-from iracema.timeseries import TimeSeries
+from iracema.core.timeseries import TimeSeries
 from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
 from iracema.aggregation import aggregate_features, sliding_window
 
@@ -276,7 +276,7 @@ def crepe_pitch(audio,
 
     Args
     ----
-    audio : iracema.audio.Audio
+    audio : iracema.core.audio.Audio
         Audio time series.
     step_size : float
         Length of the time steps for the pitch extraction.

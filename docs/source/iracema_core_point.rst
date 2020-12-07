@@ -1,8 +1,7 @@
-iracema.timeseries
+iracema.core.point
 ==================
 
-.. automodule:: iracema.timeseries
+.. automodule:: iracema.core.point
     :members:
     :undoc-members:
     :show-inheritance:
-

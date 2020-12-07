@@ -27,7 +27,7 @@ jobs:
           pip install -r docs/requirements.txt
       - name: Build docs using sphinx
         run: |
-          sphinx-build docs build/html
+          sphinx-build docs build/html -W --keep-going
       - name: Move docs to temporary folder
         run: |
           mv build/html /tmp/

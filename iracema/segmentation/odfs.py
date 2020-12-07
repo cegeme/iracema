@@ -7,7 +7,7 @@ import iracema.spectral
 from iracema.aggregation import aggregate_sucessive_samples
 
 
-def odf_adaptive_rms(audio,
+def odf_adaptative_rms(audio,
                      long_window=4096,
                      short_window=512,
                      hop=512,

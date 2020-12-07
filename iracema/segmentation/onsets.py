@@ -1,27 +1,33 @@
+"""
+Note onset detection methods.
+"""
+
 import numpy as np
 import scipy.signal as sig
 
 import iracema.features
 import iracema.pitch
-import iracema.segment
+import iracema.core.segment
 
-from iracema.plot import plot_waveform_trio_features_and_points
+from iracema.plot import waveform_trio_features_and_points
 from iracema.segmentation.odfs import (odf_rms_derivative, odf_pitch_change,
-                                       odf_adaptive_rms)
+                                       odf_adaptative_rms)
 
 
-def adaptive_rms(audio,
-                 short_window=512,
-                 long_window=4096,
-                 hop=512,
-                 alpha=0.1,
-                 min_time=None,
-                 plot_rms_curves=False,
-                 odf_threshold=0.2,
-                 plot=False,
-                 return_odf_data=False):
+def adaptative_rms(
+        audio,
+        short_window=512,
+        long_window=4096,
+        hop=512,
+        alpha=0.1,
+        min_time=None,
+        plot_rms_curves=False,
+        odf_threshold=0.2,
+        plot=False,
+        return_odf_data=False,
+):
     """
-    Extract the note onsets using the adaptive RMS method.
+    Extract the note onsets using the adaptative RMS method.
 
     Arguments
     ---------
@@ -58,7 +64,7 @@ def adaptive_rms(audio,
     """
     onsets, odf_data = extract_from_odf(
         audio,
-        odf_adaptive_rms,
+        odf_adaptative_rms,
         long_window=long_window,
         short_window=short_window,
         hop=hop,
@@ -66,8 +72,9 @@ def adaptive_rms(audio,
         plot_rms_curves=plot_rms_curves,
         min_time=min_time,
         odf_threshold=odf_threshold,
-        odf_threshold_criteria='relative_to_max',
-        plot=plot)
+        odf_threshold_criteria="relative_to_max",
+        plot=plot,
+    )
 
     if return_odf_data:
         return onsets, odf_data
@@ -75,13 +82,15 @@ def adaptive_rms(audio,
         return onsets
 
 
-def rms_derivative(audio,
-                   window=1024,
-                   hop=512,
-                   min_time=None,
-                   odf_threshold=0.2,
-                   plot=False,
-                   return_odf_data=False):
+def rms_derivative(
+        audio,
+        window=1024,
+        hop=512,
+        min_time=None,
+        odf_threshold=0.2,
+        plot=False,
+        return_odf_data=False,
+):
     """
     Extract note onsets from the ``audio`` time-series using its ``rms``.
     The RMS will be calculated if it's not passed as an argument. The argument
@@ -121,24 +130,26 @@ def rms_derivative(audio,
         hop=hop,
         min_time=min_time,
         odf_threshold=odf_threshold,
-        plot=plot)
+        plot=plot,
+    )
 
     if return_odf_data:
         return onsets, odf_data
-    else:
-        return onsets
+    return onsets
 
 
-def pitch_variation(audio,
-                    window,
-                    hop,
-                    minf0=120,
-                    maxf0=4000,
-                    smooth_pitch=True,
-                    min_time=None,
-                    odf_threshold=0.04,
-                    plot=False,
-                    return_odf_data=False):
+def pitch_variation(
+        audio,
+        window,
+        hop,
+        minf0=120,
+        maxf0=4000,
+        smooth_pitch=True,
+        min_time=None,
+        odf_threshold=0.04,
+        plot=False,
+        return_odf_data=False,
+):
     """
     Extract note onsets from the ``audio`` time-series using its ``pitch``.
     The argument ``min_time`` can be used to specify the minimum distance (in
@@ -185,21 +196,23 @@ def pitch_variation(audio,
         odf_threshold=odf_threshold,
         hop=hop,
         smooth_pitch=smooth_pitch,
-        plot=plot)
+        plot=plot,
+    )
 
     if return_odf_data:
         return onsets, odf_data
-    else:
-        return onsets
+    return onsets
 
 
-def extract_from_odf(audio,
-                     odf,
-                     min_time=None,
-                     odf_threshold=0.2,
-                     odf_threshold_criteria='absolute',
-                     plot=False,
-                     **parameters):
+def extract_from_odf(
+        audio,
+        odf,
+        min_time=None,
+        odf_threshold=0.2,
+        odf_threshold_criteria="absolute",
+        plot=False,
+        **parameters,
+):
     """
     Generic method to extract onsets from an ODF (onset detection function).
 
@@ -239,23 +252,24 @@ def extract_from_odf(audio,
     else:
         min_dist = None
 
-    if odf_threshold_criteria == 'absolute':
+    if odf_threshold_criteria == "absolute":
         threshold = odf_threshold
-    elif odf_threshold_criteria == 'relative_to_max':
+    elif odf_threshold_criteria == "relative_to_max":
         threshold = odf_threshold * np.max(odf_data.data)
     else:
         raise ValueError(
             ("Invalid value for argument `odf_threshold_criteria`: "
-             f"'{odf_threshold_criteria}'")
-        )
+             f"'{odf_threshold_criteria}'"))
 
     ix_onsets, _ = sig.find_peaks(
         odf_data.data, height=threshold, distance=min_dist)
 
-    onsets = iracema.segment.PointList(
-        [iracema.segment.Point(odf_data, position) for position in ix_onsets])
+    onsets = iracema.core.point.PointList([
+        iracema.core.point.Point(odf_data, position)
+        for position in ix_onsets
+    ])
 
     if plot:
-        plot_waveform_trio_features_and_points(audio, odf_data, onsets)
+        waveform_trio_features_and_points(audio, odf_data, onsets)
 
     return onsets, odf

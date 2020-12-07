@@ -12,20 +12,28 @@ Usage
 
 This section presents a quickstart guide to *iracema*.
 
+Import conventions
+==================
+
+Throughout this documentation, all the code examples will assume that iracema has been
+imported using the following convention.
+
+>>> import iracema as ir
+
 Loading audio files
 ===================
 
 To load an audio file, you must provide a string that specifies the location
 where it is stored. Iracema accepts local paths to load files stored in your
-computer or http URL to download remote files. It can be done instantiating
-an object of the class :obj:`~iracema.timeseries.Audio`.
+computer or http URL to download remote files. The class ``ir.Audio``
+provides the method ``load`` for this purpose.
 
 .. plot::
    :include-source:
    :context: close-figs
    
-   import iracema
-   audio = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+   import iracema as ir
+   audio = ir.Audio.load("05 - Trumpet - Haydn.wav")
 
 To play the loaded audio:
 
@@ -44,10 +52,11 @@ The audio object has a plot method available that displays its waveform:
 Calculating basic features
 ==========================
 
-As most features will need a FFT as input, the second step should be calculating it for the audio
-you've just loaded. For being able to do it, you must specify the sliding window and hop size 
-values (in samples).
-After calculating the FFT you're now able to plot a spectogram!
+As most features will need an object containing an :abbr:`FFT (Fast Fourier
+Transform)` as input, our next step is calculating it using the method
+:obj:`ir.spectral.fft` for the loaded audio. You
+must specify the sliding window and hop size values (in samples). After
+calculating the FFT you're now able to plot a spectogram!
 
 Other useful methods are RMS and Peak Envelope, which will be extracted and plotted in the example.
 
@@ -59,19 +68,19 @@ Other useful methods are RMS and Peak Envelope, which will be extracted and plot
    window, hop = 2048, 1024
   
    # calculating the FFT
-   fft = iracema.spectral.fft(audio, window, hop)
+   fft = ir.spectral.fft(audio, window, hop)
   
    # plotting the spectrogram
-   iracema.plot.plot_spectrogram(fft)
+   ir.plot.spectrogram(fft)
   
    # calculating the RMS
-   rms = iracema.features.rms(audio, window, hop)
+   rms = ir.features.rms(audio, window, hop)
   
    # plotting the RMS
    rms.plot()
 
    # calculating the Peak Envelope
-   peak = iracema.features.peak_envelope(audio, window, hop)
+   peak = ir.features.peak_envelope(audio, window, hop)
 
    # plotting the Peak Envelope
    peak.plot()
@@ -89,10 +98,10 @@ Notice that the harmonics methods return a dictionary, with it's keys correspond
 .. code:: python
   
   # extract pitch
-  hps_pitch = iracema.pitch.hps(fft, minf0=1, maxf0=1000)
+  hps_pitch = ir.pitch.hps(fft, minf0=1, maxf0=1000)
 
   #extract harmonics
-  harmonics = iracema.harmonics.extract(fft, hps_pitch)
+  harmonics = ir.harmonics.extract(fft, hps_pitch)
 
 .. _architecture:
 

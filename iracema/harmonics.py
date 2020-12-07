@@ -5,7 +5,7 @@ monophonic audio.
 
 import numpy as np
 
-from iracema.timeseries import TimeSeries
+from iracema.core.timeseries import TimeSeries
 from iracema.util.dsp import local_peaks, n_highest_peaks
 
 
@@ -14,7 +14,7 @@ def extract(fft,
             nharm=16,
             minf0=24,
             maxf0=4200,
-           perc_tol=0.04):
+            perc_tol=0.04):
     """
     Extract the harmonics of an audio signal, given its `fft` and `pitch`
     curve, using `nharm` harmonics. The pitch detection method will search for
