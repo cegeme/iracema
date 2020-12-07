@@ -5,13 +5,6 @@ import numpy as np
 from iracema.aggregation import sliding_window
 
 
-def spectrogram():
-    """
-    Generate spectrogram for time series.
-    """
-    pass
-
-
 def fft(time_series, window_size, hop_size, fft_len=4096):
     """
     Calculate the Fast Fourier Transform for the ``time_series``
@@ -41,10 +34,3 @@ def fft(time_series, window_size, hop_size, fft_len=4096):
     fft_time_series.unit = 'Magnitude'
 
     return fft_time_series
-
-
-def ifft():
-    """
-    Inverse Fourier Transform.
-    """
-    pass
