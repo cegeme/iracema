@@ -16,7 +16,7 @@ from w3lib.url import file_uri_to_path
 
 def read(file_location):
     """
-    Read WAV audio file from the local file system or download it from URL.
+    Read audio file from the local file system or download it from URL.
 
     Arguments
     ---------
