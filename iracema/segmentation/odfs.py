@@ -12,7 +12,7 @@ def odf_adaptative_rms(audio,
                      short_window=512,
                      hop=512,
                      alpha=0.1,
-                     plot_rms_curves=False):
+                     display_plot_rms=False):
     """
     Arguments
     ---------
@@ -26,8 +26,8 @@ def odf_adaptative_rms(audio,
         Length of the hop for the sliding window.
     alpha:
         Reduction factor for the long term RMS curve.
-    plot: bool
-        Whether of not to plot the results.
+    display_plot_rms: bool
+        Whether of not to plot the RMS curves.
 
     Return
     ------
@@ -59,7 +59,7 @@ def odf_adaptative_rms(audio,
             pk = 0
         last = x
 
-    if plot_rms_curves:
+    if display_plot_rms:
         plt.plot(rms_long.time, rms_long.data, linewidth=0.5, color='r')
         plt.plot(rms_short.time, rms_short.data, linewidth=0.5, color='b')
 
@@ -119,7 +119,7 @@ def odf_pitch_change(audio,
     """
     window_mode = 9
     fft = iracema.spectral.fft(audio, window, hop)
-    pitch = iracema.pitch.expan_pitch(fft, minf0=minf0, maxf0=maxf0)
+    pitch = iracema.pitch.expan(fft, minf0=minf0, maxf0=maxf0)
     if smooth_pitch:
         pitch = iracema.pitch.pitch_filter(pitch)
         pitch = iracema.pitch.pitch_mode(pitch, window=window_mode)
