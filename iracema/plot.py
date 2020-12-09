@@ -36,6 +36,7 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
 
 
     .. plot::
+        :include-source:
 
         >>> import iracema as ir
         >>> haydn  = ir.Audio.load("05 - Trumpet - Haydn.wav")
@@ -82,9 +83,8 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
 
 
     .. plot::
-        
-        >>> import iracema as ir
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+       :include-source:
+
         >>> window, hop = 1024, 526
         >>> fft = ir.spectral.fft(haydn, window, hop)
         >>> ir.plot.spectrogram(fft, fftlim=(0, 22000))
@@ -143,13 +143,10 @@ def waveform_spectrogram(audio,
 
 
     .. plot::
+        :include-source:
         
-        >>> import iracema as ir 
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
-        >>> window, hop = 1024, 526
         >>> peak = ir.features.peak_envelope(haydn, window, hop)
         >>> rms = ir.features.rms(haydn, window, hop)
-        >>> fft = ir.spectral.fft(haydn, window, hop)
         >>> ir.plot.waveform_spectrogram(haydn, fft, rms=rms, peak_envelope=peak)
 
     """
@@ -214,13 +211,8 @@ def waveform_spectrogram_pitch(audio,
 
 
     .. plot::
+        :include-source:
 
-        >>> import iracema as ir
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
-        >>> window, hop = 1024, 526
-        >>> peak = ir.features.peak_envelope(haydn, window, hop)
-        >>> rms = ir.features.rms(haydn, window, hop)
-        >>> fft = ir.spectral.fft(haydn, window, hop)
         >>> pitch = ir.pitch.expan(fft)
         >>> ir.plot.waveform_spectrogram_pitch(haydn, fft, pitch, rms, peak) 
     """
@@ -291,16 +283,10 @@ def waveform_spectrogram_harmonics(audio,
    
 
     .. plot::
+        :include-source:
 
-        >>> import iracema as ir
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
-        >>> window, hop = 1024, 526
-        >>> peak = ir.features.peak_envelope(haydn, window, hop)
-        >>> rms = ir.features.rms(haydn, window, hop)
-        >>> fft = ir.spectral.fft(haydn, window, hop)
-        >>> pitch = ir.pitch.expan_pitch(fft)
         >>> harm = ir.harmonics.extract(fft, pitch)
-        >>> ir.plot.waveform_spectrogram_harmonics(haydn, rms, peak, fft, harm['frequency'], harm)
+        >>> ir.plot.waveform_spectrogram_harmonics(haydn, fft, pitch, harm['frequency'], rms, peak)
     """
     # configuring figure and subplots
     if not figsize:
@@ -373,11 +359,6 @@ def waveform_trio(audio, rms=None, peak_envelope=None, figsize=None):
     .. plot::
         :include-source:
 
-        >>> import iracema as ir
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
-        >>> window, hop = 1024, 526
-        >>> peak = ir.features.peak_envelope(haydn, window, hop)
-        >>> rms = ir.features.rms(haydn, window, hop)
         >>> ir.plot.waveform_trio(haydn, rms=rms, peak_envelope=peak)
     """
     # configuring figure and subplots
@@ -404,15 +385,8 @@ def waveform_trio_and_features(audio,
     in the tuple `features`.
     
     .. plot::
+        :include-source:
 
-        >>> import iracema as ir
-        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
-        >>> window, hop = 1024, 526
-        >>> peak = ir.features.peak_envelope(haydn, window, hop)
-        >>> rms = ir.features.rms(haydn, window, hop)
-        >>> fft = ir.spectral.fft(haydn, window, hop)
-        >>> pitch = ir.pitch.expan(fft)
-        >>> harm = ir.harmonics.extract(fft, pitch)
         >>> centroid = ir.features.spectral_centroid(fft)
         >>> noise = ir.features.noisiness(fft, harm['magnitude'])
         >>> ir.plot.waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))
