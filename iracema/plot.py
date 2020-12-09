@@ -19,6 +19,12 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
     """
     Plot the time series using matplotlib.
     Line width and alpha values can be set as optional parameters.
+
+    .. plot::
+
+        import iracema as ir
+        haydn  = ir.Audio.load("05 - Trumpet - Haydn.wav")
+
     """
     if not figsize:
         figsize = DEFAULT_FIG_SIZE
@@ -44,6 +50,14 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
 def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
     """
     Plot the spectrogram of the audio signal.
+    
+    .. plot::
+        
+        import iracema as ir
+        haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        fft = ir.spectral.fft(haydn, window, hop)
+        ir.plot.spectrogram(fft, fftlim=(0, 22000))
     """
     # configuring figure and subplots
     if not figsize:
@@ -74,6 +88,16 @@ def waveform_spectrogram(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal.
+
+    .. plot::
+        
+        haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = ir.features.peak_envelope(haydn, window, hop)
+        rms = ir.features.rms(haydn, window, hop)
+        fft = ir.spectral.fft(haydn, window, hop)
+        ir.plot.waveform_spectrogram(haydn, fft, rms=rms, peak_envelope=peak)
+
     """
     # configuring figure and subplots
     if not figsize:
@@ -109,6 +133,18 @@ def waveform_spectrogram_f0(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its fundamental frequency  `pitch`.
+
+    .. plot::
+
+        import iracema as ir
+        haydn = iracema.Audio("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = ir.features.peak_envelope(haydn, window, hop)
+        rms = ir.features.rms(haydn, window, hop)
+        fft = ir.spectral.fft(haydn, window, hop)
+        pitch = ir.pitch.expan_pitch(fft)
+        harm = ir.harmonics.extract(fft, pitch)
+        iracema.plot.waveform_spectrogram_f0(haydn, rms, peak, fft, harm['frequency'])
     """
     # configuring figure and subplots
     if not figsize:
@@ -148,6 +184,18 @@ def waveform_spectrogram_harmonics(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its `harmonics`.
+
+    .. plot::
+
+        import iracema as ir
+        haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = ir.features.peak_envelope(haydn, window, hop)
+        rms = ir.features.rms(haydn, window, hop)
+        fft = ir.spectral.fft(haydn, window, hop)
+        pitch = ir.pitch.expan_pitch(fft)
+        harm = ir.harmonics.extract(fft, pitch)
+        ir.plot.waveform_spectrogram_harmonics(haydn, rms, peak, fft, harm['frequency'], harm)
     """
     # configuring figure and subplots
     if not figsize:
@@ -198,6 +246,16 @@ def waveform_trio(audio, rms=None, peak_envelope=None, figsize=None):
     """
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``.
+
+    .. plot::
+        :include-source:
+        
+        import iracema as ir
+        haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = ir.features.peak_envelope(haydn, window, hop)
+        rms = ir.features.rms(haydn, window, hop)
+        ir.plot.waveform_trio(haydn, rms=rms, peak_envelope=peak)
     """
     # configuring figure and subplots
     if not figsize:
@@ -221,6 +279,18 @@ def waveform_trio_and_features(audio,
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``; followed by a series of graphs, one for each time-series
     in the tuple `features`.
+    
+    .. plot::
+
+        import iracema as ir
+        haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
+        window, hop = 1024, 526
+        peak = ir.features.peak_envelope(haydn, window, hop)
+        rms = ir.features.rms(haydn, window, hop)
+        fft = ir.spectral.fft(haydn, window, hop)
+        centroid = ir.features.spectral_centroid(fft)
+        noise = ir.features.noisiness(fft, harm['magnitude'])
+        iracema.plot.waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))
     """
     if not features:
         raise ValueError("the features to be plotted were not specified")
