@@ -21,9 +21,9 @@ def adaptative_rms(
         hop=512,
         alpha=0.1,
         min_time=None,
-        plot_rms_curves=False,
         odf_threshold=0.2,
-        plot=False,
+        display_plot=False,
+        display_plot_rms=False,
         return_odf_data=False,
 ):
     """
@@ -41,14 +41,14 @@ def adaptative_rms(
         Length of the hop for the sliding window.
     alpha : float
         Reduction factor for the long term RMS curve.
-    plot_rms_curves : bool
+    display_plot_rms : bool
         Whether of not to plot the RMS curves used to calculate the ODF.
     min_time : float
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Ratio of the ODF maxima to be defined as a minimum threshold
         for the peak picking.
-    plot : bool
+    display_plot : bool
         Whether of not to plot the results.
     return_odf_data : bool
         Whether or not to return the odf data.
@@ -69,11 +69,11 @@ def adaptative_rms(
         short_window=short_window,
         hop=hop,
         alpha=alpha,
-        plot_rms_curves=plot_rms_curves,
+        display_plot_rms=display_plot_rms,
         min_time=min_time,
         odf_threshold=odf_threshold,
         odf_threshold_criteria="relative_to_max",
-        plot=plot,
+        display_plot=display_plot,
     )
 
     if return_odf_data:
@@ -88,7 +88,7 @@ def rms_derivative(
         hop=512,
         min_time=None,
         odf_threshold=0.2,
-        plot=False,
+        display_plot=False,
         return_odf_data=False,
 ):
     """
@@ -109,7 +109,7 @@ def rms_derivative(
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Minimum threshold for the peak picking in the ODF curve.
-    plot : bool
+    display_plot : bool
         Whether of not to plot the results
     return_odf_data : bool
         Whether or not to return the odf data
@@ -130,7 +130,7 @@ def rms_derivative(
         hop=hop,
         min_time=min_time,
         odf_threshold=odf_threshold,
-        plot=plot,
+        display_plot=display_plot,
     )
 
     if return_odf_data:
@@ -147,7 +147,7 @@ def pitch_variation(
         smooth_pitch=True,
         min_time=None,
         odf_threshold=0.04,
-        plot=False,
+        display_plot=False,
         return_odf_data=False,
 ):
     """
@@ -173,7 +173,7 @@ def pitch_variation(
         Minimum time (in seconds) between successive onsets.
     odf_threshold : float
         Minimum threshold for the peak picking in the ODF curve
-    plot : bool
+    display_plot : bool
         Whether of not to plot the results
     return_odf_data : bool
         Whether or not to return the odf data
@@ -196,7 +196,7 @@ def pitch_variation(
         odf_threshold=odf_threshold,
         hop=hop,
         smooth_pitch=smooth_pitch,
-        plot=plot,
+        display_plot=display_plot,
     )
 
     if return_odf_data:
@@ -210,7 +210,7 @@ def extract_from_odf(
         min_time=None,
         odf_threshold=0.2,
         odf_threshold_criteria="absolute",
-        plot=False,
+        display_plot=False,
         **parameters,
 ):
     """
@@ -233,7 +233,7 @@ def extract_from_odf(
         the threshold, relative to the maximum value in the ODF curve, e.g.:
         ``odf_threshold``==``0.2`` set the threshold to 20% of the maximum
         value of the ODF curve.
-    plot : bool
+    display_plot : bool
         Whether or not to plot the results.
 
     Return
@@ -269,7 +269,7 @@ def extract_from_odf(
         for position in ix_onsets
     ])
 
-    if plot:
+    if display_plot:
         waveform_trio_features_and_points(audio, odf_data, onsets)
 
     return onsets, odf

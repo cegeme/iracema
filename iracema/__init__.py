@@ -14,6 +14,15 @@ from iracema.core.audio import Audio
 from iracema.core.point import Point, PointList
 from iracema.core.segment import Segment, SegmentList
 
+import iracema.features
+import iracema.pitch
+import iracema.harmonics
+import iracema.segmentation
+import iracema.spectral
+import iracema.plot
+
+import iracema.segmentation.onsets
+
 __version__ = u'0.1.7'
 
 root = _dirname(__spec__.origin)

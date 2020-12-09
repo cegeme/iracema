@@ -137,11 +137,11 @@ def waveform_spectrogram(audio,
     return f
 
 
-def waveform_spectrogram_f0(audio,
-                            rms,
-                            peak_envelope,
+def waveform_spectrogram_pitch(audio,
                             fft,
                             pitch,
+                            rms=None,
+                            peak_envelope=None,
                             logfft=False,
                             fftlim=(),
                             figsize=None):
@@ -188,11 +188,11 @@ def waveform_spectrogram_f0(audio,
 
 
 def waveform_spectrogram_harmonics(audio,
-                                   rms,
-                                   peak_envelope,
                                    fft,
                                    pitch,
                                    harmonics,
+                                   rms=None,
+                                   peak_envelope=None,
                                    logfft=False,
                                    fftlim=(),
                                    figsize=None):

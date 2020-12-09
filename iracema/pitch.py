@@ -122,7 +122,7 @@ def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
     return pitch_time_series
 
 
-def expan_pitch(fft_time_series,
+def expan(fft_time_series,
                 minf0=24.,
                 maxf0=4200.,
                 nharm=12,
