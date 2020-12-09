@@ -25,7 +25,7 @@ Loading audio files
 
 To load an audio file, you must provide a string that specifies the location
 where it is stored. Iracema accepts local paths to load files stored in your
-computer or http URL to download remote files. The class ``ir.Audio``
+computer or http URLs to download remote files. The class ``ir.Audio``
 provides the method ``load`` for this purpose.
 
 .. plot::

@@ -72,11 +72,7 @@ class Audio(TimeSeries):
         self.filename, self.caption = None, caption
 
         super(Audio, self).__init__(
-            fs,
-            data=data,
-            unit=unit,
-            start_time=start_time,
-            caption=caption)
+            fs, data=data, unit=unit, start_time=start_time, caption=caption)
 
     @classmethod
     def load(cls, file_location, caption=None):
@@ -118,6 +114,13 @@ class Audio(TimeSeries):
         Play audio from Audio object.
         """
         return player.play(self)
+
+    def play_with_clicks(self, points):
+        """
+        Play audio mixed with click sounds in the instants corresponding
+        to ``points``.
+        """
+        return player.play_with_clicks(self, points)
 
     def play_from_time(self, from_time):
         """
