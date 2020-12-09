@@ -31,8 +31,8 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
 
     Return
     ------
-    f : plot
-       A plot containing the time series.
+    f : matplotlib.figure.Figure
+       A matplot figure containing the time series.
 
 
     .. plot::
@@ -66,6 +66,21 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
     """
     Plot the spectrogram of the audio signal.
     
+    Arguments
+    ---------
+    fft : TimeSeries
+        FFT time series.
+    logfft : bool
+        Whether of not to use logarithmic scale.
+    fftlim : int  
+        Defines the upper limit frequency of the FFT.
+
+    Return
+    ------
+    f : matplotlib.figure.Figure
+       A matplot figure containing the spectrogram of the signal.
+
+
     .. plot::
         
         >>> import iracema as ir
@@ -103,6 +118,29 @@ def waveform_spectrogram(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal.
+    
+    Arguments
+    ---------
+    audio : Audio 
+        Audio time series.
+    fft : TimeSeries
+        FFT time series.
+    logfft : bool
+        Whether of not to use logarithmic scale for the spectrogram.
+    rms : TimeSeries
+        RMS time series.
+    peak_envelope : TimeSeries
+        Peak envelope time series.
+    fftlim : int
+        Defines the upper limit frequency of the fft.
+    figsize : int
+        Defines the figure size.
+
+    Return
+    ------
+    f : matplotlib.figure.Figure
+       A matplot figure containing the spectrogram of the signal.
+
 
     .. plot::
         
@@ -150,17 +188,41 @@ def waveform_spectrogram_pitch(audio,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its fundamental frequency  `pitch`.
 
+    Arguments
+    ---------
+    audio : Audio 
+        Audio time series.
+    fft : TimeSeries
+        FFT time series.
+    pitch : TimeSeries
+        Pitch time series.
+    rms : TimeSeries
+        RMS time series.
+    peak_envelope : TimeSeries
+        Peak envelope time series.
+    logfft : bool
+        Whether of not to use logarithmic scale for the spectrogram.
+    fftlim : int
+        Defines the upper limit frequency of the fft.
+    figsize : int
+        Defines the figure size.
+
+    Return
+    ------
+    f : matplotlib.figure.Figure
+       A matplot figure containing the spectrogram of the signal.
+
+
     .. plot::
 
         >>> import iracema as ir
-        >>> haydn = iracema.Audio("05 - Trumpet - Haydn.wav")
+        >>> haydn = ir.Audio.load("05 - Trumpet - Haydn.wav")
         >>> window, hop = 1024, 526
         >>> peak = ir.features.peak_envelope(haydn, window, hop)
         >>> rms = ir.features.rms(haydn, window, hop)
         >>> fft = ir.spectral.fft(haydn, window, hop)
-        >>> pitch = ir.pitch.expan_pitch(fft)
-        >>> harm = ir.harmonics.extract(fft, pitch)
-        >>> iracema.plot.waveform_spectrogram_f0(haydn, rms, peak, fft, harm['frequency'])
+        >>> pitch = ir.pitch.expan(fft)
+        >>> ir.plot.waveform_spectrogram_pitch(haydn, fft, pitch, rms, peak) 
     """
     # configuring figure and subplots
     if not figsize:
@@ -200,6 +262,33 @@ def waveform_spectrogram_harmonics(audio,
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
     of the audio signal and its `harmonics`.
+
+    Arguments
+    ---------
+    audio : Audio
+        Audio time series.
+    fft : TimeSeries
+        FFT time series.
+    pitch : TimeSeries
+        Pitch time series.
+    harmonics : dictionary 
+        A dictionary containing the results of the harmonics extraction.
+    rms : TimeSeries
+        RMS time series.
+    peak_envelope : TimeSeries
+        Peak envelope time series.
+    logfft : bool
+        Whether of not to use logarithmic scale for the spectrogram.
+    fftlim : int
+        Defines the upper limit frequency of the fft.
+    figsize : int
+        Defines the figure size.
+
+    Return
+    ------
+    f : matplotlib.figure.Figure
+       A matplot figure containing the two subplots: a spectrogram of the signal and its waveform. 
+   
 
     .. plot::
 
@@ -263,6 +352,24 @@ def waveform_trio(audio, rms=None, peak_envelope=None, figsize=None):
     Plot a graph showing curves for the ``audio`` waveform, the ``rms`` and the
     ``peak_envelope``.
 
+    Arguments
+    ---------
+    audio : Audio
+        Audio time series.
+    rms : TimeSeries
+        RMS time series.
+    peak_envelope : TimeSeries
+        Peak envelope time series.
+    figsize : int
+        Defines the figure size.
+
+    Return
+    ------
+    f : matplotlib.figure.Figure
+       A matplot figure containing the waveform of a signal plus its RMS and peak 
+       envelope curves.
+
+
     .. plot::
         :include-source:
 
@@ -304,9 +411,11 @@ def waveform_trio_and_features(audio,
         >>> peak = ir.features.peak_envelope(haydn, window, hop)
         >>> rms = ir.features.rms(haydn, window, hop)
         >>> fft = ir.spectral.fft(haydn, window, hop)
+        >>> pitch = ir.pitch.expan(fft)
+        >>> harm = ir.harmonics.extract(fft, pitch)
         >>> centroid = ir.features.spectral_centroid(fft)
         >>> noise = ir.features.noisiness(fft, harm['magnitude'])
-        >>> iracema.plot.waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))
+        >>> ir.plot.waveform_trio_and_features(haydn, rms, peak, features=(centroid, noise))
     """
     if not features:
         raise ValueError("the features to be plotted were not specified")
