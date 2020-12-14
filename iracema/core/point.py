@@ -1,12 +1,15 @@
 """
 This module contain classes used to manipulate points in TimeSeries objects.
 """
+from collections.abc import MutableSequence
+from decimal import Decimal
+
 import numpy as np
 
 from iracema.util import conversion
 
 
-class Point:
+class Point(Decimal):
     """
     A point object represents an instant in a time series, i.e., one specific
     sample index. It is flexible enough to locate samples corresponding to the
@@ -15,91 +18,110 @@ class Point:
     .. Hint:: This class is also available at the main package level as
         ``iracema.Point``.
     """
-    def __init__(self, time_series, position, unit='sample_index'):
-        """
-        Args
-        ----
-        time_series : TimeSeries
-            Original time series related to the point.
-        position : int or float
-            Index (or sample number) corresponding to the position of the point
-            in the time-series from which it derived. Alternatively, this value
-            can be specified in seconds.
-        unit : ("sample_index", "seconds")
-            If 'sample_index' is passed (default), the argument `position` must
-            be an integer corresponding to a sample index whitin `time_series`.
-            Else, if 'seconds' is passed, `position` must be specified in terms
-            of time.
-        """
-        if unit not in ('sample_index', 'seconds'):
-            raise ValueError("invalid value for `unit` argument: must" +
-                             " be 'sample_index' or 'seconds'")
 
-        self.fs = time_series.fs
-        self.time_offset = time_series.start_time
-
-        if unit == 'sample_index':
-            if type(position) != np.int_:
-                raise ValueError("`position` must be of type int when" +
-                                 "`limits_unit`=='sample_index'")
-            self.position = position
-
-        elif unit == 'seconds':
-            self.position = conversion.seconds_to_sample_index(
-                position, self.fs)
-        else:
-            raise ValueError("`unit` must be 'sample_index' or 'seconds'")
+    @classmethod
+    def from_sample_index(cls, index, time_series):
+        time_offset = Decimal(time_series.start_time)
+        time = Decimal(int(index)) / Decimal(int(time_series.fs))
+        time += time_offset
+        return Point(time)
 
     @property
     def time(self):
-        return conversion.sample_index_to_seconds(
-            self.position, self.fs, self.time_offset)
+        """
+        Return the time of the onsets.
+        This method will be deprecated soon.
+        """
+        return self
 
     def map_index(self, time_series):
-        new_fs = time_series.fs
-        new_time_offset = time_series.start_time
-        return conversion.map_sample_index(
-            self.position, self.fs, self.time_offset, new_fs, new_time_offset)
+        time = self - Decimal(time_series.start_time)
+        index = time * Decimal(int(time_series.fs))
+        return int(round(index))
 
     def get_value(self, time_series):
-        sample_index = self.map_index(time_series)
-        return time_series.data[sample_index]
+        index = self.map_index(time_series)
+        return time_series.data[..., index]
 
 
-class PointList(list):
+class PointList(MutableSequence):
     """
     List of points.
 
     .. Hint:: This class is also available at the main package level as
         ``iracema.PointList``.
     """
-    def __init__(self, point_list):
-        """
-        Args
-        ----
-        point_list : list[Point]
-            A list of points.
-        """
-        super(PointList, self).__init__(point_list)
+    def __init__(self, points=None):
+        super(PointList, self).__init__()
+        if (points is not None):
+            self._points = list(points)
+        else:
+            self._points = list()
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+            return PointList(self._points[index])
+        return self._points[index]
+
+    def __setitem__(self, index, item):
+        if not isinstance(item, Point):
+            raise ValueError(
+                "The list contains an item that is not a ``Point``")
+        self._points[index] = item
+
+    def __delitem__(self, index):
+        self._points.__delitem__(index)
+
+    def __len__(self):
+        return len(self._points)
+
+    def insert(self, index, item):
+        if not isinstance(item, Point):
+            raise ValueError(
+                "The insert item is not a ``Point``")
+        return self._points.insert(index, item)
 
     @classmethod
-    def load_from_file(cls, filename, time_series, unit='seconds'):
+    def load_from_file(cls, filename):
         """
         Instantiates a list of points loaded from a file. Each line in the file
-        must contain the position of a single point. The position can be
-        specified in `seconds` or `sample_index`.
+        must contain the position of a single point. The position must be
+        specified in `seconds`.
         """
-        points = []
-        for line in open(filename, 'r'):
-            points.append(Point(time_series, np.float(line), unit=unit))
-        return cls(points)
+        return cls([
+            Point(Decimal(line))
+            for line in open(filename, 'r')
+        ])
+    
+    @classmethod
+    def from_list_of_indexes(cls, list_indexes, time_series):
+        """
+        Instantiate a list of points from a list of indexes ``list_indexes``
+        and a ``time_series`` object.
+        """
+        cls([
+            Point.from_sample_index(index, time_series)
+            for index in list_indexes
+        ])
 
     @property
     def time(self):
-        return [point.time for point in self]
+        """
+        Return a list with the onset times.
+        This method will be deprecated soon.
+        """
+        return self
 
     def map_indexes(self, time_series):
+        """
+        Return an array with the indexes of ``time_series`` that correspond to
+        the points in the list.
+        """
         return [point.map_index(time_series) for point in self]
 
     def get_values(self, time_series):
+        """
+        Get values from the ``time_series`` corresponding to the points in the
+        list.
+        """
         return [point.get_value(time_series) for point in self]
