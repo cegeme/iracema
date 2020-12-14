@@ -1,6 +1,7 @@
 """
 Some aggregation methods for time series.
 """
+from decimal import Decimal
 
 import numpy as np
 
@@ -35,7 +36,7 @@ def sliding_window(time_series, window_size, hop_size, function,
                                     function, window_name)
 
     # new sampling frequency for the aggregated time-series
-    new_fs = time_series.fs / np.float_(hop_size)
+    new_fs = Decimal(time_series.fs) / Decimal(hop_size)
 
     new_ts = iracema.core.timeseries.TimeSeries(
         new_fs,
