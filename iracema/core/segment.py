@@ -2,7 +2,7 @@
 This module contain classes used to manipulate segments and slice TimeSeries
 objects using them.
 """
-from collections.abs import MutableSequence
+from collections.abc import MutableSequence
 from decimal import Decimal
 
 from iracema.core.point import Point, PointList
