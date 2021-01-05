@@ -29,7 +29,7 @@ class Point(Decimal):
     @property
     def time(self):
         """
-        Return the time of the onsets.
+        Return the time of the points.
         This method will be deprecated soon.
         """
         return self
@@ -92,7 +92,7 @@ class PointList(MutableSequence):
             Point(Decimal(line))
             for line in open(filename, 'r')
         ])
-    
+
     @classmethod
     def from_list_of_indexes(cls, list_indexes, time_series):
         """
@@ -107,7 +107,7 @@ class PointList(MutableSequence):
     @property
     def time(self):
         """
-        Return a list with the onset times.
+        Return a list with the time of the points.
         This method will be deprecated soon.
         """
         return self
