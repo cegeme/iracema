@@ -1,4 +1,4 @@
-from iracema.segment import Segment
+from iracema.core.segment import Segment
 
 
 def get_notes_list(audio, onsets, offsets):
