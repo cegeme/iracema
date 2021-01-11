@@ -277,49 +277,6 @@ def waveform_trio_features_and_points(audio,
     f.show()
 
 
-def spectrogram_3d(fft, logfft=False, fftlim=None, figsize=None):
-    """
-    Plot a 3D spectrogram (experimental feature).
-    """
-    # handle arguments
-    if not fftlim:
-        fmin, fmax = 20, fft.max_frequency
-    else:
-        fmin, fmax = fftlim[0], fftlim[1]
-        if fmax > fft.max_frequency:
-            warnings.warn(
-                "the fmax specified excceeds the maximum frequency of the FFT")
-            fmax = fft.max_frequency
-
-    # configuring figure and subplots
-    if not figsize:
-        figsize = DEFAULT_FIG_SIZE
-    f = plt.figure(figsize=figsize)
-
-    ax = Axes3D(f)
-
-    # plotting spectrogram
-    lenfft = fft.nfeatures
-    bins_per_hz = lenfft / fft.max_frequency
-    imax, imin = int(fmax * bins_per_hz), int(fmin * bins_per_hz)
-
-    X, Y = np.meshgrid(fft.time, np.arange(imin, imax))
-
-    fft_abs = (abs(fft.data[imin:imax, :]))
-
-    ax.plot_surface(X, Y, fft_abs**2, rstride=2, cstride=10, cmap='seismic')
-
-    if logfft:
-        ax.set_yscale("log", basey=2)
-        ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-
-    # ax2.set(xlabel='time (s)', ylabel='frequency (Hz)')
-
-    f.show()
-
-    return f
-
-
 def _add_notes_to_axes(axes, notes):
     """
     Add note segments to the given ``axes``.
