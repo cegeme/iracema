@@ -49,26 +49,63 @@ class STFT(iracema.core.timeseries.TimeSeries):
     def phase(self):
         return np.angle(self.data)
 
+
+class Spectrogram(iracema.core.timeseries.TimeSeries):
+    "Generate spectrogram for the given `time_series`."
+    def __init__(self, time_series, window_size, hop_size, fft_len=4096, power=2.):
+        """
     Args
     ----
     time_series : TimeSeries
-        Time series to be used in the FFT.
+            Time series for applying the STFT.
     window_size : int
     hop_size : int
     fftlen : int
         Length of the FFT. The signal will be zero-padded if ``fftlen`` >
         ``rolling_window.window_size``.
+        power : float
+            Exponent for the spectrogram.
     """
-    def calculate(x):
-        return np.fft.fft(x, n=2 * fft_len)[:int(fft_len)]
+        stft = STFT(time_series, window_size, hop_size, fft_len=fft_len)
+        data = stft.magnitude(power=power)
 
-    fft_time_series = sliding_window(time_series, window_size,
-                                     hop_size, calculate,
-                                     window_name='hann')
+        super(Spectrogram, self).__init__(
+            stft.fs, data=data, start_time=stft.start_time, caption=stft.caption)
 
-    fft_time_series.max_frequency = time_series.nyquist
-    fft_time_series.frequencies = np.linspace(
-        0, fft_time_series.max_frequency, fft_len, dtype=np.float_)
+        self.max_frequency = stft.max_frequency
+        self.frequencies = stft.frequencies
+
+        self.label = 'Spectrogram'
+        self.unit = 'Magnitude'
+
+
+class MelSpectrogram(iracema.core.timeseries.TimeSeries):
+    def __init__(self,
+                 time_series,
+                 window_size,
+                 hop_size,
+                 fft_len=4096,
+                 power=2.,
+                 n_mels=256,
+                 fmin=0.,
+                 fmax=None):
+        """
+        Compute a mel spectrogram for ``time_series``.
+        """
+        spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power)
+
+        fmax = fmax or spec.max_frequency
+        mel_basis = mel(
+            time_series.fs, fft_len, n_mels=n_mels, fmin=fmin, fmax=fmax)
+        data = np.dot(mel_basis, spec.data)
+
+        super(MelSpectrogram, self).__init__(
+            spec.fs, data=data, start_time=spec.start_time, caption=spec.caption)
+
+        self.frequencies = mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax)
+        self.max_frequency = spec.frequencies[-1]
+        self.label = 'Mel Spectrogram'
+        self.label = 'Magnitude'
 
 
 @deprecated(version='0.2.0', reason='Deprecated method. Use `STFT` instead.')
