@@ -18,6 +18,8 @@ class Point(Decimal):
     .. Hint:: This class is also available at the main package level as
         ``iracema.Point``.
     """
+    def __repr__(self):
+        return f"Point({self})"
 
     @classmethod
     def from_sample_index(cls, index, time_series):
