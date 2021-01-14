@@ -41,7 +41,14 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
     return f
 
 
-def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
+def spectrogram(spec_ts,
+                log=False,
+                fmin=0.,
+                fmax=None,
+                figsize=None,
+                vmin=-96.,
+                vmax=80.,
+                cmap='inferno'):
     """
     Plot the spectrogram of the audio signal.
     """
@@ -55,7 +62,8 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
     plt.subplots_adjust(hspace=0.05)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(
+        ax, spec_ts, log, fmin=fmin, fmax=fmax, vmin=vmin, vmax=vmax, cmap=cmap)
 
     # show the resulting image
     f.show()
@@ -64,11 +72,12 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
 
 
 def waveform_spectrogram(audio,
-                         fft,
-                         logfft=False,
+                         stft,
+                         log=False,
                          rms=None,
                          peak_envelope=None,
-                         fftlim=(),
+                         fmin=0.,
+                         fmax=None,
                          figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
@@ -89,7 +98,7 @@ def waveform_spectrogram(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax)
 
     # show the resulting image
     f.show()
@@ -98,13 +107,15 @@ def waveform_spectrogram(audio,
 
 
 def waveform_spectrogram_pitch(audio,
-                            fft,
-                            pitch,
-                            rms=None,
-                            peak_envelope=None,
-                            logfft=False,
-                            fftlim=(),
-                            figsize=None):
+                               spec_ts,
+                               pitch,
+                               rms=None,
+                               peak_envelope=None,
+                               log=False,
+                               fmin=0.,
+                               fmax=None,
+                               cmap='viridis',
+                               figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
@@ -124,7 +135,7 @@ def waveform_spectrogram_pitch(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
 
     # plotting pitch
     _add_curve_to_axes(ax2, pitch, fmt='r')
@@ -136,13 +147,15 @@ def waveform_spectrogram_pitch(audio,
 
 
 def waveform_spectrogram_harmonics(audio,
-                                   fft,
+                                   spec_ts,
                                    pitch,
                                    harmonics,
                                    rms=None,
                                    peak_envelope=None,
-                                   logfft=False,
-                                   fftlim=(),
+                                   log=False,
+                                   fmin=0.,
+                                   fmax=None,
+                                   cmap='viridis',
                                    figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
@@ -163,13 +176,13 @@ def waveform_spectrogram_harmonics(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
-
-    # plotting pitch
-    _add_curve_to_axes(ax2, pitch)
+    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
 
     # plotting harmonics
-    _add_curve_to_axes(ax2, harmonics)
+    _add_curve_to_axes(ax2, harmonics, fmt='w')
+
+    # plotting pitch
+    #_add_curve_to_axes(ax2, pitch, fmt='r')
 
     # show the resulting image
     f.show()
@@ -366,36 +379,46 @@ def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
     pass
 
 
-def _add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):
+def _add_spectrogram_to_axes(axes,
+                             spec,
+                             log=False,
+                             fmin=0.,
+                             fmax=None,
+                             vmin=-96.,
+                             vmax=80.,
+                             cmap='inferno'):
     """
     Add a spectrogram image to the axes
     """
 
     # handling arguments
-    if not fftlim:
-        fmin, fmax = 20, fft.max_frequency
+    if not fmax:
+        fmax = spec.max_frequency
     else:
-        fmin, fmax = fftlim[0], fftlim[1]
-        if fmax > fft.max_frequency:
+        if fmax > spec.max_frequency:
             warnings.warn(
-                "the fmax specified excceeds the maximum frequency of the FFT")
-            fmax = fft.max_frequency
+                "the fmax specified excceeds the maximum frequency of the spectrum"
+            )
+            fmax = spec.max_frequency
 
-    # plotting spectrogram
-    lenfft = fft.nfeatures
-    bins_per_hz = lenfft / fft.max_frequency
-    imax, imin = int(fmax * bins_per_hz), int(fmin * bins_per_hz)
+    freq_indexes = np.logical_and(spec.frequencies >= fmin,
+                                  spec.frequencies <= fmax)
 
-    fft_abs = abs(fft.data[imin:imax, :])
+    data = spec.data
+    if np.any(np.iscomplex(data)):
+        data = np.abs(data)
+    data = 20 * np.log10(data)
 
-    axes.imshow(
-        20 * np.log10(fft_abs),
-        origin='lower',
-        aspect='auto',
-        extent=[fft.start_time, fft.end_time, fmin, fmax],
-        cmap='viridis')
-
-    if logfft:
+    plt.pcolormesh(
+        spec.time,
+        spec.frequencies[freq_indexes],
+        data[freq_indexes, :],
+        cmap=cmap,
+        vmin=vmin,
+        vmax=vmax,
+        rasterized=True)
+        
+    if log:
         axes.set_yscale("log", basey=2)
         axes.get_yaxis().set_major_formatter(
             matplotlib.ticker.ScalarFormatter())
