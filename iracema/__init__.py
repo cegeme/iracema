@@ -20,6 +20,7 @@ import iracema.harmonics
 import iracema.segmentation
 import iracema.spectral
 import iracema.plot
+import iracema.util
 
 import iracema.segmentation.onsets
 
