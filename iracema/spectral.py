@@ -15,7 +15,7 @@ import iracema.core.timeseries
 class STFT(iracema.core.timeseries.TimeSeries):
     "Compute the Short-Time Fourier Transform for the ``time_series``."
     def __init__(self, time_series, window_size, hop_size, fft_len=4096):
-    """
+        """
         Args
         ----
         time_series : TimeSeries
@@ -54,18 +54,18 @@ class Spectrogram(iracema.core.timeseries.TimeSeries):
     "Generate spectrogram for the given `time_series`."
     def __init__(self, time_series, window_size, hop_size, fft_len=4096, power=2.):
         """
-    Args
-    ----
-    time_series : TimeSeries
+        Args
+        ----
+        time_series : TimeSeries
             Time series for applying the STFT.
-    window_size : int
-    hop_size : int
-    fftlen : int
-        Length of the FFT. The signal will be zero-padded if ``fftlen`` >
-        ``rolling_window.window_size``.
+        window_size : int
+        hop_size : int
+        fftlen : int
+            Length of the FFT. The signal will be zero-padded if ``fftlen`` >
+            ``rolling_window.window_size``.
         power : float
             Exponent for the spectrogram.
-    """
+        """
         stft = STFT(time_series, window_size, hop_size, fft_len=fft_len)
         data = stft.magnitude(power=power)
 
