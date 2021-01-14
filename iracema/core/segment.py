@@ -20,19 +20,14 @@ class Segment:
 
     def __init__(self, start, end):
         """
-        The `start` and `end` arguments can be specified in terms of sample
-        index or time (in seconds). The argument `limits_unit` must be set
-        accordingly.
+        Segment
 
         Args
         ----
         start : Point
-            Index (or sample number) corresponding to the start of the segment
-            in the time-series from which it derived. Alternatively, this
-            value can be specified in seconds.
-        end : int or float
-            Index of the ending sample for the segment. Alternatively, this
-            value can be specified in seconds.
+            Point corresponding to the start of the segment.
+        end : Point
+            Point corresponding to the end of the segment.
         """
         if end is not None and start > end:
             raise ValueError("end must be > start")
