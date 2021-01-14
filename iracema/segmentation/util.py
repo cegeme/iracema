@@ -1,7 +1,7 @@
 from iracema.core.segment import Segment
 
 
-def get_notes_list(audio, onsets, offsets):
+def get_notes_list(onsets, offsets):
     """
     Generate a list of note segments using the specified `onsets` and `offsets`
     arrays.
@@ -23,4 +23,4 @@ def get_notes_list(audio, onsets, offsets):
     if onsets.shape != offsets.shape:
         raise ValueError("the number of onsets and offsets must the same")
 
-    return [Segment(audio, onsets[i], offsets[i]) for i in range(len(onsets))]
+    return [Segment(onsets[i], offsets[i]) for i in range(len(onsets))]
