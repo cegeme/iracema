@@ -3,10 +3,8 @@ This module contain classes used to manipulate segments and slice TimeSeries
 objects using them.
 """
 from collections.abc import MutableSequence
-from decimal import Decimal
 
-from iracema.core.point import Point, PointList
-from iracema.util import conversion
+from iracema.core.point import Point
 
 
 class Segment:

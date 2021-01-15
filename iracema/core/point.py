@@ -4,10 +4,6 @@ This module contain classes used to manipulate points in TimeSeries objects.
 from collections.abc import MutableSequence
 from decimal import Decimal
 
-import numpy as np
-
-from iracema.util import conversion
-
 
 class Point(Decimal):
     """

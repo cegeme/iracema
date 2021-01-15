@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from matplotlib.widgets import MultiCursor  # pylint: disable=import-error
-from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
 
