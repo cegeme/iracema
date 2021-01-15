@@ -252,8 +252,7 @@ def expan(fft_time_series,
 
         if frame_noisiness < noisiness_tresh:
             return ix_cand_harm[i, 0] * fft_time_series.max_frequency / N
-        else:
-            return 0.
+        return 0.
 
     pitch_time_series = aggregate_features(
         fft_time_series, frame_pitch)

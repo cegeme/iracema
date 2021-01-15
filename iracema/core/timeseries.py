@@ -103,7 +103,7 @@ class TimeSeries:
     def nfeatures(self):  # pylint: disable=missing-docstring
         if self.data.ndim == 1:
             return 1
-        elif self.data.ndim == 2:
+        if self.data.ndim == 2:
             return self.data.shape[-2]
 
     @property

@@ -78,8 +78,7 @@ def adaptative_rms(
 
     if return_odf_data:
         return onsets, odf_data
-    else:
-        return onsets
+    return onsets
 
 
 def rms_derivative(
