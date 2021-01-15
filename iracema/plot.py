@@ -147,7 +147,6 @@ def waveform_spectrogram_pitch(audio,
 
 def waveform_spectrogram_harmonics(audio,
                                    spec_ts,
-                                   pitch,
                                    harmonics,
                                    rms=None,
                                    peak_envelope=None,
