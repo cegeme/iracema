@@ -1,4 +1,4 @@
-import pytest
+import pytest  # skipcq: PYL-W0611
 
 import iracema as ir
 
