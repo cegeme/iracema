@@ -72,7 +72,7 @@ def spectrogram(spec_ts,
 
 
 def waveform_spectrogram(audio,
-                         stft,
+                         spec_ts,
                          log=False,
                          rms=None,
                          peak_envelope=None,
