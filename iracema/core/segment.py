@@ -60,6 +60,16 @@ class Segment:
         slice_end = self.end.map_index(time_series)
         return slice(slice_start, slice_end)
 
+    def map_indexes(self, time_series):
+        """
+        Return a tuple with the indexes of ``time_series`` that correspond
+        to the segments in the list.
+        """
+        return (
+            self.start.map_index(time_series),
+            self.end.map_index(time_series)
+        )
+
     def __repr__(self):
         "Overload the representation for the class"
         class_name = self.__class__.__name__
@@ -106,7 +116,7 @@ class SegmentList(MutableSequence):
 
     def map_indexes(self, time_series):
         """
-        Return an array with the indexes of ``time_series`` that correspond to
+        Return an array of tuples with the indexes of ``time_series`` that correspond to
         the segments in the list.
         """
-        return [segment.map_index(time_series) for segment in self]
+        return [seg.map_indexes(time_series) for seg in self]
