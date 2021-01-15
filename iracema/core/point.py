@@ -76,7 +76,7 @@ class PointList(MutableSequence):
     def __repr__(self):
         return str(list(self))
 
-    def insert(self, index, item):
+    def insert(self, index, item):  # skipcq: PYL-W0221
         if not isinstance(item, Point):
             raise ValueError(
                 "The insert item is not a ``Point``")

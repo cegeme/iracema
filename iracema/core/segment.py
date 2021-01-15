@@ -111,7 +111,7 @@ class SegmentList(MutableSequence):
         "Overload the representation for the class"
         return str(list(self))
 
-    def insert(self, index, item):
+    def insert(self, index, item):  # skipcq: PYL-W0221
         if not isinstance(item, Segment):
             raise ValueError("The insert item is not a ``Segment``")
         return self._segments.insert(index, item)
