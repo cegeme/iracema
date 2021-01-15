@@ -3,6 +3,7 @@ This module contain classes used to manipulate segments and slice TimeSeries
 objects using them.
 """
 from collections.abc import MutableSequence
+import csv
 
 from iracema.core.point import Point
 
@@ -122,3 +123,24 @@ class SegmentList(MutableSequence):
         the segments in the list.
         """
         return [seg.map_indexes(time_series) for seg in self]
+
+    @classmethod
+    def load_from_file(cls, file_name):
+        """
+        Instantiate a list of segments, loaded from a CSV file. Each line in the
+        file must contain the position of a single point. The position must be
+        specified in `seconds`.
+        """
+        with open(file_name, 'r', newline='') as f:
+            segments = cls([
+                Segment(row[0], row[1])
+                for row in csv.reader(f, delimiter=',')
+            ])
+        return segments
+
+    def save_to_file(self, segments, file_name):
+        "Save SegmentList to a CSV file."
+        with open(file_name, 'w', newline='') as f:
+            writer = csv.writer(f, delimiter=',')
+            for segment in self:
+                writer.writerow([segment.start, segment.end])

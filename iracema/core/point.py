@@ -2,6 +2,8 @@
 This module contain classes used to manipulate points in TimeSeries objects.
 """
 from collections.abc import MutableSequence
+import csv
+
 from decimal import Decimal
 
 
@@ -83,16 +85,25 @@ class PointList(MutableSequence):
         return self._points.insert(index, item)
 
     @classmethod
-    def load_from_file(cls, filename):
+    def load_from_file(cls, file_name):
         """
-        Instantiates a list of points loaded from a file. Each line in the file
-        must contain the position of a single point. The position must be
+        Instantiate a list of points, loaded from a CSV file. Each line in the
+        file must contain the position of a single point. The position must be
         specified in `seconds`.
         """
-        return cls([
-            Point(Decimal(line))
-            for line in open(filename, 'r')
-        ])
+        with open(file_name, 'r', newline='') as f:
+            points = cls([
+                Point(row[0])
+                for row in csv.reader(f, delimiter=',')
+            ])
+        return points
+
+    def save_to_file(self, points, file_name):
+        "Save list of points to CSV file."
+        with open(file_name, 'w', newline='') as f:
+            writer = csv.writer(f, delimiter=',')
+            for point in self:
+                writer.writerow([point])
 
     @classmethod
     def from_list_of_indexes(cls, list_indexes, time_series):
