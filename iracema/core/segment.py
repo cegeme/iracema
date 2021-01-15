@@ -138,7 +138,7 @@ class SegmentList(MutableSequence):
             ])
         return segments
 
-    def save_to_file(self, segments, file_name):
+    def save_to_file(self, file_name):
         "Save SegmentList to a CSV file."
         with open(file_name, 'w', newline='') as f:
             writer = csv.writer(f, delimiter=',')

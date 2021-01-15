@@ -98,7 +98,7 @@ class PointList(MutableSequence):
             ])
         return points
 
-    def save_to_file(self, points, file_name):
+    def save_to_file(self, file_name):
         "Save list of points to CSV file."
         with open(file_name, 'w', newline='') as f:
             writer = csv.writer(f, delimiter=',')
