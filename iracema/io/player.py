@@ -128,7 +128,7 @@ def _play_stream(audio_time_series, blocking=False):
                 audio_time_series.fs,
                 blocking=blocking)
             return None
-    except NameError as err:
+    except NameError:
         sd.play(
             audio_time_series.data, audio_time_series.fs, blocking=blocking)
         return None
