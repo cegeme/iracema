@@ -1,6 +1,7 @@
 """
 Methods for converting values between different units.
 """
+from decimal import Decimal
 
 
 def sample_index_to_seconds(sample_index, fs, time_offset=0):
@@ -16,6 +17,9 @@ def sample_index_to_seconds(sample_index, fs, time_offset=0):
     time_offset: float
         Time offset to be added to the result (in seconds).
     """
+    sample_index = Decimal(sample_index)
+    fs = Decimal(fs)
+    time_offset = Decimal(time_offset)
     return sample_index / fs + time_offset
 
 
@@ -34,10 +38,9 @@ def seconds_to_sample_index(time, fs, time_offset=0):
 
     Note
     ----
-    The return value will be rounded to the greatest integer less than the
-    number obtained. Therefore, you must be careful when doing these
-    conversion operation between sample index and time, not to incur in loss
-    of precision.
+    The return value will be rounded to an integer number. Therefore, you must
+    be careful when doing these conversion operation between sample index and
+    time, not to incur in loss of precision.
     """
     return int((time - time_offset) * fs)
 
@@ -61,9 +64,8 @@ def map_sample_index(sample_index, source_fs, source_time_offset, target_fs,
     ------
     target_sample_index : int
     """
-    seconds = sample_index_to_seconds(sample_index, source_fs,
-                                      time_offset=source_time_offset)
+    seconds = sample_index_to_seconds(
+        sample_index, source_fs, time_offset=source_time_offset)
 
-    return seconds_to_sample_index(seconds, target_fs,
-                                   time_offset=target_time_offset)
-
+    return seconds_to_sample_index(
+        seconds, target_fs, time_offset=target_time_offset)
