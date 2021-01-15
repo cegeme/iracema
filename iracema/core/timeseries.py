@@ -3,6 +3,7 @@ This module contains the implementation of the class TimeSeries.
 """
 
 import copy as cp
+from decimal import Decimal
 
 import numpy as np
 import resampy
@@ -34,7 +35,7 @@ class TimeSeries:
         Nyquist frequency for the data.
     ts : float
         Sampling period for the data.
-    start_time : float
+    start_time : Decimal
         The time the time series start (in seconds) relative to the original
         time reference.
     duration : float
@@ -62,7 +63,7 @@ class TimeSeries:
     caption = ''
     label = ''
 
-    def __init__(self, fs, data=None, start_time=0., unit=None, caption=None):
+    def __init__(self, fs, data=None, start_time=None, unit=None, caption=None):
         """
         Args
         ----
@@ -86,7 +87,7 @@ class TimeSeries:
 
         self.data = None
         self.fs = np.float_(fs)
-        self.start_time = 0 if start_time is None else np.float_(start_time)
+        self.start_time = Decimal(0) if start_time is None else Decimal(start_time)
 
         if unit:
             self.unit = unit
@@ -108,25 +109,29 @@ class TimeSeries:
 
     @property
     def duration(self):  # pylint: disable=missing-docstring
-        return self.nsamples / self.fs
+        return Decimal(self.nsamples) / Decimal(self.fs)
 
     @property
     def nyquist(self):  # pylint: disable=missing-docstring
-        return self.fs / 2
+        return Decimal(self.fs) / Decimal(2)
 
     @property
     def end_time(self):  # pylint: disable=missing-docstring
-        return self.start_time + self.duration
+        return Decimal(self.start_time) + Decimal(self.duration)
 
     @property
     def ts(self):  # pylint: disable=missing-docstring
-        return 1 / self.fs
+        return Decimal(1) / Decimal(self.fs)
 
     @property
     def time(self):  # pylint: disable=missing-docstring
-        start = self.start_time
-        end = self.end_time
-        return np.linspace(start, end, self.nsamples)
+        start = Decimal(self.start_time)
+        step = Decimal(self.duration) / Decimal(self.nsamples)
+        
+        return [
+            start + (t * step)
+            for t in range(0, self.nsamples)
+        ]
 
     def copy(self):
         "Return a copy of the time series object (deep copy)."
@@ -266,7 +271,7 @@ class TimeSeries:
         TimeSeries object.
         """
         if type(sl) == Segment:
-            time_offset = conversion.sample_index_to_seconds(sl.start, sl.fs)
+            time_offset = sl.start
             sl = sl.generate_slice(self)
         elif (type(sl) == slice):
             index_start = sl.start or sl.stop

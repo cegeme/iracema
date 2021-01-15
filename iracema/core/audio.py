@@ -14,7 +14,7 @@ class Audio(TimeSeries):
         ``iracema.Audio``.
     """
 
-    def __init__(self, fs, data, start_time=0., caption=None):
+    def __init__(self, fs, data, start_time=None, caption=None):
         """
         Example
         -------
@@ -52,7 +52,7 @@ class Audio(TimeSeries):
             Sampling frequency for the data.
         data : numpy array
             Data array containing the audio samples.
-        start_time : float, optional
+        start_time : Decimal, optional
             The time in seconds the time series start, relative to the original
             time reference.
         unit : str, optional
