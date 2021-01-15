@@ -199,10 +199,9 @@ def hfc(fft, method='energy'):
 
         if method == 'energy':
             return np.sum(W * np.abs(X)**2) / N
-        elif method == 'amplitude':
+        if method == 'amplitude':
             return np.sum(W * np.abs(X)) / N
-        else:
-            ValueError("the argument `method` must be 'energy' or 'amplitude'")
+        ValueError("the argument `method` must be 'energy' or 'amplitude'")
 
     time_series = aggregate_features(fft, _func)
     time_series.label = 'HFC'

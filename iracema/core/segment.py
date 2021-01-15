@@ -82,13 +82,12 @@ class Segment:
 
         if self.fs == time_series.fs:
             return slice(self.start, self.end)
-        else:
-            slice_start = conversion.map_sample_index(
-                self.start, self.fs, self.time_offset, new_fs, new_time_offset)
-            slice_end = conversion.map_sample_index(
-                self.end, self.fs, self.time_offset, new_fs, new_time_offset)
+        slice_start = conversion.map_sample_index(
+            self.start, self.fs, self.time_offset, new_fs, new_time_offset)
+        slice_end = conversion.map_sample_index(
+            self.end, self.fs, self.time_offset, new_fs, new_time_offset)
 
-            return slice(slice_start, slice_end)
+        return slice(slice_start, slice_end)
 
     def __repr__(self):
         "Overload the representation for the class"
