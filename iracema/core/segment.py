@@ -35,6 +35,12 @@ class Segment:
         self.start = Point(start)
         self.end = Point(end)
 
+    def __repr__(self):
+        "Overload the representation for the class"
+        class_name = self.__class__.__name__
+        description = f"({self.start}, {self.end})"
+        return f"{class_name}{description}"
+
     def nsamples(self, time_series):
         return (self.end.map_index(time_series) -
                 self.start.map_index(time_series))
@@ -70,12 +76,6 @@ class Segment:
             self.end.map_index(time_series)
         )
 
-    def __repr__(self):
-        "Overload the representation for the class"
-        class_name = self.__class__.__name__
-        description = "(start: {}, end: {})".format(self.start, self.end)
-        return '{}: {}'.format(class_name, description)
-
 
 class SegmentList(MutableSequence):
     """
@@ -108,6 +108,10 @@ class SegmentList(MutableSequence):
 
     def __len__(self):
         return len(self._segments)
+
+    def __repr__(self):
+        "Overload the representation for the class"
+        return str(list(self))
 
     def insert(self, index, item):
         if not isinstance(item, Segment):

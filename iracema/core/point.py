@@ -78,7 +78,7 @@ class PointList(MutableSequence):
         return len(self._points)
 
     def __repr__(self):
-        return str([point for point in self])
+        return str(list(self))
 
     def insert(self, index, item):
         if not isinstance(item, Point):
