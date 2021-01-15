@@ -58,7 +58,7 @@ class PointList(MutableSequence):
         if (points is not None):
             self._points = list(points)
         else:
-            self._points = list()
+            self._points = []
 
     def __getitem__(self, index):
         if isinstance(index, slice):

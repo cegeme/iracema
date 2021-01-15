@@ -90,7 +90,7 @@ class SegmentList(MutableSequence):
         if (segments is not None):
             self._segments = list(segments)
         else:
-            self._segments = list()
+            self._segments = []
 
     def __getitem__(self, index):
         if isinstance(index, slice):
