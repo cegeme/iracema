@@ -135,7 +135,8 @@ class Audio(TimeSeries):
         return player.play_interval_seconds(self, segment.start_time,
                                             segment.end_time)
 
-    def stop(self):
+    @staticmethod
+    def stop():
         """
         Stop playing audio.
         """
