@@ -37,8 +37,8 @@ class STFT(iracema.core.timeseries.TimeSeries):
         super(STFT, self).__init__(
             new_fs, data=stft_data, start_time=time_series.start_time, caption=time_series.caption)
 
-        self.max_frequency = time_series.nyquist
-        self.frequencies = np.fft.rfftfreq(fft_len, 1. / time_series.fs)
+        self.max_frequency = float(time_series.nyquist)
+        self.frequencies = np.fft.rfftfreq(fft_len, 1. / float(time_series.fs))
 
         self.label = 'STFT'
         self.unit = ''
