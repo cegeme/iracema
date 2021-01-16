@@ -219,6 +219,30 @@ class TimeSeries:
         new_ts = new_ts.pad_like(timeseries)
         return new_ts
 
+    def merge(self, timeseries, unit=None, caption=None, start_time=None):
+        """
+        Merge two time series. Both time series must have the same length and
+        sampling frequency. The attributes ``unit``, ``caption`` and
+        ``start_time`` of the resulting time series can be optionally set using
+        the method's optional arguments. Otherwise these attributes will be
+        equal to the values in the instance on which the method was called
+        (``self``).
+        """
+        new_ts = self.copy()
+        if self.fs != timeseries.fs:
+            raise ValueError(
+                'Incompatible sampling frequencies. Both time series must '
+                'have the same sampling frequency.')
+        elif self.nsamples != timeseries.nsamples:
+            raise ValueError(
+                'Incompatible number of samples. Both time series must have '
+                'the same number of samples.')
+        new_ts.unit = unit
+        new_ts.caption = caption
+        new_ts.data = np.vstack((self.data, timeseries.data))
+
+        return new_ts
+
     def filter(self,
                critical_frequency,
                filter_type='low_pass',
