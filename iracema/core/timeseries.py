@@ -239,8 +239,9 @@ class TimeSeries:
             raise ValueError(
                 'Incompatible number of samples. Both time series must have '
                 'the same number of samples.')
-        new_ts.unit = unit
-        new_ts.caption = caption
+        new_ts.unit = unit or self.unit
+        new_ts.caption = caption or self.caption
+        new_ts.start_time = start_time or self.start_time
         new_ts.data = np.vstack((self.data, timeseries.data))
 
         return new_ts
