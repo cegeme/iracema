@@ -45,9 +45,7 @@ def spectrogram(spec_ts,
                 fmin=0.,
                 fmax=None,
                 figsize=None,
-                vmin=-96.,
-                vmax=80.,
-                cmap='inferno'):
+                cmap='viridis'):
     """
     Plot the spectrogram of the audio signal.
     """
