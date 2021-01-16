@@ -26,8 +26,9 @@ class STFT(iracema.core.timeseries.TimeSeries):
             Length of the FFT. The signal will be zero-padded if ``fftlen`` >
             ``rolling_window.window_size``.
         """
+
         def calculate(x):
-            return np.fft.rfft(x, n=fft_len)
+            return np.fft.rfft(x, n=fft_len, norm='ortho')
 
         stft_data = apply_sliding_window(
             time_series.data, window_size, hop_size, calculate, window_name='hann')
