@@ -45,6 +45,7 @@ def spectrogram(spec_ts,
                 fmin=0.,
                 fmax=None,
                 figsize=None,
+                normalize=True,
                 cmap='viridis'):
     """
     Plot the spectrogram of the audio signal.
@@ -60,7 +61,7 @@ def spectrogram(spec_ts,
 
     # plotting spectrogram
     _add_spectrogram_to_axes(
-        ax, spec_ts, log, fmin=fmin, fmax=fmax, vmin=vmin, vmax=vmax, cmap=cmap)
+        ax, spec_ts, log, fmin=fmin, fmax=fmax, normalize=normalize, cmap=cmap)
 
     # show the resulting image
     f.show()
@@ -132,7 +133,8 @@ def waveform_spectrogram_pitch(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
+    _add_spectrogram_to_axes(
+        ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
 
     # plotting pitch
     _add_curve_to_axes(ax2, pitch, fmt='r')
@@ -151,6 +153,7 @@ def waveform_spectrogram_harmonics(audio,
                                    log=False,
                                    fmin=0.,
                                    fmax=None,
+                                   normalize=True,
                                    cmap='viridis',
                                    figsize=None):
     """
@@ -172,13 +175,17 @@ def waveform_spectrogram_harmonics(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
+    _add_spectrogram_to_axes(
+        ax2,
+        spec_ts,
+        log,
+        fmin=fmin,
+        fmax=fmax,
+        normalize=normalize,
+        cmap=cmap)
 
     # plotting harmonics
-    _add_curve_to_axes(ax2, harmonics, fmt='w')
-
-    # plotting pitch
-    #_add_curve_to_axes(ax2, pitch, fmt='r')
+    _add_curve_to_axes(ax2, harmonics, fmt='r')
 
     # show the resulting image
     f.show()
@@ -380,9 +387,8 @@ def _add_spectrogram_to_axes(axes,
                              log=False,
                              fmin=0.,
                              fmax=None,
-                             vmin=-96.,
-                             vmax=80.,
-                             cmap='inferno'):
+                             normalize=True,
+                             cmap='viridis'):
     """
     Add a spectrogram image to the axes
     """
@@ -403,7 +409,7 @@ def _add_spectrogram_to_axes(axes,
     data = spec.data
     if np.any(np.iscomplex(data)):
         data = np.abs(data)
-        power=1.
+        power = 1.
         db = False
     else:
         power = spec._power
@@ -416,15 +422,29 @@ def _add_spectrogram_to_axes(axes,
         elif power == 2.0:
             data = 10 * np.log10(data)
 
+    data = data[freq_indexes, :]
+
+    if isinstance(normalize, bool) or normalize is None:
+        if normalize:
+            vmin, vmax = np.min(data), np.max(data)
+        else:
+            vmin, vmax = -96, 0
+    elif isinstance(normalize, tuple):
+        if len(normalize) != 2:
+            raise ValueError(
+                "If `normalize` is a tuple, it must contain two values (vmin, vmax)."
+            )
+        vmin, vmax = normalize
+
     plt.pcolormesh(
         spec.time,
         spec.frequencies[freq_indexes],
-        data[freq_indexes, :],
+        data,
         cmap=cmap,
         vmin=vmin,
         vmax=vmax,
         rasterized=True)
-        
+
     if log:
         axes.set_yscale("log", basey=2)
         axes.get_yaxis().set_major_formatter(
