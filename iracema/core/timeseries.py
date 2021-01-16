@@ -193,7 +193,7 @@ class TimeSeries:
 
         return ts
 
-    def pad_like(self, timeseries):
+    def pad_like(self, timeseries, value=0.):
         """
         Pad the end of the current time series to match the length of
         the given time series.
@@ -206,19 +206,19 @@ class TimeSeries:
         padding_len = timeseries.nsamples - self.nsamples
         new_ts = self.copy()
         if timeseries.data.ndim == 1:
-            padding_array = np.zeros(padding_len)
+            padding_array = np.ones(padding_len)*value
         elif timeseries.data.ndim == 2:
-            padding_array = np.zeros((self.nfeatures, padding_len))
+            padding_array = np.ones((self.nfeatures, padding_len))*value
         new_ts.data = np.concatenate((new_ts.data, padding_array), axis=-1)
         return new_ts
 
-    def resample_and_pad_like(self, timeseries):
+    def resample_and_pad_like(self, timeseries, value=0.):
         """
         Resample and pad the end of the current time series to match
         the given time series.
         """
         new_ts = self.resample(timeseries.fs)
-        new_ts = new_ts.pad_like(timeseries)
+        new_ts = new_ts.pad_like(timeseries, value=value)
         return new_ts
 
     def merge(self, timeseries, unit=None, caption=None, start_time=None):
