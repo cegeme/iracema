@@ -9,7 +9,7 @@ from iracema.util.windowing import apply_sliding_window
 import iracema.core.timeseries
 
 
-def sliding_window(time_series, window_size, hop_size, function,
+def sliding_window(time_series, window_size, hop_size, function=None,
                    window_name=None):
     """
     Use a sliding window to aggregate the data from ``time_series`` by applying
@@ -23,15 +23,21 @@ def sliding_window(time_series, window_size, hop_size, function,
         Time series over which the sliding operation must be applied.
     window_size: int
         Size of the window.
-    hop_size: int
+    hop_size : int
         Number of samples to be skipped between two successive windowing
         operations.
+    function : function
+        Function to be applied to each window. If no function is specified,
+        each window will contain an unaltered excerpt of the time series.
     window_name : str
         Name of the window function to be used. Options are: {"boxcar",
         "triang", "blackman", "hamming", "hann", "bartlett", "flattop",
         "parzen", "bohman", "blackmanharris", "nuttall", "barthann",
         "no_window", None}.
     """
+    if not function:
+        function = lambda x: x
+
     new_data = apply_sliding_window(time_series.data, window_size, hop_size,
                                     function, window_name)
 
