@@ -8,6 +8,7 @@ from decimal import Decimal
 import numpy as np
 import resampy
 
+from iracema.aggregation import sliding_window
 from iracema.core.segment import Segment
 from iracema.util import conversion
 from iracema.util.dsp import but_filter
@@ -162,6 +163,38 @@ class TimeSeries:
 
         return ts
 
+    def sliding_window(self,
+                       window_size,
+                       hop_size,
+                       function=None,
+                       window_name=None):
+        """
+        Use a sliding window to aggregate the data from the time series by
+        applying ``function`` to each analysis window. The content of each
+        window will be passed as the first argument to the function. Return
+        the aggregated data in an array.
+
+        Args
+        ----
+        window_size: int
+            Size of the window.
+        hop_size : int
+            Number of samples to be skipped between two successive windowing
+            operations.
+        function : function
+            Function to be applied to each window. If no function is specified,
+            each window will contain an unaltered excerpt of the time series.
+        window_name : str
+            Name of the window function to be used. Options are: {"boxcar",
+            "triang", "blackman", "hamming", "hann", "bartlett", "flattop",
+            "parzen", "bohman", "blackmanharris", "nuttall", "barthann",
+            "no_window", None}.
+        """
+        ts = self.copy()
+        ts = sliding_window(
+            ts, window_size, hop_size, function=function, window_name=window_name)
+        return ts
+
     def zeros_to_nan(self):
         """
         Converts zeros to np.nan in the data array. Returns a new time series.
@@ -206,9 +239,9 @@ class TimeSeries:
         padding_len = timeseries.nsamples - self.nsamples
         new_ts = self.copy()
         if timeseries.data.ndim == 1:
-            padding_array = np.ones(padding_len)*value
+            padding_array = np.ones(padding_len) * value
         elif timeseries.data.ndim == 2:
-            padding_array = np.ones((self.nfeatures, padding_len))*value
+            padding_array = np.ones((self.nfeatures, padding_len)) * value
         new_ts.data = np.concatenate((new_ts.data, padding_array), axis=-1)
         return new_ts
 
