@@ -77,7 +77,7 @@ def amplitude_to_db(data, clip_min=None):
     """
     Convert amplitude to dB.
     """
-    return energy_to_db(data**2)
+    return energy_to_db(data**2, clip_min=clip_min)
 
 
 def energy_to_db(data, clip_min=1.e-10):
