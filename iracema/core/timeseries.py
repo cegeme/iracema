@@ -235,7 +235,7 @@ class TimeSeries:
             raise ValueError(
                 'Incompatible sampling frequencies. Both time series must '
                 'have the same sampling frequency.')
-        elif self.nsamples != timeseries.nsamples:
+        if self.nsamples != timeseries.nsamples:
             raise ValueError(
                 'Incompatible number of samples. Both time series must have '
                 'the same number of samples.')
