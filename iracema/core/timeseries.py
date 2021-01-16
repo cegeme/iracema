@@ -63,7 +63,8 @@ class TimeSeries:
     caption = ''
     label = ''
 
-    def __init__(self, fs, data=None, start_time=None, unit=None, caption=None):
+    def __init__(self, fs, data=None, start_time=None, unit=None,
+                 caption=None):
         """
         Args
         ----
@@ -87,7 +88,8 @@ class TimeSeries:
 
         self.data = None
         self.fs = np.float_(fs)
-        self.start_time = Decimal(0) if start_time is None else Decimal(start_time)
+        self.start_time = Decimal(0) if start_time is None else Decimal(
+            start_time)
 
         if unit:
             self.unit = unit
@@ -127,11 +129,8 @@ class TimeSeries:
     def time(self):  # pylint: disable=missing-docstring
         start = Decimal(self.start_time)
         step = Decimal(self.duration) / Decimal(self.nsamples)
-        
-        return [
-            start + (t * step)
-            for t in range(0, self.nsamples)
-        ]
+
+        return [start + (t * step) for t in range(0, self.nsamples)]
 
     def copy(self):
         "Return a copy of the time series object (deep copy)."
@@ -205,9 +204,12 @@ class TimeSeries:
             ValueError("The current time series has more samples than the"
                        "given time series.")
         padding_len = timeseries.nsamples - self.nsamples
-        padding_array = np.zeros(padding_len)
         new_ts = self.copy()
-        new_ts.data = np.concatenate((new_ts.data, padding_array.data))
+        if timeseries.data.ndim == 1:
+            padding_array = np.zeros(padding_len)
+        elif timeseries.data.ndim == 2:
+            padding_array = np.zeros((self.nfeatures, padding_len))
+        new_ts.data = np.concatenate((new_ts.data, padding_array), axis=-1)
         return new_ts
 
     def resample_and_pad_like(self, timeseries):
