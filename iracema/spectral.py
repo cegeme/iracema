@@ -9,6 +9,7 @@ from librosa.filters import mel
 from librosa.core.convert import mel_frequencies
 
 from iracema.util.windowing import apply_sliding_window
+from iracema.util import conversion
 import iracema.core.timeseries
 
 
@@ -50,9 +51,9 @@ class STFT(iracema.core.timeseries.TimeSeries):
         magnitude = np.abs(self.data) ** power
         if db:
             if power == 1.0:
-                magnitude = 20 * np.log10(magnitude)
+                magnitude = conversion.amplitude_to_db(magnitude)
             elif power == 2.0:
-                magnitude = 10 * np.log10(magnitude)
+                magnitude = conversion.energy_to_db(magnitude)
         return magnitude
 
     def phase(self):
@@ -117,7 +118,9 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
         self.frequencies = mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax)
         self.max_frequency = spec.frequencies[-1]
         self.label = 'Mel Spectrogram'
-        self.label = 'Magnitude'
+        self.unit = 'Magnitude'
+        self._power = power
+        self._db = db
 
 
 @deprecated(version='0.2.0', reason='Deprecated method. Use `STFT` instead.')

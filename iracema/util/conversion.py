@@ -3,6 +3,8 @@ Methods for converting values between different units.
 """
 from decimal import Decimal
 
+import numpy as np
+
 
 def sample_index_to_seconds(sample_index, fs, time_offset=0):
     """
@@ -69,3 +71,17 @@ def map_sample_index(sample_index, source_fs, source_time_offset, target_fs,
 
     return seconds_to_sample_index(
         seconds, target_fs, time_offset=target_time_offset)
+
+
+def amplitude_to_db(data, clip_min=None):
+    """
+    Convert amplitude to dB.
+    """
+    return energy_to_db(data**2)
+
+
+def energy_to_db(data, clip_min=1.e-10):
+    """
+    Convert energy to dB.
+    """
+    return 10 * np.log10(np.clip(data, clip_min, None))

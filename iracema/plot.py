@@ -10,6 +10,7 @@ import numpy as np
 from matplotlib.widgets import MultiCursor  # pylint: disable=import-error
 
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
+from iracema.util import conversion
 
 DEFAULT_FIG_SIZE = (9, 9)
 
@@ -418,9 +419,9 @@ def _add_spectrogram_to_axes(axes,
     # if the data is not in dB, convert it
     if not db:
         if power == 1.0:
-            data = 20 * np.log10(data)
+            conversion.amplitude_to_db(data)
         elif power == 2.0:
-            data = 10 * np.log10(data)
+            conversion.power_to_db(data)
 
     data = data[freq_indexes, :]
 
