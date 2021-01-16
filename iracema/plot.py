@@ -405,7 +405,18 @@ def _add_spectrogram_to_axes(axes,
     data = spec.data
     if np.any(np.iscomplex(data)):
         data = np.abs(data)
-    data = 20 * np.log10(data)
+        power=1.
+        db = False
+    else:
+        power = spec._power
+        db = spec._db
+
+    # if the data is not in dB, convert it
+    if not db:
+        if power == 1.0:
+            data = 20 * np.log10(data)
+        elif power == 2.0:
+            data = 10 * np.log10(data)
 
     plt.pcolormesh(
         spec.time,

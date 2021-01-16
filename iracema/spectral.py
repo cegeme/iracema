@@ -42,10 +42,18 @@ class STFT(iracema.core.timeseries.TimeSeries):
         self.frequencies = np.fft.rfftfreq(fft_len, 1. / float(time_series.fs))
 
         self.label = 'STFT'
-        self.unit = ''
+        self.unit = 'complex'
 
-    def magnitude(self, power=2.):
-        return np.abs(self.data) ** power
+    def magnitude(self, power=2., db=False):
+        if float(power) not in (1., 2.):
+            raise ValueError('The argument `power` must be equal to 1.0 or 2.0')
+        magnitude = np.abs(self.data) ** power
+        if db:
+            if power == 1.0:
+                magnitude = 20 * np.log10(magnitude)
+            elif power == 2.0:
+                magnitude = 10 * np.log10(magnitude)
+        return magnitude
 
     def phase(self):
         return np.angle(self.data)
@@ -53,7 +61,7 @@ class STFT(iracema.core.timeseries.TimeSeries):
 
 class Spectrogram(iracema.core.timeseries.TimeSeries):
     "Generate spectrogram for the given `time_series`."
-    def __init__(self, time_series, window_size, hop_size, fft_len=4096, power=2.):
+    def __init__(self, time_series, window_size, hop_size, fft_len=4096, power=2., db=True):
         """
         Args
         ----
@@ -68,7 +76,7 @@ class Spectrogram(iracema.core.timeseries.TimeSeries):
             Exponent for the spectrogram.
         """
         stft = STFT(time_series, window_size, hop_size, fft_len=fft_len)
-        data = stft.magnitude(power=power)
+        data = stft.magnitude(power=power, db=db)
 
         super(Spectrogram, self).__init__(
             stft.fs, data=data, start_time=stft.start_time, caption=stft.caption)
@@ -78,6 +86,8 @@ class Spectrogram(iracema.core.timeseries.TimeSeries):
 
         self.label = 'Spectrogram'
         self.unit = 'Magnitude'
+        self._power = power
+        self._db = db
 
 
 class MelSpectrogram(iracema.core.timeseries.TimeSeries):
@@ -87,13 +97,14 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
                  hop_size,
                  fft_len=4096,
                  power=2.,
+                 db=True,
                  n_mels=256,
                  fmin=0.,
                  fmax=None):
         """
         Compute a mel spectrogram for ``time_series``.
         """
-        spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power)
+        spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power, db=db)
 
         fmax = fmax or spec.max_frequency
         mel_basis = mel(
