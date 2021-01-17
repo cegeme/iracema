@@ -1,6 +1,9 @@
 """
 This module contains the implementation of the class ``Audio``.
 """
+
+import resampy
+
 from iracema.core.timeseries import TimeSeries
 from iracema.io.audiofile import read as _read
 from iracema.io import player
@@ -100,6 +103,20 @@ class Audio(TimeSeries):
         audio = cls(fs, data, caption=caption)
         audio.filename = base_name
         return audio
+
+    def resample(self, new_fs):
+        """
+        Resample time series to a new sampling rate.
+        """
+        if self.start_time != 0:
+            raise (NotImplementedError(
+                'The method resample is implemented only for time series '
+                'objects with start_time equal to 0.'))
+        new = self.copy()
+        new.data = resampy.resample(self.data, float(self.fs), float(new_fs))
+        new.fs = new_fs
+
+        return new
 
     def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
