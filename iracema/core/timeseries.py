@@ -140,7 +140,7 @@ class TimeSeries:
         "Return a normalized copy of the time series."
         normalized_data = self.data / np.max(self.data)
 
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = normalized_data
         return ts
 
@@ -157,7 +157,7 @@ class TimeSeries:
         if nfeatures == 1:
             data_diff.shape = (self.nsamples, )
 
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = data_diff
 
         return ts
@@ -206,7 +206,7 @@ class TimeSeries:
         "Return a half-wave rectified copy of the time series."
         rectified_data = np.clip(self.data, 0, None)
 
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = rectified_data
 
         return ts
@@ -334,7 +334,7 @@ class TimeSeries:
                              "of type `Segment` or a Python slice")
 
         sliced_data = self.data[sl]
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = sliced_data
         ts.start_time += time_offset  # shift start
         return ts
