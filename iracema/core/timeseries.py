@@ -6,7 +6,6 @@ import copy as cp
 from decimal import Decimal
 
 import numpy as np
-import resampy
 
 from iracema.aggregation import sliding_window
 from iracema.core.segment import Segment
@@ -216,15 +215,8 @@ class TimeSeries:
         """
         Resample time series to a new sampling rate.
         """
-        if self.start_time != 0:
-            raise (NotImplementedError(
-                'The method resample is implemented only for time series '
-                'objects with start_time equal to 0.'))
-        ts = cp.copy(self)
-        ts.data = resampy.resample(self.data, self.fs, new_fs)
-        ts.fs = new_fs
-
-        return ts
+        raise NotImplementedError(
+            'This method is not implemented for time series yet.')
 
     def pad_like(self, timeseries, value=0.):
         """
