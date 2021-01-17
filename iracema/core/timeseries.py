@@ -29,18 +29,18 @@ class TimeSeries:
     time : numpy array
         Numpy data array containing the time of each sample, relative to the
         original time reference.
-    fs : float
+    fs : Decimal
         Sampling frequency for the data.
-    nyquist : float
+    nyquist : Decimal
         Nyquist frequency for the data.
-    ts : float
+    ts : Decimal
         Sampling period for the data.
     start_time : Decimal
         The time the time series start (in seconds) relative to the original
         time reference.
-    duration : float
+    duration : Decimal
         Duration of the time series (in seconds).
-    end_time : float
+    end_time : Decimal
         The time the time series end (in seconds) relative to the original time
         reference.
     unit : str
@@ -68,7 +68,7 @@ class TimeSeries:
         """
         Args
         ----
-        fs : float
+        fs : Decimal
             Sampling frequency for the data.
         data : numpy array, optional
             Data array sampled at ``fs`` Hz. If this argument is not provided,
@@ -87,7 +87,7 @@ class TimeSeries:
                 "the sampling frequency (fs) must be greater than zero")
 
         self.data = None
-        self.fs = np.float_(fs)
+        self.fs = Decimal(fs)
         self.start_time = Decimal(0) if start_time is None else Decimal(
             start_time)
 
