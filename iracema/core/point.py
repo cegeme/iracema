@@ -3,8 +3,9 @@ This module contain classes used to manipulate points in TimeSeries objects.
 """
 from collections.abc import MutableSequence
 import csv
-
 from decimal import Decimal
+
+import numpy as np
 
 
 class Point(Decimal):
@@ -111,7 +112,7 @@ class PointList(MutableSequence):
         Instantiate a list of points from a list of indexes ``list_indexes``
         and a ``time_series`` object.
         """
-        cls([
+        return cls([
             Point.from_sample_index(index, time_series)
             for index in list_indexes
         ])
@@ -137,3 +138,16 @@ class PointList(MutableSequence):
         list.
         """
         return [point.get_value(time_series) for point in self]
+
+    def to_numpy(self):
+        """
+        Retun a numpy array with the time of the points.
+        """
+        return np.array([np.float(point) for point in self])
+
+    @classmethod
+    def from_numpy(cls, array):
+        """
+        Instantiate a list of points from a numpy array.
+        """
+        return cls([Point(p) for p in array])
