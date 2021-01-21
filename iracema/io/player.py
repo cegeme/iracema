@@ -25,7 +25,8 @@ def play(audio_time_series, blocking=False):
 def play_with_clicks(audio_time_series,
                      points,
                      click_file=None,
-                     blocking=False):
+                     blocking=False,
+                     return_time_series=False):
     """
     Play audio with clicks in the instants corresponding to the specified
     points. The path to the audio file containing the click sound must be
@@ -50,6 +51,9 @@ def play_with_clicks(audio_time_series,
         if to_pad > 0:
             audio_with_clicks.data = np.pad(audio_with_clicks.data, (0, to_pad))
         audio_with_clicks.data[i:i + len(click_sound)] += click_sound
+
+    if return_time_series:
+        return audio_with_clicks
 
     return _play_stream(audio_with_clicks, blocking=blocking)
 
