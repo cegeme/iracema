@@ -139,6 +139,13 @@ class Audio(TimeSeries):
         """
         return player.play_with_clicks(self, points)
 
+    def mix_clicks(self, points):
+        """
+        Return an audio time series with clicks mixed in the instants
+        corresponding to ``points``.
+        """
+        return player.play_with_clicks(self, points, return_time_series=True)
+
     def play_from_time(self, from_time):
         """
         Play audio from Audio object start at time ``from_time``.
