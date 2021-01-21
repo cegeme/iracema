@@ -46,9 +46,9 @@ def play_with_clicks(audio_time_series,
     indexes = points.map_indexes(audio_time_series)
     audio_with_clicks = audio_time_series.copy()
     for i in indexes:
-        to_pad = i + len(click_sound) - len(data)
+        to_pad = i + len(click_sound) - len(audio_with_clicks.data)
         if to_pad > 0:
-            data = np.pad(data, (0, to_pad))
+            audio_with_clicks.data = np.pad(audio_with_clicks.data, (0, to_pad))
         audio_with_clicks.data[i:i + len(click_sound)] += click_sound
 
     return _play_stream(audio_with_clicks, blocking=blocking)
