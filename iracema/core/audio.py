@@ -1,12 +1,14 @@
 """
 This module contains the implementation of the class ``Audio``.
 """
-
+from librosa.effects import time_stretch, pitch_shift
 import resampy
+import numpy as np
 
 from iracema.core.timeseries import TimeSeries
 from iracema.io.audiofile import read as _read
 from iracema.io import player
+from iracema.util import conversion
 
 
 class Audio(TimeSeries):
