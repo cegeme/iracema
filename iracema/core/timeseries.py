@@ -133,16 +133,30 @@ class TimeSeries:
         return [start + (t * step) for t in range(0, self.nsamples)]
 
     def copy(self):
-        "Return a copy of the time series object (deep copy)."
+        """
+        Return a copy of the time series object (deep copy).
+        """
         return cp.deepcopy(self)
 
-    def normalize(self):
-        "Return a normalized copy of the time series."
-        normalized_data = self.data / np.max(self.data)
+    def gain(self, db):
+        """
+        Apply a gain of ``db`` dB to the time series and return the new object.
+        """
+        scale_factor = conversion.db_to_amplitude(db)
+        new = self.copy()
+        new.data = new.data * scale_factor
 
-        ts = self.copy()
-        ts.data = normalized_data
-        return ts
+        return new
+
+    def normalize(self, db=0.0):
+        """
+        Return a copy of the audio time series, normalized to ``db`` dB.
+        """
+        new = self.copy()
+        new.data = self.data / np.max(self.data)
+        new = new.gain(db)
+
+        return new
 
     def diff(self, n=1):
         "Return the n-th discrete difference for the time series"
