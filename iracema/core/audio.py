@@ -161,7 +161,6 @@ class Audio(TimeSeries):
 
         return new
 
-
     def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
         Plot the time series. The ``linewidth`` and ``alpha`` (opacity) values
