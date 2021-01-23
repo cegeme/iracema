@@ -131,6 +131,17 @@ class Audio(TimeSeries):
 
         return new
 
+    def time_stretch(self, rate, **kwargs):
+        """
+        Time-stretch the audio time series and return the new object.
+
+        This method is a wrapper over librosa_'s ``time_stretch`` method.
+        """
+        new = self.copy()
+        new.data = time_stretch(new.data, rate, **kwargs)
+
+        return new
+
     def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
         Plot the time series. The ``linewidth`` and ``alpha`` (opacity) values
