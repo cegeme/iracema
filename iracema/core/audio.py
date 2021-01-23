@@ -117,6 +117,19 @@ class Audio(TimeSeries):
         new.fs = new_fs
 
         return new
+    
+    def pitch_shift(self, n_steps, **kwargs):
+        """
+        Shift the pitch of the audio time series and return the new object.
+
+        This method is a wrapper over librosa_'s ``pitch_shift`` method.
+
+        .. _librosa: https://librosa.org
+        """
+        new = self.copy()
+        new.data = pitch_shift(new.data, new.fs, n_steps, **kwargs)
+
+        return new
 
     def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
