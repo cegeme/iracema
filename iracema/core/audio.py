@@ -142,6 +142,24 @@ class Audio(TimeSeries):
 
         return new
 
+    def add_noise(self, db=-50.):
+        """
+        Add noise to the audio time series and return the new object.
+
+        Arguments
+        ---------
+        db : float
+            Peak amplitude (in dB) of the generated noise, with an amplitude
+            of 1.0 correspoding to 0 dB.
+        """
+        scale_factor = conversion.db_to_amplitude(db)
+        new = self.copy()
+        rand = np.random.uniform(-scale_factor,scale_factor,self.nsamples)
+        new.data = self.data + (rand)
+
+        return new
+
+
     def plot(self, linewidth=0.1, alpha=0.9, **kwargs):
         """
         Plot the time series. The ``linewidth`` and ``alpha`` (opacity) values
