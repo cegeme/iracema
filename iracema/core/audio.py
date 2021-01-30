@@ -114,6 +114,8 @@ class Audio(TimeSeries):
             raise (NotImplementedError(
                 'The method resample is implemented only for time series '
                 'objects with start_time equal to 0.'))
+        if self.fs == new_fs:
+            return self
         new = self.copy()
         new.data = resampy.resample(self.data, float(self.fs), float(new_fs))
         new.fs = new_fs
