@@ -104,6 +104,7 @@ class Audio(TimeSeries):
         caption = caption or base_name
         audio = cls(fs, data, caption=caption)
         audio.filename = base_name
+        audio.filepath = file_location
         return audio
 
     def resample(self, new_fs):
