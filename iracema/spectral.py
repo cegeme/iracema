@@ -15,7 +15,7 @@ import iracema.core.timeseries
 
 class STFT(iracema.core.timeseries.TimeSeries):
     "Compute the Short-Time Fourier Transform for the ``time_series``."
-    def __init__(self, time_series, window_size, hop_size, fft_len=4096):
+    def __init__(self, time_series, window_size, hop_size, fft_len=None):
         """
         Args
         ----
@@ -23,10 +23,12 @@ class STFT(iracema.core.timeseries.TimeSeries):
             Time series for applying the STFT.
         window_size : int
         hop_size : int
-        fftlen : int
-            Length of the FFT. The signal will be zero-padded if ``fftlen`` >
-            ``rolling_window.window_size``.
+        fft_len : int
+            Length of the FFT. The signal will be zero-padded if ``fft_len`` >
+            ``window_size``. The default value is equal to `window_size`.
         """
+        if not fft_len:
+            fft_len = window_size
 
         def calculate(x):
             return np.fft.rfft(x, n=fft_len, norm='ortho')
@@ -62,7 +64,7 @@ class STFT(iracema.core.timeseries.TimeSeries):
 
 class Spectrogram(iracema.core.timeseries.TimeSeries):
     "Generate spectrogram for the given `time_series`."
-    def __init__(self, time_series, window_size, hop_size, fft_len=4096, power=2., db=True):
+    def __init__(self, time_series, window_size, hop_size, fft_len=None, power=2., db=True):
         """
         Args
         ----
@@ -70,11 +72,13 @@ class Spectrogram(iracema.core.timeseries.TimeSeries):
             Time series for applying the STFT.
         window_size : int
         hop_size : int
-        fftlen : int
-            Length of the FFT. The signal will be zero-padded if ``fftlen`` >
-            ``rolling_window.window_size``.
+        fft_len : int
+            Length of the FFT. The signal will be zero-padded if ``fft_len`` >
+            ``window_size``. The default value is equal to `window_size`.
         power : float
             Exponent for the spectrogram.
+        db : bool
+            Whether or not to convert the output values to dB.
         """
         stft = STFT(time_series, window_size, hop_size, fft_len=fft_len)
         data = stft.magnitude(power=power, db=db)
@@ -96,7 +100,7 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
                  time_series,
                  window_size,
                  hop_size,
-                 fft_len=4096,
+                 fft_len=None,
                  power=2.,
                  db=True,
                  n_mels=256,
@@ -104,6 +108,26 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
                  fmax=None):
         """
         Compute a mel spectrogram for ``time_series``.
+
+        Args
+        ----
+        time_series : TimeSeries
+            Time series for applying the STFT.
+        window_size : int
+        hop_size : int
+        fft_len : int
+            Length of the FFT. The signal will be zero-padded if ``fft_len`` >
+            ``window_size``. The default value is equal to `window_size`.
+        power : float
+            Exponent for the spectrogram.
+        db : bool
+            Whether or not to convert the output values to dB.
+        n_mels : int
+            Number of mel-scaled filters/channels.
+        fmin : float
+            Frequency of the lowest filter.
+        fmax : float
+            Frequency of the highest filter.
         """
         spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power, db=db)
 
