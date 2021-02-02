@@ -109,7 +109,7 @@ class Audio(TimeSeries):
 
     def resample(self, new_fs):
         """
-        Resample time series to a new sampling rate.
+        Resample time series to ``new_fs``.
         """
         if self.start_time != 0:
             raise (NotImplementedError(
