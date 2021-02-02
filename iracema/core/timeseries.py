@@ -231,6 +231,43 @@ class TimeSeries:
         """
         raise NotImplementedError(
             'This method is not implemented for time series yet.')
+    
+    def pad(self, pre, post, value=0.):
+        """
+        Pad the edges of the time series.
+
+        Args
+        ----
+        pre : int
+            Pre-padding length.
+        post : int
+            Post-padding length.
+        value : float or str
+            Value for the padding operation. If a float number is provided,
+            this value will be used in the padding. If instead the string
+            'repeat' is provided, the values at the edges will be repeated
+            in the padding operation.
+        """
+        new = self.copy()
+        first_col = np.expand_dims(new.data[...,0], -1)
+        last_col = np.expand_dims(new.data[..., -1], -1)
+        if isinstance(value, str):
+            if value == 'repeat':
+                pre_pad_array = np.repeat(first_col, pre, axis=-1)
+                post_pad_array = np.repeat(last_col, post, -1)
+            else:
+                raise ValueError("Invalid value for argument `value`")
+        else:
+            pre_pad_array = np.full_like(first_col, value)
+            post_pad_array = np.full_like(last_col, value)
+            pre_pad_array = np.repeat(pre_pad_array, pre, axis=-1)
+            post_pad_array = np.repeat(post_pad_array, post, -1)
+
+        new.data = np.concatenate((pre_pad_array, new.data, post_pad_array), axis=-1)
+        new.start_time = new.start_time - new.ts*pre
+
+        return new
+
 
     def pad_like(self, timeseries, value=0.):
         """
