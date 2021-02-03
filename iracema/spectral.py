@@ -129,6 +129,9 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
         fmax : float
             Frequency of the highest filter.
         """
+        if not fft_len:
+            fft_len = window_size
+
         spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power, db=db)
 
         fmax = fmax or spec.max_frequency
