@@ -132,12 +132,18 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
         if not fft_len:
             fft_len = window_size
 
-        spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power, db=db)
+        spec = Spectrogram(time_series, window_size, hop_size, fft_len=fft_len, power=power, db=False)
 
         fmax = fmax or spec.max_frequency
         mel_basis = mel(
             time_series.fs, fft_len, n_mels=n_mels, fmin=fmin, fmax=fmax)
         data = np.dot(mel_basis, spec.data)
+
+        if db:
+            if power == 1.0:
+                data = conversion.amplitude_to_db(data)
+            elif power == 2.0:
+                data = conversion.energy_to_db(data)
 
         super(MelSpectrogram, self).__init__(
             spec.fs, data=data, start_time=spec.start_time, caption=spec.caption)
