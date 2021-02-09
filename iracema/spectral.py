@@ -105,7 +105,8 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
                  db=True,
                  n_mels=256,
                  fmin=0.,
-                 fmax=None):
+                 fmax=None,
+                 htk=False):
         """
         Compute a mel spectrogram for ``time_series``.
 
@@ -128,6 +129,7 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
             Frequency of the lowest filter.
         fmax : float
             Frequency of the highest filter.
+        htk : bool
         """
         if not fft_len:
             fft_len = window_size
@@ -148,7 +150,7 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
         super(MelSpectrogram, self).__init__(
             spec.fs, data=data, start_time=spec.start_time, caption=spec.caption)
 
-        self.frequencies = mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax)
+        self.frequencies = mel_frequencies(n_mels=n_mels, fmin=fmin, fmax=fmax, htk=htk)
         self.max_frequency = spec.frequencies[-1]
         self.label = 'Mel Spectrogram'
         self.unit = 'Magnitude'
