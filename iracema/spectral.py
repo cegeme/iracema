@@ -81,7 +81,7 @@ class Spectrogram(iracema.core.timeseries.TimeSeries):
                  hop_size,
                  fft_len=None,
                  power=2.,
-                 db=True):
+                 db=False):
         """
         Args
         ----
@@ -120,10 +120,10 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
                  time_series,
                  window_size,
                  hop_size,
+                 n_mels=256,
                  fft_len=None,
                  power=2.,
-                 db=True,
-                 n_mels=256,
+                 db=False,
                  fmin=0.,
                  fmax=None,
                  htk=False):
@@ -136,6 +136,8 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
             Time series for applying the STFT.
         window_size : int
         hop_size : int
+        n_mels : int
+            Number of mel-scaled filters/channels.
         fft_len : int
             Length of the FFT. The signal will be zero-padded if ``fft_len`` >
             ``window_size``. The default value is equal to `window_size`.
@@ -143,8 +145,6 @@ class MelSpectrogram(iracema.core.timeseries.TimeSeries):
             Exponent for the spectrogram.
         db : bool
             Whether or not to convert the output values to dB.
-        n_mels : int
-            Number of mel-scaled filters/channels.
         fmin : float
             Frequency of the lowest filter.
         fmax : float
@@ -197,7 +197,7 @@ class CQT(iracema.core.timeseries.TimeSeries):
                  hybrid=True,
                  power=2.,
                  fmin=None,
-                 db=True,
+                 db=False,
                  **kwargs):
         """
         Compute the Constant Q Transform for ``time_series``.
