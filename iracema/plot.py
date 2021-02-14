@@ -419,9 +419,9 @@ def _add_spectrogram_to_axes(axes,
     # if the data is not in dB, convert it
     if not db:
         if power == 1.0:
-            conversion.amplitude_to_db(data)
+            data = conversion.amplitude_to_db(data)
         elif power == 2.0:
-            conversion.power_to_db(data)
+            data = conversion.power_to_db(data)
 
     data = data[freq_indexes, :]
 
