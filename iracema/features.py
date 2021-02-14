@@ -250,8 +250,6 @@ def spectral_spread(fft):
 
     Where `X(k)` is the result of the FFT for the `k-th` frequency bin and SC
     is the spectral centroid for the frame.
-
-
     """
 
     def function(X):
