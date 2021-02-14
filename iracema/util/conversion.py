@@ -73,14 +73,14 @@ def map_sample_index(sample_index, source_fs, source_time_offset, target_fs,
         seconds, target_fs, time_offset=target_time_offset)
 
 
-def amplitude_to_db(amplitude, clip_min=None):
+def amplitude_to_db(amplitude, clip_min=1.e-10):
     """
     Convert amplitude to dB.
     """
     return energy_to_db(amplitude**2, clip_min=clip_min)
 
 
-def energy_to_db(energy, clip_min=1.e-10):
+def energy_to_db(energy, clip_min=1.e-20):
     """
     Convert energy to dB.
     """
