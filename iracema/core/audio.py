@@ -75,6 +75,7 @@ class Audio(TimeSeries):
         unit = 'amplitude'
         self.label = 'waveform'
         self.filename, self.caption = None, caption
+        self.filepath = None
 
         super(Audio, self).__init__(
             fs, data=data, unit=unit, start_time=start_time, caption=caption)
