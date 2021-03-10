@@ -7,6 +7,7 @@
    
    Introduction <intro>
    Tutorial <tutorial>
+   About <about>
 
 .. toctree::
    :maxdepth: 2
