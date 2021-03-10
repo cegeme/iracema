@@ -378,11 +378,6 @@ def _add_waveform_trio_to_axes(axes,
         axes.legend(loc='lower right', ncol=2, fontsize='x-small')
 
 
-def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
-    "Add two vertical lines to the axes delimiting a segment extent."
-    pass
-
-
 def _add_spectrogram_to_axes(axes,
                              spec,
                              log=False,
