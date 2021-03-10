@@ -33,6 +33,7 @@ target/
 # Environments
 .env
 .venv
+.docs_venv
 env/
 venv/
 ENV/
