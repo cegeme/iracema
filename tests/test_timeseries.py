@@ -1,7 +1,6 @@
 import pytest  # skipcq: PYL-W0611
 
 import numpy as np
-from iracema import TimeSeries
 
 
 def test_resample(audio00):
