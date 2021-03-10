@@ -35,7 +35,7 @@ def sliding_window(time_series, window_size, hop_size, function=None,
         "parzen", "bohman", "blackmanharris", "nuttall", "barthann",
         "no_window", None}.
     """
-    def indentity(x):
+    def identity(x):
         return x
 
     if not function:
