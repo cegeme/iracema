@@ -94,7 +94,7 @@ def db_to_amplitude(db):
     return 10 ** (db / 20)
 
 
-def db_to_energy(data):
+def db_to_energy(db):
     """
     Convert dB to energy.
     """
