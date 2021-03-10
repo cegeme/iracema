@@ -192,9 +192,12 @@ def pitch_variation(
     onsets, odf_data = extract_from_odf(
         audio,
         odf,
-        min_time=None,
-        odf_threshold=odf_threshold,
+        window=window,
         hop=hop,
+        min_time=min_time,
+        odf_threshold=odf_threshold,
+        minf0=minf0,
+        maxf0=maxf0,
         smooth_pitch=smooth_pitch,
         display_plot=display_plot,
     )
