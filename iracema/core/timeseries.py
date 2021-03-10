@@ -225,13 +225,7 @@ class TimeSeries:
 
         return ts
 
-    def resample(self, new_fs):
-        """
-        Resample time series to a new sampling rate.
-        """
-        raise NotImplementedError(
-            'This method is not implemented for time series yet.')
-    
+   
     def pad(self, pre, post, value=0.):
         """
         Pad the edges of the time series.
