@@ -52,13 +52,14 @@ The audio object has a plot method available that displays its waveform:
 Calculating basic features
 ==========================
 
-As most features will need an object containing an :abbr:`FFT (Fast Fourier
-Transform)` as input, our next step is calculating it using the method
-:obj:`ir.spectral.fft` for the loaded audio. You
-must specify the sliding window and hop size values (in samples). After
-calculating the FFT you're now able to plot a spectogram!
+As most features will need an object containing an :abbr:`STFT (Short Time
+Fourier Transform)` as input, our next step is to calculate it for the loaded
+audio using :obj:`ir.spectral.STFT`. You must specify the sliding window and
+hop size values (in samples). After calculating the STFT, the spectrogram can
+be plotted using :obj:`ir.plot.spectrogram`.
 
-Other useful methods are RMS and Peak Envelope, which will be extracted and plotted in the example.
+Other useful methods are RMS and Peak Envelope, which will be extracted and
+plotted in the example.
 
 .. plot::
    :include-source:
@@ -67,11 +68,11 @@ Other useful methods are RMS and Peak Envelope, which will be extracted and plot
    # specifying window and hop sizes
    window, hop = 2048, 1024
   
-   # calculating the FFT
-   fft = ir.spectral.fft(audio, window, hop)
+   # calculating the STFT
+   stft = ir.spectral.STFT(audio, window, hop)
   
    # plotting the spectrogram
-   ir.plot.spectrogram(fft)
+   ir.plot.spectrogram(stft)
   
    # calculating the RMS
    rms = ir.features.rms(audio, window, hop)
@@ -98,10 +99,10 @@ Notice that the harmonics methods return a dictionary, with it's keys correspond
 .. code:: python
   
   # extract pitch
-  hps_pitch = ir.pitch.hps(fft, minf0=1, maxf0=1000)
+  hps_pitch = ir.pitch.hps(stft, minf0=1, maxf0=1000)
 
   #extract harmonics
-  harmonics = ir.harmonics.extract(fft, hps_pitch)
+  harmonics = ir.harmonics.extract(stft, hps_pitch)
 
 .. _architecture:
 
