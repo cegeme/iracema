@@ -439,7 +439,8 @@ def _add_spectrogram_to_axes(axes,
         cmap=cmap,
         vmin=vmin,
         vmax=vmax,
-        rasterized=True)
+        rasterized=True,
+        shading='nearest')
 
     if log:
         axes.set_yscale("log", basey=2)
