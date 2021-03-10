@@ -97,9 +97,6 @@ def frame_harmonics(frame_pitch, fft_frame_mag, fft_frame_phase, fft_max_freq,
 
     # searching for local peaks all over the FFT
     _, ix_pks = local_peaks(fft_frame_mag)
-    ix_pks = ix_pks
-    # TODO: this could be done more efficiently, the peak searching is
-    # being performed twice
 
     # memory allocation
     cand_mag = np.zeros((nharm))
