@@ -29,7 +29,6 @@ References
    from musical signals, 130(5).
 
 """
-
 import numpy as np
 from scipy.stats import gmean  # pylint: disable=import-error
 
@@ -130,9 +129,9 @@ def zcr(time_series, window_size, hop_size):
     return time_series
 
 
-def spectral_flatness(fft):
+def spectral_flatness(stft):
     """
-    Calculate the spectral flatness for a given FFT.
+    Calculate the spectral flatness for a given STFT.
 
     The spectral flatness gives an estimation of the noisiness / sinusoidality
     of an audio signal (for the whole spectrum or for a frequency range). It
@@ -151,27 +150,27 @@ def spectral_flatness(fft):
        \\right)
        \\end{eqnarray}
 
-    Where `X(k)` is the result of the FFT for the `k-th` frequency bin.
+    Where `X(k)` is the result of the STFT for the `k-th` frequency bin.
 
     Args
     ----
-    time_series : iracema.spectral.FFT
-        A FFT object
+    time_series : iracema.spectral.STFT
+        A STFT object
     """
 
     def function(X):
-        fft_magnitudes = np.abs(X)
-        return 10 * np.log10(gmean(fft_magnitudes) / np.mean(fft_magnitudes))
+        stft_magnitudes = np.abs(X)
+        return 10 * np.log10(gmean(stft_magnitudes) / np.mean(stft_magnitudes))
 
-    time_series = aggregate_features(fft, function)
+    time_series = aggregate_features(stft, function)
     time_series.label = 'SpectralFlatness'
     time_series.unit = ''
     return time_series
 
 
-def hfc(fft, method='energy'):
+def hfc(stft, method='energy'):
     """
-    Calculate the high frequency content for a FFT time-series.
+    Calculate the high frequency content for a STFT time-series.
 
     The HFC _function produces sharp peaks during attacks or transients
     [Bello2005]_ and might be a good choice for detecting onsets in percussive
@@ -186,8 +185,8 @@ def hfc(fft, method='energy'):
 
     Args
     ----
-    fft : iracema.spectral.FFT
-        FFT time-series.
+    stft : iracema.spectral.STFT
+        STFT time-series.
     method : str
         Method of choice to calculate the HFC.
 
@@ -203,15 +202,15 @@ def hfc(fft, method='energy'):
             return np.sum(W * np.abs(X)) / N
         ValueError("the argument `method` must be 'energy' or 'amplitude'")
 
-    time_series = aggregate_features(fft, _func)
+    time_series = aggregate_features(stft, _func)
     time_series.label = 'HFC'
     time_series.unit = ''
     return time_series
 
 
-def spectral_centroid(fft):
+def spectral_centroid(stft):
     """
-    Calculate the spectral centroid for a FFT time-series.
+    Calculate the spectral centroid for a STFT time-series.
 
     The spectral centroid is a well known timbral feature that is used to
     describe the brightness of a sound. It represents the center of gravity
@@ -220,27 +219,27 @@ def spectral_centroid(fft):
     .. math::
        \\operatorname{SC} = \\frac{\\sum_{k=1}^{N} |X(k)| \\cdot f_k }{\\sum_{k=1}^{N} |X(k)|}
 
-    Where `X(k)` is the result of the FFT for the `k-th` frequency bin.
+    Where `X(k)` is the result of the STFT for the `k-th` frequency bin.
 
     Args
     ----
-    fft : iracema.spectral.FFT
-        A FFT object
+    stft : iracema.spectral.STFT
+        A STFT object
 
     """
 
     def function(X):
-        return _spectral_centroid(X, fft.frequencies)
+        return _spectral_centroid(X, stft.frequencies)
 
-    time_series = aggregate_features(fft, function)
+    time_series = aggregate_features(stft, function)
     time_series.label = 'SpectralCentroid'
     time_series.unit = 'Hz'
     return time_series
 
 
-def spectral_spread(fft):
+def spectral_spread(stft):
     """
-    Calculate the spectral spread for a FFT time-series.
+    Calculate the spectral spread for a STFT time-series.
 
     The spectral spread represents the spread of the spectrum around the
     spectral centroid [Peeters2011]_, [Lerch2012]_.
@@ -248,14 +247,14 @@ def spectral_spread(fft):
     .. math:: \\operatorname{SSp} = \\sqrt{\\frac{\\sum_{k=1}^{N} |X(k)| \\cdot (f_k - SC)^2 }{\\sum_
        {k=1}^{N} |X (k)|}}
 
-    Where `X(k)` is the result of the FFT for the `k-th` frequency bin and SC
+    Where `X(k)` is the result of the STFT for the `k-th` frequency bin and SC
     is the spectral centroid for the frame.
     """
 
     def function(X):
-        return _spectral_spread(X, fft.frequencies)
+        return _spectral_spread(X, stft.frequencies)
 
-    time_series = aggregate_features(fft, function)
+    time_series = aggregate_features(stft, function)
     time_series.label = 'SpectralSpread'
     time_series.unit = 'Hz'
     return time_series
@@ -263,7 +262,7 @@ def spectral_spread(fft):
 
 def _spectral_centroid(X, f):
     """
-    Calculate the spectral centroid for a fft frame `X`, being `f` the
+    Calculate the spectral centroid for a stft frame `X`, being `f` the
     frequency corresponding to its bins.
     """
     abs_X = np.abs(X)
@@ -275,15 +274,15 @@ def _spectral_centroid(X, f):
 
 def _spectral_spread(X, f):
     """
-    Calculate the spectral spread for a fft frame `X`, being `f` the frequency
+    Calculate the spectral spread for a stft frame `X`, being `f` the frequency
     corresponding to its bins.
     """
     return np.sqrt(_spectral_centroid(X, (f - _spectral_centroid(X, f))**2))
 
 
-def spectral_skewness(fft):
+def spectral_skewness(stft):
     """
-    Calculate the spectral skewness for an FFT time series
+    Calculate the spectral skewness for an STFT time series
     
     The spectral skewness is a measure of the asymetry of the distribution of
     the spectrum around its mean value, and is calculated from its third order
@@ -304,9 +303,9 @@ def spectral_skewness(fft):
         pass
 
 
-def spectral_kurtosis(fft):
+def spectral_kurtosis(stft):
     """
-    Calculate the spectral kurtosis for an FFT time series
+    Calculate the spectral kurtosis for an STFT time series
     
     The spectral kurtosis is a measure of the flatness of the distribution of
     the spectrum around its mean value. It will output the value 3 for Gaussian
@@ -327,9 +326,9 @@ def spectral_kurtosis(fft):
         pass
 
 
-def spectral_flux(fft):
+def spectral_flux(stft):
     """
-    Calculate the spectral flux for a FFT time-series.
+    Calculate the spectral flux for a STFT time-series.
 
     The spectral flux measures the amount of change between successive
     spectral frames. There are different methods to calculate the spectral
@@ -343,28 +342,28 @@ def spectral_flux(fft):
 
     Args
     ----
-    fft : iracema.spectral.FFT
-        A FFT object
+    stft : iracema.spectral.STFT
+        A STFT object
 
     """
 
     def function(X, X_prev):
         return np.sum(hwr(np.abs(X) - np.abs(X_prev)))
 
-    time_series = aggregate_sucessive_samples(fft, function)
+    time_series = aggregate_sucessive_samples(stft, function)
     time_series.label = 'SpectralFlux'
     time_series.unit = ''
     return time_series
 
 
-def spectral_rolloff(fft):
+def spectral_rolloff(stft):
     """Spectral Rolloff"""
 
     def _func(X):
         pass
 
 
-def spectral_irregularity(fft):
+def spectral_irregularity(stft):
     """Spectral Irregularity"""
 
     def _func(X):
@@ -388,7 +387,7 @@ def harmonic_centroid(harmonics):
         pass
 
 
-def inharmonicity(fft, harmonics):
+def inharmonicity(stft, harmonics):
     """Inharmonicity"""
 
     def _func(X):
@@ -414,9 +413,9 @@ def harmonic_energy(harmonics_magnitude):
     return time_series
 
 
-def spectral_entropy(fft):
+def spectral_entropy(stft):
     """
-    Calculate the spectral entropy for a FFT time series
+    Calculate the spectral entropy for a STFT time series
 
     The spectral entropy is based on the concept of information entropy from
     Shannon's information theory. It measures the unpredictability of the given
@@ -432,22 +431,22 @@ def spectral_entropy(fft):
     """
 
     def function(X):
-        N = fft.nfeatures
+        N = stft.nfeatures
         P = np.abs(X)**2 / np.sum(np.abs(X)**2)
         H = -(np.sum(P * np.log2(P))) / np.log2(N)
         return H
 
-    time_series = aggregate_features(fft, function)
+    time_series = aggregate_features(stft, function)
     time_series.label = 'Spectral Entropy'
     time_series.unit = ''
     return time_series
 
 
-def spectral_energy(fft):
+def spectral_energy(stft):
     """
-    Calculate the total energy of an FFT frame.
+    Calculate the total energy of an STFT frame.
 
-    Spectral Energy is the total energy of an FFT frame.
+    Spectral Energy is the total energy of an STFT frame.
 
     .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
     """
@@ -455,15 +454,15 @@ def spectral_energy(fft):
     def function(frame):
         return np.sum(np.abs(frame)**2)
 
-    time_series = aggregate_features(fft, function)
+    time_series = aggregate_features(stft, function)
     time_series.label = 'Spectral Energy'
     time_series.unit = ''
     return time_series
 
 
-def noisiness(fft, harmonics_magnitude):
+def noisiness(stft, harmonics_magnitude):
     """
-    Calculate the Noisiness for the given FFT and Harmonics time series.
+    Calculate the Noisiness for the given STFT and Harmonics time series.
 
     The Noisiness represent how noisy a signal is (values closer to 1), as
     oposed to harmonic (values close to 0). It is the ratio of the noise
@@ -472,7 +471,7 @@ def noisiness(fft, harmonics_magnitude):
     .. math:: \\operatorname{Ns} = \\frac{\\operatorname{SE}-\\operatorname{HE}}{\\operatorname{SE}}
 
     """
-    energy_spectral = spectral_energy(fft)
+    energy_spectral = spectral_energy(stft)
     energy_harmonic = harmonic_energy(harmonics_magnitude)
     energy_noise = energy_spectral - energy_harmonic
 
