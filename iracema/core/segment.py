@@ -2,8 +2,10 @@
 This module contain classes used to manipulate segments and slice TimeSeries
 objects using them.
 """
+from collections.abc import MutableSequence
+import csv
 
-from iracema.util import conversion
+from iracema.core.point import Point
 
 
 class Segment:
@@ -14,101 +16,131 @@ class Segment:
     .. Hint:: This class is also available at the main package level as
         ``iracema.Segment``.
     """
-    def __init__(self, time_series, start, end, limits_unit='sample_index'):
+
+    def __init__(self, start, end):
         """
-        The `start` and `end` arguments can be specified in terms of sample
-        index or time (in seconds). The argument `limits_unit` must be set
-        accordingly.
+        Segment
 
         Args
         ----
-        time_series : TimeSeries
-            Original time series related to the segment.
-        start : int or float
-            Index (or sample number) corresponding to the start of the segment
-            in the time-series from which it derived. Alternatively, this
-            value can be specified in seconds.
-        end : int or float
-            Index of the ending sample for the segment. Alternatively, this
-            value can be specified in seconds.
-        limits_unit : ("sample_index", "seconds")
-            If 'sample_index' is passed (default), the arguments `start` and
-            `end` must be integers corresponding to sample indexes whitin
-            `time_series`. Else, if 'seconds' is passed, both arguments must
-            correspond to the time of these limits, in seconds.
+        start : Point
+            Point corresponding to the start of the segment.
+        end : Point
+            Point corresponding to the end of the segment.
         """
-        if limits_unit not in ('sample_index', 'seconds'):
-            raise ValueError("invalid value for `limits_unit` argument: must"
-                             " be 'sample_index' or 'seconds'")
-
         if end is not None and start > end:
             raise ValueError("end must be > start")
 
-        self.fs = time_series.fs
-        self.time_offset = time_series.start_time
+        self.start = Point(start)
+        self.end = Point(end)
 
-        if limits_unit == 'sample_index':
-            if type(start) != int or type(end) != int:
-                raise ValueError("`start` and `end` must be of type int when"
-                                 "`limits_unit`=='sample_index'")
-            self.start = start
-            self.end = end
+    def __repr__(self):
+        "Overload the representation for the class"
+        class_name = self.__class__.__name__
+        description = f"({self.start}, {self.end})"
+        return f"{class_name}{description}"
 
-        elif limits_unit == 'seconds':
-            self.start = conversion.seconds_to_sample_index(start, self.fs)
-            self.end = conversion.seconds_to_sample_index(end, self.fs)
+    def nsamples(self, time_series):
+        return (self.end.map_index(time_series) -
+                self.start.map_index(time_series))
 
     @property
-    def nsamples(self):
+    def duration(self):
         return self.end - self.start
 
     @property
     def start_time(self):
-        return conversion.sample_index_to_seconds(self.start, self.fs,
-                                                  self.time_offset)
+        return self.start
 
     @property
     def end_time(self):
-        return conversion.sample_index_to_seconds(self.end, self.fs,
-                                                  self.time_offset)
+        return self.end
 
     def generate_slice(self, time_series):
         """
         Generate a python slice with the sample indexes that correspond to the
         current segment in `time_series`
         """
-        new_fs = time_series.fs
-        new_time_offset = time_series.start_time
-
-        if self.fs == time_series.fs:
-            return slice(self.start, self.end)
-        slice_start = conversion.map_sample_index(
-            self.start, self.fs, self.time_offset, new_fs, new_time_offset)
-        slice_end = conversion.map_sample_index(
-            self.end, self.fs, self.time_offset, new_fs, new_time_offset)
-
+        slice_start = self.start.map_index(time_series)
+        slice_end = self.end.map_index(time_series)
         return slice(slice_start, slice_end)
 
-    def __repr__(self):
-        "Overload the representation for the class"
-        class_name = self.__class__.__name__
-        description = "(start: {}, end: {}), fs: {}".format(
-            self.start, self.end, self.fs)
-        return '{}: {}'.format(class_name, description)
+    def map_indexes(self, time_series):
+        """
+        Return a tuple with the indexes of ``time_series`` that correspond
+        to the segments in the list.
+        """
+        return (
+            self.start.map_index(time_series),
+            self.end.map_index(time_series)
+        )
 
 
-class SegmentList(list):
+class SegmentList(MutableSequence):
     """
     List of segments.
 
     .. Hint:: This class is also available at the main package level as
         ``iracema.SegmentList``.
     """
-    def __init__(self, segment_list):
+
+    def __init__(self, segments=None):
+        super(SegmentList, self).__init__()
+        if (segments is not None):
+            self._segments = list(segments)
+        else:
+            self._segments = []
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+            return SegmentList(self._segments[index])
+        return self._segments[index]
+
+    def __setitem__(self, index, item):
+        if not isinstance(item, Segment):
+            raise ValueError(
+                "The list contains an item that is not a ``Segment``")
+        self._segments[index] = item
+
+    def __delitem__(self, index):
+        self._segments.__delitem__(index)
+
+    def __len__(self):
+        return len(self._segments)
+
+    def __repr__(self):
+        "Overload the representation for the class"
+        return str(list(self))
+
+    def insert(self, index, item):  # skipcq: PYL-W0221
+        if not isinstance(item, Segment):
+            raise ValueError("The insert item is not a ``Segment``")
+        return self._segments.insert(index, item)
+
+    def map_indexes(self, time_series):
         """
-        Args
-        ----
-        point_list : list[Segment]
-            A list of segments.
+        Return an array of tuples with the indexes of ``time_series`` that correspond to
+        the segments in the list.
         """
-        super(SegmentList, self).__init__(segment_list)
+        return [seg.map_indexes(time_series) for seg in self]
+
+    @classmethod
+    def load_from_file(cls, file_name):
+        """
+        Instantiate a list of segments, loaded from a CSV file. Each line in the
+        file must contain the position of a single point. The position must be
+        specified in `seconds`.
+        """
+        with open(file_name, 'r', newline='') as f:
+            segments = cls([
+                Segment(row[0], row[1])
+                for row in csv.reader(f, delimiter=',')
+            ])
+        return segments
+
+    def save_to_file(self, file_name):
+        "Save SegmentList to a CSV file."
+        with open(file_name, 'w', newline='') as f:
+            writer = csv.writer(f, delimiter=',')
+            for segment in self:
+                writer.writerow([segment.start, segment.end])

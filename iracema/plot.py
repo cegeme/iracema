@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from matplotlib.widgets import MultiCursor  # pylint: disable=import-error
-from mpl_toolkits.mplot3d import Axes3D  # pylint: disable=import-error
 
 from iracema.features import rms as rms_, peak_envelope as peak_envelope_
+from iracema.util import conversion
 
 DEFAULT_FIG_SIZE = (9, 9)
 
@@ -41,7 +41,13 @@ def line_plot(time_series, linewidth=1, alpha=0.9, figsize=None, **kwargs):
     return f
 
 
-def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
+def spectrogram(spec_ts,
+                log=False,
+                fmin=0.,
+                fmax=None,
+                figsize=None,
+                normalize=True,
+                cmap='viridis'):
     """
     Plot the spectrogram of the audio signal.
     """
@@ -55,7 +61,8 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
     plt.subplots_adjust(hspace=0.05)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(
+        ax, spec_ts, log, fmin=fmin, fmax=fmax, normalize=normalize, cmap=cmap)
 
     # show the resulting image
     f.show()
@@ -64,11 +71,12 @@ def spectrogram(fft, logfft=False, fftlim=(), figsize=None):
 
 
 def waveform_spectrogram(audio,
-                         fft,
-                         logfft=False,
+                         spec_ts,
+                         log=False,
                          rms=None,
                          peak_envelope=None,
-                         fftlim=(),
+                         fmin=0.,
+                         fmax=None,
                          figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
@@ -89,7 +97,7 @@ def waveform_spectrogram(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(ax2, spec_ts, log, fmin=fmin, fmax=fmax)
 
     # show the resulting image
     f.show()
@@ -98,13 +106,15 @@ def waveform_spectrogram(audio,
 
 
 def waveform_spectrogram_pitch(audio,
-                            fft,
-                            pitch,
-                            rms=None,
-                            peak_envelope=None,
-                            logfft=False,
-                            fftlim=(),
-                            figsize=None):
+                               spec_ts,
+                               pitch,
+                               rms=None,
+                               peak_envelope=None,
+                               log=False,
+                               fmin=0.,
+                               fmax=None,
+                               cmap='viridis',
+                               figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
     the ``rms`` and the ``peak_envelope``; the second showing the spectrogram
@@ -124,7 +134,8 @@ def waveform_spectrogram_pitch(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
+    _add_spectrogram_to_axes(
+        ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
 
     # plotting pitch
     _add_curve_to_axes(ax2, pitch, fmt='r')
@@ -136,13 +147,15 @@ def waveform_spectrogram_pitch(audio,
 
 
 def waveform_spectrogram_harmonics(audio,
-                                   fft,
-                                   pitch,
+                                   spec_ts,
                                    harmonics,
                                    rms=None,
                                    peak_envelope=None,
-                                   logfft=False,
-                                   fftlim=(),
+                                   log=False,
+                                   fmin=0.,
+                                   fmax=None,
+                                   normalize=True,
+                                   cmap='viridis',
                                    figsize=None):
     """
     Plot two graphs: the first one showing curves for the ``audio`` waveform,
@@ -163,13 +176,17 @@ def waveform_spectrogram_harmonics(audio,
     _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
 
     # plotting spectrogram
-    _add_spectrogram_to_axes(ax2, fft, logfft, fftlim)
-
-    # plotting pitch
-    _add_curve_to_axes(ax2, pitch)
+    _add_spectrogram_to_axes(
+        ax2,
+        spec_ts,
+        log,
+        fmin=fmin,
+        fmax=fmax,
+        normalize=normalize,
+        cmap=cmap)
 
     # plotting harmonics
-    _add_curve_to_axes(ax2, harmonics)
+    _add_curve_to_axes(ax2, harmonics, fmt='r')
 
     # show the resulting image
     f.show()
@@ -277,49 +294,6 @@ def waveform_trio_features_and_points(audio,
     f.show()
 
 
-def spectrogram_3d(fft, logfft=False, fftlim=None, figsize=None):
-    """
-    Plot a 3D spectrogram (experimental feature).
-    """
-    # handle arguments
-    if not fftlim:
-        fmin, fmax = 20, fft.max_frequency
-    else:
-        fmin, fmax = fftlim[0], fftlim[1]
-        if fmax > fft.max_frequency:
-            warnings.warn(
-                "the fmax specified excceeds the maximum frequency of the FFT")
-            fmax = fft.max_frequency
-
-    # configuring figure and subplots
-    if not figsize:
-        figsize = DEFAULT_FIG_SIZE
-    f = plt.figure(figsize=figsize)
-
-    ax = Axes3D(f)
-
-    # plotting spectrogram
-    lenfft = fft.nfeatures
-    bins_per_hz = lenfft / fft.max_frequency
-    imax, imin = int(fmax * bins_per_hz), int(fmin * bins_per_hz)
-
-    X, Y = np.meshgrid(fft.time, np.arange(imin, imax))
-
-    fft_abs = (abs(fft.data[imin:imax, :]))
-
-    ax.plot_surface(X, Y, fft_abs**2, rstride=2, cstride=10, cmap='seismic')
-
-    if logfft:
-        ax.set_yscale("log", basey=2)
-        ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-
-    # ax2.set(xlabel='time (s)', ylabel='frequency (Hz)')
-
-    f.show()
-
-    return f
-
-
 def _add_notes_to_axes(axes, notes):
     """
     Add note segments to the given ``axes``.
@@ -404,41 +378,71 @@ def _add_waveform_trio_to_axes(axes,
         axes.legend(loc='lower right', ncol=2, fontsize='x-small')
 
 
-def _add_segments_to_axes(axes, segments, start_color='g', end_color='r'):
-    "Add two vertical lines to the axes delimiting a segment extent."
-    pass
-
-
-def _add_spectrogram_to_axes(axes, fft, logfft=False, fftlim=()):
+def _add_spectrogram_to_axes(axes,
+                             spec,
+                             log=False,
+                             fmin=0.,
+                             fmax=None,
+                             normalize=True,
+                             cmap='viridis'):
     """
     Add a spectrogram image to the axes
     """
 
     # handling arguments
-    if not fftlim:
-        fmin, fmax = 20, fft.max_frequency
+    if not fmax:
+        fmax = spec.max_frequency
     else:
-        fmin, fmax = fftlim[0], fftlim[1]
-        if fmax > fft.max_frequency:
+        if fmax > spec.max_frequency:
             warnings.warn(
-                "the fmax specified excceeds the maximum frequency of the FFT")
-            fmax = fft.max_frequency
+                "the fmax specified excceeds the maximum frequency of the spectrum"
+            )
+            fmax = spec.max_frequency
 
-    # plotting spectrogram
-    lenfft = fft.nfeatures
-    bins_per_hz = lenfft / fft.max_frequency
-    imax, imin = int(fmax * bins_per_hz), int(fmin * bins_per_hz)
+    freq_indexes = np.logical_and(spec.frequencies >= fmin,
+                                  spec.frequencies <= fmax)
 
-    fft_abs = abs(fft.data[imin:imax, :])
+    data = spec.data
+    if np.any(np.iscomplex(data)):
+        data = np.abs(data)
+        power = 1.
+        db = False
+    else:
+        power = spec._power
+        db = spec._db
 
-    axes.imshow(
-        20 * np.log10(fft_abs),
-        origin='lower',
-        aspect='auto',
-        extent=[fft.start_time, fft.end_time, fmin, fmax],
-        cmap='viridis')
+    # if the data is not in dB, convert it
+    if not db:
+        if power == 1.0:
+            data = conversion.amplitude_to_db(data)
+        elif power == 2.0:
+            data = conversion.power_to_db(data)
 
-    if logfft:
+    data = data[freq_indexes, :]
+
+    if isinstance(normalize, bool) or normalize is None:
+        if normalize:
+            vmin, vmax = np.min(data), np.max(data)
+        else:
+            vmin, vmax = -96, 0
+    elif isinstance(normalize, tuple):
+        if len(normalize) != 2:
+            raise ValueError(
+                "If `normalize` is a tuple, it must contain two values (vmin, vmax)."
+            )
+        vmin, vmax = normalize
+
+    plt.pcolormesh(
+        spec.time,
+        spec.frequencies[freq_indexes],
+        data,
+        cmap=cmap,
+        vmin=vmin,
+        vmax=vmax,
+        rasterized=True,
+        shading='nearest')
+
+    if log:
         axes.set_yscale("log", basey=2)
         axes.get_yaxis().set_major_formatter(
             matplotlib.ticker.ScalarFormatter())

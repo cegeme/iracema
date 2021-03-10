@@ -3,10 +3,11 @@ This module contains the implementation of the class TimeSeries.
 """
 
 import copy as cp
+from decimal import Decimal
 
 import numpy as np
-import resampy
 
+from iracema.aggregation import sliding_window
 from iracema.core.segment import Segment
 from iracema.util import conversion
 from iracema.util.dsp import but_filter
@@ -28,18 +29,18 @@ class TimeSeries:
     time : numpy array
         Numpy data array containing the time of each sample, relative to the
         original time reference.
-    fs : float
+    fs : Decimal
         Sampling frequency for the data.
-    nyquist : float
+    nyquist : Decimal
         Nyquist frequency for the data.
-    ts : float
+    ts : Decimal
         Sampling period for the data.
-    start_time : float
+    start_time : Decimal
         The time the time series start (in seconds) relative to the original
         time reference.
-    duration : float
+    duration : Decimal
         Duration of the time series (in seconds).
-    end_time : float
+    end_time : Decimal
         The time the time series end (in seconds) relative to the original time
         reference.
     unit : str
@@ -62,11 +63,12 @@ class TimeSeries:
     caption = ''
     label = ''
 
-    def __init__(self, fs, data=None, start_time=0., unit=None, caption=None):
+    def __init__(self, fs, data=None, start_time=None, unit=None,
+                 caption=None):
         """
         Args
         ----
-        fs : float
+        fs : Decimal
             Sampling frequency for the data.
         data : numpy array, optional
             Data array sampled at ``fs`` Hz. If this argument is not provided,
@@ -85,8 +87,9 @@ class TimeSeries:
                 "the sampling frequency (fs) must be greater than zero")
 
         self.data = None
-        self.fs = np.float_(fs)
-        self.start_time = 0 if start_time is None else np.float_(start_time)
+        self.fs = Decimal(fs)
+        self.start_time = Decimal(0) if start_time is None else Decimal(
+            start_time)
 
         if unit:
             self.unit = unit
@@ -108,37 +111,52 @@ class TimeSeries:
 
     @property
     def duration(self):  # pylint: disable=missing-docstring
-        return self.nsamples / self.fs
+        return Decimal(self.nsamples) / Decimal(self.fs)
 
     @property
     def nyquist(self):  # pylint: disable=missing-docstring
-        return self.fs / 2
+        return Decimal(self.fs) / Decimal(2)
 
     @property
     def end_time(self):  # pylint: disable=missing-docstring
-        return self.start_time + self.duration
+        return Decimal(self.start_time) + Decimal(self.duration)
 
     @property
     def ts(self):  # pylint: disable=missing-docstring
-        return 1 / self.fs
+        return Decimal(1) / Decimal(self.fs)
 
     @property
     def time(self):  # pylint: disable=missing-docstring
-        start = self.start_time
-        end = self.end_time
-        return np.linspace(start, end, self.nsamples)
+        start = Decimal(self.start_time)
+        step = Decimal(self.duration) / Decimal(self.nsamples)
+
+        return [start + (t * step) for t in range(0, self.nsamples)]
 
     def copy(self):
-        "Return a copy of the time series object (deep copy)."
+        """
+        Return a copy of the time series object (deep copy).
+        """
         return cp.deepcopy(self)
 
-    def normalize(self):
-        "Return a normalized copy of the time series."
-        normalized_data = self.data / np.max(self.data)
+    def gain(self, db):
+        """
+        Apply a gain of ``db`` dB to the time series and return the new object.
+        """
+        scale_factor = conversion.db_to_amplitude(db)
+        new = self.copy()
+        new.data = new.data * scale_factor
 
-        ts = cp.copy(self)
-        ts.data = normalized_data
-        return ts
+        return new
+
+    def normalize(self, db=0.0):
+        """
+        Return a copy of the audio time series, normalized to ``db`` dB.
+        """
+        new = self.copy()
+        new.data = self.data / np.max(self.data)
+        new = new.gain(db)
+
+        return new
 
     def diff(self, n=1):
         "Return the n-th discrete difference for the time series"
@@ -153,9 +171,41 @@ class TimeSeries:
         if nfeatures == 1:
             data_diff.shape = (self.nsamples, )
 
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = data_diff
 
+        return ts
+
+    def sliding_window(self,
+                       window_size,
+                       hop_size,
+                       function=None,
+                       window_name=None):
+        """
+        Use a sliding window to aggregate the data from the time series by
+        applying ``function`` to each analysis window. The content of each
+        window will be passed as the first argument to the function. Return
+        the aggregated data in an array.
+
+        Args
+        ----
+        window_size: int
+            Size of the window.
+        hop_size : int
+            Number of samples to be skipped between two successive windowing
+            operations.
+        function : function
+            Function to be applied to each window. If no function is specified,
+            each window will contain an unaltered excerpt of the time series.
+        window_name : str
+            Name of the window function to be used. Options are: {"boxcar",
+            "triang", "blackman", "hamming", "hann", "bartlett", "flattop",
+            "parzen", "bohman", "blackmanharris", "nuttall", "barthann",
+            "no_window", None}.
+        """
+        ts = self.copy()
+        ts = sliding_window(
+            ts, window_size, hop_size, function=function, window_name=window_name)
         return ts
 
     def zeros_to_nan(self):
@@ -170,26 +220,50 @@ class TimeSeries:
         "Return a half-wave rectified copy of the time series."
         rectified_data = np.clip(self.data, 0, None)
 
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = rectified_data
 
         return ts
 
-    def resample(self, new_fs):
+   
+    def pad(self, pre, post, value=0.):
         """
-        Resample time series to a new sampling rate.
+        Pad the edges of the time series.
+
+        Args
+        ----
+        pre : int
+            Pre-padding length.
+        post : int
+            Post-padding length.
+        value : float or str
+            Value for the padding operation. If a float number is provided,
+            this value will be used in the padding. If instead the string
+            'repeat' is provided, the values at the edges will be repeated
+            in the padding operation.
         """
-        if self.start_time != 0:
-            raise (NotImplementedError(
-                'The method resample is implemented only for time series '
-                'objects with start_time equal to 0.'))
-        ts = cp.copy(self)
-        ts.data = resampy.resample(self.data, self.fs, new_fs)
-        ts.fs = new_fs
+        new = self.copy()
+        first_col = np.expand_dims(new.data[...,0], -1)
+        last_col = np.expand_dims(new.data[..., -1], -1)
+        if isinstance(value, str):
+            if value == 'repeat':
+                pre_pad_array = np.repeat(first_col, pre, axis=-1)
+                post_pad_array = np.repeat(last_col, post, -1)
+            else:
+                raise ValueError("Invalid value for argument `value`")
+        else:
+            pre_pad_array = np.full_like(first_col, value)
+            post_pad_array = np.full_like(last_col, value)
+            pre_pad_array = np.repeat(pre_pad_array, pre, axis=-1)
+            post_pad_array = np.repeat(post_pad_array, post, -1)
 
-        return ts
+        new.data = np.concatenate((pre_pad_array, new.data, post_pad_array), axis=-1)
+        new.start_time = new.start_time - new.ts*pre
 
-    def pad_like(self, timeseries):
+        return new
+
+
+    def pad_like(self, timeseries, value=0.):
         """
         Pad the end of the current time series to match the length of
         the given time series.
@@ -200,18 +274,46 @@ class TimeSeries:
             ValueError("The current time series has more samples than the"
                        "given time series.")
         padding_len = timeseries.nsamples - self.nsamples
-        padding_array = np.zeros(padding_len)
         new_ts = self.copy()
-        new_ts.data = np.concatenate((new_ts.data, padding_array.data))
+        if timeseries.data.ndim == 1:
+            padding_array = np.ones(padding_len) * value
+        elif timeseries.data.ndim == 2:
+            padding_array = np.ones((self.nfeatures, padding_len)) * value
+        new_ts.data = np.concatenate((new_ts.data, padding_array), axis=-1)
         return new_ts
 
-    def resample_and_pad_like(self, timeseries):
+    def resample_and_pad_like(self, timeseries, value=0.):
         """
         Resample and pad the end of the current time series to match
         the given time series.
         """
         new_ts = self.resample(timeseries.fs)
-        new_ts = new_ts.pad_like(timeseries)
+        new_ts = new_ts.pad_like(timeseries, value=value)
+        return new_ts
+
+    def merge(self, timeseries, unit=None, caption=None, start_time=None):
+        """
+        Merge two time series. Both time series must have the same length and
+        sampling frequency. The attributes ``unit``, ``caption`` and
+        ``start_time`` of the resulting time series can be optionally set using
+        the method's optional arguments. Otherwise these attributes will be
+        equal to the values in the instance on which the method was called
+        (``self``).
+        """
+        new_ts = self.copy()
+        if self.fs != timeseries.fs:
+            raise ValueError(
+                'Incompatible sampling frequencies. Both time series must '
+                'have the same sampling frequency.')
+        if self.nsamples != timeseries.nsamples:
+            raise ValueError(
+                'Incompatible number of samples. Both time series must have '
+                'the same number of samples.')
+        new_ts.unit = unit or self.unit
+        new_ts.caption = caption or self.caption
+        new_ts.start_time = start_time or self.start_time
+        new_ts.data = np.vstack((self.data, timeseries.data))
+
         return new_ts
 
     def filter(self,
@@ -266,7 +368,7 @@ class TimeSeries:
         TimeSeries object.
         """
         if type(sl) == Segment:
-            time_offset = conversion.sample_index_to_seconds(sl.start, sl.fs)
+            time_offset = sl.start
             sl = sl.generate_slice(self)
         elif (type(sl) == slice):
             index_start = sl.start or sl.stop
@@ -277,7 +379,7 @@ class TimeSeries:
                              "of type `Segment` or a Python slice")
 
         sliced_data = self.data[sl]
-        ts = cp.copy(self)
+        ts = self.copy()
         ts.data = sliced_data
         ts.start_time += time_offset  # shift start
         return ts

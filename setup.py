@@ -35,6 +35,8 @@ setup(
         'audioread>=2.1.8',
         'matplotlib==3.2.1',
         'resampy==0.2.2',
+        'Deprecated==1.2.10',
+        'librosa==0.8.0',
         'w3lib==1.22.0'],
     classifiers=[
         'Development Status :: 3 - Alpha',
