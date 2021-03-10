@@ -56,7 +56,6 @@ def peak_envelope(time_series, window_size, hop_size):
     window_size : int
     hop_size : int
     """
-
     def function(x):
         return np.max(np.abs(x))
 
@@ -84,7 +83,6 @@ def rms(time_series, window_size, hop_size):
     window_size : int
     hop_size : int
     """
-
     def function(x):
         return np.sqrt(np.mean(x**2))
 
@@ -118,7 +116,6 @@ def zcr(time_series, window_size, hop_size):
     window_size : int
     hop_size : int
     """
-
     # count the number of times the signal changes between successive samples
     def function(x):
         return np.sum(x[1:] * x[:-1] < 0) / window_size * time_series.fs
@@ -157,7 +154,6 @@ def spectral_flatness(stft):
     time_series : iracema.spectral.STFT
         A STFT object
     """
-
     def function(X):
         stft_magnitudes = np.abs(X)
         return 10 * np.log10(gmean(stft_magnitudes) / np.mean(stft_magnitudes))
@@ -189,9 +185,7 @@ def hfc(stft, method='energy'):
         STFT time-series.
     method : str
         Method of choice to calculate the HFC.
-
     """
-
     def _func(X):
         N = X.shape[0]
         W = np.arange(1, N + 1)
@@ -225,9 +219,7 @@ def spectral_centroid(stft):
     ----
     stft : iracema.spectral.STFT
         A STFT object
-
     """
-
     def function(X):
         return _spectral_centroid(X, stft.frequencies)
 
@@ -250,7 +242,6 @@ def spectral_spread(stft):
     Where `X(k)` is the result of the STFT for the `k-th` frequency bin and SC
     is the spectral centroid for the frame.
     """
-
     def function(X):
         return _spectral_spread(X, stft.frequencies)
 
@@ -296,9 +287,7 @@ def spectral_skewness(stft):
 
     Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and 
     :math:`\\sigma_{|X|}` its standard deviation.
-
     """
-
     def _func(X):
         pass
 
@@ -318,10 +307,7 @@ def spectral_kurtosis(stft):
 
     Where :math:`\\mu_{|X|}` is the mean value of the maginute spectrum and 
     :math:`\\sigma_{|X|}` its standard deviation.
-
-
     """
-
     def _func(X):
         pass
 
@@ -344,9 +330,7 @@ def spectral_flux(stft):
     ----
     stft : iracema.spectral.STFT
         A STFT object
-
     """
-
     def function(X, X_prev):
         return np.sum(hwr(np.abs(X) - np.abs(X_prev)))
 
@@ -358,14 +342,12 @@ def spectral_flux(stft):
 
 def spectral_rolloff(stft):
     """Spectral Rolloff"""
-
     def _func(X):
         pass
 
 
 def spectral_irregularity(stft):
     """Spectral Irregularity"""
-
     def _func(X):
         pass
 
@@ -382,14 +364,12 @@ def harmonic_centroid(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-
     def _func(X):
         pass
 
 
 def inharmonicity(stft, harmonics):
     """Inharmonicity"""
-
     def _func(X):
         pass
 
@@ -401,9 +381,7 @@ def harmonic_energy(harmonics_magnitude):
     Harmonic energy is the energy of the harmonic partials of a signal.
 
     .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2
-
     """
-
     def function(frame):
         return np.sum(frame**2)
 
@@ -429,7 +407,6 @@ def spectral_entropy(stft):
 
     More info at https://www.mathworks.com/help/signal/ref/pentropy.html.
     """
-
     def function(X):
         N = stft.nfeatures
         P = np.abs(X)**2 / np.sum(np.abs(X)**2)
@@ -450,7 +427,6 @@ def spectral_energy(stft):
 
     .. math:: \\operatorname{SF} = \\sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)
     """
-
     def function(frame):
         return np.sum(np.abs(frame)**2)
 
@@ -469,7 +445,6 @@ def noisiness(stft, harmonics_magnitude):
     energy to the total energy of a signal [Peeters2011]_.
 
     .. math:: \\operatorname{Ns} = \\frac{\\operatorname{SE}-\\operatorname{HE}}{\\operatorname{SE}}
-
     """
     energy_spectral = spectral_energy(stft)
     energy_harmonic = harmonic_energy(harmonics_magnitude)
@@ -494,6 +469,5 @@ def oer(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-
     def _func(X):
         pass
