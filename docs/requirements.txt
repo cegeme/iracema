@@ -1,4 +1,5 @@
-crepe==0.0.7
+numpy==1.19.0
+crepe==0.0.11
 isort==4.3.4
 pytest==3.9.3
 PyYAML==4.2b1
@@ -10,6 +11,7 @@ resampy==0.2.2
 w3lib==1.22.0
 librosa==0.8.0
 Deprecated==1.2.10
+tensorflow==2.3.2
 Sphinx==3.5.2
 sphinx-autodoc-typehints==1.11.1
 sphinx-rtd-theme==0.5.1
