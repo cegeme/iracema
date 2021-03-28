@@ -29,7 +29,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/x-rst',
     install_requires=[
-        'numpy>=1.19.0',
+        'numpy>=1.18.5',
         'scipy>=1.6.1',
         'sounddevice>=0.3.12',
         'audioread>=2.1.8',
