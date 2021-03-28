@@ -7,6 +7,8 @@ from decimal import Decimal
 
 import numpy as np
 
+import iracema.core.segment
+
 
 class Point(Decimal):
     """
@@ -151,3 +153,14 @@ class PointList(MutableSequence):
         Instantiate a list of points from a numpy array.
         """
         return cls([Point(p) for p in array])
+
+    def to_segments(self):
+        """
+        Convert list of points to a list of contiguous segments.
+        """
+        segments =  iracema.core.segment.SegmentList()
+        for pt_start, pt_end in zip(self[0:-1], self[1:]):
+            print('-- ', pt_start, pt_end)
+            segments.append(iracema.core.segment.Segment(pt_start, pt_end))
+        return segments
+    
