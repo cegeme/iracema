@@ -337,7 +337,7 @@ class TimeSeries:
         audio_filtered = self.copy()
         audio_filtered.data = but_filter(
             self.data,
-            self.fs,
+            float(self.fs),
             critical_frequency,
             filter_type=filter_type,
             filter_order=filter_order)
