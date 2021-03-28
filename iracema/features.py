@@ -30,7 +30,7 @@ References
 
 """
 import numpy as np
-from scipy.stats import gmean  # pylint: disable=import-error
+from scipy.stats import pearsonr, gmean  # pylint: disable=import-error
 
 from iracema.aggregation import (aggregate_features,
                                  aggregate_sucessive_samples,
@@ -312,7 +312,7 @@ def spectral_kurtosis(stft):
         pass
 
 
-def spectral_flux(stft):
+def spectral_flux(stft, method='hwrdiff'):
     """
     Calculate the spectral flux for a STFT time-series.
 
@@ -330,9 +330,22 @@ def spectral_flux(stft):
     ----
     stft : iracema.spectral.STFT
         A STFT object
+    method : str
+        'hwrdiff' or 'corr'
     """
-    def function(X, X_prev):
+    def function_hwrdiff(X, X_prev):
         return np.sum(hwr(np.abs(X) - np.abs(X_prev)))
+
+    def function_corr(X, X_prev):
+        r, _ = pearsonr(np.abs(X), np.abs(X_prev))
+        return r
+
+    if method=='hwrdiff':
+        function = function_hwrdiff
+    elif method=='corr':
+        function = function_corr
+    else:
+        raise ValueError('Invalid value for argument `method`.')
 
     time_series = aggregate_sucessive_samples(stft, function)
     time_series.label = 'SpectralFlux'
