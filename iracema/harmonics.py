@@ -6,7 +6,7 @@ monophonic audio.
 import numpy as np
 
 from iracema.core.timeseries import TimeSeries
-from iracema.util.dsp import local_peaks, n_highest_peaks
+from iracema.util.dsp import n_highest_peaks
 
 
 def extract(fft, pitch, nharm=16, minf0=24, maxf0=4200, perc_tol=0.04):
@@ -94,9 +94,6 @@ def frame_harmonics(frame_pitch, fft_frame_mag, fft_frame_phase, fft_max_freq,
     # calculate the index corresponding to the f0
     ix_f0 = int(round(np.nan_to_num(frame_pitch / fft_max_freq * N)))
     delta = ix_f0 * perc_tol
-
-    # searching for local peaks all over the FFT
-    _, ix_pks = local_peaks(fft_frame_mag)
 
     # memory allocation
     cand_mag = np.zeros((nharm))
