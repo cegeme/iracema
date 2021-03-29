@@ -96,8 +96,7 @@ def time_array_to_activations(time_array,
                               output_length,
                               warn_lost_onset=True,
                               activation_type='single',
-                              triang_value=0.4,
-                              max_value=1.):
+                              triang_value=0.4):
     """
     Convert an array of times to an array of activations.
 
