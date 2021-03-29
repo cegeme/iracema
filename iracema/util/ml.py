@@ -13,8 +13,7 @@ def points_to_activations(point_list,
                           encoding='binary',
                           warn_lost_onset=True,
                           activation_type='single',
-                          triang_value=0.4,
-                          max_value=1.):
+                          triang_value=0.4):
     """
     Convert a point list to an array with the corresponding activations.
 
@@ -51,8 +50,7 @@ def points_to_activations(point_list,
                                             output_length,
                                             warn_lost_onset=warn_lost_onset,
                                             activation_type=activation_type,
-                                            triang_value=triang_value,
-                                            max_value=max_value)
+                                            triang_value=triang_value)
     if encoding == 'onehot':
         activations = binary_to_onehot_activations(activations)
     elif encoding == 'binary':
