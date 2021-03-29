@@ -73,7 +73,8 @@ def cnn_model(
     model_file = here/'clari-onsets.h5'
     model = load_model(model_file)
     y_pred = model.predict(sliced_spectrogram)
-    y_pred[:, 0] = convolve_activations(y_pred[:, 0])
+    if smooth_odf:
+        y_pred[:, 0] = convolve_activations(y_pred[:, 0])
 
     onsets = activations_to_points(
         y_pred,
