@@ -263,10 +263,10 @@ def expan(fft_time_series,
     return pitch_time_series
 
 
-def crepe_pitch(audio,
-                model_capacity='large',
-                min_confidence=0.5,
-                viterbi=True):
+def crepe(audio,
+          model_capacity='large',
+          min_confidence=0.5,
+          viterbi=True):
     """
     Extract the pitch using CREPE pitch tracker.
 
@@ -304,7 +304,7 @@ def crepe_pitch(audio,
     from crepe import predict  # pylint: disable=import-error
 
     time, frequency, confidence, _ = predict(
-        audio.data, audio.fs, viterbi=viterbi, model_capacity=model_capacity)
+        audio.data, float(audio.fs), viterbi=viterbi, model_capacity=model_capacity)
 
     frequency[confidence < min_confidence] = np.nan
 

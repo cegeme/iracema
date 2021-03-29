@@ -5,7 +5,7 @@ objects using them.
 from collections.abc import MutableSequence
 import csv
 
-from iracema.core.point import Point
+import iracema.core.point
 
 
 class Segment:
@@ -23,16 +23,16 @@ class Segment:
 
         Args
         ----
-        start : Point
+        start : ir.Point
             Point corresponding to the start of the segment.
-        end : Point
+        end : ir.Point
             Point corresponding to the end of the segment.
         """
         if end is not None and start > end:
             raise ValueError("end must be > start")
 
-        self.start = Point(start)
-        self.end = Point(end)
+        self.start = iracema.core.point.Point(start)
+        self.end = iracema.core.point.Point(end)
 
     def __repr__(self):
         "Overload the representation for the class"
@@ -123,6 +123,12 @@ class SegmentList(MutableSequence):
         the segments in the list.
         """
         return [seg.map_indexes(time_series) for seg in self]
+    
+    def add_segment(self, start, end):
+        """
+        Instantiate a segment with the given `start` and `end` and add to the list.
+        """
+        self.append(Segment(start, end))
 
     @classmethod
     def load_from_file(cls, file_name):
@@ -144,3 +150,4 @@ class SegmentList(MutableSequence):
             writer = csv.writer(f, delimiter=',')
             for segment in self:
                 writer.writerow([segment.start, segment.end])
+    

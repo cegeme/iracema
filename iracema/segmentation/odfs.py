@@ -92,8 +92,8 @@ def odf_pitch_change(audio,
                      window=1024,
                      hop=512,
                      minf0=120,
-                     smooth_pitch=True,
-                     maxf0=4000):
+                     maxf0=4000,
+                     smooth_pitch=True):
     """
     Onset detection function based on Pitch.
 

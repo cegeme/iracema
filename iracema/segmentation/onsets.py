@@ -1,18 +1,96 @@
 """
 Note onset detection methods.
 """
+import warnings 
+from pathlib import Path
 
 import numpy as np
 import scipy.signal as sig
+from tensorflow.keras.models import load_model
 
 import iracema.features
 import iracema.pitch
 import iracema.core.segment
 import iracema.core.point
-
 from iracema.plot import waveform_trio_features_and_points
 from iracema.segmentation.odfs import (odf_rms_derivative, odf_pitch_change,
                                        odf_adaptative_rms)
+from iracema.util.ml import activations_to_points
+from .util import convolve_activations, three_sliced_mel_spectrograms
+
+
+def cnn_model(
+    audio,
+    instrument='clarinet',
+    smooth_odf=True,
+    odf_threshold = 0.328,
+    display_plot = False,
+    return_odf_data = False,
+):
+    """
+    Extract the note onsets using the CNN method.
+
+    Arguments
+    ---------
+    audio: ir.Audio
+        Audio file to be processed.
+    instrument: string
+        Name of the instrument (currently trained only for clarinet).
+    smooth_odf: bool
+        If true, the final ODF will be smoothed by convolving it with a hanning
+        window of length 5.
+    odf_threshold : float
+        Minimum threshold for the peak picking in the ODF curve.
+    display_plot : bool
+        Whether of not to plot the results
+    return_odf_data : bool
+        Whether or not to return the odf data
+
+    """
+    audio_ = audio.copy()
+    if float(audio_.fs) != 44100.:
+        audio_ = audio_.resample(44100)
+
+    if instrument != 'clarinet':
+        warnings.warn(
+            "This model is specialized in clarinet recordings. It might not "
+            "perform well for other instruments."
+        )
+
+    window, hop = 1024, 441
+    sliced_spectrogram, frame_fs = three_sliced_mel_spectrograms(
+        audio_,
+        window,
+        hop,
+        frames_per_slice = 15,
+        n_mels = 80,
+        fmin = 27.5,
+        fmax = 16000,
+        db = True,
+    )
+
+    here = Path(__file__).parent
+    model_file = here/'clari-onsets.h5'
+    model = load_model(model_file)
+    y_pred = model.predict(sliced_spectrogram)
+    if smooth_odf:
+        y_pred[:, 0] = convolve_activations(y_pred[:, 0])
+
+    onsets = activations_to_points(
+        y_pred,
+        frame_fs,
+        encoding='binary',
+        threshold=odf_threshold,
+        peak_pick=True,
+    )
+    odf_data = y_pred[:, 0]
+
+    if display_plot:
+        waveform_trio_features_and_points(audio_, odf_data, onsets)
+
+    if return_odf_data:
+        return onsets, odf_data
+    return onsets
 
 
 def adaptative_rms(
@@ -192,9 +270,12 @@ def pitch_variation(
     onsets, odf_data = extract_from_odf(
         audio,
         odf,
-        min_time=None,
-        odf_threshold=odf_threshold,
+        window=window,
         hop=hop,
+        min_time=min_time,
+        odf_threshold=odf_threshold,
+        minf0=minf0,
+        maxf0=maxf0,
         smooth_pitch=smooth_pitch,
         display_plot=display_plot,
     )

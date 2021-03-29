@@ -175,6 +175,7 @@ class TimeSeries:
         ts.data = data_diff
 
         return ts
+    
 
     def sliding_window(self,
                        window_size,
@@ -390,6 +391,14 @@ class TimeSeries:
         TimeSeries object.
         """
         return self[..., start:stop]
+    
+    def log10(self):
+        """
+        Calculate the base 10 logarithm of the time series.
+        """
+        new = self.copy()
+        new.data = np.log10(self.data)
+        return new
 
     # Arithmetic, relational and boolean operations
     def __add__(self, other):

@@ -138,7 +138,7 @@ def waveform_spectrogram_pitch(audio,
         ax2, spec_ts, log, fmin=fmin, fmax=fmax, cmap=cmap)
 
     # plotting pitch
-    _add_curve_to_axes(ax2, pitch, fmt='r')
+    _add_curve_to_axes(ax2, pitch, fmt='r', ymin=fmin, ymax=fmax)
 
     # show the resulting image
     f.show()
@@ -173,7 +173,12 @@ def waveform_spectrogram_harmonics(audio,
     plt.subplots_adjust(hspace=0.05)
 
     # plotting curves
-    _add_waveform_trio_to_axes(ax1, audio, rms, peak_envelope)
+    _add_waveform_trio_to_axes(
+        ax1,
+        audio,
+        rms,
+        peak_envelope,
+    )
 
     # plotting spectrogram
     _add_spectrogram_to_axes(
@@ -186,7 +191,7 @@ def waveform_spectrogram_harmonics(audio,
         cmap=cmap)
 
     # plotting harmonics
-    _add_curve_to_axes(ax2, harmonics, fmt='r')
+    _add_curve_to_axes(ax2, harmonics, fmt='r', ymin=fmin, ymax=fmax)
 
     # show the resulting image
     f.show()
@@ -309,7 +314,9 @@ def _add_curve_to_axes(axes,
                        linewidth=1,
                        alpha=0.9,
                        label=None,
-                       set_labels=True):
+                       set_labels=True,
+                       ymin=None,
+                       ymax=None):
     "Add the curve for the given ``time_series`` to the given ``axes``."
 
     if set_labels:
@@ -332,6 +339,8 @@ def _add_curve_to_axes(axes,
         for row in time_series.data:
             axes.plot(
                 time_series.time, row, fmt, linewidth=linewidth, alpha=alpha)
+    
+    axes.set_ylim([ymin, ymax])
 
 
 def _add_points_to_axes(axes, time, values):
@@ -416,7 +425,7 @@ def _add_spectrogram_to_axes(axes,
         if power == 1.0:
             data = conversion.amplitude_to_db(data)
         elif power == 2.0:
-            data = conversion.power_to_db(data)
+            data = conversion.energy_to_db(data)
 
     data = data[freq_indexes, :]
 
