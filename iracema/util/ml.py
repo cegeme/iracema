@@ -138,14 +138,13 @@ def time_array_to_activations(time_array,
 
     num_onsets_original = len(time_array)
     num_onsets_final = np.sum(activations == 1.)
-    if warn_lost_onset:
-        if num_onsets_final != num_onsets_original:
-            onsets_lost = num_onsets_original - num_onsets_final
-            onsets_lost_msg = (
-                f"Lost {onsets_lost} onsets during conversion from point list to "
-                "probability array. The distances between succesive onsets are "
-                "probably too small for the sampling frequency being used.")
-            warnings.warn(onsets_lost_msg)
+    if warn_lost_onset and (num_onsets_final != num_onsets_original):
+        onsets_lost = num_onsets_original - num_onsets_final
+        onsets_lost_msg = (
+            f"Lost {onsets_lost} onsets during conversion from point list to "
+            "probability array. The distances between succesive onsets are "
+            "probably too small for the sampling frequency being used.")
+        warnings.warn(onsets_lost_msg)
 
     return activations
 
