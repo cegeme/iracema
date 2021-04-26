@@ -265,7 +265,7 @@ def expan(fft_time_series,
 
 def crepe(audio,
           model_capacity='large',
-          min_confidence=0.5,
+          min_confidence=0.,
           viterbi=True):
     """
     Extract the pitch using CREPE pitch tracker.
