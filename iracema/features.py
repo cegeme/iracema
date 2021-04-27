@@ -1,5 +1,5 @@
 """
-This module contains the implementation of some classic feature extractors.
+This module contains the implementation of feature extractors.
 
 References
 ----------
@@ -27,10 +27,11 @@ References
 .. [Peeters2011] Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,
    & McAdams, S. (2011). The timbre toolbox: extracting audio features
    from musical signals, 130(5).
-
 """
 import numpy as np
 from scipy.stats import pearsonr, gmean  # pylint: disable=import-error
+
+from iracema.core.segment import Segment
 
 from iracema.aggregation import (aggregate_features,
                                  aggregate_sucessive_samples,
@@ -484,3 +485,74 @@ def oer(harmonics):
     """
     def _func(X):
         pass
+
+
+def local_tempo(onsets, nominal_ioi_durations):
+    """
+    Calculate the local tempo for a list of note onsets.
+
+    Arguments
+    ---------
+    onsets : PointList
+        List of note onset points.
+    nominal_ioi_durations : list
+        List containing the nominal durations of the IOIs for the
+        execerpt (based on the score).
+    
+    Return
+    ------
+    local_tempo : np.array
+        Numpy array containing the local tempos for each IOI.
+    """
+    # calculate IOIs
+    iois = np.fromiter(
+        [
+            float(o1 - o0) for o0, o1 in zip(onsets[0:-1], onsets[1:])
+        ],
+        dtype=np.float)
+
+    nominal_ioi_durations = np.array(nominal_ioi_durations)
+    normalized_ioi_time = iois / nominal_ioi_durations
+    local_tempo_ = 60.0 / normalized_ioi_time
+    
+    return local_tempo_
+
+
+def legato_index(audio, note_list, window=1024, hop=441):
+    """
+    Estimate the legato index for the given audio and note list.
+
+    Arguments
+    ---------
+    audio : Audio
+        Audio object.
+    note_list : list
+        List of dictionaries containing the note envelope points.
+    window : int
+    hop : int
+
+    Return
+    ------
+    legato_index : np.array
+        Numpy array with the calculated legato index for each note.
+    """
+    rms_ = rms(audio, window, hop)
+    legato_index = []
+    for i, (note_this, note_next) in enumerate(zip(note_list[0:-1], note_list[1:])):
+
+        # legato index
+        transition = Segment(note_this['release_start'], note_next['attack_end'])
+        rms_transition = rms_[transition]
+
+        min_rms = min(rms_transition.data[0], rms_transition.data[-1])
+        max_rms = max(rms_transition.data[0], rms_transition.data[-1])
+        length = rms_transition.nsamples
+
+        triangle_area = (max_rms - min_rms) * length / 2
+        rectangle_area = min_rms * (length+1)
+        total_area = rectangle_area + triangle_area
+        sum_rms = np.sum(rms_transition.data)
+        legato = np.clip(sum_rms / total_area, 0, 1)
+        legato_index.append(legato)
+        
+    return np.array(legato_index)
