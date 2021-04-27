@@ -58,7 +58,6 @@ def segment_notes(audio, onsets, window=1024, hop=441):
             onset_0 + (np.argmax(this_spf_dif.data) / this_spf_dif.fs)
         )
 
-        this_audio = audio[ioi]
         this_rms = rms[ioi]
         this_pitch_diff = pitch_diff[ioi]
 
