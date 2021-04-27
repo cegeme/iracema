@@ -538,7 +538,7 @@ def legato_index(audio, note_list, window=1024, hop=441):
     """
     rms_ = rms(audio, window, hop)
     legato_index = []
-    for i, (note_this, note_next) in enumerate(zip(note_list[0:-1], note_list[1:])):
+    for note_this, note_next in zip(note_list[0:-1], note_list[1:]):
 
         # legato index
         transition = Segment(note_this['release_start'], note_next['attack_end'])
