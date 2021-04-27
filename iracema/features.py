@@ -533,11 +533,11 @@ def legato_index(audio, note_list, window=1024, hop=441):
 
     Return
     ------
-    legato_index : np.array
+    legato_indexes : np.array
         Numpy array with the calculated legato index for each note.
     """
     rms_ = rms(audio, window, hop)
-    legato_index = []
+    legato_indexes = []
     for note_this, note_next in zip(note_list[0:-1], note_list[1:]):
 
         # legato index
@@ -553,6 +553,6 @@ def legato_index(audio, note_list, window=1024, hop=441):
         total_area = rectangle_area + triangle_area
         sum_rms = np.sum(rms_transition.data)
         legato = np.clip(sum_rms / total_area, 0, 1)
-        legato_index.append(legato)
+        legato_indexes.append(legato)
         
-    return np.array(legato_index)
+    return np.array(legato_indexes)
