@@ -491,6 +491,11 @@ def oer(harmonics):
             return 0.
         return odd_energy / even_energy
 
+    time_series = aggregate_features(harmonics, _func)
+    time_series.label = 'OER'
+    time_series.unit = ''
+    return time_series
+
 
 def local_tempo(onsets, nominal_ioi_durations):
     """
