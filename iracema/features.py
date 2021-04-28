@@ -1,5 +1,5 @@
 """
-This module contains the implementation of some classic feature extractors.
+This module contains the implementation of feature extractors.
 
 References
 ----------
@@ -27,10 +27,11 @@ References
 .. [Peeters2011] Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,
    & McAdams, S. (2011). The timbre toolbox: extracting audio features
    from musical signals, 130(5).
-
 """
 import numpy as np
 from scipy.stats import pearsonr, gmean  # pylint: disable=import-error
+
+from iracema.core.segment import Segment
 
 from iracema.aggregation import (aggregate_features,
                                  aggregate_sucessive_samples,
@@ -289,7 +290,12 @@ def spectral_skewness(stft):
     :math:`\\sigma_{|X|}` its standard deviation.
     """
     def _func(X):
-        pass
+        return 2 * np.sum(np.abs(X) - np.mean(X))**3 / (len(X) * np.std(X)**3)
+
+    time_series = aggregate_features(stft, _func)
+    time_series.label = 'SpectralSkewness'
+    time_series.unit = ''
+    return time_series
 
 
 def spectral_kurtosis(stft):
@@ -309,7 +315,12 @@ def spectral_kurtosis(stft):
     :math:`\\sigma_{|X|}` its standard deviation.
     """
     def _func(X):
-        pass
+        return 2 * np.sum(np.abs(X) - np.mean(X))**4 / (len(X) * np.std(X)**4)
+
+    time_series = aggregate_features(stft, _func)
+    time_series.label = 'SpectralKurtosis'
+    time_series.unit = ''
+    return time_series
 
 
 def spectral_flux(stft, method='hwrdiff'):
@@ -353,18 +364,6 @@ def spectral_flux(stft, method='hwrdiff'):
     return time_series
 
 
-def spectral_rolloff(stft):
-    """Spectral Rolloff"""
-    def _func(X):
-        pass
-
-
-def spectral_irregularity(stft):
-    """Spectral Irregularity"""
-    def _func(X):
-        pass
-
-
 def harmonic_centroid(harmonics):
     """
     Harmonic Centroid
@@ -377,14 +376,17 @@ def harmonic_centroid(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-    def _func(X):
-        pass
+    def _func(A):
+        abs_A = np.abs(A)
+        sum_abs_A = np.sum(abs_A)
+        if sum_abs_A == 0:
+            return 0
+        return np.sum(abs_A * np.arange(0, len(A))) / sum_abs_A
 
-
-def inharmonicity(stft, harmonics):
-    """Inharmonicity"""
-    def _func(X):
-        pass
+    time_series = aggregate_features(harmonics, _func)
+    time_series.label = 'HarmonicCentroid'
+    time_series.unit = 'Harmonic Number'
+    return time_series
 
 
 def harmonic_energy(harmonics_magnitude):
@@ -395,10 +397,10 @@ def harmonic_energy(harmonics_magnitude):
 
     .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2
     """
-    def function(frame):
+    def _func(frame):
         return np.sum(frame**2)
 
-    time_series = aggregate_features(harmonics_magnitude, function)
+    time_series = aggregate_features(harmonics_magnitude, _func)
     time_series.label = 'Harmonic Energy'
     time_series.unit = ''
     return time_series
@@ -482,5 +484,85 @@ def oer(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-    def _func(X):
-        pass
+    def _func(A):
+        odd_energy = np.sum(A[::2])**2
+        even_energy = np.sum(A[1::2])**2
+        if even_energy==0:
+            return 0.
+        return odd_energy / even_energy
+
+    time_series = aggregate_features(harmonics, _func)
+    time_series.label = 'OER'
+    time_series.unit = ''
+    return time_series
+
+
+def local_tempo(onsets, nominal_ioi_durations):
+    """
+    Calculate the local tempo for a list of note onsets.
+
+    Arguments
+    ---------
+    onsets : PointList
+        List of note onset points.
+    nominal_ioi_durations : list
+        List containing the nominal durations of the IOIs for the
+        execerpt (based on the score).
+    
+    Return
+    ------
+    local_tempo : np.array
+        Numpy array containing the local tempos for each IOI.
+    """
+    # calculate IOIs
+    iois = np.fromiter(
+        [
+            float(o1 - o0) for o0, o1 in zip(onsets[0:-1], onsets[1:])
+        ],
+        dtype=np.float)
+
+    nominal_ioi_durations = np.array(nominal_ioi_durations)
+    normalized_ioi_time = iois / nominal_ioi_durations
+    local_tempo_ = 60.0 / normalized_ioi_time
+    
+    return local_tempo_
+
+
+def legato_index(audio, note_list, window=1024, hop=441):
+    """
+    Estimate the legato index for the given audio and note list.
+
+    Arguments
+    ---------
+    audio : Audio
+        Audio object.
+    note_list : list
+        List of dictionaries containing the note envelope points.
+    window : int
+    hop : int
+
+    Return
+    ------
+    legato_indexes : np.array
+        Numpy array with the calculated legato index for each note.
+    """
+    rms_ = rms(audio, window, hop)
+    legato_indexes = []
+    for note_this, note_next in zip(note_list[0:-1], note_list[1:]):
+
+        # legato index
+        transition = Segment(note_this['release_start'], note_next['attack_end'])
+        rms_transition = rms_[transition]
+
+        min_rms = min(rms_transition.data[0], rms_transition.data[-1])
+        max_rms = max(rms_transition.data[0], rms_transition.data[-1])
+        length = rms_transition.nsamples
+
+        triangle_area = (max_rms - min_rms) * length / 2
+        rectangle_area = min_rms * (length+1)
+        total_area = rectangle_area + triangle_area
+        sum_rms = np.sum(rms_transition.data)
+        legato = np.clip(sum_rms / total_area, 0, 1)
+        legato_indexes.append(legato)
+        
+    return np.array(legato_indexes)
