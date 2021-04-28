@@ -1,28 +1,32 @@
 import pytest
 
-from iracema import Audio
+import iracema as ir
 
 
 @pytest.fixture(scope="module")
 def audio00():
-    return Audio('audio/iracema-audio/00 - Flute - Iracema.wav')
+    return ir.Audio.load('audio/iracema-audio/00 - Flute - Iracema.wav')
 
 @pytest.fixture(scope="module")
 def audio01():
-    return Audio('audio/iracema-audio/01 - Guitar - Stil Got The Blues.wav')
+    return ir.Audio.load('audio/iracema-audio/01 - Guitar - Stil Got The Blues.wav')
 
 @pytest.fixture(scope="module")
 def audio02():
-    return Audio('audio/iracema-audio/02 - Clarinet - Long Notes.wav')
+    return ir.Audio.load('audio/iracema-audio/02 - Clarinet - Long Notes.wav')
 
 @pytest.fixture(scope="module")
 def audio03():
-    return Audio('audio/iracema-audio/03 - Clarinet - Fast Excerpt.wav')
+    return ir.Audio.load('audio/iracema-audio/03 - Clarinet - Fast Excerpt.wav')
+
+@pytest.fixture(scope="module")
+def spectrogram00():
+    audio = ir.Audio.load('audio/iracema-audio/00 - Flute - Iracema.wav')
+    return ir.spectral.Spectrogram(audio, 1024, 512)
 
 @pytest.fixture(scope="module")
 def audio_url():
-    return Audio('https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
-
+    return ir.Audio.load('https://raw.githubusercontent.com/cegeme/iracema-audio/master/03 - Clarinet - Fast Excerpt.wav')
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -31,7 +35,6 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     config.addinivalue_line("markers", "audio-play: mark test that plays audio")
-
 
 def pytest_collection_modifyitems(config, items):
     if config.getoption("--no-audio-play"):

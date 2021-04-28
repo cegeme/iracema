@@ -16,9 +16,9 @@ References
 import numpy as np
 import scipy.signal as sig
 
-from .timeseries import TimeSeries
-from .util.dsp import local_peaks, n_highest_peaks, decimate_mean
-from .aggregation import aggregate_features
+from iracema.core.timeseries import TimeSeries
+from iracema.util.dsp import local_peaks, n_highest_peaks, decimate_mean
+from iracema.aggregation import aggregate_features, sliding_window
 
 
 def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
@@ -69,6 +69,11 @@ def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
     decimation : 'discard', 'mean' or 'interpolation'
         Type of decimation operation to be performed.
 
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series
+
     References
     ----------
     .. [Cuadra2001] De La Cuadra, P. Efficient pitch detection techniques for
@@ -117,9 +122,9 @@ def hps(fft_time_series, minf0, maxf0, n_downsampling=16,
     return pitch_time_series
 
 
-def expan_pitch(fft_time_series,
-                minf0=24,
-                maxf0=4200,
+def expan(fft_time_series,
+                minf0=24.,
+                maxf0=4200.,
                 nharm=12,
                 ncand=5,
                 min_mag_cand=0.1,
@@ -146,6 +151,11 @@ def expan_pitch(fft_time_series,
         Noisiness treshold.
     perc_tol : float
         Tolerance percentage to search for harmonics.
+
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series
     """
     if minf0 >= maxf0:
         raise ValueError('The parameter maxf0 must be greater than minf0.')
@@ -229,7 +239,7 @@ def expan_pitch(fft_time_series,
 
         # calculate the energy of the harmonic components for each candidate
         for i in range(n_cand):
-            energy_harm[i] = np.sum(cand_mag[i, :]**2)
+            energy_harm[i] = np.sum(cand_mag[i, :]**2.)
 
         # choose the candidate with the highest harmonic energy
         i = np.argmax(energy_harm)
@@ -237,13 +247,12 @@ def expan_pitch(fft_time_series,
         # one last test, the noisiness for the winner candidate must be bellow
         # the noisiness threshold
         h_energy = energy_harm[i]
-        frame_energy = np.sum(fft_frame_mag**2)
-        frame_noisiness = 1 - (h_energy / frame_energy)
+        frame_energy = np.sum(fft_frame_mag**2.)
+        frame_noisiness = 1. - (h_energy / frame_energy)
 
         if frame_noisiness < noisiness_tresh:
             return ix_cand_harm[i, 0] * fft_time_series.max_frequency / N
-        else:
-            return 0
+        return 0.
 
     pitch_time_series = aggregate_features(
         fft_time_series, frame_pitch)
@@ -251,14 +260,13 @@ def expan_pitch(fft_time_series,
     pitch_time_series.label = 'Pitch (HPS)'
     pitch_time_series.unit = 'Hz'
 
-
     return pitch_time_series
 
 
-def crepe_pitch(audio,
-                model_capacity='large',
-                min_confidence=0.5,
-                viterbi=True):
+def crepe(audio,
+          model_capacity='large',
+          min_confidence=0.,
+          viterbi=True):
     """
     Extract the pitch using CREPE pitch tracker.
 
@@ -267,7 +275,7 @@ def crepe_pitch(audio,
 
     Args
     ----
-    audio : iracema.audio.Audio
+    audio : iracema.core.audio.Audio
         Audio time series.
     step_size : float
         Length of the time steps for the pitch extraction.
@@ -281,6 +289,11 @@ def crepe_pitch(audio,
     viterbi : bool
         Viterbi smoothing for pitch curve.
 
+    Return
+    ------
+    pitch : TimeSeries
+        A pitch time series.
+
     References
     ----------
     .. [Kim2018] Kim, J. W., Salamon, J., Li, P., & Bello, J. P. (2018). CREPE:
@@ -291,13 +304,13 @@ def crepe_pitch(audio,
     from crepe import predict  # pylint: disable=import-error
 
     time, frequency, confidence, _ = predict(
-        audio.data, audio.fs, viterbi=viterbi, model_capacity=model_capacity)
+        audio.data, float(audio.fs), viterbi=viterbi, model_capacity=model_capacity)
 
     frequency[confidence < min_confidence] = np.nan
 
     step = time[1] - time[0]
     print('step =', step)
-    fs = 1 / step
+    fs = 1. / step
     pitch_time_series = TimeSeries(
         fs, frequency, start_time=audio.start_time, unit='Hz')
 
@@ -307,6 +320,16 @@ def crepe_pitch(audio,
 def pitch_filter(pitch_time_series, delta_max=0.04):
     """
     The pitch curve can be noisy, this function tries to smooth it.
+
+    Arguments
+    ---------
+    delta_max: int
+        Delta parameter for the smoothing algorithm.
+
+    Return
+    ------
+    pitch: TimeSeries
+        A smoothed pitch time series.
     """
     data = pitch_time_series.data
     data_previous = np.concatenate((np.zeros(1), data[0:-1]))
@@ -326,11 +349,32 @@ def pitch_filter(pitch_time_series, delta_max=0.04):
 
     for idx in np.where(indexes_to_interp):
         pitch_filtered.data[idx] = (
-            pitch_filtered.data[idx + 1] + pitch_filtered.data[idx - 1]) / 2
+            pitch_filtered.data[idx + 1] + pitch_filtered.data[idx - 1]) / 2.
 
     # 2nd condition: one isolated point between zeros
     indexes_to_zero = ((data_previous == 0) & (data_next == 0))
 
-    pitch_filtered.data[indexes_to_zero] = 0
+    pitch_filtered.data[indexes_to_zero] = 0.
 
     return pitch_filtered
+
+
+def pitch_mode(pitch_time_series, window=9):
+    """
+    Apply a windowed mode to the pitch curve to remove noise.
+
+    Arguments
+    ---------
+    window: int
+        Length of the window for the calculation of the mode.
+
+    Return
+    ------
+    pitch: TimeSeries
+        A smoothed pitch time series.
+    """
+    def mode(x):
+        values, counts = np.unique(x, return_counts=True)
+        return values[np.argmax(counts)]
+
+    return sliding_window(pitch_time_series, window, 1, mode)

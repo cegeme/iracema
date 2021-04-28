@@ -1,14 +1,15 @@
 """
 Some aggregation methods for time series.
 """
+from decimal import Decimal
 
 import numpy as np
 
 from iracema.util.windowing import apply_sliding_window
-from iracema.timeseries import TimeSeries
+import iracema.core.timeseries
 
 
-def sliding_window(time_series, window_size, hop_size, function,
+def sliding_window(time_series, window_size, hop_size, function=None,
                    window_name=None):
     """
     Use a sliding window to aggregate the data from ``time_series`` by applying
@@ -22,22 +23,31 @@ def sliding_window(time_series, window_size, hop_size, function,
         Time series over which the sliding operation must be applied.
     window_size: int
         Size of the window.
-    hop_size: int
+    hop_size : int
         Number of samples to be skipped between two successive windowing
         operations.
+    function : function
+        Function to be applied to each window. If no function is specified,
+        each window will contain an unaltered excerpt of the time series.
     window_name : str
         Name of the window function to be used. Options are: {"boxcar",
         "triang", "blackman", "hamming", "hann", "bartlett", "flattop",
         "parzen", "bohman", "blackmanharris", "nuttall", "barthann",
         "no_window", None}.
     """
+    def identity(x):
+        return x
+
+    if not function:
+        function = identity
+
     new_data = apply_sliding_window(time_series.data, window_size, hop_size,
                                     function, window_name)
 
     # new sampling frequency for the aggregated time-series
-    new_fs = time_series.fs / np.float_(hop_size)
+    new_fs = Decimal(time_series.fs) / Decimal(hop_size)
 
-    new_ts = TimeSeries(
+    new_ts = iracema.core.timeseries.TimeSeries(
         new_fs,
         data=new_data,
         start_time=time_series.start_time)
@@ -51,7 +61,7 @@ def aggregate_features(time_series, func):
     """
     new_data = np.apply_along_axis(func, 0, time_series.data)
 
-    new_ts = TimeSeries(
+    new_ts = iracema.core.timeseries.TimeSeries(
         time_series.fs,
         data=new_data,
         start_time=time_series.start_time)
@@ -92,7 +102,7 @@ def aggregate_sucessive_samples(time_series, func, padding='zeros'):
     for i in range(1, nsamples):
         new_data[i] = func(data[..., i - 1], data[..., i])
 
-    new_ts = TimeSeries(
+    new_ts = iracema.core.timeseries.TimeSeries(
         time_series.fs,
         data=new_data,
         start_time=time_series.start_time)

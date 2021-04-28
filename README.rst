@@ -79,7 +79,7 @@ To contribute with the development of iracema, clone the repository from github:
 
 The command shown above will also clone some example audio files. 
 If you don't want to download those files, you should omit the
-parameter ``--recurse-submodules``, like this:
+parameter ``--recursive``:
 
 .. code-block:: bash
 

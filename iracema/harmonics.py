@@ -5,16 +5,11 @@ monophonic audio.
 
 import numpy as np
 
-from .timeseries import TimeSeries
-from .util.dsp import local_peaks, n_highest_peaks
+from iracema.core.timeseries import TimeSeries
+from iracema.util.dsp import n_highest_peaks
 
 
-def extract(fft,
-            pitch,
-            nharm=16,
-            minf0=24,
-            maxf0=4200,
-           perc_tol=0.04):
+def extract(fft, pitch, nharm=16, minf0=24, maxf0=4200, perc_tol=0.04):
     """
     Extract the harmonics of an audio signal, given its `fft` and `pitch`
     curve, using `nharm` harmonics. The pitch detection method will search for
@@ -67,8 +62,10 @@ def extract(fft,
         fft_frame_amp = np.abs(fft_frame)
         fft_frame_phase = np.angle(fft_frame)
 
-        mag, phase, f = frame_harmonics(pitch.data[i], fft_frame_amp,
-                                        fft_frame_phase, fft.max_frequency,
+        mag, phase, f = frame_harmonics(pitch.data[i],
+                                        fft_frame_amp,
+                                        fft_frame_phase,
+                                        fft.max_frequency,
                                         nharm, perc_tol)
 
         harm_mag[:, i] = mag
@@ -98,16 +95,14 @@ def frame_harmonics(frame_pitch, fft_frame_mag, fft_frame_phase, fft_max_freq,
     ix_f0 = int(round(np.nan_to_num(frame_pitch / fft_max_freq * N)))
     delta = ix_f0 * perc_tol
 
-    # searching for local peaks all over the FFT
-    _, ix_pks = local_peaks(fft_frame_mag)
-    ix_pks = ix_pks
-    # TODO: this could be done more efficiently, the peak searching is
-    # being performed twice
-
     # memory allocation
     cand_mag = np.zeros((nharm))
     cand_phase = np.zeros((nharm))
     ix_cand_harm = np.zeros((nharm))
+
+    ix_cand_harm[0] = ix_f0
+    cand_mag[0] = fft_frame_mag[ix_f0]
+    cand_phase[0] = fft_frame_phase[ix_f0]
 
     # iterate the harmonics
     for j in range(1, nharm):

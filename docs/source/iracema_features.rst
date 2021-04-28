@@ -2,6 +2,7 @@ iracema.features
 ================
 
 .. automodule:: iracema.features
-   :members:
-   :show-inheritance:
+    :members:
+    :undoc-members:
+    :show-inheritance:
 

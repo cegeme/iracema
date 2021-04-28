@@ -21,13 +21,14 @@ jobs:
       - name: Install OS dependencies
         run: |
           sudo apt update
-          sudo apt install libportaudio2
+          sudo apt -y install libportaudio2
+          sudo apt -y install apt-utils gcc libpq-dev libsndfile-dev
       - name: Install Python dependencies
         run: |
           pip install -r docs/requirements.txt
       - name: Build docs using sphinx
         run: |
-          sphinx-build docs build/html
+          sphinx-build docs build/html -W --keep-going
       - name: Move docs to temporary folder
         run: |
           mv build/html /tmp/
