@@ -24,6 +24,6 @@ import iracema.util
 
 import iracema.segmentation.onsets
 
-__version__ = u'0.1.7'
+__version__ = u'0.2.0'
 
 root = _dirname(__spec__.origin)
