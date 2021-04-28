@@ -74,7 +74,7 @@ To contribute with the development of iracema, clone the repository from github:
 
 .. code-block:: bash
 
-   git clone --recursive https://github.com/cegeme/iracema.git
+   git clone --recurse-submodules https://github.com/cegeme/iracema.git
 
 
 The command shown above will also clone some example audio files. 
