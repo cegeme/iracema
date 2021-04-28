@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>iracema.segmentation.onsets &mdash; Iracema 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+<p><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_io.html">iracema.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_util.html">iracema.util</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.segmentation.onsets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.segmentation.onsets</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Note onset detection methods.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">warnings</span> 
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="kn">import</span> <span class="nn">iracema.features</span>
+<span class="kn">import</span> <span class="nn">iracema.pitch</span>
+<span class="kn">import</span> <span class="nn">iracema.core.segment</span>
+<span class="kn">import</span> <span class="nn">iracema.core.point</span>
+<span class="kn">from</span> <span class="nn">iracema.plot</span> <span class="kn">import</span> <span class="n">waveform_trio_features_and_points</span>
+<span class="kn">from</span> <span class="nn">iracema.segmentation.odfs</span> <span class="kn">import</span> <span class="p">(</span><span class="n">odf_rms_derivative</span><span class="p">,</span> <span class="n">odf_pitch_change</span><span class="p">,</span>
+                                       <span class="n">odf_adaptative_rms</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">iracema.util.ml</span> <span class="kn">import</span> <span class="n">activations_to_points</span>
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">convolve_activations</span><span class="p">,</span> <span class="n">three_sliced_mel_spectrograms</span>
+
+
+<div class="viewcode-block" id="cnn_model"><a class="viewcode-back" href="../../../source/iracema_segmentation_odfs.html#iracema.segmentation.onsets.cnn_model">[docs]</a><span class="k">def</span> <span class="nf">cnn_model</span><span class="p">(</span>
+    <span class="n">audio</span><span class="p">,</span>
+    <span class="n">instrument</span><span class="o">=</span><span class="s1">&#39;clarinet&#39;</span><span class="p">,</span>
+    <span class="n">smooth_odf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">odf_threshold</span> <span class="o">=</span> <span class="mf">0.328</span><span class="p">,</span>
+    <span class="n">display_plot</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">return_odf_data</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the note onsets using the CNN method.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio: ir.Audio</span>
+<span class="sd">        Audio file to be processed.</span>
+<span class="sd">    instrument: string</span>
+<span class="sd">        Name of the instrument (currently trained only for clarinet).</span>
+<span class="sd">    smooth_odf: bool</span>
+<span class="sd">        If true, the final ODF will be smoothed by convolving it with a hanning</span>
+<span class="sd">        window of length 5.</span>
+<span class="sd">    odf_threshold : float</span>
+<span class="sd">        Minimum threshold for the peak picking in the ODF curve.</span>
+<span class="sd">    display_plot : bool</span>
+<span class="sd">        Whether of not to plot the results</span>
+<span class="sd">    return_odf_data : bool</span>
+<span class="sd">        Whether or not to return the odf data</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">audio_</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">audio_</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">44100.</span><span class="p">:</span>
+        <span class="n">audio_</span> <span class="o">=</span> <span class="n">audio_</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mi">44100</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">instrument</span> <span class="o">!=</span> <span class="s1">&#39;clarinet&#39;</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;This model is specialized in clarinet recordings. It might not &quot;</span>
+            <span class="s2">&quot;perform well for other instruments.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">window</span><span class="p">,</span> <span class="n">hop</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">441</span>
+    <span class="n">sliced_spectrogram</span><span class="p">,</span> <span class="n">frame_fs</span> <span class="o">=</span> <span class="n">three_sliced_mel_spectrograms</span><span class="p">(</span>
+        <span class="n">audio_</span><span class="p">,</span>
+        <span class="n">window</span><span class="p">,</span>
+        <span class="n">hop</span><span class="p">,</span>
+        <span class="n">frames_per_slice</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">n_mels</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="n">fmin</span> <span class="o">=</span> <span class="mf">27.5</span><span class="p">,</span>
+        <span class="n">fmax</span> <span class="o">=</span> <span class="mi">16000</span><span class="p">,</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">here</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+    <span class="n">model_file</span> <span class="o">=</span> <span class="n">here</span><span class="o">/</span><span class="s1">&#39;clari-onsets.h5&#39;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sliced_spectrogram</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">smooth_odf</span><span class="p">:</span>
+        <span class="n">y_pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">convolve_activations</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">onsets</span> <span class="o">=</span> <span class="n">activations_to_points</span><span class="p">(</span>
+        <span class="n">y_pred</span><span class="p">,</span>
+        <span class="n">frame_fs</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span>
+        <span class="n">threshold</span><span class="o">=</span><span class="n">odf_threshold</span><span class="p">,</span>
+        <span class="n">peak_pick</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">odf_data</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">display_plot</span><span class="p">:</span>
+        <span class="n">waveform_trio_features_and_points</span><span class="p">(</span><span class="n">audio_</span><span class="p">,</span> <span class="n">odf_data</span><span class="p">,</span> <span class="n">onsets</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_odf_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span>
+    <span class="k">return</span> <span class="n">onsets</span></div>
+
+
+<div class="viewcode-block" id="adaptative_rms"><a class="viewcode-back" href="../../../source/iracema_segmentation_odfs.html#iracema.segmentation.onsets.adaptative_rms">[docs]</a><span class="k">def</span> <span class="nf">adaptative_rms</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">short_window</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+        <span class="n">long_window</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
+        <span class="n">hop</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">display_plot_rms</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_odf_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the note onsets using the adaptative RMS method.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio time series.</span>
+<span class="sd">    short_window : int</span>
+<span class="sd">        Length of the short term window for the calculation of the RMS.</span>
+<span class="sd">    long_window : int</span>
+<span class="sd">        Length of the long term window for the calculation of the RMS.</span>
+<span class="sd">    hop : int</span>
+<span class="sd">        Length of the hop for the sliding window.</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        Reduction factor for the long term RMS curve.</span>
+<span class="sd">    display_plot_rms : bool</span>
+<span class="sd">        Whether of not to plot the RMS curves used to calculate the ODF.</span>
+<span class="sd">    min_time : float</span>
+<span class="sd">        Minimum time (in seconds) between successive onsets.</span>
+<span class="sd">    odf_threshold : float</span>
+<span class="sd">        Ratio of the ODF maxima to be defined as a minimum threshold</span>
+<span class="sd">        for the peak picking.</span>
+<span class="sd">    display_plot : bool</span>
+<span class="sd">        Whether of not to plot the results.</span>
+<span class="sd">    return_odf_data : bool</span>
+<span class="sd">        Whether or not to return the odf data.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    onsets : PointList</span>
+<span class="sd">        List of onsets.</span>
+<span class="sd">    odf_data : TimeSeries</span>
+<span class="sd">        Time series containing the onset detection function obtained. This will</span>
+<span class="sd">        only be returned if the argument `return_odf_data` has been set to</span>
+<span class="sd">        True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span> <span class="o">=</span> <span class="n">extract_from_odf</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">odf_adaptative_rms</span><span class="p">,</span>
+        <span class="n">long_window</span><span class="o">=</span><span class="n">long_window</span><span class="p">,</span>
+        <span class="n">short_window</span><span class="o">=</span><span class="n">short_window</span><span class="p">,</span>
+        <span class="n">hop</span><span class="o">=</span><span class="n">hop</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">display_plot_rms</span><span class="o">=</span><span class="n">display_plot_rms</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="n">min_time</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="n">odf_threshold</span><span class="p">,</span>
+        <span class="n">odf_threshold_criteria</span><span class="o">=</span><span class="s2">&quot;relative_to_max&quot;</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="n">display_plot</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_odf_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span>
+    <span class="k">return</span> <span class="n">onsets</span></div>
+
+
+<div class="viewcode-block" id="rms_derivative"><a class="viewcode-back" href="../../../source/iracema_segmentation_odfs.html#iracema.segmentation.onsets.rms_derivative">[docs]</a><span class="k">def</span> <span class="nf">rms_derivative</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">window</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+        <span class="n">hop</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_odf_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract note onsets from the ``audio`` time-series using its ``rms``.</span>
+<span class="sd">    The RMS will be calculated if it&#39;s not passed as an argument. The argument</span>
+<span class="sd">    ``min_time`` can be used to specify the minimum distance (in seconds)</span>
+<span class="sd">    between two adjacent onsets.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio object</span>
+<span class="sd">    window : int</span>
+<span class="sd">        Window length for computing the RMS.</span>
+<span class="sd">    hop : int</span>
+<span class="sd">        Hop length for computing the RMS.</span>
+<span class="sd">    min_time : float, optional</span>
+<span class="sd">        Minimum time (in seconds) between successive onsets.</span>
+<span class="sd">    odf_threshold : float</span>
+<span class="sd">        Minimum threshold for the peak picking in the ODF curve.</span>
+<span class="sd">    display_plot : bool</span>
+<span class="sd">        Whether of not to plot the results</span>
+<span class="sd">    return_odf_data : bool</span>
+<span class="sd">        Whether or not to return the odf data</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    onsets : list</span>
+<span class="sd">        List of onset points.</span>
+<span class="sd">    odf_data : TimeSeries</span>
+<span class="sd">        Time series containing the onset detection function obtained. This will</span>
+<span class="sd">        only be returned if the argument `return_odf_data` has been set to</span>
+<span class="sd">        True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span> <span class="o">=</span> <span class="n">extract_from_odf</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">odf_rms_derivative</span><span class="p">,</span>
+        <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span>
+        <span class="n">hop</span><span class="o">=</span><span class="n">hop</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="n">min_time</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="n">odf_threshold</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="n">display_plot</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_odf_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span>
+    <span class="k">return</span> <span class="n">onsets</span></div>
+
+
+<div class="viewcode-block" id="pitch_variation"><a class="viewcode-back" href="../../../source/iracema_segmentation_odfs.html#iracema.segmentation.onsets.pitch_variation">[docs]</a><span class="k">def</span> <span class="nf">pitch_variation</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">window</span><span class="p">,</span>
+        <span class="n">hop</span><span class="p">,</span>
+        <span class="n">minf0</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+        <span class="n">maxf0</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+        <span class="n">smooth_pitch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_odf_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract note onsets from the ``audio`` time-series using its ``pitch``.</span>
+<span class="sd">    The argument ``min_time`` can be used to specify the minimum distance (in</span>
+<span class="sd">    seconds) between two adjacent onsets.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio object</span>
+<span class="sd">    window : int</span>
+<span class="sd">        Window length for computing the pitch.</span>
+<span class="sd">    hop : int</span>
+<span class="sd">        Hop length for computing the pitch.</span>
+<span class="sd">    minf0 : int</span>
+<span class="sd">        Minimum frequency for the pitch detection.</span>
+<span class="sd">    maxf0 : int</span>
+<span class="sd">        Maximum frequency for the pitch detection.</span>
+<span class="sd">    smooth_pitch: bool</span>
+<span class="sd">        Whether or not the pitch curve should be smoothed.</span>
+<span class="sd">    min_time : float</span>
+<span class="sd">        Minimum time (in seconds) between successive onsets.</span>
+<span class="sd">    odf_threshold : float</span>
+<span class="sd">        Minimum threshold for the peak picking in the ODF curve</span>
+<span class="sd">    display_plot : bool</span>
+<span class="sd">        Whether of not to plot the results</span>
+<span class="sd">    return_odf_data : bool</span>
+<span class="sd">        Whether or not to return the odf data</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    onsets : list</span>
+<span class="sd">        List of onset points.</span>
+<span class="sd">    odf_data : TimeSeries</span>
+<span class="sd">        Time series containing the onset detection function obtained. This will</span>
+<span class="sd">        only be returned if the argument `return_odf_data` has been set to</span>
+<span class="sd">        True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">odf</span> <span class="o">=</span> <span class="n">odf_pitch_change</span>
+
+    <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span> <span class="o">=</span> <span class="n">extract_from_odf</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">odf</span><span class="p">,</span>
+        <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span>
+        <span class="n">hop</span><span class="o">=</span><span class="n">hop</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="n">min_time</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="n">odf_threshold</span><span class="p">,</span>
+        <span class="n">minf0</span><span class="o">=</span><span class="n">minf0</span><span class="p">,</span>
+        <span class="n">maxf0</span><span class="o">=</span><span class="n">maxf0</span><span class="p">,</span>
+        <span class="n">smooth_pitch</span><span class="o">=</span><span class="n">smooth_pitch</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="n">display_plot</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_odf_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">onsets</span><span class="p">,</span> <span class="n">odf_data</span>
+    <span class="k">return</span> <span class="n">onsets</span></div>
+
+
+<div class="viewcode-block" id="extract_from_odf"><a class="viewcode-back" href="../../../source/iracema_segmentation_odfs.html#iracema.segmentation.onsets.extract_from_odf">[docs]</a><span class="k">def</span> <span class="nf">extract_from_odf</span><span class="p">(</span>
+        <span class="n">audio</span><span class="p">,</span>
+        <span class="n">odf</span><span class="p">,</span>
+        <span class="n">min_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">odf_threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">odf_threshold_criteria</span><span class="o">=</span><span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+        <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">parameters</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic method to extract onsets from an ODF (onset detection function).</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio time series.</span>
+<span class="sd">    odf : function</span>
+<span class="sd">        Reference to the ODF.</span>
+<span class="sd">    min_time : float</span>
+<span class="sd">        Minimum time (in seconds) between successive onsets.</span>
+<span class="sd">    odf_threshold : float</span>
+<span class="sd">        Minimum ODF threshold for a peak to be considered as an onset.</span>
+<span class="sd">    odf_threshold_criteria : string [&#39;absolute&#39;, &#39;relative_to_max&#39;]</span>
+<span class="sd">        Specifies how the argument ``odf_threshold`` will be used: if</span>
+<span class="sd">        ``&#39;absolute&#39;`` its value will be used directly as the threshold;</span>
+<span class="sd">        else, if ``&#39;relative_to_max&#39;``, its value will be used to calculate</span>
+<span class="sd">        the threshold, relative to the maximum value in the ODF curve, e.g.:</span>
+<span class="sd">        ``odf_threshold``==``0.2`` set the threshold to 20% of the maximum</span>
+<span class="sd">        value of the ODF curve.</span>
+<span class="sd">    display_plot : bool</span>
+<span class="sd">        Whether or not to plot the results.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    onsets: PointList</span>
+<span class="sd">        List of onsets.</span>
+<span class="sd">    odf_data: TimeSeries</span>
+<span class="sd">        Time series containing the onset detection function obtained.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">odf_data</span> <span class="o">=</span> <span class="n">odf</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">min_time</span><span class="p">:</span>
+        <span class="n">min_dist</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">min_time</span> <span class="o">*</span> <span class="n">odf_data</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">min_dist</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">min_dist</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">min_dist</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">odf_threshold_criteria</span> <span class="o">==</span> <span class="s2">&quot;absolute&quot;</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">odf_threshold</span>
+    <span class="k">elif</span> <span class="n">odf_threshold_criteria</span> <span class="o">==</span> <span class="s2">&quot;relative_to_max&quot;</span><span class="p">:</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">odf_threshold</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">odf_data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;Invalid value for argument `odf_threshold_criteria`: &quot;</span>
+             <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">odf_threshold_criteria</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">))</span>
+
+    <span class="n">ixs_onsets</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span>
+        <span class="n">odf_data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">min_dist</span><span class="p">)</span>
+
+    <span class="n">onsets</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">PointList</span><span class="p">([</span>
+        <span class="n">iracema</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">Point</span><span class="o">.</span><span class="n">from_sample_index</span><span class="p">(</span><span class="n">ix</span><span class="p">,</span> <span class="n">odf_data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="n">ixs_onsets</span>
+    <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">display_plot</span><span class="p">:</span>
+        <span class="n">waveform_trio_features_and_points</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">odf_data</span><span class="p">,</span> <span class="n">onsets</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">onsets</span><span class="p">,</span> <span class="n">odf</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Tairone N. Magalhães.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

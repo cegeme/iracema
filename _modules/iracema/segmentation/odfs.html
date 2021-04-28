@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>iracema.segmentation.odfs &mdash; Iracema 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+<p><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_io.html">iracema.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_util.html">iracema.util</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>iracema.segmentation.odfs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for iracema.segmentation.odfs</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">iracema.features</span>
+<span class="kn">import</span> <span class="nn">iracema.pitch</span>
+<span class="kn">import</span> <span class="nn">iracema.spectral</span>
+<span class="kn">from</span> <span class="nn">iracema.aggregation</span> <span class="kn">import</span> <span class="n">aggregate_sucessive_samples</span>
+
+
+<div class="viewcode-block" id="odf_adaptative_rms"><a class="viewcode-back" href="../../../source/iracema_segmentation_onsets.html#iracema.segmentation.odfs.odf_adaptative_rms">[docs]</a><span class="k">def</span> <span class="nf">odf_adaptative_rms</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span>
+                     <span class="n">long_window</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
+                     <span class="n">short_window</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+                     <span class="n">hop</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+                     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                     <span class="n">display_plot_rms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio: Audio</span>
+<span class="sd">        Audio time series.</span>
+<span class="sd">    short_window : int</span>
+<span class="sd">        Length of the short term window for the calculation of the RMS.</span>
+<span class="sd">    long_window : int</span>
+<span class="sd">        Length of the long term window for the calculation of the RMS.</span>
+<span class="sd">    hop:</span>
+<span class="sd">        Length of the hop for the sliding window.</span>
+<span class="sd">    alpha:</span>
+<span class="sd">        Reduction factor for the long term RMS curve.</span>
+<span class="sd">    display_plot_rms: bool</span>
+<span class="sd">        Whether of not to plot the RMS curves.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    odf: TimeSeries</span>
+<span class="sd">        Onset detection function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rms_long</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">long_window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+    <span class="n">rms_short</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">short_window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">pad_like</span><span class="p">(</span><span class="n">rms_long</span><span class="p">)</span>
+
+    <span class="n">rms_long</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">rms_long</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">rms_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">rms_long</span> <span class="o">-</span> <span class="n">rms_short</span><span class="p">)</span><span class="o">.</span><span class="n">hwr</span><span class="p">()</span>
+
+    <span class="n">odf</span> <span class="o">=</span> <span class="n">rms_diff</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">odf</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">rms_diff</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">last</span><span class="p">,</span> <span class="n">sum_</span><span class="p">,</span> <span class="n">pk</span><span class="p">,</span> <span class="n">ix_pk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">rms_diff</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;f_index&#39;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sum_</span> <span class="o">+=</span> <span class="n">x</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">pk</span><span class="p">:</span>
+                <span class="n">pk</span> <span class="o">=</span> <span class="n">x</span>
+                <span class="n">ix_pk</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">index</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">last</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">odf</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ix_pk</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_</span>
+            <span class="n">sum_</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">pk</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">if</span> <span class="n">display_plot_rms</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rms_long</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">rms_long</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rms_short</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">rms_short</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">odf</span></div>
+
+
+<div class="viewcode-block" id="odf_rms_derivative"><a class="viewcode-back" href="../../../source/iracema_segmentation_onsets.html#iracema.segmentation.odfs.odf_rms_derivative">[docs]</a><span class="k">def</span> <span class="nf">odf_rms_derivative</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">hop</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Onset detection function based on RMS.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio object</span>
+<span class="sd">    window : int</span>
+<span class="sd">        Window length for computing the RMS.</span>
+<span class="sd">    hop : int</span>
+<span class="sd">        Hop length for computing the RMS.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    odf: TimeSeries</span>
+<span class="sd">        Onset detection function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rms</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">hwr</span><span class="p">()</span>  <span class="c1"># * rms</span></div>
+
+
+<div class="viewcode-block" id="odf_pitch_change"><a class="viewcode-back" href="../../../source/iracema_segmentation_onsets.html#iracema.segmentation.odfs.odf_pitch_change">[docs]</a><span class="k">def</span> <span class="nf">odf_pitch_change</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span>
+                     <span class="n">window</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+                     <span class="n">hop</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+                     <span class="n">minf0</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+                     <span class="n">maxf0</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+                     <span class="n">smooth_pitch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Onset detection function based on Pitch.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    audio : Audio</span>
+<span class="sd">        Audio object</span>
+<span class="sd">    window : int</span>
+<span class="sd">        Window length for computing the pitch.</span>
+<span class="sd">    hop : int</span>
+<span class="sd">        Hop length for computing the pitch.</span>
+<span class="sd">    minf0 : int</span>
+<span class="sd">        Minimum frequency for the pitch detection.</span>
+<span class="sd">    maxf0 : int</span>
+<span class="sd">        Maximum frequency for the pitch detection.</span>
+<span class="sd">    smooth_pitch: bool</span>
+<span class="sd">        Whether or not the pitch curve should be smoothed.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    odf: TimeSeries</span>
+<span class="sd">        Onset detection function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">window_mode</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">fft</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">spectral</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">hop</span><span class="p">)</span>
+    <span class="n">pitch</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">pitch</span><span class="o">.</span><span class="n">expan</span><span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">minf0</span><span class="o">=</span><span class="n">minf0</span><span class="p">,</span> <span class="n">maxf0</span><span class="o">=</span><span class="n">maxf0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">smooth_pitch</span><span class="p">:</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">pitch</span><span class="o">.</span><span class="n">pitch_filter</span><span class="p">(</span><span class="n">pitch</span><span class="p">)</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">iracema</span><span class="o">.</span><span class="n">pitch</span><span class="o">.</span><span class="n">pitch_mode</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">window_mode</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ratio_successive</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+        <span class="n">min_denominator</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">last</span><span class="p">)</span> <span class="o">+</span> <span class="n">min_denominator</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">current</span> <span class="o">/</span> <span class="n">last</span>
+        <span class="k">if</span> <span class="n">ratio</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="n">ratio</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ratio</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">aggregate_sucessive_samples</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">ratio_successive</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Tairone N. Magalhães.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

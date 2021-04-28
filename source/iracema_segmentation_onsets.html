@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>iracema.segmentation.odfs &mdash; Iracema 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iracema.segmentation.onsets" href="iracema_segmentation_odfs.html" />
+    <link rel="prev" title="iracema.segmentation" href="iracema_segmentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/iracema-white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+<p><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">iracema.segmentation.odfs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_segmentation_odfs.html">iracema.segmentation.onsets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_segmentation_evaluation.html">iracema.segmentation.evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_features.html">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_io.html">iracema.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_util.html">iracema.util</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Iracema</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="iracema_segmentation.html">iracema.segmentation</a> &raquo;</li>
+        
+      <li>iracema.segmentation.odfs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/source/iracema_segmentation_onsets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-iracema.segmentation.odfs">
+<span id="iracema-segmentation-odfs"></span><h1>iracema.segmentation.odfs<a class="headerlink" href="#module-iracema.segmentation.odfs" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="iracema.segmentation.odfs.odf_adaptative_rms">
+<code class="sig-prename descclassname"><span class="pre">iracema.segmentation.odfs.</span></code><code class="sig-name descname"><span class="pre">odf_adaptative_rms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4096</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_plot_rms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation/odfs.html#odf_adaptative_rms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.segmentation.odfs.odf_adaptative_rms" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<a class="reference internal" href="iracema_core_audio.html#iracema.core.audio.Audio" title="iracema.core.audio.Audio"><em>Audio</em></a>) – Audio time series.</p></li>
+<li><p><strong>short_window</strong> (<em>int</em>) – Length of the short term window for the calculation of the RMS.</p></li>
+<li><p><strong>long_window</strong> (<em>int</em>) – Length of the long term window for the calculation of the RMS.</p></li>
+<li><p><strong>hop</strong> – Length of the hop for the sliding window.</p></li>
+<li><p><strong>alpha</strong> – Reduction factor for the long term RMS curve.</p></li>
+<li><p><strong>display_plot_rms</strong> (<em>bool</em>) – Whether of not to plot the RMS curves.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>odf</strong> – Onset detection function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries">TimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="iracema.segmentation.odfs.odf_rms_derivative">
+<code class="sig-prename descclassname"><span class="pre">iracema.segmentation.odfs.</span></code><code class="sig-name descname"><span class="pre">odf_rms_derivative</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation/odfs.html#odf_rms_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.segmentation.odfs.odf_rms_derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Onset detection function based on RMS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<a class="reference internal" href="iracema_core_audio.html#iracema.core.audio.Audio" title="iracema.core.audio.Audio"><em>Audio</em></a>) – Audio object</p></li>
+<li><p><strong>window</strong> (<em>int</em>) – Window length for computing the RMS.</p></li>
+<li><p><strong>hop</strong> (<em>int</em>) – Hop length for computing the RMS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>odf</strong> – Onset detection function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries">TimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="iracema.segmentation.odfs.odf_pitch_change">
+<code class="sig-prename descclassname"><span class="pre">iracema.segmentation.odfs.</span></code><code class="sig-name descname"><span class="pre">odf_pitch_change</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minf0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxf0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/segmentation/odfs.html#odf_pitch_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.segmentation.odfs.odf_pitch_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Onset detection function based on Pitch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<a class="reference internal" href="iracema_core_audio.html#iracema.core.audio.Audio" title="iracema.core.audio.Audio"><em>Audio</em></a>) – Audio object</p></li>
+<li><p><strong>window</strong> (<em>int</em>) – Window length for computing the pitch.</p></li>
+<li><p><strong>hop</strong> (<em>int</em>) – Hop length for computing the pitch.</p></li>
+<li><p><strong>minf0</strong> (<em>int</em>) – Minimum frequency for the pitch detection.</p></li>
+<li><p><strong>maxf0</strong> (<em>int</em>) – Maximum frequency for the pitch detection.</p></li>
+<li><p><strong>smooth_pitch</strong> (<em>bool</em>) – Whether or not the pitch curve should be smoothed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>odf</strong> – Onset detection function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries">TimeSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="iracema_segmentation_odfs.html" class="btn btn-neutral float-right" title="iracema.segmentation.onsets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="iracema_segmentation.html" class="btn btn-neutral float-left" title="iracema.segmentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Tairone N. Magalhães.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

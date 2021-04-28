@@ -1,50 +1,58 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>iracema.io.audiofile &mdash; Iracema 0.1.7 documentation</title>
+  <title>iracema.io.audiofile &mdash; Iracema 0.2.0 documentation</title>
   
 
   
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="iracema.io.player" href="iracema_io_player.html" />
     <link rel="prev" title="iracema.io" href="iracema_io.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -61,7 +69,7 @@
             
             
               <div class="version">
-                0.1.7
+                0.2.0
               </div>
             
           
@@ -78,6 +86,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,61 +94,35 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <p><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+<p><span class="caption-text">API</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../intro.html#virtual-environment">Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_features.html">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="iracema_io.html">iracema.io</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">iracema.io.audiofile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iracema_io_player.html">iracema.io.player</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#developing">Developing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../intro.html#dependencies">Dependencies</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#loading-audio-files">Loading audio files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#architecture">Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#modules">Modules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="iracema.html">Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_features.html">iracema.features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="iracema_io.html">iracema.io</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">iracema.io.audiofile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="iracema_io_player.html">iracema.io.player</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_segment.html">iracema.segment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_timeseries.html">iracema.timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_util.html">iracema.util</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="iracema_util_dsp.html">iracema.util.dsp</a></li>
-<li class="toctree-l3"><a class="reference internal" href="iracema_util_windowing.html">iracema.util.windowing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../indices.html">Indices and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_util.html">iracema.util</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -174,13 +157,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="iracema.html">Iracema</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="iracema_io.html">iracema.io</a> &raquo;</li>
         
@@ -189,7 +172,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/source/iracema_io_audiofile.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -203,78 +186,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-iracema.io.audiofile">
+  <section id="module-iracema.io.audiofile">
 <span id="iracema-io-audiofile"></span><h1>iracema.io.audiofile<a class="headerlink" href="#module-iracema.io.audiofile" title="Permalink to this headline">¶</a></h1>
 <p>Methods for reading and writing raw audio files.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.io.audiofile.read">
-<code class="descclassname">iracema.io.audiofile.</code><code class="descname">read</code><span class="sig-paren">(</span><em>file_location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.audiofile.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read WAV audio file from the local file system or download it from URL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_location</strong> (<em>str</em>) – Path or URL to the file that will be loaded.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
-<li><strong>data</strong> (<em>numpy array</em>) – Audio data.</li>
-<li><strong>fs</strong> (<em>int</em>) – Sampling frequency.</li>
-<li><strong>file_name</strong> (<em>str</em>) – Base name of the loaded file.</li>
+<code class="sig-prename descclassname"><span class="pre">iracema.io.audiofile.</span></code><code class="sig-name descname"><span class="pre">read</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.io.audiofile.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read audio file from the local file system or download it from URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_location</strong> (<em>str</em>) – Path or URL to the file that will be loaded.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>data</strong> (<em>numpy array</em>) – Audio data.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Sampling frequency.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em>) – Base name of the loaded file.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.io.audiofile.write">
-<code class="descclassname">iracema.io.audiofile.</code><code class="descname">write</code><span class="sig-paren">(</span><em>filename</em>, <em>data</em>, <em>fs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.io.audiofile.write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.io.audiofile.</span></code><code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/io/audiofile.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.io.audiofile.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the contents of a <cite>data</cite> array to a WAVE file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<em>str</em>) – Name of the audio file to be loaded.</li>
-<li><strong>data</strong> (<em>numpy array</em>) – Data array containing audio samples.</li>
-<li><strong>fs</strong> (<em>int</em>) – Sampling frequency.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the audio file to be loaded.</p></li>
+<li><p><strong>data</strong> (<em>numpy array</em>) – Data array containing audio samples.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Sampling frequency.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="iracema_io_player.html" class="btn btn-neutral float-right" title="iracema.io.player" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="iracema_io.html" class="btn btn-neutral" title="iracema.io" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="iracema_io_player.html" class="btn btn-neutral float-right" title="iracema.io.player" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="iracema_io.html" class="btn btn-neutral float-left" title="iracema.io" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tairone N. Magalhães
+        &#169; Copyright 2019, Tairone N. Magalhães.
 
     </p>
   </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -283,27 +253,16 @@
   </div>
   
 
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

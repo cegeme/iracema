@@ -1,2 +1,2 @@
-import iracema
-audio = iracema.Audio("https://raw.githubusercontent.com/cegeme/iracema-audio/master/05 - Trumpet - Haydn.wav")
+import iracema as ir
+audio = ir.Audio.load("05 - Trumpet - Haydn.wav")

@@ -1,50 +1,59 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>iracema.features &mdash; Iracema 0.1.7 documentation</title>
+  <title>iracema.features &mdash; Iracema 0.2.0 documentation</title>
   
 
   
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="iracema.harmonics" href="iracema_harmonics.html" />
-    <link rel="prev" title="iracema.aggregation" href="iracema_aggregation.html" /> 
+  <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
 
   
-  <script src="../_static/js/modernizr.min.js"></script>
+  
 
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iracema.aggregation" href="iracema_aggregation.html" />
+    <link rel="prev" title="iracema.plot" href="iracema_plot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -61,7 +70,7 @@
             
             
               <div class="version">
-                0.1.7
+                0.2.0
               </div>
             
           
@@ -78,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,61 +95,31 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <p><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+<p><span class="caption-text">API</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../intro.html#virtual-environment">Virtual environment</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#developing">Developing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../intro.html#dependencies">Dependencies</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#loading-audio-files">Loading audio files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#architecture">Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial.html#modules">Modules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="reference internal" href="iracema.html">Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">iracema.features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_io.html">iracema.io</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="iracema_io_audiofile.html">iracema.io.audiofile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="iracema_io_player.html">iracema.io.player</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_segment.html">iracema.segment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_timeseries.html">iracema.timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iracema_util.html">iracema.util</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="iracema_util_dsp.html">iracema.util.dsp</a></li>
-<li class="toctree-l3"><a class="reference internal" href="iracema_util_windowing.html">iracema.util.windowing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../indices.html">Indices and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_io.html">iracema.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iracema_util.html">iracema.util</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -174,20 +154,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="iracema.html">Iracema</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>iracema.features</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/source/iracema_features.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -201,110 +181,86 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-iracema.features">
+  <section id="module-iracema.features">
 <span id="iracema-features"></span><h1>iracema.features<a class="headerlink" href="#module-iracema.features" title="Permalink to this headline">¶</a></h1>
-<p>This module contains the implementation of some classic feature extractors.</p>
+<p>This module contains the implementation of feature extractors.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="bello2005" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Bello2005]</a></td><td>Bello, J. P., Daudet, L., Abdallah, S., Duxbury, C., Davies,
+<dl class="citation">
+<dt class="label" id="bello2005"><span class="brackets"><a class="fn-backref" href="#id2">Bello2005</a></span></dt>
+<dd><p>Bello, J. P., Daudet, L., Abdallah, S., Duxbury, C., Davies,
 M., &amp; Sandler, M. B. (2005). A tutorial on onset detection in music
 signals. IEEE Transactions on Speech and Audio Processing, 13(5),
-1035–1046.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="dixon2006" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[Dixon2006]</a></td><td>Dixon, S. (2006). Onset Detection Revisited. In 9th
+1035–1046.</p>
+</dd>
+<dt class="label" id="dixon2006"><span class="brackets"><a class="fn-backref" href="#id8">Dixon2006</a></span></dt>
+<dd><p>Dixon, S. (2006). Onset Detection Revisited. In 9th
 International Conference on Digital Audio Effects (pp. 133–137).
-Montreal, Canada.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="lerch2012" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[Lerch2012]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id6">2</a>, <a class="fn-backref" href="#id7">3</a>)</em> Lerch, A. (2012). An introduction to audio content analysis:
+Montreal, Canada.</p>
+</dd>
+<dt class="label" id="lerch2012"><span class="brackets">Lerch2012</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>,<a href="#id7">3</a>)</span></dt>
+<dd><p>Lerch, A. (2012). An introduction to audio content analysis:
 Applications in signal processing and music informatics. In An Introduction
 to Audio Content Analysis: Applications in Signal Processing and Music
-Informatics.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="park2004" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Park2004]</a></td><td>Park, T. H. (2004). Towards automatic musical instrument
-timbre recognition. Princeton University.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="park2010" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[Park2010]</a></td><td>Park, T. H. (2010). Introduction to digital signal
+Informatics.</p>
+</dd>
+<dt class="label" id="park2004"><span class="brackets"><a class="fn-backref" href="#id1">Park2004</a></span></dt>
+<dd><p>Park, T. H. (2004). Towards automatic musical instrument
+timbre recognition. Princeton University.</p>
+</dd>
+<dt class="label" id="park2010"><span class="brackets"><a class="fn-backref" href="#id3">Park2010</a></span></dt>
+<dd><p>Park, T. H. (2010). Introduction to digital signal
 processing: Computer musically speaking. World Scientific Publishing
-Co. Pte. Ltd.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="peeters2011" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[Peeters2011]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,
+Co. Pte. Ltd.</p>
+</dd>
+<dt class="label" id="peeters2011"><span class="brackets">Peeters2011</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id9">2</a>)</span></dt>
+<dd><p>Peeters, G., Giordano, B. L., Susini, P., Misdariis, N.,
 &amp; McAdams, S. (2011). The timbre toolbox: extracting audio features
-from musical signals, 130(5).</td></tr>
-</tbody>
-</table>
-<dl class="function">
+from musical signals, 130(5).</p>
+</dd>
+</dl>
+<dl class="py function">
 <dt id="iracema.features.peak_envelope">
-<code class="descclassname">iracema.features.</code><code class="descname">peak_envelope</code><span class="sig-paren">(</span><em>time_series</em>, <em>window_size</em>, <em>hop_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#peak_envelope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.peak_envelope" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">peak_envelope</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#peak_envelope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.peak_envelope" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the peak envelope of a time series</p>
 <p>The peak envelope consists in the peak absolute values of the
 amplitude within the aggregation window.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{PE} = max(|x(n)|), 1 &lt;= n &lt;= L\]</div>
 <p>Where <cite>x(n)</cite> is the n-th sample of a window of length <cite>L</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>iracema.timeseries.TimeSeries</em></a>) – An audio time-series object.</li>
-<li><strong>window_size</strong> (<em>int</em>) – </li>
-<li><strong>hop_size</strong> (<em>int</em>) – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_series</strong> (<a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries"><em>iracema.core.timeseries.TimeSeries</em></a>) – An audio time-series object.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>hop_size</strong> (<em>int</em>) – </p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.rms">
-<code class="descclassname">iracema.features.</code><code class="descname">rms</code><span class="sig-paren">(</span><em>time_series</em>, <em>window_size</em>, <em>hop_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#rms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.rms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">rms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#rms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.rms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the root mean square of a time series</p>
 <p>The RMS envelope consists in the root mean square of the amplitude,
 calculated within the aggregation window.</p>
 <div class="math notranslate nohighlight">
 \[RMS = \sqrt{ \frac{1}{L} \sum_{n=1}^{L} x(n)^2 }\]</div>
 <p>Where <cite>x(n)</cite> is the n-th sample of a window of length <cite>L</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>iracema.timeseries.TimeSeries</em></a>) – A time-series object. It is usually applied on Audio objects.</li>
-<li><strong>window_size</strong> (<em>int</em>) – </li>
-<li><strong>hop_size</strong> (<em>int</em>) – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_series</strong> (<a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries"><em>iracema.core.timeseries.TimeSeries</em></a>) – A time-series object. It is usually applied on Audio objects.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>hop_size</strong> (<em>int</em>) – </p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.zcr">
-<code class="descclassname">iracema.features.</code><code class="descname">zcr</code><span class="sig-paren">(</span><em>time_series</em>, <em>window_size</em>, <em>hop_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#zcr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.zcr" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">zcr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#zcr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.zcr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the zero-crossing rate of a time series, i.e., the number of
 times the signal crosses the zero axis, per second.</p>
 <p>The zero-crossing rate gives some insight on the noisiness character of a
@@ -316,28 +272,24 @@ higher values than in periodic / voiced signals.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\operatorname{sgn}\left[x(n)\right]=\left\{\begin{array}{c}{1, x(n) \geq 0} \\ {-1, x(n)&lt;0}\end{array}\right.\end{split}\]</div>
 <p>And <cite>x(n)</cite> is the n-th sample of a window of length <cite>L</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>time_series</strong> (<a class="reference internal" href="iracema_timeseries.html#iracema.timeseries.TimeSeries" title="iracema.timeseries.TimeSeries"><em>iracema.timeseries.TimeSeries</em></a>) – A time-series object. It is usually applied on Audio objects.</li>
-<li><strong>window_size</strong> (<em>int</em>) – </li>
-<li><strong>hop_size</strong> (<em>int</em>) – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_series</strong> (<a class="reference internal" href="iracema_core_timeseries.html#iracema.core.timeseries.TimeSeries" title="iracema.core.timeseries.TimeSeries"><em>iracema.core.timeseries.TimeSeries</em></a>) – A time-series object. It is usually applied on Audio objects.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>hop_size</strong> (<em>int</em>) – </p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_flatness">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_flatness</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_flatness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_flatness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral flatness for a given FFT.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_flatness</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_flatness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_flatness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral flatness for a given STFT.</p>
 <p>The spectral flatness gives an estimation of the noisiness / sinusoidality
 of an audio signal (for the whole spectrum or for a frequency range). It
-can be used to determine voiced / unvoiced parts of a signal <a class="reference internal" href="#park2004" id="id1">[Park2004]</a>.</p>
+can be used to determine voiced / unvoiced parts of a signal <a class="reference internal" href="#park2004" id="id1"><span>[Park2004]</span></a>.</p>
 <p>It is defined as the ratio between the <cite>geometric mean</cite> and the
 <cite>arithmetic mean</cite> of the energy spectrum:</p>
 <div class="math notranslate nohighlight">
@@ -346,23 +298,20 @@ can be used to determine voiced / unvoiced parts of a signal <a class="reference
   {\left( \prod_{k=1}^{N} |X(k)| \right)^\frac{1}{N}}
   { \frac{1}{N} \sum_{k=1}^{N} |X(k)| }
 \right)
-\end{eqnarray}</div><p>Where <cite>X(k)</cite> is the result of the FFT for the <cite>k-th</cite> frequency bin.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>time_series</strong> (<em>iracema.spectral.FFT</em>) – A FFT object</td>
-</tr>
-</tbody>
-</table>
+\end{eqnarray}</div><p>Where <cite>X(k)</cite> is the result of the STFT for the <cite>k-th</cite> frequency bin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time_series</strong> (<a class="reference internal" href="iracema_spectral.html#iracema.spectral.STFT" title="iracema.spectral.STFT"><em>iracema.spectral.STFT</em></a>) – A STFT object</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.hfc">
-<code class="descclassname">iracema.features.</code><code class="descname">hfc</code><span class="sig-paren">(</span><em>fft</em>, <em>method='energy'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#hfc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.hfc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the high frequency content for a FFT time-series.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">hfc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#hfc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.hfc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the high frequency content for a STFT time-series.</p>
 <p>The HFC _function produces sharp peaks during attacks or transients
-<a class="reference internal" href="#bello2005" id="id2">[Bello2005]</a> and might be a good choice for detecting onsets in percussive
+<a class="reference internal" href="#bello2005" id="id2"><span>[Bello2005]</span></a> and might be a good choice for detecting onsets in percussive
 sounds.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{HFC} = \sum_{k=1}^{N} |X(k)|^2 \cdot k\]</div>
@@ -370,62 +319,55 @@ sounds.</p>
 (default value):</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{HFC} = \sum_{k=1}^{N} |X(k)| \cdot k\]</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fft</strong> (<em>iracema.spectral.FFT</em>) – FFT time-series.</li>
-<li><strong>method</strong> (<em>str</em>) – Method of choice to calculate the HFC.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stft</strong> (<a class="reference internal" href="iracema_spectral.html#iracema.spectral.STFT" title="iracema.spectral.STFT"><em>iracema.spectral.STFT</em></a>) – STFT time-series.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Method of choice to calculate the HFC.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_centroid">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_centroid</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_centroid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_centroid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral centroid for a FFT time-series.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_centroid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_centroid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_centroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral centroid for a STFT time-series.</p>
 <p>The spectral centroid is a well known timbral feature that is used to
 describe the brightness of a sound. It represents the center of gravity
-of the frequency components of a signal <a class="reference internal" href="#park2010" id="id3">[Park2010]</a>.</p>
+of the frequency components of a signal <a class="reference internal" href="#park2010" id="id3"><span>[Park2010]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SC} = \frac{\sum_{k=1}^{N} |X(k)| \cdot f_k }{\sum_{k=1}^{N} |X(k)|}\]</div>
-<p>Where <cite>X(k)</cite> is the result of the FFT for the <cite>k-th</cite> frequency bin.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fft</strong> (<em>iracema.spectral.FFT</em>) – A FFT object</td>
-</tr>
-</tbody>
-</table>
+<p>Where <cite>X(k)</cite> is the result of the STFT for the <cite>k-th</cite> frequency bin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stft</strong> (<a class="reference internal" href="iracema_spectral.html#iracema.spectral.STFT" title="iracema.spectral.STFT"><em>iracema.spectral.STFT</em></a>) – A STFT object</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_spread">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_spread</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_spread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_spread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral spread for a FFT time-series.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_spread</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_spread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_spread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral spread for a STFT time-series.</p>
 <p>The spectral spread represents the spread of the spectrum around the
-spectral centroid <a class="reference internal" href="#peeters2011" id="id4">[Peeters2011]</a>, <a class="reference internal" href="#lerch2012" id="id5">[Lerch2012]</a>.</p>
+spectral centroid <a class="reference internal" href="#peeters2011" id="id4"><span>[Peeters2011]</span></a>, <a class="reference internal" href="#lerch2012" id="id5"><span>[Lerch2012]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SSp} = \sqrt{\frac{\sum_{k=1}^{N} |X(k)| \cdot (f_k - SC)^2 }{\sum_
 {k=1}^{N} |X (k)|}}\]</div>
-<p>Where <cite>X(k)</cite> is the result of the FFT for the <cite>k-th</cite> frequency bin and SC
+<p>Where <cite>X(k)</cite> is the result of the STFT for the <cite>k-th</cite> frequency bin and SC
 is the spectral centroid for the frame.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_skewness">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_skewness</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_skewness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_skewness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral skewness for an FFT time series</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_skewness</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_skewness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_skewness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral skewness for an STFT time series</p>
 <p>The spectral skewness is a measure of the asymetry of the distribution of
 the spectrum around its mean value, and is calculated from its third order
 moment. It will output negative values when the spectrum has more energy
 bellow the mean value, and positive values when it has more energy above
-the mean. Symmetric distributions will output the value zero <a class="reference internal" href="#lerch2012" id="id6">[Lerch2012]</a>.</p>
+the mean. Symmetric distributions will output the value zero <a class="reference internal" href="#lerch2012" id="id6"><span>[Lerch2012]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SSk} = \frac{2 \cdot \sum_{k=1}^{N} \left( |X(k)| - \mu_{|X|} \right)^3 }{
 N \cdot \sigma_{|X|}^3}\]</div>
@@ -433,14 +375,14 @@ N \cdot \sigma_{|X|}^3}\]</div>
 <span class="math notranslate nohighlight">\(\sigma_{|X|}\)</span> its standard deviation.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_kurtosis">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_kurtosis</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_kurtosis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_kurtosis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral kurtosis for an FFT time series</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_kurtosis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_kurtosis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_kurtosis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral kurtosis for an STFT time series</p>
 <p>The spectral kurtosis is a measure of the flatness of the distribution of
 the spectrum around its mean value. It will output the value 3 for Gaussian
 distributions. Values smaller than 3 represent flatter distributions, while
-values larger than 3 represent peakier distributions <a class="reference internal" href="#lerch2012" id="id7">[Lerch2012]</a>.</p>
+values larger than 3 represent peakier distributions <a class="reference internal" href="#lerch2012" id="id7"><span>[Lerch2012]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SKu} = \frac{2 \cdot \sum_{k=1}^{N} \left( |X(k)| - \mu_{|X|} \right)^4 }{
 N \cdot \sigma_{|X|}^4}\]</div>
@@ -448,43 +390,31 @@ N \cdot \sigma_{|X|}^4}\]</div>
 <span class="math notranslate nohighlight">\(\sigma_{|X|}\)</span> its standard deviation.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_flux">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_flux</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_flux"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_flux" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral flux for a FFT time-series.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_flux</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hwrdiff'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_flux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral flux for a STFT time-series.</p>
 <p>The spectral flux measures the amount of change between successive
 spectral frames. There are different methods to calculate the spectral
 flux across the literature. For now we have implemented the one proposed
-by <a class="reference internal" href="#dixon2006" id="id8">[Dixon2006]</a>.</p>
+by <a class="reference internal" href="#dixon2006" id="id8"><span>[Dixon2006]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SF} = \sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)\]</div>
 <p>where <span class="math notranslate nohighlight">\(H(x) = \frac{x+|x|}{2}\)</span> is the half-wave rectifier _function,
 and <cite>t</cite> is the temporal index of the frame.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fft</strong> (<em>iracema.spectral.FFT</em>) – A FFT object</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stft</strong> (<a class="reference internal" href="iracema_spectral.html#iracema.spectral.STFT" title="iracema.spectral.STFT"><em>iracema.spectral.STFT</em></a>) – A STFT object</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – ‘hwrdiff’ or ‘corr’</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="iracema.features.spectral_rolloff">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_rolloff</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_rolloff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_rolloff" title="Permalink to this definition">¶</a></dt>
-<dd><p>Spectral Rolloff</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="iracema.features.spectral_irregularity">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_irregularity</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_irregularity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_irregularity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Spectral Irregularity</p>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.harmonic_centroid">
-<code class="descclassname">iracema.features.</code><code class="descname">harmonic_centroid</code><span class="sig-paren">(</span><em>harmonics</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#harmonic_centroid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.harmonic_centroid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">harmonic_centroid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">harmonics</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#harmonic_centroid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.harmonic_centroid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Harmonic Centroid</p>
 <p>The harmonic centroid represents the center of gravity of the amplitudes
 of the harmonic series.</p>
@@ -493,25 +423,19 @@ of the harmonic series.</p>
 <p>Where <span class="math notranslate nohighlight">\(A(h)\)</span> represents the amplitude of the h-th harmonic partial.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="iracema.features.inharmonicity">
-<code class="descclassname">iracema.features.</code><code class="descname">inharmonicity</code><span class="sig-paren">(</span><em>fft</em>, <em>harmonics</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#inharmonicity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.inharmonicity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inharmonicity</p>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.harmonic_energy">
-<code class="descclassname">iracema.features.</code><code class="descname">harmonic_energy</code><span class="sig-paren">(</span><em>harmonics_magnitude</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#harmonic_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.harmonic_energy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">harmonic_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">harmonics_magnitude</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#harmonic_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.harmonic_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the energy of harmonic partials.</p>
 <p>Harmonic energy is the energy of the harmonic partials of a signal.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{HE} = \sum_{k=1}^{H} A(k)^2\]</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_entropy">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_entropy</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_entropy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the spectral entropy for a FFT time series</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_entropy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the spectral entropy for a STFT time series</p>
 <p>The spectral entropy is based on the concept of information entropy from
 Shannon’s information theory. It measures the unpredictability of the given
 state of a spectral distribution.</p>
@@ -523,29 +447,29 @@ state of a spectral distribution.</p>
 <p>More info at <a class="reference external" href="https://www.mathworks.com/help/signal/ref/pentropy.html">https://www.mathworks.com/help/signal/ref/pentropy.html</a>.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.spectral_energy">
-<code class="descclassname">iracema.features.</code><code class="descname">spectral_energy</code><span class="sig-paren">(</span><em>fft</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.spectral_energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the total energy of an FFT frame.</p>
-<p>Spectral Energy is the total energy of an FFT frame.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">spectral_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#spectral_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.spectral_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the total energy of an STFT frame.</p>
+<p>Spectral Energy is the total energy of an STFT frame.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{SF} = \sum_{k=1}^{N} H(|X(t, k)| - |X(t-1, k)|)\]</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.noisiness">
-<code class="descclassname">iracema.features.</code><code class="descname">noisiness</code><span class="sig-paren">(</span><em>fft</em>, <em>harmonics_magnitude</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#noisiness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.noisiness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the Noisiness for the given FFT and Harmonics time series.</p>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">noisiness</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harmonics_magnitude</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#noisiness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.noisiness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Noisiness for the given STFT and Harmonics time series.</p>
 <p>The Noisiness represent how noisy a signal is (values closer to 1), as
 oposed to harmonic (values close to 0). It is the ratio of the noise
-energy to the total energy of a signal <a class="reference internal" href="#peeters2011" id="id9">[Peeters2011]</a>.</p>
+energy to the total energy of a signal <a class="reference internal" href="#peeters2011" id="id9"><span>[Peeters2011]</span></a>.</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{Ns} = \frac{\operatorname{SE}-\operatorname{HE}}{\operatorname{SE}}\]</div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="iracema.features.oer">
-<code class="descclassname">iracema.features.</code><code class="descname">oer</code><span class="sig-paren">(</span><em>harmonics</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#oer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#iracema.features.oer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">oer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">harmonics</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#oer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.oer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the odd-to-even ratio for the harmonics time series.</p>
 <p>The OER represents the odd-to-even ratio among the harmonics of an audio
 signal. This value will be higher for sounds with predominantly odd
@@ -555,35 +479,71 @@ harmonics, such as the clarinet.</p>
 <p>Where <span class="math notranslate nohighlight">\(A(h)\)</span> represents the amplitude of the h-th harmonic partial.</p>
 </dd></dl>
 
-</div>
+<dl class="py function">
+<dt id="iracema.features.local_tempo">
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">local_tempo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onsets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nominal_ioi_durations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#local_tempo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.local_tempo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the local tempo for a list of note onsets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>onsets</strong> (<a class="reference internal" href="iracema_core_point.html#iracema.core.point.PointList" title="iracema.core.point.PointList"><em>PointList</em></a>) – List of note onset points.</p></li>
+<li><p><strong>nominal_ioi_durations</strong> (<em>list</em>) – List containing the nominal durations of the IOIs for the
+execerpt (based on the score).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>local_tempo</strong> – Numpy array containing the local tempos for each IOI.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="iracema.features.legato_index">
+<code class="sig-prename descclassname"><span class="pre">iracema.features.</span></code><code class="sig-name descname"><span class="pre">legato_index</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">441</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iracema/features.html#legato_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#iracema.features.legato_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the legato index for the given audio and note list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> (<a class="reference internal" href="iracema_core_audio.html#iracema.core.audio.Audio" title="iracema.core.audio.Audio"><em>Audio</em></a>) – Audio object.</p></li>
+<li><p><strong>note_list</strong> (<em>list</em>) – List of dictionaries containing the note envelope points.</p></li>
+<li><p><strong>window</strong> (<em>int</em>) – </p></li>
+<li><p><strong>hop</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>legato_indexes</strong> – Numpy array with the calculated legato index for each note.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="iracema_harmonics.html" class="btn btn-neutral float-right" title="iracema.harmonics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="iracema_aggregation.html" class="btn btn-neutral" title="iracema.aggregation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="iracema_aggregation.html" class="btn btn-neutral float-right" title="iracema.aggregation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="iracema_plot.html" class="btn btn-neutral float-left" title="iracema.plot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tairone N. Magalhães
+        &#169; Copyright 2019, Tairone N. Magalhães.
 
     </p>
   </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -592,27 +552,16 @@ harmonics, such as the clarinet.</p>
   </div>
   
 
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

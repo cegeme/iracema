@@ -1,48 +1,55 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>iracema.io.audiofile &mdash; Iracema 0.1.7 documentation</title>
-  
-
-  
-  
-  
+  <title>iracema.io.audiofile &mdash; Iracema 0.2.0 documentation</title>
   
 
   
-
-  
-  
-    
-
-  
-
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+  <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
 
   
-  <script src="../../../_static/js/modernizr.min.js"></script>
+  
 
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +66,7 @@
             
             
               <div class="version">
-                0.1.7
+                0.2.0
               </div>
             
           
@@ -76,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,61 +91,31 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <p><span class="caption-text">Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../intro.html#virtual-environment">Virtual environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#developing">Developing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../intro.html#dependencies">Dependencies</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#loading-audio-files">Loading audio files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#calculating-basic-features">Calculating basic features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#extracting-pitch-and-harmonics">Extracting pitch and harmonics</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#architecture">Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../tutorial.html#modules">Modules</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_aggregation.html">iracema.aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_features.html">iracema.features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_harmonics.html">iracema.harmonics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_io.html">iracema.io</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_io_audiofile.html">iracema.io.audiofile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_io_player.html">iracema.io.player</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_pitch.html">iracema.pitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_plot.html">iracema.plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_run.html">iracema.run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_segmentation.html">iracema.segmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_segment.html">iracema.segment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_spectral.html">iracema.spectral</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_timeseries.html">iracema.timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../source/iracema_util.html">iracema.util</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_util_dsp.html">iracema.util.dsp</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../source/iracema_util_windowing.html">iracema.util.windowing</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../indices.html">Indices and Tables</a></li>
+<p><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_core.html">iracema.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_spectral.html">iracema.spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_pitch.html">iracema.pitch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_harmonics.html">iracema.harmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_segmentation.html">iracema.segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_plot.html">iracema.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_features.html">iracema.features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_aggregation.html">iracema.aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_io.html">iracema.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_run.html">iracema.run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/iracema_util.html">iracema.util</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -172,11 +150,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -214,7 +194,7 @@
 
 <div class="viewcode-block" id="read"><a class="viewcode-back" href="../../../source/iracema_io_audiofile.html#iracema.io.audiofile.read">[docs]</a><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">file_location</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Read WAV audio file from the local file system or download it from URL.</span>
+<span class="sd">    Read audio file from the local file system or download it from URL.</span>
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
@@ -291,19 +271,17 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Tairone N. Magalhães
+        &#169; Copyright 2019, Tairone N. Magalhães.
 
     </p>
   </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -312,27 +290,16 @@
   </div>
   
 
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
