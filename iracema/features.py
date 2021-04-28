@@ -290,7 +290,12 @@ def spectral_skewness(stft):
     :math:`\\sigma_{|X|}` its standard deviation.
     """
     def _func(X):
-        pass
+        return 2 * np.sum(np.abs(X) - np.mean(X))**3 / (len(X) * np.std(X)**3)
+
+    time_series = aggregate_features(stft, _func)
+    time_series.label = 'SpectralSkewness'
+    time_series.unit = ''
+    return time_series
 
 
 def spectral_kurtosis(stft):
@@ -310,7 +315,12 @@ def spectral_kurtosis(stft):
     :math:`\\sigma_{|X|}` its standard deviation.
     """
     def _func(X):
-        pass
+        return 2 * np.sum(np.abs(X) - np.mean(X))**4 / (len(X) * np.std(X)**4)
+
+    time_series = aggregate_features(stft, _func)
+    time_series.label = 'SpectralKurtosis'
+    time_series.unit = ''
+    return time_series
 
 
 def spectral_flux(stft, method='hwrdiff'):
@@ -354,18 +364,6 @@ def spectral_flux(stft, method='hwrdiff'):
     return time_series
 
 
-def spectral_rolloff(stft):
-    """Spectral Rolloff"""
-    def _func(X):
-        pass
-
-
-def spectral_irregularity(stft):
-    """Spectral Irregularity"""
-    def _func(X):
-        pass
-
-
 def harmonic_centroid(harmonics):
     """
     Harmonic Centroid
@@ -378,14 +376,17 @@ def harmonic_centroid(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-    def _func(X):
-        pass
+    def _func(A):
+        abs_A = np.abs(A)
+        sum_abs_A = np.sum(abs_A)
+        if sum_abs_A == 0:
+            return 0
+        return np.sum(abs_A * np.arange(0, len(A))) / sum_abs_A
 
-
-def inharmonicity(stft, harmonics):
-    """Inharmonicity"""
-    def _func(X):
-        pass
+    time_series = aggregate_features(harmonics, _func)
+    time_series.label = 'HarmonicCentroid'
+    time_series.unit = 'Harmonic Number'
+    return time_series
 
 
 def harmonic_energy(harmonics_magnitude):
@@ -396,10 +397,10 @@ def harmonic_energy(harmonics_magnitude):
 
     .. math:: \\operatorname{HE} = \\sum_{k=1}^{H} A(k)^2
     """
-    def function(frame):
+    def _func(frame):
         return np.sum(frame**2)
 
-    time_series = aggregate_features(harmonics_magnitude, function)
+    time_series = aggregate_features(harmonics_magnitude, _func)
     time_series.label = 'Harmonic Energy'
     time_series.unit = ''
     return time_series
@@ -483,8 +484,12 @@ def oer(harmonics):
 
     Where :math:`A(h)` represents the amplitude of the h-th harmonic partial.
     """
-    def _func(X):
-        pass
+    def _func(A):
+        odd_energy = np.sum(A[::2])**2
+        even_energy = np.sum(A[1::2])**2
+        if even_energy==0:
+            return 0.
+        return odd_energy / even_energy
 
 
 def local_tempo(onsets, nominal_ioi_durations):
