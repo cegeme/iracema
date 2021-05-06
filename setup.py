@@ -54,6 +54,7 @@ setup(
     package_data = {
         'iracema' : [
             'assets/audio/Click.wav',
+            'segmentation/clari-onsets.h5'
         ],
     },
 )
