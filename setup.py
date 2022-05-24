@@ -38,7 +38,7 @@ setup(
         'Deprecated==1.2.10',
         'librosa==0.8.0',
         'w3lib==1.22.0',
-        'tensorflow==2.3.2'],
+        'tensorflow==2.6.4'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
